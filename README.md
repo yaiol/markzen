@@ -46,6 +46,10 @@ npm run dist:mac    # macOS DMG
 npm run dist:linux  # Linux AppImage
 ```
 
+Document export (DOCX/PDF/HTML) uses **pandoc**, which is not committed to the repo. The `dist`
+commands download it automatically (into `vendor/pandoc/`) before packaging. To test export in
+**dev mode**, fetch it once with `npm run ci:prepare`.
+
 ---
 
 ## Overview
