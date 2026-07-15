@@ -1,0 +1,33 @@
+{
+  "heading": [
+    { "key": "oswald",           "label": "Oswald",            "import": "Oswald:wght@400;500;600;700",                              "stack": "'Oswald', 'Trebuchet MS', sans-serif" },
+    { "key": "playfair",         "label": "Playfair Display",  "import": "Playfair+Display:ital,wght@0,400..900;1,400..900",         "stack": "'Playfair Display', Georgia, serif" },
+    { "key": "merriweather",     "label": "Merriweather",      "import": "Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400",     "stack": "'Merriweather', Georgia, serif" },
+    { "key": "raleway",          "label": "Raleway",           "import": "Raleway:wght@400;500;600;700;800",                         "stack": "'Raleway', sans-serif" },
+    { "key": "montserrat",       "label": "Montserrat",        "import": "Montserrat:wght@400;500;600;700;800",                      "stack": "'Montserrat', sans-serif" },
+    { "key": "lora",             "label": "Lora",              "import": "Lora:ital,wght@0,400..700;1,400..700",                     "stack": "'Lora', Georgia, serif" },
+    { "key": "libre-baskerville","label": "Libre Baskerville", "import": "Libre+Baskerville:ital,wght@0,400;0,700;1,400",            "stack": "'Libre Baskerville', Georgia, serif" },
+    { "key": "bebas-neue",       "label": "Bebas Neue",        "import": "Bebas+Neue",                                               "stack": "'Bebas Neue', Impact, sans-serif" },
+    { "key": "abril-fatface",    "label": "Abril Fatface",     "import": "Abril+Fatface",                                            "stack": "'Abril Fatface', Georgia, serif" },
+    { "key": "cinzel",           "label": "Cinzel",            "import": "Cinzel:wght@400;500;600;700",                              "stack": "'Cinzel', Georgia, serif" }
+  ],
+  "body": [
+    { "key": "inter",            "label": "Inter",             "import": "Inter:wght@400;500;600;700",                               "stack": "'Inter', system-ui, sans-serif" },
+    { "key": "roboto",           "label": "Roboto",            "import": "Roboto:wght@400;500;700",                                  "stack": "'Roboto', 'Segoe UI', sans-serif" },
+    { "key": "georgia",          "label": "Georgia",           "import": null,                                                       "stack": "Georgia, 'Times New Roman', serif" },
+    { "key": "lato",             "label": "Lato",              "import": "Lato:ital,wght@0,400;0,700;1,400",                         "stack": "'Lato', sans-serif" },
+    { "key": "source-serif",     "label": "Source Serif 4",    "import": "Source+Serif+4:ital,wght@0,400..700;1,400..700",           "stack": "'Source Serif 4', Georgia, serif" },
+    { "key": "nunito",           "label": "Nunito",            "import": "Nunito:wght@400;500;600;700",                              "stack": "'Nunito', sans-serif" },
+    { "key": "pt-serif",         "label": "PT Serif",          "import": "PT+Serif:ital,wght@0,400;0,700;1,400",                     "stack": "'PT Serif', Georgia, serif" },
+    { "key": "crimson-text",     "label": "Crimson Text",      "import": "Crimson+Text:ital,wght@0,400;0,600;1,400",                 "stack": "'Crimson Text', Georgia, serif" },
+    { "key": "libre-franklin",   "label": "Libre Franklin",    "import": "Libre+Franklin:wght@400;500;600;700",                     "stack": "'Libre Franklin', sans-serif" },
+    { "key": "open-sans",        "label": "Open Sans",         "import": "Open+Sans:ital,wght@0,400..700;1,400..700",                "stack": "'Open Sans', sans-serif" }
+  ],
+  "code": [
+    { "key": "dm-mono",          "label": "DM Mono",           "import": "DM+Mono:wght@400;500;600",                                 "stack": "'DM Mono', 'Fira Code', monospace" },
+    { "key": "fira-code",        "label": "Fira Code",         "import": "Fira+Code:wght@400;500;600",                               "stack": "'Fira Code', monospace" },
+    { "key": "jetbrains-mono",   "label": "JetBrains Mono",    "import": "JetBrains+Mono:wght@400;500;600",                          "stack": "'JetBrains Mono', monospace" },
+    { "key": "source-code-pro",  "label": "Source Code Pro",   "import": "Source+Code+Pro:wght@400;500;600",                         "stack": "'Source Code Pro', monospace" },
+    { "key": "cascadia-code",    "label": "Cascadia Code",     "import": "Cascadia+Code:wght@400;500;600",                           "stack": "'Cascadia Code', monospace" }
+  ]
+}

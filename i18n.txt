@@ -1,0 +1,106 @@
+
+// Prefix:Global — Scope:shared across all apps
+btnGlobalCancel
+
+// Prefix:App — Scope:app-level empty states
+empAppNoFile
+empAppDropFile
+
+// Prefix:Osd — Scope:OS native dialog titles
+ttlOsdOpenMd
+ttlOsdSaveMd
+
+// Prefix:Hdr — Scope:top toolbar buttons and tooltips
+tipHdrNew
+tipHdrOpen
+lblHdrNewDoc
+btnHdrSave
+tipHdrSave
+tipHdrSaveAs
+tipHdrConvertFormat
+lblHdrConvertTo
+ttlHdrConvertSave
+tipHdrPrint
+tipHdrSaveHtml
+ttlHdrSaveHtml
+tipHdrSavePdf
+ttlHdrSavePdf
+tipHdrZoomOut
+tipHdrZoomIn
+tipHdrModeSplit
+tipHdrModeSingle
+tipHdrShowEditor
+tipHdrViewRender
+tipHdrToc
+tipHdrStyleTemplate
+tipHdrFontHeading
+tipHdrFontBody
+tipHdrFontCode
+tipHdrSettings
+
+// Prefix:DlgSettings — Scope:settings dialog
+ttlDlgSettings
+tabDlgSettingsDisplay
+tabDlgSettingsAbout
+
+// Prefix:DlgSettingsDisplay — Scope:settings dialog (Display tab)
+lblDlgSettingsDisplayLang
+lblDlgSettingsDisplayTheme
+btnDlgSettingsDisplayThemeDark
+btnDlgSettingsDisplayThemeLight
+
+// Prefix:DlgSettingsAbout — Scope:settings dialog (About tab)
+msgDlgSettingsAboutDesc
+msgDlgSettingsAboutVersion
+
+// Prefix:DlgLink — Scope:link/image insert dialog
+btnDlgLinkLink
+btnDlgLinkImage
+plhDlgLinkAltText
+plhDlgLinkText
+plhDlgLinkUrlOrPath
+plhDlgLinkUrl
+btnDlgLinkBrowse
+tipDlgLinkImageFolder
+lblDlgLinkRelativePath
+btnDlgLinkInsert
+
+// Prefix:DlgUnsaved — Scope:unsaved changes confirmation
+cfmDlgUnsavedMsg
+btnDlgUnsavedDiscard
+cfmDlgUnsavedReload
+btnDlgUnsavedReload
+
+// Prefix:Editor — Scope:markdown editor area and toolbar
+tipEditorBold
+tipEditorItalic
+tipEditorStrikethrough
+tipEditorHeading
+tipEditorBulletList
+tipEditorNumberedList
+tipEditorBlockquote
+tipEditorInlineCode
+tipEditorCodeBlock
+tipEditorLinkImage
+tipEditorHorizontalRule
+tipEditorAlignLeft
+tipEditorAlignCenter
+tipEditorAlignRight
+
+// Prefix:Preview — Scope:preview panel and find bar
+plhPreviewFind
+lblPreviewNoResults
+tipPreviewFindPrev
+tipPreviewFindNext
+tipPreviewFindClose
+
+// Prefix:ImageProps — Scope:inline image property popup
+lblImagePropsAlign
+lblImagePropsWidth
+lblImagePropsHeight
+plhImagePropsPx
+tipImagePropsApply
+tipImagePropsClear
+btnImagePropsRemoveStyle
+
+// ⚠ CLAUDE: do NOT add keys here — every key must belong to an existing Prefix block above. If no block fits, ask the user.

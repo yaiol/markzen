@@ -1,0 +1,18 @@
+# node
+node_modules/
+# electron-builder output
+dist/
+# binairies
+release/
+# vendored third-party binaries (pandoc) — NEVER commit (~667 MB); CI fetches them via
+# `npm run ci:prepare` (scripts/fetch-pandoc.mjs), electron-builder bundles them per-OS.
+vendor/
+# claude
+.claude/
+# scratch
+local/
+# log / env
+*.log
+.env
+.env.local
+.env.*.local
