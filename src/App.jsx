@@ -598,6 +598,7 @@ export default function App() {
   const [showConvertMenu, setShowConvertMenu] = useState(false);
   const [tabSettingsActive, setTabSettingsActive]   = useState('display');
   const [html, setHtml]           = useState('');
+  const [paneTick, setPaneTick]   = useState(0); // forces a pane write when setHtml gets an identical string (two tabs, same content)
   const [fontSize, setFontSize]   = useState(() => parseInt(localStorage.getItem(`${STORAGE_PREFIX}-fontsize`) || '15', 10));
   const [splitRatio, setSplitRatio]   = useState(() => parseFloat(localStorage.getItem(`${STORAGE_PREFIX}-splitRatio`) || '0.5'));
   const [showToc, setShowToc]         = useState(true);
@@ -627,7 +628,8 @@ export default function App() {
       fileName: fp ? fp.replace(/.*[\\/]/, '') : (displayName || 'Untitled'),
       text,
       unsaved: false,
-      scrollTop: 0,
+      scrollSnap: null,
+      selection: null,
       formatId: fmt.id,
     };
   }
@@ -652,6 +654,10 @@ export default function App() {
   const preservePreviewScrollRef = useRef(null); // set before programmatic source edits; syncScroll restores it
   const prevActiveTabIdRef    = useRef(null);
   const cytoscapeInstancesRef = useRef(new Map()); // keyed by container div - used for cy.png() export
+  const htmlCacheRef          = useRef(new Map()); // tabId → {text, formatId, html} — skips re-parse on switch-back
+  const paneHtmlRef           = useRef(new Map()); // tabId → html last written into that tab's pane DOM
+  const htmlForTabRef         = useRef(null);      // which tab the `html` state currently belongs to
+  const rewroteHtmlRef        = useRef(false);     // whether the last pane layout effect rewrote the DOM
   const openLinkPopupRef      = useRef(null);       // set below; called by Ctrl+K keymap handler
   const findInputRef          = useRef(null);
   const findMarksRef          = useRef([]);
@@ -1080,7 +1086,8 @@ export default function App() {
   }
 
   function scrollToHeading(id) {
-    const el = document.getElementById(id);
+    // Scoped query — heading ids are duplicated across the per-tab preview panes
+    const el = previewRef.current?.querySelector(`#${CSS.escape(id)}`);
     if (el && previewRef.current) {
       const container = previewRef.current;
       container.scrollTop += el.getBoundingClientRect().top - container.getBoundingClientRect().top;
@@ -1095,12 +1102,13 @@ export default function App() {
     // Only scroll when the editor is visible - scrolling a hidden CM instance causes
     // the browser to scroll the page (win.scrollBy) and makes the header disappear.
     suppressSyncRef.current = true;
-    view.dispatch({ selection: EditorSelection.cursor(pos) });
     const editorVisible = centerMode === 'split' || centerView === 'editor';
-    if (editorVisible) {
-      const lineTop = view.lineBlockAt(pos).top;
-      view.scrollDOM.scrollTop = Math.max(0, lineTop - 20);
-    }
+    // ⚠ CLAUDE: never set scrollDOM.scrollTop directly — CM's scroll-stabilization
+    // measure pass overrides it (the click-twice TOC bug); scroll via the effect.
+    view.dispatch({
+      selection: EditorSelection.cursor(pos),
+      ...(editorVisible ? { effects: EditorView.scrollIntoView(pos, { y: 'start', yMargin: 20 }) } : {}),
+    });
   }
 
   function toggleTocCollapse(id) {
@@ -1147,7 +1155,16 @@ export default function App() {
     const a = e.target.closest('a');
     if (!a || !mdBodyRef.current?.contains(a)) return;
     const raw = a.getAttribute('href') || '';
-    if (!raw || raw.startsWith('#')) return;                                  // in-page anchor → native scroll
+    if (!raw) return;
+    if (raw.startsWith('#')) {
+      // ⚠ CLAUDE: in-page anchors must NOT use native scroll — ids are duplicated across
+      // the per-tab preview panes and the browser would jump to a hidden pane's match.
+      e.preventDefault();
+      const el = previewRef.current?.querySelector(`#${CSS.escape(decodeURIComponent(raw.slice(1)))}`);
+      if (el && previewRef.current)
+        previewRef.current.scrollTop += el.getBoundingClientRect().top - previewRef.current.getBoundingClientRect().top;
+      return;
+    }
     if (/^[a-z][a-z0-9+.-]*:/i.test(raw) && !/^file:/i.test(raw)) return;     // http(s)/mailto/etc → system browser
     e.preventDefault();
     const path = resolveDocRelativePath(raw.replace(/^file:\/+/i, '')).replace(/\//g, '\\');
@@ -1322,22 +1339,51 @@ export default function App() {
   }, [centerMode, centerView]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Clear marks when content changes (tab switch or edit)
-  useEffect(() => { clearFindMarks(); setFindCount(0); setFindIndex(0); }, [html]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { clearFindMarks(); setFindCount(0); setFindIndex(0); }, [html, activeTabId]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { localStorage.setItem(`${STORAGE_PREFIX}-splitRatio`, splitRatio); }, [splitRatio]);
   useEffect(() => {
-    if (!activeTab) { setHtml(''); return; }
+    if (!activeTab) { setHtml(''); htmlForTabRef.current = null; previewRef.current = null; mdBodyRef.current = null; return; }
+    // Per-tab html cache — switching back to a tab must not re-parse a multi-MB doc
+    const cached = htmlCacheRef.current.get(activeTabId);
+    if (cached && cached.text === activeTab.text && cached.formatId === activeFormat.id) {
+      htmlForTabRef.current = activeTabId;
+      if (paneHtmlRef.current.get(activeTabId) !== cached.html) setPaneTick(t => t + 1);
+      setHtml(cached.html);
+      return;
+    }
     // Most formats' toHtml is sync (string); asciidoc's is async (Promise, asciidoctor v4). Handle both,
     // and guard against a slow async result landing after the tab/format already changed.
     const out = activeFormat.toHtml(activeTab.text);
     if (out && typeof out.then === 'function') {
       let alive = true;
-      out.then(h => { if (alive) setHtml(h); });
+      out.then(h => {
+        if (!alive) return;
+        htmlCacheRef.current.set(activeTabId, { text: activeTab.text, formatId: activeFormat.id, html: h });
+        htmlForTabRef.current = activeTabId;
+        if (paneHtmlRef.current.get(activeTabId) !== h) setPaneTick(t => t + 1);
+        setHtml(h);
+      });
       return () => { alive = false; };
     }
+    htmlCacheRef.current.set(activeTabId, { text: activeTab.text, formatId: activeFormat.id, html: out });
+    htmlForTabRef.current = activeTabId;
+    if (paneHtmlRef.current.get(activeTabId) !== out) setPaneTick(t => t + 1);
     setHtml(out);
   }, [activeTab?.text, activeTabId, activeFormat]); // eslint-disable-line
   useLayoutEffect(() => {
-    if (!mdBodyRef.current) return;
+    // ⚠ CLAUDE: per-tab preview panes — only (re)write the active pane's DOM when its html
+    // actually changed (an edit / first activation). On a plain tab switch the pane already
+    // holds this html: skip, so the live DOM (decoded images, rendered extensions, scroll
+    // position) survives. htmlForTabRef guards the one-commit lag where `html` still
+    // belongs to the outgoing tab right after a switch.
+    rewroteHtmlRef.current = false;
+    if (!mdBodyRef.current || !activeTabId) return;
+    if (htmlForTabRef.current !== activeTabId) return;
+    if (paneHtmlRef.current.get(activeTabId) === html) return;
+    rewroteHtmlRef.current = true;
+    paneHtmlRef.current.set(activeTabId, html);
+    for (const id of [...paneHtmlRef.current.keys()])   // drop cache entries of closed tabs
+      if (!tabs.some(t => t.id === id)) { paneHtmlRef.current.delete(id); htmlCacheRef.current.delete(id); }
     mdBodyRef.current.innerHTML = html;
     // Hover copy buttons - same affordance on code blocks and tables.
     const COPY_ICON  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
@@ -1383,43 +1429,69 @@ export default function App() {
       const proxyPath = resolveDocRelativePath(src).replace(/\//g, '\\');
       img.src = `${API}/local-image?path=${encodeURIComponent(proxyPath)}`;
     });
-  }, [html]);
-  useEffect(() => { syncScroll(); buildToc(); }, [html]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [html, activeTabId, paneTick]); // eslint-disable-line
+  // syncScroll only after a real rewrite (edit) — on a tab switch the pane keeps its own scroll
+  useEffect(() => { if (rewroteHtmlRef.current) syncScroll(); buildToc(); }, [html, activeTabId, paneTick]); // eslint-disable-line react-hooks/exhaustive-deps
   // Theme change - notify active format (e.g. mermaid re-initializes with new theme)
   useEffect(() => { activeFormat.onThemeChange?.(themeKey); }, [themeKey, activeFormat]); // eslint-disable-line
-  // Single postRender dispatch - all DOM rendering delegated to the active format adapter
+  // Single postRender dispatch - all DOM rendering delegated to the active format adapter.
+  // Runs only after a real rewrite — a tab switch keeps the pane's already-rendered DOM.
   useEffect(() => {
-    if (!previewRef.current) return;
-    cytoscapeInstancesRef.current.clear();
+    if (!previewRef.current || !rewroteHtmlRef.current) return;
+    for (const key of [...cytoscapeInstancesRef.current.keys()])   // sweep replaced/closed panes' divs
+      if (!key.isConnected) cytoscapeInstancesRef.current.delete(key);
     const ctx = { themeKey, cytoscapeRegistry: cytoscapeInstancesRef.current };
     activeFormat.postRender(previewRef.current, ctx).catch(e => console.error('[mzn] postRender error:', e));
-  }, [html]); // eslint-disable-line
+  }, [html, activeTabId, paneTick]); // eslint-disable-line
 
   // Swap CM content when active tab changes
   useEffect(() => {
     const view = cmViewRef.current;
     if (!view) return;
 
-    // Save scroll position of outgoing tab
+    // Save selection + editor scroll of outgoing tab (the preview pane keeps its own scroll)
     if (prevActiveTabIdRef.current && prevActiveTabIdRef.current !== activeTabId) {
-      const scrollEl = view.scrollDOM;
+      // ⚠ CLAUDE: resolve the outgoing tab id EAGERLY — the setTabs updater runs later,
+      // after this effect has already advanced prevActiveTabIdRef; reading the ref inside
+      // the updater attributes the outgoing tab's state to the INCOMING tab.
+      const outgoingId = prevActiveTabIdRef.current;
+      const saved = {
+        scrollSnap: view.scrollSnapshot(),
+        selection: view.state.selection,
+      };
       setTabs(prev => prev.map(tab =>
-        tab.id === prevActiveTabIdRef.current ? { ...tab, scrollTop: scrollEl.scrollTop } : tab
+        tab.id === outgoingId ? { ...tab, ...saved } : tab
       ));
     }
 
-    // Load incoming tab content into CM
+    // Load incoming tab content into CM, restoring its selection + scroll
     const incoming = tabs.find(tab => tab.id === activeTabId);
     if (!incoming) return;
+    // Clamp ranges — a disk reload may have shortened the doc while the tab was inactive
+    const len = incoming.text.length;
+    const selection = incoming.selection
+      ? EditorSelection.create(incoming.selection.ranges.map(r =>
+          EditorSelection.range(Math.min(r.anchor, len), Math.min(r.head, len))), incoming.selection.mainIndex)
+      : EditorSelection.cursor(0);
     suppressSyncRef.current = true;
     view.dispatch({
       changes: { from: 0, to: view.state.doc.length, insert: incoming.text },
-      selection: EditorSelection.cursor(0),
-      effects: EditorView.scrollIntoView(0, { y: 'start' }),
+      selection,
     });
+    // ⚠ CLAUDE: a plain scrollDOM.scrollTop assignment here is overridden by CM's
+    // scroll-stabilization measure pass — restore must go through the snapshot effect.
+    // And it must be dispatched TWICE: the first application runs against estimated
+    // line heights (wildly off when huge wrapped lines were never measured) and can
+    // land wrong; the re-dispatch after CM's measure pass pins the anchor line exactly.
+    if (incoming.scrollSnap) {
+      const snap = incoming.scrollSnap, tabId = activeTabId;
+      try { view.dispatch({ effects: snap }); } catch { /* stale snapshot (doc reloaded shorter) — stay at cursor */ }
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (prevActiveTabIdRef.current !== tabId || !cmViewRef.current) return;
+        try { cmViewRef.current.dispatch({ effects: snap }); } catch { /* stale snapshot */ }
+      }));
+    }
 
-    // Restore preview scroll
-    if (previewRef.current) previewRef.current.scrollTop = incoming.scrollTop;
     prevActiveTabIdRef.current = activeTabId;
   }, [activeTabId]); // eslint-disable-line
 
@@ -2260,11 +2332,21 @@ export default function App() {
                 <button className="search-clear" onClick={closeFind} title={t('tipPreviewFindClose')}><X className="icon-inline" /></button>
               </div>
             )}
-            <div ref={previewRef} style={{
-              flex: 1,
+            {/* ⚠ CLAUDE: one preview pane per tab, kept alive and toggled with `visibility`
+                (NOT display:none, which drops the scroll position) — DOM, decoded images,
+                rendered extensions and scroll all survive tab switches natively.
+                previewRef/mdBodyRef always point at the ACTIVE pane so every consumer
+                (TOC, find, exports, style panel, syncScroll) works unchanged. */}
+            <div style={{ flex: 1, position: 'relative' }}>
+            {tabs.map(tab => (
+            <div key={tab.id}
+              ref={el => { if (tab.id === activeTabId && el) previewRef.current = el; }}
+              style={{
+              position: 'absolute',
+              inset: 0,
               overflowY: 'auto',
               padding: '32px 48px',
-              position: 'relative',
+              visibility: tab.id === activeTabId ? 'visible' : 'hidden',
             }}
               onMouseOver={e => {
                 const target = e.target.closest('[data-mzn-lang]');
@@ -2285,19 +2367,13 @@ export default function App() {
                 stylePanelLeaveTimer.current = setTimeout(() => setStylePanel(null), 400);
               }}
             >
-              {html ? (
-                <div
-                  className="md-body"
-                  style={{ maxWidth: 860, margin: '0 auto', fontSize }}
-                  ref={mdBodyRef}
-                  onClick={handlePreviewClick}
-                />
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-mute)', fontSize: 15 }}>
-                  {t('empAppNoFile')}
-                </div>
-              )}
-              {stylePanel && (() => {
+              <div
+                className="md-body"
+                style={{ maxWidth: 860, margin: '0 auto', fontSize }}
+                ref={el => { if (tab.id === activeTabId && el) mdBodyRef.current = el; }}
+                onClick={handlePreviewClick}
+              />
+              {tab.id === activeTabId && stylePanel && (() => {
                 // Shared control styles — every single-line control at the control height (30).
                 // One width/height row — dim is 'width' | 'height', inputKey the matching state field.
                 const dimRow = (dim, label, inputKey) => {
@@ -2368,6 +2444,13 @@ export default function App() {
                 </div>
                 );
               })()}
+            </div>
+            ))}
+            {tabs.length === 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-mute)', fontSize: 15 }}>
+                {t('empAppNoFile')}
+              </div>
+            )}
             </div>
             </div>{/* end preview wrapper */}
 
