@@ -55,15 +55,23 @@ export default {
         return `<span style="color:red">${e.message}</span>`;
       }
     });
-    // AsciiDoc: render stem:[...] inline math - Asciidoctor emits \(...\) for inline, \[...\] for display
-    html = html.replace(/\\\((.+?)\\\)/g, (_, tex) => {
+    // AsciiDoc: render stem:[...] inline math - Asciidoctor emits \(...\) for inline, \[...\] for display.
+    // ⚠ CLAUDE: these two passes run on the FULL converted HTML, so they must skip
+    // <pre>/<code> chunks — a code block containing literal \(...\) or \[...\]
+    // (e.g. a regex over LaTeX delimiters) was being math-rendered, mangling the
+    // code and inserting display-math line breaks mid-block (2026-07-21).
+    const outsideCode = (input, fn) => input
+      .split(/(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>)/g)
+      .map((part, i) => (i % 2 ? part : fn(part)))
+      .join("");
+    html = outsideCode(html, part => part.replace(/\\\((.+?)\\\)/g, (_, tex) => {
       try { return katex.renderToString(tex, { displayMode: false, throwOnError: false }); }
       catch (e) { return `<span style="color:red">${e.message}</span>`; }
-    });
-    html = html.replace(/\\\[([\s\S]+?)\\\]/g, (_, tex) => {
+    }));
+    html = outsideCode(html, part => part.replace(/\\\[([\s\S]+?)\\\]/g, (_, tex) => {
       try { return katex.renderToString(tex.trim(), { displayMode: true, throwOnError: false }); }
       catch (e) { return `<span style="color:red">${e.message}</span>`; }
-    });
+    }));
     return html;
   },
 

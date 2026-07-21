@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2 — 2026-07-21
+
+- Fix AsciiDoc code blocks containing literal math delimiters being mangled by the KaTeX renderer
+
 ## 1.0.1 — 2026-07-19
 
 - Restore each tab's editor scroll position and text selection when switching between open files
