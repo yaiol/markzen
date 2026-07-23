@@ -40,14 +40,25 @@ let SERVER_PORT = 4000;
 const rawArgs = process.argv.slice(isDev ? 2 : 1);
 const startFile = rawArgs.find(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i.test(a) && fs.existsSync(a)) || null;
 
-// CLI mode: markzen.exe source.md -o output.pdf  (format inferred from extension)
-const oIdx      = rawArgs.indexOf('-o');
-const cliOut    = (oIdx >= 0 && oIdx + 1 < rawArgs.length) ? path.resolve(rawArgs[oIdx + 1]) : null;
-const cliFormat = cliOut ? (/\.pdf$/i.test(cliOut) ? 'pdf' : /\.html?$/i.test(cliOut) ? 'html' : null) : null;
-const isCLI     = !!(startFile && cliFormat);
+// CLI mode: markzen.exe source.md -o output.pdf [source2.md -o output2.pdf ...]
+// (format inferred from each output's extension). BATCH: any number of `src -o out` pairs
+// run in ONE Electron boot — the window reloads per job (see /cli-done), which is what
+// makes N docs cost ~2s each instead of a full ~15s app boot per doc.
+const SRC_EXT_RE = /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i;
+const cliJobs = [];
+for (let i = 0; i < rawArgs.length; i++) {
+  if (!SRC_EXT_RE.test(rawArgs[i]) || !fs.existsSync(rawArgs[i])) continue;
+  if (rawArgs[i + 1] !== '-o' || !rawArgs[i + 2]) continue;
+  const out = path.resolve(rawArgs[i + 2]);
+  const format = /\.pdf$/i.test(out) ? 'pdf' : /\.html?$/i.test(out) ? 'html' : null;
+  if (format) cliJobs.push({ src: path.resolve(rawArgs[i]), out, format });
+  i += 2;
+}
+let cliJobIndex = 0;
+const isCLI = cliJobs.length > 0;
 
 if (isCLI) {
-  console.log(`[${CLI_NAME}] ${path.basename(startFile)} > ${path.basename(cliOut)}`);
+  console.log(`[${CLI_NAME}] ${cliJobs.length} job(s)`);
 }
 
 const pendingFiles = [];
@@ -573,6 +584,16 @@ function startServer(callback) {
 
   api.post("/cli-done", (_req, res) => {
     res.json({ ok: true });
+    // Batch queue: one job per page load. cliAdvanceArmed guards against a double
+    // /cli-done from the same page (the renderer's export effect re-arms on html
+    // changes) — without it a stray second call would skip a job.
+    if (!cliAdvanceArmed) return;
+    cliAdvanceArmed = false;
+    cliJobIndex++;
+    if (cliJobIndex < cliJobs.length) {
+      setTimeout(() => loadCliJob(SERVER_PORT), 100);
+      return;
+    }
     setTimeout(() => {
       if (isCLIearly) {
         try { fs.rmSync(app.getPath('userData'), { recursive: true, force: true }); } catch {}
@@ -588,6 +609,28 @@ function startServer(callback) {
       if (callback) callback(port);
     });
   });
+}
+
+// Load the current CLI job into the window (fresh page = the renderer's one-shot export
+// effect re-runs with the new query). Called for job 0 by createWindow and for each
+// subsequent job by /cli-done.
+let cliAdvanceArmed = false;
+function loadCliJob(port) {
+  const job = cliJobs[cliJobIndex];
+  console.log(`[${CLI_NAME}] ${path.basename(job.src)} > ${path.basename(job.out)}`);
+  cliAdvanceArmed = true;
+  const query = {
+    apiPort: String(port),
+    startFile: Buffer.from(job.src).toString("base64"),
+    cliOut: Buffer.from(job.out).toString("base64"),
+    cliFormat: job.format,
+  };
+  if (isDev) {
+    const qs = new URLSearchParams(query).toString();
+    mainWindow.loadURL(`http://localhost:${DEV_PORT}?${qs}`);
+  } else {
+    mainWindow.loadFile(path.join(__dirname, "../dist/index.html"), { query });
+  }
 }
 
 function createWindow(port) {
@@ -607,19 +650,17 @@ function createWindow(port) {
     },
   });
 
-  const startFileEncoded = startFile ? Buffer.from(startFile).toString("base64") : "";
-  const query = { apiPort: String(port) };
-  if (startFileEncoded) query.startFile = startFileEncoded;
   if (isCLI) {
-    query.cliOut    = Buffer.from(cliOut).toString("base64");
-    query.cliFormat = cliFormat;
-  }
-
-  if (isDev) {
-    const qs = new URLSearchParams(query).toString();
-    mainWindow.loadURL(`http://localhost:${DEV_PORT}?${qs}`);
+    loadCliJob(port);
   } else {
-    mainWindow.loadFile(path.join(__dirname, "../dist/index.html"), { query });
+    const query = { apiPort: String(port) };
+    if (startFile) query.startFile = Buffer.from(startFile).toString("base64");
+    if (isDev) {
+      const qs = new URLSearchParams(query).toString();
+      mainWindow.loadURL(`http://localhost:${DEV_PORT}?${qs}`);
+    } else {
+      mainWindow.loadFile(path.join(__dirname, "../dist/index.html"), { query });
+    }
   }
   mainWindow.webContents.on('did-finish-load', () => mainWindow.setTitle(isDev ? `${APP_NAME} (Dev)` : APP_NAME));
   // ⚠ CLAUDE: Ctrl+Shift+I is dead because Menu.setApplicationMenu(null) removes the default shortcut.

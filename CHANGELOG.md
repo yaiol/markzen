@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 — 2026-07-23
+
+- Batch CLI exports: pass several `source -o output` pairs in one call — a single app launch renders them all, cutting per-document time from ~15 s to ~2 s
+
 ## 1.0.2 — 2026-07-21
 
 - Fix AsciiDoc code blocks containing literal math delimiters being mangled by the KaTeX renderer
