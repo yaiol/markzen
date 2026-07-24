@@ -60,6 +60,8 @@ const orgAdapter = {
     codeBlock: { open: '#+BEGIN_SRC\n', close: '\n#+END_SRC' },
     link:  (text, url) => `[[${url}][${text}]]`,
     image: (alt,  url) => `[[${url}]]`,
+    linkPattern:  { re: /\[\[([^\]]*)\]\[([^\]]*)\]\]/g, text: 2, url: 1 },
+    imagePattern: { re: /\[\[([^\]]*)\]\](?!\[)/g,       text: null, url: 1 },
     bulletList: '- ', numberedList: '1. ', blockquote: '  ', horizontalRule: '\n-----\n',
   },
   extensions,

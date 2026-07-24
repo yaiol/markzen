@@ -57,6 +57,10 @@ const markdownAdapter = {
     codeBlock: { open: '```\n', close: '\n```' },
     link:  (text, url) => `[${text}](${url})`,
     image: (alt,  url) => `![${alt}](${url})`,
+    // Parsers for the two builders above — let the insert popup RE-EDIT an existing link/image
+    // instead of swallowing its markup as link text. Keep each pattern in sync with its builder.
+    linkPattern:  { re: /(?<!!)\[([^\]]*)\]\(([^)]*)\)/g, text: 1, url: 2 },
+    imagePattern: { re: /!\[([^\]]*)\]\(([^)]*)\)/g,      text: 1, url: 2 },
     bulletList: '- ', numberedList: '1. ', blockquote: '> ', horizontalRule: '---',
   },
   extensions,

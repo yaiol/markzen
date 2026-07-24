@@ -58,6 +58,8 @@ const djotAdapter = {
     codeBlock: { open: '```\n', close: '\n```' },
     link:  (text, url) => `[${text}](${url})`,
     image: (alt,  url) => `![${alt}](${url})`,
+    linkPattern:  { re: /(?<!!)\[([^\]]*)\]\(([^)]*)\)/g, text: 1, url: 2 },
+    imagePattern: { re: /!\[([^\]]*)\]\(([^)]*)\)/g,      text: 1, url: 2 },
     bulletList: '- ', numberedList: '1. ', blockquote: '> ', horizontalRule: '\n---\n',
   },
   extensions,

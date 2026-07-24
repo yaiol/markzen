@@ -36,6 +36,7 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Open Markdown File",
     ttlOsdSaveMd:                           "Save Markdown File",
+    ttlOsdOpenImage:                        "Select Image",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "New document",
@@ -83,13 +84,13 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edit and preview Markdown files.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
     plhDlgLinkAltText:                      "Alt text",
     plhDlgLinkText:                         "Text",
     plhDlgLinkUrlOrPath:                    "URL or local path",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
+    tipDlgLinkBrowse:                       "Browse for an image",
+    btnDlgLinkImageModeLinked:              "Linked",
+    btnDlgLinkImageModeEmbedded:            "Embedded",
     tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
     lblDlgLinkRelativePath:                 "Relative path",
     btnDlgLinkInsert:                       "Insert",
@@ -110,7 +111,8 @@ const TRANSLATIONS = {
     tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
     tipEditorInlineCode:                    "Inline code (Ctrl+E)",
     tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
+    tipEditorLink:                          "Link (Ctrl+K)",
+    tipEditorImage:                         "Image",
     tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
     tipEditorAlignLeft:                     "Align left",
     tipEditorAlignCenter:                   "Align center",
@@ -138,7 +140,7 @@ const TRANSLATIONS = {
   fr: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Annuler",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nouvelle version disponible :",
@@ -154,11 +156,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Ouvrir un fichier Markdown",
     ttlOsdSaveMd:                           "Enregistrer le fichier Markdown",
+    ttlOsdOpenImage:                        "Sélectionner une image",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nouveau document",
     tipHdrOpen:                             "Ouvrir un fichier Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Créer un nouveau",
     btnHdrSave:                             "Enregistrer",
     tipHdrSave:                             "Enregistrer",
     tipHdrSaveAs:                           "Enregistrer sous",
@@ -201,16 +204,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "modifiez et prévisualisez des fichiers Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Texte alternatif",
+    plhDlgLinkText:                         "Texte",
+    plhDlgLinkUrlOrPath:                    "URL ou chemin local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Parcourir une image",
+    btnDlgLinkImageModeLinked:              "Lié",
+    btnDlgLinkImageModeEmbedded:            "Intégré",
+    tipDlgLinkImageFolder:                  "L'image doit se trouver dans le dossier du document ou un sous-dossier.",
+    lblDlgLinkRelativePath:                 "Chemin relatif",
+    btnDlgLinkInsert:                       "Insérer",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Modifications non enregistrées -",
@@ -219,32 +222,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Recharger",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Gras (Ctrl+B)",
+    tipEditorItalic:                        "Italique (Ctrl+I)",
+    tipEditorStrikethrough:                 "Barré (Ctrl+D)",
+    tipEditorHeading:                       "Titre (Ctrl+H)",
+    tipEditorBulletList:                    "Liste à puces (Ctrl+L)",
+    tipEditorNumberedList:                  "Liste numérotée (Ctrl+U)",
+    tipEditorBlockquote:                    "Citation (Ctrl+Q)",
+    tipEditorInlineCode:                    "Code en ligne (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloc de code (Ctrl+M)",
+    tipEditorLink:                          "Lien (Ctrl+K)",
+    tipEditorImage:                         "Image",
+    tipEditorHorizontalRule:                "Règle horizontale (Ctrl+R)",
+    tipEditorAlignLeft:                     "Aligner à gauche",
+    tipEditorAlignCenter:                   "Centrer",
+    tipEditorAlignRight:                    "Aligner à droite",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Rechercher dans l'aperçu…",
+    lblPreviewNoResults:                    "0 résultat",
+    tipPreviewFindPrev:                     "Précédent (Maj+Entrée)",
+    tipPreviewFindNext:                     "Suivant (Entrée)",
+    tipPreviewFindClose:                    "Fermer (Échap)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "alignement",
+    lblImagePropsWidth:                     "largeur",
+    lblImagePropsHeight:                    "hauteur",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -255,7 +259,7 @@ const TRANSLATIONS = {
   de: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Abbrechen",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Neue Version verfügbar:",
@@ -271,11 +275,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown-Datei öffnen",
     ttlOsdSaveMd:                           "Markdown-Datei speichern",
+    ttlOsdOpenImage:                        "Bild auswählen",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Neues Dokument",
     tipHdrOpen:                             "Markdown-Datei öffnen",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Neu erstellen",
     btnHdrSave:                             "Speichern",
     tipHdrSave:                             "Speichern",
     tipHdrSaveAs:                           "Speichern unter",
@@ -318,16 +323,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown-Dateien bearbeiten und anzeigen.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Alternativtext",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL oder lokaler Pfad",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Bild durchsuchen",
+    btnDlgLinkImageModeLinked:              "Verknüpft",
+    btnDlgLinkImageModeEmbedded:            "Eingebettet",
+    tipDlgLinkImageFolder:                  "Das Bild muss sich im Dokumentordner oder einem Unterordner befinden.",
+    lblDlgLinkRelativePath:                 "Relativer Pfad",
+    btnDlgLinkInsert:                       "Einfügen",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Nicht gespeicherte Änderungen -",
@@ -336,32 +341,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Neu laden",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Fett (Strg+B)",
+    tipEditorItalic:                        "Kursiv (Strg+I)",
+    tipEditorStrikethrough:                 "Durchgestrichen (Strg+D)",
+    tipEditorHeading:                       "Überschrift (Strg+H)",
+    tipEditorBulletList:                    "Aufzählungsliste (Strg+L)",
+    tipEditorNumberedList:                  "Nummerierte Liste (Ctrl+U)",
+    tipEditorBlockquote:                    "Zitat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Inline-Code (Ctrl+E)",
+    tipEditorCodeBlock:                     "Codeblock (Ctrl+M)",
+    tipEditorLink:                          "Link (Strg+K)",
+    tipEditorImage:                         "Bild",
+    tipEditorHorizontalRule:                "Horizontale Linie (Ctrl+R)",
+    tipEditorAlignLeft:                     "Links ausrichten",
+    tipEditorAlignCenter:                   "Zentrieren",
+    tipEditorAlignRight:                    "Rechts ausrichten",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "In Vorschau suchen…",
+    lblPreviewNoResults:                    "0 Ergebnisse",
+    tipPreviewFindPrev:                     "Vorherige (Umschalt+Eingabe)",
+    tipPreviewFindNext:                     "Weiter (Eingabe)",
+    tipPreviewFindClose:                    "Schließen (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "Ausrichtung",
+    lblImagePropsWidth:                     "Breite",
+    lblImagePropsHeight:                    "Höhe",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -372,7 +378,7 @@ const TRANSLATIONS = {
   es: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Cancelar",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nueva versión disponible:",
@@ -388,11 +394,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Abrir archivo Markdown",
     ttlOsdSaveMd:                           "Guardar archivo Markdown",
+    ttlOsdOpenImage:                        "Seleccionar imagen",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nuevo documento",
     tipHdrOpen:                             "Abrir un archivo Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Crear uno nuevo",
     btnHdrSave:                             "Guardar",
     tipHdrSave:                             "Guardar",
     tipHdrSaveAs:                           "Guardar como",
@@ -435,16 +442,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edita y previsualiza archivos Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Texto alternativo",
+    plhDlgLinkText:                         "Texto",
+    plhDlgLinkUrlOrPath:                    "URL o ruta local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Buscar una imagen",
+    btnDlgLinkImageModeLinked:              "Vinculado",
+    btnDlgLinkImageModeEmbedded:            "Incrustado",
+    tipDlgLinkImageFolder:                  "La imagen debe estar en la carpeta del documento o en una subcarpeta.",
+    lblDlgLinkRelativePath:                 "Ruta relativa",
+    btnDlgLinkInsert:                       "Insertar",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Cambios sin guardar -",
@@ -453,32 +460,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Recargar",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Negrita (Ctrl+B)",
+    tipEditorItalic:                        "Cursiva (Ctrl+I)",
+    tipEditorStrikethrough:                 "Tachado (Ctrl+D)",
+    tipEditorHeading:                       "Encabezado (Ctrl+H)",
+    tipEditorBulletList:                    "Lista con viñetas (Ctrl+L)",
+    tipEditorNumberedList:                  "Lista numerada (Ctrl+U)",
+    tipEditorBlockquote:                    "Cita (Ctrl+Q)",
+    tipEditorInlineCode:                    "Código en línea (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloque de código (Ctrl+M)",
+    tipEditorLink:                          "Enlace (Ctrl+K)",
+    tipEditorImage:                         "Imagen",
+    tipEditorHorizontalRule:                "Línea horizontal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Alinear a la izquierda",
+    tipEditorAlignCenter:                   "Alinear al centro",
+    tipEditorAlignRight:                    "Alinear a la derecha",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Buscar en la vista previa…",
+    lblPreviewNoResults:                    "0 resultados",
+    tipPreviewFindPrev:                     "Anterior (Mayús+Intro)",
+    tipPreviewFindNext:                     "Siguiente (Intro)",
+    tipPreviewFindClose:                    "Cerrar (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "alineación",
+    lblImagePropsWidth:                     "ancho",
+    lblImagePropsHeight:                    "alto",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -489,7 +497,7 @@ const TRANSLATIONS = {
   pt_BR: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Cancelar",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versão disponível:",
@@ -505,11 +513,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Abrir ficheiro Markdown",
     ttlOsdSaveMd:                           "Guardar ficheiro Markdown",
+    ttlOsdOpenImage:                        "Selecionar Imagem",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Novo documento",
     tipHdrOpen:                             "Abrir um arquivo Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Criar um novo",
     btnHdrSave:                             "Salvar",
     tipHdrSave:                             "Salvar",
     tipHdrSaveAs:                           "Salvar como",
@@ -552,16 +561,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edite e visualize ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Texto alternativo",
+    plhDlgLinkText:                         "Texto",
+    plhDlgLinkUrlOrPath:                    "URL ou caminho local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Procurar uma imagem",
+    btnDlgLinkImageModeLinked:              "Vinculado",
+    btnDlgLinkImageModeEmbedded:            "Incorporado",
+    tipDlgLinkImageFolder:                  "A imagem deve estar na pasta do documento ou em uma subpasta.",
+    lblDlgLinkRelativePath:                 "Caminho relativo",
+    btnDlgLinkInsert:                       "Inserir",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Alterações não salvas -",
@@ -570,32 +579,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Recarregar",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Negrito (Ctrl+B)",
+    tipEditorItalic:                        "Itálico (Ctrl+I)",
+    tipEditorStrikethrough:                 "Tachado (Ctrl+D)",
+    tipEditorHeading:                       "Título (Ctrl+H)",
+    tipEditorBulletList:                    "Lista com marcadores (Ctrl+L)",
+    tipEditorNumberedList:                  "Lista numerada (Ctrl+U)",
+    tipEditorBlockquote:                    "Citação (Ctrl+Q)",
+    tipEditorInlineCode:                    "Código em linha (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloco de código (Ctrl+M)",
+    tipEditorLink:                          "Link (Ctrl+K)",
+    tipEditorImage:                         "Imagem",
+    tipEditorHorizontalRule:                "Linha horizontal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Alinhar à esquerda",
+    tipEditorAlignCenter:                   "Alinhar ao centro",
+    tipEditorAlignRight:                    "Alinhar à direita",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Localizar na pré-visualização…",
+    lblPreviewNoResults:                    "0 resultados",
+    tipPreviewFindPrev:                     "Anterior (Shift+Enter)",
+    tipPreviewFindNext:                     "Próximo (Enter)",
+    tipPreviewFindClose:                    "Fechar (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "alinhamento",
+    lblImagePropsWidth:                     "largura",
+    lblImagePropsHeight:                    "altura",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -622,11 +632,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Abrir ficheiro Markdown",
     ttlOsdSaveMd:                           "Guardar ficheiro Markdown",
+    ttlOsdOpenImage:                        "Selecionar Imagem",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Novo documento",
     tipHdrOpen:                             "Abrir um ficheiro Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Criar um novo",
     btnHdrSave:                             "Guardar",
     tipHdrSave:                             "Guardar",
     tipHdrSaveAs:                           "Guardar como",
@@ -669,14 +680,14 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edite e visualize ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Ligação",
-    btnDlgLinkImage:                        "Imagem",
     plhDlgLinkAltText:                      "Texto alternativo",
     plhDlgLinkText:                         "Texto",
     plhDlgLinkUrlOrPath:                    "URL ou caminho local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Procurar…",
-    tipDlgLinkImageFolder:                  "A imagem tem de estar na pasta do documento ou numa subpasta",
+    tipDlgLinkBrowse:                       "Procurar uma imagem",
+    btnDlgLinkImageModeLinked:              "Ligado",
+    btnDlgLinkImageModeEmbedded:            "Incorporado",
+    tipDlgLinkImageFolder:                  "A imagem tem de estar na pasta do documento ou numa subpasta.",
     lblDlgLinkRelativePath:                 "Caminho relativo",
     btnDlgLinkInsert:                       "Inserir",
 
@@ -696,7 +707,8 @@ const TRANSLATIONS = {
     tipEditorBlockquote:                    "Citação (Ctrl+Q)",
     tipEditorInlineCode:                    "Código em linha (Ctrl+E)",
     tipEditorCodeBlock:                     "Bloco de código (Ctrl+M)",
-    tipEditorLinkImage:                     "Ligação / Imagem (Ctrl+K)",
+    tipEditorLink:                          "Ligação (Ctrl+K)",
+    tipEditorImage:                         "Imagem",
     tipEditorHorizontalRule:                "Linha horizontal (Ctrl+R)",
     tipEditorAlignLeft:                     "Alinhar à esquerda",
     tipEditorAlignCenter:                   "Alinhar ao centro",
@@ -710,7 +722,7 @@ const TRANSLATIONS = {
     tipPreviewFindClose:                    "Fechar (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "alinhar",
+    lblImagePropsAlign:                     "alinhamento",
     lblImagePropsWidth:                     "largura",
     lblImagePropsHeight:                    "altura",
     plhImagePropsPx:                        "px",
@@ -723,7 +735,7 @@ const TRANSLATIONS = {
   it: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Annulla",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nuova versione disponibile:",
@@ -739,11 +751,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Apri file Markdown",
     ttlOsdSaveMd:                           "Salva file Markdown",
+    ttlOsdOpenImage:                        "Seleziona immagine",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nuovo documento",
     tipHdrOpen:                             "Apri un file Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Crea un nuovo",
     btnHdrSave:                             "Salva",
     tipHdrSave:                             "Salva",
     tipHdrSaveAs:                           "Salva come",
@@ -786,16 +799,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "modifica e visualizza file Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Testo alternativo",
+    plhDlgLinkText:                         "Testo",
+    plhDlgLinkUrlOrPath:                    "URL o percorso locale",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Sfoglia immagine",
+    btnDlgLinkImageModeLinked:              "Collegato",
+    btnDlgLinkImageModeEmbedded:            "Incorporato",
+    tipDlgLinkImageFolder:                  "L'immagine deve trovarsi nella cartella del documento o in una sottocartella.",
+    lblDlgLinkRelativePath:                 "Percorso relativo",
+    btnDlgLinkInsert:                       "Inserisci",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Modifiche non salvate -",
@@ -804,32 +817,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Ricarica",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Grassetto (Ctrl+B)",
+    tipEditorItalic:                        "Corsivo (Ctrl+I)",
+    tipEditorStrikethrough:                 "Barrato (Ctrl+D)",
+    tipEditorHeading:                       "Intestazione (Ctrl+H)",
+    tipEditorBulletList:                    "Elenco puntato (Ctrl+L)",
+    tipEditorNumberedList:                  "Elenco numerato (Ctrl+U)",
+    tipEditorBlockquote:                    "Citazione (Ctrl+Q)",
+    tipEditorInlineCode:                    "Codice in linea (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blocco di codice (Ctrl+M)",
+    tipEditorLink:                          "Collegamento (Ctrl+K)",
+    tipEditorImage:                         "Immagine",
+    tipEditorHorizontalRule:                "Linea orizzontale (Ctrl+R)",
+    tipEditorAlignLeft:                     "Allinea a sinistra",
+    tipEditorAlignCenter:                   "Allinea al centro",
+    tipEditorAlignRight:                    "Allinea a destra",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Trova nell'anteprima…",
+    lblPreviewNoResults:                    "0 risultati",
+    tipPreviewFindPrev:                     "Precedente (Maiusc+Invio)",
+    tipPreviewFindNext:                     "Successivo (Invio)",
+    tipPreviewFindClose:                    "Chiudi (Esc)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "allineamento",
+    lblImagePropsWidth:                     "larghezza",
+    lblImagePropsHeight:                    "altezza",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -840,7 +854,7 @@ const TRANSLATIONS = {
   nl: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Annuleren",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nieuwe versie beschikbaar:",
@@ -856,11 +870,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown-bestand openen",
     ttlOsdSaveMd:                           "Markdown-bestand opslaan",
+    ttlOsdOpenImage:                        "Afbeelding selecteren",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nieuw document",
     tipHdrOpen:                             "Open een Markdown-bestand",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Een nieuwe maken",
     btnHdrSave:                             "Opslaan",
     tipHdrSave:                             "Opslaan",
     tipHdrSaveAs:                           "Opslaan als",
@@ -903,16 +918,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "bewerk en bekijk Markdown-bestanden.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alt-tekst",
+    plhDlgLinkText:                         "Tekst",
+    plhDlgLinkUrlOrPath:                    "URL of lokaal pad",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Afbeelding zoeken",
+    btnDlgLinkImageModeLinked:              "Gekoppeld",
+    btnDlgLinkImageModeEmbedded:            "Ingebed",
+    tipDlgLinkImageFolder:                  "Afbeelding moet zich in de documentmap of een submap bevinden.",
+    lblDlgLinkRelativePath:                 "Relatief pad",
+    btnDlgLinkInsert:                       "Invoegen",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Niet-opgeslagen wijzigingen -",
@@ -921,32 +936,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Herladen",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Vet (Ctrl+B)",
+    tipEditorItalic:                        "Cursief (Ctrl+I)",
+    tipEditorStrikethrough:                 "Doorhalen (Ctrl+D)",
+    tipEditorHeading:                       "Kop (Ctrl+H)",
+    tipEditorBulletList:                    "Opsomming (Ctrl+L)",
+    tipEditorNumberedList:                  "Genummerde lijst (Ctrl+U)",
+    tipEditorBlockquote:                    "Blokcitaat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Inline-code (Ctrl+E)",
+    tipEditorCodeBlock:                     "Codeblok (Ctrl+M)",
+    tipEditorLink:                          "Koppeling (Ctrl+K)",
+    tipEditorImage:                         "Afbeelding",
+    tipEditorHorizontalRule:                "Horizontale lijn (Ctrl+R)",
+    tipEditorAlignLeft:                     "Links uitlijnen",
+    tipEditorAlignCenter:                   "Centreren",
+    tipEditorAlignRight:                    "Rechts uitlijnen",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Zoeken in voorbeeld…",
+    lblPreviewNoResults:                    "0 resultaten",
+    tipPreviewFindPrev:                     "Vorige (Shift+Enter)",
+    tipPreviewFindNext:                     "Volgende (Enter)",
+    tipPreviewFindClose:                    "Sluiten (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "uitlijning",
+    lblImagePropsWidth:                     "breedte",
+    lblImagePropsHeight:                    "hoogte",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -957,7 +973,7 @@ const TRANSLATIONS = {
   ru: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Отмена",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна новая версия:",
@@ -973,11 +989,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Открыть файл Markdown",
     ttlOsdSaveMd:                           "Сохранить файл Markdown",
+    ttlOsdOpenImage:                        "Выбрать изображение",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Новый документ",
     tipHdrOpen:                             "Открыть файл Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Создать новый",
     btnHdrSave:                             "Сохранить",
     tipHdrSave:                             "Сохранить",
     tipHdrSaveAs:                           "Сохранить как",
@@ -1020,16 +1037,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "редактирование и просмотр Markdown-файлов.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Альтернативный текст",
+    plhDlgLinkText:                         "Текст",
+    plhDlgLinkUrlOrPath:                    "URL или локальный путь",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Найти изображение",
+    btnDlgLinkImageModeLinked:              "Связанный",
+    btnDlgLinkImageModeEmbedded:            "Встроенный",
+    tipDlgLinkImageFolder:                  "Изображение должно находиться в папке документа или в подпапке.",
+    lblDlgLinkRelativePath:                 "Относительный путь",
+    btnDlgLinkInsert:                       "Вставить",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Несохранённые изменения -",
@@ -1038,32 +1055,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Обновить",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Жирный (Ctrl+B)",
+    tipEditorItalic:                        "Курсив (Ctrl+I)",
+    tipEditorStrikethrough:                 "Зачеркнутый (Ctrl+D)",
+    tipEditorHeading:                       "Заголовок (Ctrl+H)",
+    tipEditorBulletList:                    "Маркированный список (Ctrl+L)",
+    tipEditorNumberedList:                  "Нумерованный список (Ctrl+U)",
+    tipEditorBlockquote:                    "Цитата (Ctrl+Q)",
+    tipEditorInlineCode:                    "Встроенный код (Ctrl+E)",
+    tipEditorCodeBlock:                     "Блок кода (Ctrl+M)",
+    tipEditorLink:                          "Ссылка (Ctrl+K)",
+    tipEditorImage:                         "Изображение",
+    tipEditorHorizontalRule:                "Горизонтальная линия (Ctrl+R)",
+    tipEditorAlignLeft:                     "Выровнять по левому краю",
+    tipEditorAlignCenter:                   "Выровнять по центру",
+    tipEditorAlignRight:                    "Выровнять по правому краю",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Найти в предпросмотре…",
+    lblPreviewNoResults:                    "0 результатов",
+    tipPreviewFindPrev:                     "Предыдущий (Shift+Enter)",
+    tipPreviewFindNext:                     "Далее (Enter)",
+    tipPreviewFindClose:                    "Закрыть (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "выравнивание",
+    lblImagePropsWidth:                     "ширина",
+    lblImagePropsHeight:                    "высота",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1074,7 +1092,7 @@ const TRANSLATIONS = {
   uk: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Скасувати",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна нова версія:",
@@ -1090,11 +1108,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Відкрити файл Markdown",
     ttlOsdSaveMd:                           "Зберегти файл Markdown",
+    ttlOsdOpenImage:                        "Вибрати зображення",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Новий документ",
     tipHdrOpen:                             "Відкрити файл Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Створити новий",
     btnHdrSave:                             "Зберегти",
     tipHdrSave:                             "Зберегти",
     tipHdrSaveAs:                           "Зберегти як",
@@ -1137,16 +1156,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "редагування та перегляд файлів Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Альтернативний текст",
+    plhDlgLinkText:                         "Текст",
+    plhDlgLinkUrlOrPath:                    "URL або локальний шлях",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Знайти зображення",
+    btnDlgLinkImageModeLinked:              "Зв'язаний",
+    btnDlgLinkImageModeEmbedded:            "Вбудований",
+    tipDlgLinkImageFolder:                  "Зображення має бути в папці документа або в підпапці.",
+    lblDlgLinkRelativePath:                 "Відносний шлях",
+    btnDlgLinkInsert:                       "Вставити",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Незбережені зміни -",
@@ -1155,32 +1174,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Оновити",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Жирний (Ctrl+B)",
+    tipEditorItalic:                        "Курсив (Ctrl+I)",
+    tipEditorStrikethrough:                 "Закреслення (Ctrl+D)",
+    tipEditorHeading:                       "Заголовок (Ctrl+H)",
+    tipEditorBulletList:                    "Маркований список (Ctrl+L)",
+    tipEditorNumberedList:                  "Нумерований список (Ctrl+U)",
+    tipEditorBlockquote:                    "Цитата (Ctrl+Q)",
+    tipEditorInlineCode:                    "Вбудований код (Ctrl+E)",
+    tipEditorCodeBlock:                     "Блок коду (Ctrl+M)",
+    tipEditorLink:                          "Посилання (Ctrl+K)",
+    tipEditorImage:                         "Зображення",
+    tipEditorHorizontalRule:                "Горизонтальна лінія (Ctrl+R)",
+    tipEditorAlignLeft:                     "Вирівняти по лівому краю",
+    tipEditorAlignCenter:                   "Вирівняти по центру",
+    tipEditorAlignRight:                    "Вирівняти по правому краю",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Знайти в попередньому перегляді…",
+    lblPreviewNoResults:                    "0 результатів",
+    tipPreviewFindPrev:                     "Попередній (Shift+Enter)",
+    tipPreviewFindNext:                     "Далі (Enter)",
+    tipPreviewFindClose:                    "Закрити (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "вирівнювання",
+    lblImagePropsWidth:                     "ширина",
+    lblImagePropsHeight:                    "висота",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1191,7 +1211,7 @@ const TRANSLATIONS = {
   pl: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Anuluj",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Dostępna nowa wersja:",
@@ -1207,11 +1227,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Otwórz plik Markdown",
     ttlOsdSaveMd:                           "Zapisz plik Markdown",
+    ttlOsdOpenImage:                        "Wybierz obraz",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nowy dokument",
     tipHdrOpen:                             "Otwórz plik Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Utwórz nowy",
     btnHdrSave:                             "Zapisz",
     tipHdrSave:                             "Zapisz",
     tipHdrSaveAs:                           "Zapisz jako",
@@ -1254,16 +1275,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edytuj i podglądaj pliki Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Tekst alternatywny",
+    plhDlgLinkText:                         "Tekst",
+    plhDlgLinkUrlOrPath:                    "Adres URL lub ścieżka lokalna",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Wyszukaj obraz",
+    btnDlgLinkImageModeLinked:              "Połączony",
+    btnDlgLinkImageModeEmbedded:            "Osadzony",
+    tipDlgLinkImageFolder:                  "Obraz musi znajdować się w folderze dokumentu lub podfolderze.",
+    lblDlgLinkRelativePath:                 "Ścieżka względna",
+    btnDlgLinkInsert:                       "Wstaw",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Niezapisane zmiany -",
@@ -1272,32 +1293,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Przeładuj",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Pogrubienie (Ctrl+B)",
+    tipEditorItalic:                        "Kursywa (Ctrl+I)",
+    tipEditorStrikethrough:                 "Przekreślenie (Ctrl+D)",
+    tipEditorHeading:                       "Nagłówek (Ctrl+H)",
+    tipEditorBulletList:                    "Lista punktowana (Ctrl+L)",
+    tipEditorNumberedList:                  "Lista numerowana (Ctrl+U)",
+    tipEditorBlockquote:                    "Cytat blokowy (Ctrl+Q)",
+    tipEditorInlineCode:                    "Kod w tekście (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kodu (Ctrl+M)",
+    tipEditorLink:                          "Łącze (Ctrl+K)",
+    tipEditorImage:                         "Obraz",
+    tipEditorHorizontalRule:                "Linia pozioma (Ctrl+R)",
+    tipEditorAlignLeft:                     "Wyrównaj do lewej",
+    tipEditorAlignCenter:                   "Wyrównaj do środka",
+    tipEditorAlignRight:                    "Wyrównaj do prawej",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Znajdź w podglądzie…",
+    lblPreviewNoResults:                    "0 wyników",
+    tipPreviewFindPrev:                     "Poprzedni (Shift+Enter)",
+    tipPreviewFindNext:                     "Następny (Enter)",
+    tipPreviewFindClose:                    "Zamknij (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "wyrównanie",
+    lblImagePropsWidth:                     "szerokość",
+    lblImagePropsHeight:                    "wysokość",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1308,7 +1330,7 @@ const TRANSLATIONS = {
   ro: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Anulează",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versiune nouă disponibilă:",
@@ -1324,11 +1346,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Deschide fișier Markdown",
     ttlOsdSaveMd:                           "Salvează fișier Markdown",
+    ttlOsdOpenImage:                        "Selectați imaginea",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Document nou",
     tipHdrOpen:                             "Deschide un fișier Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Creare nou",
     btnHdrSave:                             "Salvează",
     tipHdrSave:                             "Salvează",
     tipHdrSaveAs:                           "Salvează ca",
@@ -1371,16 +1394,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "editați și vizualizați fișiere Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Text alternativ",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL sau cale locală",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Caută o imagine",
+    btnDlgLinkImageModeLinked:              "Legat",
+    btnDlgLinkImageModeEmbedded:            "Încorporat",
+    tipDlgLinkImageFolder:                  "Imaginea trebuie să fie în folderul documentului sau într-un subfolder.",
+    lblDlgLinkRelativePath:                 "Cale relativă",
+    btnDlgLinkInsert:                       "Inserare",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Modificări nesalvate -",
@@ -1389,32 +1412,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Reîncarcă",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Aldin (Ctrl+B)",
+    tipEditorItalic:                        "Cursiv (Ctrl+I)",
+    tipEditorStrikethrough:                 "Tăiat (Ctrl+D)",
+    tipEditorHeading:                       "Titlu (Ctrl+H)",
+    tipEditorBulletList:                    "Listă cu marcatori (Ctrl+L)",
+    tipEditorNumberedList:                  "Listă numerotată (Ctrl+U)",
+    tipEditorBlockquote:                    "Citat bloc (Ctrl+Q)",
+    tipEditorInlineCode:                    "Cod inline (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloc de cod (Ctrl+M)",
+    tipEditorLink:                          "Link (Ctrl+K)",
+    tipEditorImage:                         "Imagine",
+    tipEditorHorizontalRule:                "Linie orizontală (Ctrl+R)",
+    tipEditorAlignLeft:                     "Aliniere la stânga",
+    tipEditorAlignCenter:                   "Aliniere la centru",
+    tipEditorAlignRight:                    "Aliniere la dreapta",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Căutare în previzualizare…",
+    lblPreviewNoResults:                    "0 rezultate",
+    tipPreviewFindPrev:                     "Anterior (Shift+Enter)",
+    tipPreviewFindNext:                     "Următorul (Enter)",
+    tipPreviewFindClose:                    "Închide (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "aliniere",
+    lblImagePropsWidth:                     "lățime",
+    lblImagePropsHeight:                    "înălțime",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1425,7 +1449,7 @@ const TRANSLATIONS = {
   sv: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Avbryt",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny version tillgänglig:",
@@ -1441,11 +1465,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Öppna Markdown-fil",
     ttlOsdSaveMd:                           "Spara Markdown-fil",
+    ttlOsdOpenImage:                        "Välj bild",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nytt dokument",
     tipHdrOpen:                             "Öppna en Markdown-fil",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Skapa ny",
     btnHdrSave:                             "Spara",
     tipHdrSave:                             "Spara",
     tipHdrSaveAs:                           "Spara som",
@@ -1488,16 +1513,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "redigera och förhandsgranska Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Alternativ text",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL eller lokal sökväg",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Bläddra efter en bild",
+    btnDlgLinkImageModeLinked:              "Länkad",
+    btnDlgLinkImageModeEmbedded:            "Inbäddad",
+    tipDlgLinkImageFolder:                  "Bilden måste finnas i dokumentmappen eller en undermapp.",
+    lblDlgLinkRelativePath:                 "Relativ sökväg",
+    btnDlgLinkInsert:                       "Infoga",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Osparade ändringar -",
@@ -1506,32 +1531,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Ladda om",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Fetstil (Ctrl+B)",
+    tipEditorItalic:                        "Kursiv (Ctrl+I)",
+    tipEditorStrikethrough:                 "Genomstruken (Ctrl+D)",
+    tipEditorHeading:                       "Rubrik (Ctrl+H)",
+    tipEditorBulletList:                    "Punktlista (Ctrl+L)",
+    tipEditorNumberedList:                  "Numrerad lista (Ctrl+U)",
+    tipEditorBlockquote:                    "Blockcitat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Infogad kod (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kodblock (Ctrl+M)",
+    tipEditorLink:                          "Länk (Ctrl+K)",
+    tipEditorImage:                         "Bild",
+    tipEditorHorizontalRule:                "Horisontell linje (Ctrl+R)",
+    tipEditorAlignLeft:                     "Vänsterjustera",
+    tipEditorAlignCenter:                   "Centrera",
+    tipEditorAlignRight:                    "Högerjustera",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Sök i förhandsgranskning…",
+    lblPreviewNoResults:                    "0 resultat",
+    tipPreviewFindPrev:                     "Föregående (Skift+Enter)",
+    tipPreviewFindNext:                     "Nästa (Enter)",
+    tipPreviewFindClose:                    "Stäng (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "justering",
+    lblImagePropsWidth:                     "bredd",
+    lblImagePropsHeight:                    "höjd",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1542,7 +1568,7 @@ const TRANSLATIONS = {
   nb: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Avbryt",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny versjon tilgjengelig:",
@@ -1558,11 +1584,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Åpne Markdown-fil",
     ttlOsdSaveMd:                           "Lagre Markdown-fil",
+    ttlOsdOpenImage:                        "Velg bilde",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nytt dokument",
     tipHdrOpen:                             "Åpne en Markdown-fil",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Opprett ny",
     btnHdrSave:                             "Lagre",
     tipHdrSave:                             "Lagre",
     tipHdrSaveAs:                           "Lagre som",
@@ -1605,16 +1632,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "rediger og forhåndsvis Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternativ tekst",
+    plhDlgLinkText:                         "Tekst",
+    plhDlgLinkUrlOrPath:                    "URL eller lokal bane",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Bla etter et bilde",
+    btnDlgLinkImageModeLinked:              "Lenket",
+    btnDlgLinkImageModeEmbedded:            "Innebygd",
+    tipDlgLinkImageFolder:                  "Bildet må ligge i dokumentmappen eller en undermappe.",
+    lblDlgLinkRelativePath:                 "Relativ bane",
+    btnDlgLinkInsert:                       "Sett inn",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Ulagrede endringer -",
@@ -1623,32 +1650,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Last inn på nytt",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Fet (Ctrl+B)",
+    tipEditorItalic:                        "Kursiv (Ctrl+I)",
+    tipEditorStrikethrough:                 "Gjennomstreking (Ctrl+D)",
+    tipEditorHeading:                       "Overskrift (Ctrl+H)",
+    tipEditorBulletList:                    "Punktliste (Ctrl+L)",
+    tipEditorNumberedList:                  "Nummerert liste (Ctrl+U)",
+    tipEditorBlockquote:                    "Blokksitat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Innebygd kode (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kodeblokk (Ctrl+M)",
+    tipEditorLink:                          "Lenke (Ctrl+K)",
+    tipEditorImage:                         "Bilde",
+    tipEditorHorizontalRule:                "Horisontal linje (Ctrl+R)",
+    tipEditorAlignLeft:                     "Venstrejuster",
+    tipEditorAlignCenter:                   "Midtstill",
+    tipEditorAlignRight:                    "Høyrejuster",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Finn i forhåndsvisning…",
+    lblPreviewNoResults:                    "0 resultater",
+    tipPreviewFindPrev:                     "Forrige (Skift+Enter)",
+    tipPreviewFindNext:                     "Neste (Enter)",
+    tipPreviewFindClose:                    "Lukk (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "justering",
+    lblImagePropsWidth:                     "bredde",
+    lblImagePropsHeight:                    "høyde",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1659,7 +1687,7 @@ const TRANSLATIONS = {
   tr: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "İptal",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Yeni sürüm mevcut:",
@@ -1675,11 +1703,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown Dosyası Aç",
     ttlOsdSaveMd:                           "Markdown Dosyası Kaydet",
+    ttlOsdOpenImage:                        "Resim Seç",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Yeni belge",
     tipHdrOpen:                             "Bir Markdown dosyası aç",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Yeni oluştur",
     btnHdrSave:                             "Kaydet",
     tipHdrSave:                             "Kaydet",
     tipHdrSaveAs:                           "Farklı kaydet",
@@ -1722,16 +1751,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown dosyalarını düzenleyin ve önizleyin.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternatif metin",
+    plhDlgLinkText:                         "Metin",
+    plhDlgLinkUrlOrPath:                    "URL veya yerel yol",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Görsel ara",
+    btnDlgLinkImageModeLinked:              "Bağlantılı",
+    btnDlgLinkImageModeEmbedded:            "Gömülü",
+    tipDlgLinkImageFolder:                  "Resim, belge klasöründe veya bir alt klasörde olmalıdır.",
+    lblDlgLinkRelativePath:                 "Göreceli yol",
+    btnDlgLinkInsert:                       "Ekle",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Kaydedilmemiş değişiklikler -",
@@ -1740,32 +1769,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Yeniden yükle",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Kalın (Ctrl+B)",
+    tipEditorItalic:                        "İtalik (Ctrl+I)",
+    tipEditorStrikethrough:                 "Üstü Çizili (Ctrl+D)",
+    tipEditorHeading:                       "Başlık (Ctrl+H)",
+    tipEditorBulletList:                    "Madde İşaretli Liste (Ctrl+L)",
+    tipEditorNumberedList:                  "Numaralı liste (Ctrl+U)",
+    tipEditorBlockquote:                    "Alıntı bloğu (Ctrl+Q)",
+    tipEditorInlineCode:                    "Satır içi kod (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kod bloğu (Ctrl+M)",
+    tipEditorLink:                          "Bağlantı (Ctrl+K)",
+    tipEditorImage:                         "Resim",
+    tipEditorHorizontalRule:                "Yatay çizgi (Ctrl+R)",
+    tipEditorAlignLeft:                     "Sola hizala",
+    tipEditorAlignCenter:                   "Ortala",
+    tipEditorAlignRight:                    "Sağa hizala",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Önizlemede bul…",
+    lblPreviewNoResults:                    "0 sonuç",
+    tipPreviewFindPrev:                     "Önceki (Shift+Enter)",
+    tipPreviewFindNext:                     "Sonraki (Enter)",
+    tipPreviewFindClose:                    "Kapat (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "hizalama",
+    lblImagePropsWidth:                     "genişlik",
+    lblImagePropsHeight:                    "yükseklik",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1776,7 +1806,7 @@ const TRANSLATIONS = {
   hr: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Odustani",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova verzija dostupna:",
@@ -1792,11 +1822,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Otvori Markdown datoteku",
     ttlOsdSaveMd:                           "Spremi Markdown datoteku",
+    ttlOsdOpenImage:                        "Odaberi sliku",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Novi dokument",
     tipHdrOpen:                             "Otvori Markdown datoteku",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Stvori novo",
     btnHdrSave:                             "Spremi",
     tipHdrSave:                             "Spremi",
     tipHdrSaveAs:                           "Spremi kao",
@@ -1839,16 +1870,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "uređujte i pregledajte Markdown datoteke.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Zamjenski tekst",
+    plhDlgLinkText:                         "Tekst",
+    plhDlgLinkUrlOrPath:                    "URL ili lokalna putanja",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Potraži sliku",
+    btnDlgLinkImageModeLinked:              "Povezano",
+    btnDlgLinkImageModeEmbedded:            "Ugrađeno",
+    tipDlgLinkImageFolder:                  "Slika mora biti u mapi dokumenta ili podmapi.",
+    lblDlgLinkRelativePath:                 "Relativna putanja",
+    btnDlgLinkInsert:                       "Umetni",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Nespremljene promjene -",
@@ -1857,32 +1888,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Učitaj ponovo",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Podebljano (Ctrl+B)",
+    tipEditorItalic:                        "Kurziv (Ctrl+I)",
+    tipEditorStrikethrough:                 "Prekriženo (Ctrl+D)",
+    tipEditorHeading:                       "Naslov (Ctrl+H)",
+    tipEditorBulletList:                    "Popis s oznakama (Ctrl+L)",
+    tipEditorNumberedList:                  "Numerirani popis (Ctrl+U)",
+    tipEditorBlockquote:                    "Blok citat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Ugrađeni kod (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok koda (Ctrl+M)",
+    tipEditorLink:                          "Poveznica (Ctrl+K)",
+    tipEditorImage:                         "Slika",
+    tipEditorHorizontalRule:                "Vodoravna crta (Ctrl+R)",
+    tipEditorAlignLeft:                     "Poravnaj lijevo",
+    tipEditorAlignCenter:                   "Poravnaj centrirano",
+    tipEditorAlignRight:                    "Poravnaj desno",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Pronađi u pregledu…",
+    lblPreviewNoResults:                    "0 rezultata",
+    tipPreviewFindPrev:                     "Prethodno (Shift+Enter)",
+    tipPreviewFindNext:                     "Sljedeće (Enter)",
+    tipPreviewFindClose:                    "Zatvori (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "poravnanje",
+    lblImagePropsWidth:                     "širina",
+    lblImagePropsHeight:                    "visina",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -1893,7 +1925,7 @@ const TRANSLATIONS = {
   el: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Ακύρωση",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Νέα έκδοση διαθέσιμη:",
@@ -1909,11 +1941,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Άνοιγμα αρχείου Markdown",
     ttlOsdSaveMd:                           "Αποθήκευση αρχείου Markdown",
+    ttlOsdOpenImage:                        "Επιλογή εικόνας",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Νέο έγγραφο",
     tipHdrOpen:                             "Άνοιγμα αρχείου Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Δημιουργία νέου",
     btnHdrSave:                             "Αποθήκευση",
     tipHdrSave:                             "Αποθήκευση",
     tipHdrSaveAs:                           "Αποθήκευση ως",
@@ -1956,16 +1989,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "επεξεργαστείτε και προβάλετε αρχεία Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Εναλλακτικό κείμενο",
+    plhDlgLinkText:                         "Κείμενο",
+    plhDlgLinkUrlOrPath:                    "URL ή τοπική διαδρομή",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Αναζήτηση εικόνας",
+    btnDlgLinkImageModeLinked:              "Συνδεδεμένο",
+    btnDlgLinkImageModeEmbedded:            "Ενσωματωμένο",
+    tipDlgLinkImageFolder:                  "Η εικόνα πρέπει να βρίσκεται στον φάκελο εγγράφων ή σε έναν υποφάκελο.",
+    lblDlgLinkRelativePath:                 "Σχετική διαδρομή",
+    btnDlgLinkInsert:                       "Εισαγωγή",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Μη αποθηκευμένες αλλαγές -",
@@ -1974,32 +2007,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Επαναφόρτωση",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Έντονη (Ctrl+B)",
+    tipEditorItalic:                        "Πλάγια (Ctrl+I)",
+    tipEditorStrikethrough:                 "Διαγραμμισμένο (Ctrl+D)",
+    tipEditorHeading:                       "Επικεφαλίδα (Ctrl+H)",
+    tipEditorBulletList:                    "Λίστα με κουκκίδες (Ctrl+L)",
+    tipEditorNumberedList:                  "Αριθμημένη λίστα (Ctrl+U)",
+    tipEditorBlockquote:                    "Παράθεση (Ctrl+Q)",
+    tipEditorInlineCode:                    "Ενσωματωμένος κώδικας (Ctrl+E)",
+    tipEditorCodeBlock:                     "Μπλοκ κώδικα (Ctrl+M)",
+    tipEditorLink:                          "Σύνδεσμος (Ctrl+K)",
+    tipEditorImage:                         "Εικόνα",
+    tipEditorHorizontalRule:                "Οριζόντια γραμμή (Ctrl+R)",
+    tipEditorAlignLeft:                     "Στοίχιση αριστερά",
+    tipEditorAlignCenter:                   "Στοίχιση στο κέντρο",
+    tipEditorAlignRight:                    "Στοίχιση δεξιά",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Εύρεση στην προεπισκόπηση…",
+    lblPreviewNoResults:                    "0 αποτελέσματα",
+    tipPreviewFindPrev:                     "Προηγούμενο (Shift+Enter)",
+    tipPreviewFindNext:                     "Επόμενο (Enter)",
+    tipPreviewFindClose:                    "Κλείσιμο (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "στοίχιση",
+    lblImagePropsWidth:                     "πλάτος",
+    lblImagePropsHeight:                    "ύψος",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2010,7 +2044,7 @@ const TRANSLATIONS = {
   he: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "ביטול",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "גרסה חדשה זמינה:",
@@ -2026,11 +2060,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "פתח קובץ Markdown",
     ttlOsdSaveMd:                           "שמור קובץ Markdown",
+    ttlOsdOpenImage:                        "בחר תמונה",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "מסמך חדש",
     tipHdrOpen:                             "פתח קובץ Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "יצירת חדש",
     btnHdrSave:                             "שמור",
     tipHdrSave:                             "שמור",
     tipHdrSaveAs:                           "שמור בשם",
@@ -2073,16 +2108,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "ערוך וצפה בקבצי Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "טקסט חלופי",
+    plhDlgLinkText:                         "טקסט",
+    plhDlgLinkUrlOrPath:                    "כתובת URL או נתיב מקומי",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "חפש תמונה",
+    btnDlgLinkImageModeLinked:              "מקושר",
+    btnDlgLinkImageModeEmbedded:            "מוטמע",
+    tipDlgLinkImageFolder:                  "התמונה חייבת להיות בתיקיית המסמכים או בתיקיית משנה.",
+    lblDlgLinkRelativePath:                 "נתיב יחסי",
+    btnDlgLinkInsert:                       "הוסף",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "שינויים לא שמורים -",
@@ -2091,32 +2126,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "טען מחדש",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "מודגש (Ctrl+B)",
+    tipEditorItalic:                        "נטוי (Ctrl+I)",
+    tipEditorStrikethrough:                 "קו מחיקה (Ctrl+D)",
+    tipEditorHeading:                       "כותרת (Ctrl+H)",
+    tipEditorBulletList:                    "רשימה עם תבליטים (Ctrl+L)",
+    tipEditorNumberedList:                  "רשימה ממוספרת (Ctrl+U)",
+    tipEditorBlockquote:                    "ציטוט בלוק (Ctrl+Q)",
+    tipEditorInlineCode:                    "קוד מוטבע (Ctrl+E)",
+    tipEditorCodeBlock:                     "בלוק קוד (Ctrl+M)",
+    tipEditorLink:                          "קישור (Ctrl+K)",
+    tipEditorImage:                         "תמונה",
+    tipEditorHorizontalRule:                "קו אופקי (Ctrl+R)",
+    tipEditorAlignLeft:                     "יישר לשמאל",
+    tipEditorAlignCenter:                   "יישר למרכז",
+    tipEditorAlignRight:                    "יישר לימין",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "חפש בתצוגה מקדימה…",
+    lblPreviewNoResults:                    "0 תוצאות",
+    tipPreviewFindPrev:                     "קודם (Shift+Enter)",
+    tipPreviewFindNext:                     "הבא (Enter)",
+    tipPreviewFindClose:                    "סגור (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "יישור",
+    lblImagePropsWidth:                     "רוחב",
+    lblImagePropsHeight:                    "גובה",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2127,7 +2163,7 @@ const TRANSLATIONS = {
   ar: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "إلغاء",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "إصدار جديد متوفر:",
@@ -2143,11 +2179,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "فتح ملف Markdown",
     ttlOsdSaveMd:                           "حفظ ملف Markdown",
+    ttlOsdOpenImage:                        "تحديد صورة",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "مستند جديد",
     tipHdrOpen:                             "فتح ملف Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "إنشاء جديد",
     btnHdrSave:                             "حفظ",
     tipHdrSave:                             "حفظ",
     tipHdrSaveAs:                           "حفظ باسم",
@@ -2190,16 +2227,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "حرِّر ملفات Markdown وعاينها.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "نص بديل",
+    plhDlgLinkText:                         "نص",
+    plhDlgLinkUrlOrPath:                    "عنوان URL أو مسار محلي",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "استعراض صورة",
+    btnDlgLinkImageModeLinked:              "مرتبط",
+    btnDlgLinkImageModeEmbedded:            "مضمن",
+    tipDlgLinkImageFolder:                  "يجب أن تكون الصورة في مجلد المستند أو مجلد فرعي.",
+    lblDlgLinkRelativePath:                 "مسار نسبي",
+    btnDlgLinkInsert:                       "إدراج",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "تغييرات غير محفوظة -",
@@ -2208,32 +2245,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "إعادة تحميل",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "غامق (Ctrl+B)",
+    tipEditorItalic:                        "مائل (Ctrl+I)",
+    tipEditorStrikethrough:                 "يتوسطه خط (Ctrl+D)",
+    tipEditorHeading:                       "عنوان (Ctrl+H)",
+    tipEditorBulletList:                    "قائمة نقطية (Ctrl+L)",
+    tipEditorNumberedList:                  "قائمة مرقمة (Ctrl+U)",
+    tipEditorBlockquote:                    "اقتباس (Ctrl+Q)",
+    tipEditorInlineCode:                    "رمز مضمن (Ctrl+E)",
+    tipEditorCodeBlock:                     "كتلة رمز (Ctrl+M)",
+    tipEditorLink:                          "رابط (Ctrl+K)",
+    tipEditorImage:                         "صورة",
+    tipEditorHorizontalRule:                "خط أفقي (Ctrl+R)",
+    tipEditorAlignLeft:                     "محاذاة لليسار",
+    tipEditorAlignCenter:                   "محاذاة للوسط",
+    tipEditorAlignRight:                    "محاذاة لليمين",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "البحث في المعاينة…",
+    lblPreviewNoResults:                    "0 نتائج",
+    tipPreviewFindPrev:                     "السابق (Shift+Enter)",
+    tipPreviewFindNext:                     "التالي (Enter)",
+    tipPreviewFindClose:                    "إغلاق (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "محاذاة",
+    lblImagePropsWidth:                     "عرض",
+    lblImagePropsHeight:                    "ارتفاع",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2244,7 +2282,7 @@ const TRANSLATIONS = {
   fa: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "لغو",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "نسخه جدید موجود است:",
@@ -2260,11 +2298,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "باز کردن فایل Markdown",
     ttlOsdSaveMd:                           "ذخیره فایل Markdown",
+    ttlOsdOpenImage:                        "انتخاب تصویر",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "سند جدید",
     tipHdrOpen:                             "باز کردن فایل Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "ایجاد جدید",
     btnHdrSave:                             "ذخیره",
     tipHdrSave:                             "ذخیره",
     tipHdrSaveAs:                           "ذخیره با نام",
@@ -2307,16 +2346,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "فایل‌های Markdown را ویرایش و پیش‌نمایش کنید.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "متن جایگزین",
+    plhDlgLinkText:                         "متن",
+    plhDlgLinkUrlOrPath:                    "نشانی اینترنتی یا مسیر محلی",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "جستجوی تصویر",
+    btnDlgLinkImageModeLinked:              "مرتبط",
+    btnDlgLinkImageModeEmbedded:            "تعبیه شده",
+    tipDlgLinkImageFolder:                  "تصویر باید در پوشه سند یا یک زیرپوشه باشد.",
+    lblDlgLinkRelativePath:                 "مسیر نسبی",
+    btnDlgLinkInsert:                       "درج",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "تغییرات ذخیره‌نشده -",
@@ -2325,32 +2364,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "بارگذاری مجدد",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "پررنگ (Ctrl+B)",
+    tipEditorItalic:                        "کج (Ctrl+I)",
+    tipEditorStrikethrough:                 "خط‌خورده (Ctrl+D)",
+    tipEditorHeading:                       "عنوان (Ctrl+H)",
+    tipEditorBulletList:                    "فهرست گلوله‌ای (Ctrl+L)",
+    tipEditorNumberedList:                  "لیست شماره‌دار (Ctrl+U)",
+    tipEditorBlockquote:                    "نقل قول بلوکی (Ctrl+Q)",
+    tipEditorInlineCode:                    "کد درون‌خطی (Ctrl+E)",
+    tipEditorCodeBlock:                     "بلوک کد (Ctrl+M)",
+    tipEditorLink:                          "پیوند (Ctrl+K)",
+    tipEditorImage:                         "تصویر",
+    tipEditorHorizontalRule:                "خط افقی (Ctrl+R)",
+    tipEditorAlignLeft:                     "تراز به چپ",
+    tipEditorAlignCenter:                   "تراز وسط",
+    tipEditorAlignRight:                    "تراز به راست",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "یافتن در پیش‌نمایش…",
+    lblPreviewNoResults:                    "0 نتیجه",
+    tipPreviewFindPrev:                     "قبلی (Shift+Enter)",
+    tipPreviewFindNext:                     "بعدی (Enter)",
+    tipPreviewFindClose:                    "بستن (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "تراز",
+    lblImagePropsWidth:                     "عرض",
+    lblImagePropsHeight:                    "ارتفاع",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2361,7 +2401,7 @@ const TRANSLATIONS = {
   zh_CN: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "取消",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "新版本可用:",
@@ -2377,11 +2417,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "打开 Markdown 文件",
     ttlOsdSaveMd:                           "保存 Markdown 文件",
+    ttlOsdOpenImage:                        "选择图片",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "新建文档",
     tipHdrOpen:                             "打开 Markdown 文件",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "新建",
     btnHdrSave:                             "保存",
     tipHdrSave:                             "保存",
     tipHdrSaveAs:                           "另存为",
@@ -2424,16 +2465,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "编辑并预览 Markdown 文件。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "替代文本",
+    plhDlgLinkText:                         "文本",
+    plhDlgLinkUrlOrPath:                    "URL 或本地路径",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "浏览图片",
+    btnDlgLinkImageModeLinked:              "链接",
+    btnDlgLinkImageModeEmbedded:            "嵌入",
+    tipDlgLinkImageFolder:                  "图片必须位于文档文件夹或其子文件夹中。",
+    lblDlgLinkRelativePath:                 "相对路径",
+    btnDlgLinkInsert:                       "插入",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "未保存的更改 -",
@@ -2442,32 +2483,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "重新加载",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "加粗 (Ctrl+B)",
+    tipEditorItalic:                        "斜体 (Ctrl+I)",
+    tipEditorStrikethrough:                 "删除线 (Ctrl+D)",
+    tipEditorHeading:                       "标题 (Ctrl+H)",
+    tipEditorBulletList:                    "无序列表 (Ctrl+L)",
+    tipEditorNumberedList:                  "编号列表 (Ctrl+U)",
+    tipEditorBlockquote:                    "块引用 (Ctrl+Q)",
+    tipEditorInlineCode:                    "行内代码 (Ctrl+E)",
+    tipEditorCodeBlock:                     "代码块 (Ctrl+M)",
+    tipEditorLink:                          "链接 (Ctrl+K)",
+    tipEditorImage:                         "图片",
+    tipEditorHorizontalRule:                "水平线 (Ctrl+R)",
+    tipEditorAlignLeft:                     "左对齐",
+    tipEditorAlignCenter:                   "居中对齐",
+    tipEditorAlignRight:                    "右对齐",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "在预览中查找…",
+    lblPreviewNoResults:                    "0 个结果",
+    tipPreviewFindPrev:                     "上一个 (Shift+Enter)",
+    tipPreviewFindNext:                     "下一个 (Enter)",
+    tipPreviewFindClose:                    "关闭 (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "对齐",
+    lblImagePropsWidth:                     "宽度",
+    lblImagePropsHeight:                    "高度",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2494,11 +2536,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "開啟 Markdown 檔案",
     ttlOsdSaveMd:                           "儲存 Markdown 檔案",
+    ttlOsdOpenImage:                        "選擇圖片",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "新增文件",
     tipHdrOpen:                             "開啟 Markdown 檔案",
-    lblHdrNewDoc:                           "新增",
+    lblHdrNewDoc:                           "建立新",
     btnHdrSave:                             "儲存",
     tipHdrSave:                             "儲存",
     tipHdrSaveAs:                           "另存新檔",
@@ -2541,16 +2584,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "編輯並預覽 Markdown 檔案。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "替代文字",
+    plhDlgLinkText:                         "文字",
+    plhDlgLinkUrlOrPath:                    "URL 或本機路徑",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "瀏覽圖片",
+    btnDlgLinkImageModeLinked:              "連結",
+    btnDlgLinkImageModeEmbedded:            "嵌入",
+    tipDlgLinkImageFolder:                  "圖片必須位於文件資料夾或其子資料夾中。",
+    lblDlgLinkRelativePath:                 "相對路徑",
+    btnDlgLinkInsert:                       "插入",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "未儲存的變更 -",
@@ -2559,32 +2602,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "重新載入",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "粗體 (Ctrl+B)",
+    tipEditorItalic:                        "斜體 (Ctrl+I)",
+    tipEditorStrikethrough:                 "刪除線 (Ctrl+D)",
+    tipEditorHeading:                       "標題 (Ctrl+H)",
+    tipEditorBulletList:                    "項目符號清單 (Ctrl+L)",
+    tipEditorNumberedList:                  "編號清單 (Ctrl+U)",
+    tipEditorBlockquote:                    "引言區塊 (Ctrl+Q)",
+    tipEditorInlineCode:                    "行內程式碼 (Ctrl+E)",
+    tipEditorCodeBlock:                     "程式碼區塊 (Ctrl+M)",
+    tipEditorLink:                          "連結 (Ctrl+K)",
+    tipEditorImage:                         "圖片",
+    tipEditorHorizontalRule:                "水平線 (Ctrl+R)",
+    tipEditorAlignLeft:                     "靠左對齊",
+    tipEditorAlignCenter:                   "置中對齊",
+    tipEditorAlignRight:                    "靠右對齊",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "在預覽中尋找…",
+    lblPreviewNoResults:                    "0 個結果",
+    tipPreviewFindPrev:                     "上一個 (Shift+Enter)",
+    tipPreviewFindNext:                     "下一個 (Enter)",
+    tipPreviewFindClose:                    "關閉 (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "寬",
-    lblImagePropsHeight:                    "高",
+    lblImagePropsAlign:                     "對齊",
+    lblImagePropsWidth:                     "寬度",
+    lblImagePropsHeight:                    "高度",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "套用",
     tipImagePropsClear:                     "清除",
@@ -2595,7 +2639,7 @@ const TRANSLATIONS = {
   ja: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "キャンセル",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "新しいバージョンが利用可能です:",
@@ -2611,11 +2655,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown ファイルを開く",
     ttlOsdSaveMd:                           "Markdown ファイルを保存",
+    ttlOsdOpenImage:                        "画像を選択",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "新規ドキュメント",
     tipHdrOpen:                             "Markdown ファイルを開く",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "新規作成",
     btnHdrSave:                             "保存",
     tipHdrSave:                             "保存",
     tipHdrSaveAs:                           "名前を付けて保存",
@@ -2658,16 +2703,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown ファイルを編集・プレビューします。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "代替テキスト",
+    plhDlgLinkText:                         "テキスト",
+    plhDlgLinkUrlOrPath:                    "URL またはローカルパス",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "画像を参照",
+    btnDlgLinkImageModeLinked:              "リンク済み",
+    btnDlgLinkImageModeEmbedded:            "埋め込み",
+    tipDlgLinkImageFolder:                  "画像はドキュメントフォルダーまたはサブフォルダー内にある必要があります。",
+    lblDlgLinkRelativePath:                 "相対パス",
+    btnDlgLinkInsert:                       "挿入",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "未保存の変更 -",
@@ -2676,32 +2721,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "再読み込み",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "太字 (Ctrl+B)",
+    tipEditorItalic:                        "斜体 (Ctrl+I)",
+    tipEditorStrikethrough:                 "取り消し線 (Ctrl+D)",
+    tipEditorHeading:                       "見出し (Ctrl+H)",
+    tipEditorBulletList:                    "箇条書き (Ctrl+L)",
+    tipEditorNumberedList:                  "番号付きリスト (Ctrl+U)",
+    tipEditorBlockquote:                    "引用ブロック (Ctrl+Q)",
+    tipEditorInlineCode:                    "インラインコード (Ctrl+E)",
+    tipEditorCodeBlock:                     "コードブロック (Ctrl+M)",
+    tipEditorLink:                          "リンク (Ctrl+K)",
+    tipEditorImage:                         "画像",
+    tipEditorHorizontalRule:                "水平線 (Ctrl+R)",
+    tipEditorAlignLeft:                     "左揃え",
+    tipEditorAlignCenter:                   "中央揃え",
+    tipEditorAlignRight:                    "右揃え",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "プレビューで検索…",
+    lblPreviewNoResults:                    "0 件の結果",
+    tipPreviewFindPrev:                     "前へ (Shift+Enter)",
+    tipPreviewFindNext:                     "次へ (Enter)",
+    tipPreviewFindClose:                    "閉じる (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "配置",
+    lblImagePropsWidth:                     "幅",
+    lblImagePropsHeight:                    "高さ",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2712,7 +2758,7 @@ const TRANSLATIONS = {
   ko: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "취소",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "새 버전 사용 가능:",
@@ -2728,11 +2774,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown 파일 열기",
     ttlOsdSaveMd:                           "Markdown 파일 저장",
+    ttlOsdOpenImage:                        "이미지 선택",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "새 문서",
     tipHdrOpen:                             "Markdown 파일 열기",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "새로 만들기",
     btnHdrSave:                             "저장",
     tipHdrSave:                             "저장",
     tipHdrSaveAs:                           "다른 이름으로 저장",
@@ -2775,16 +2822,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown 파일을 편집하고 미리 봅니다.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "대체 텍스트",
+    plhDlgLinkText:                         "텍스트",
+    plhDlgLinkUrlOrPath:                    "URL 또는 로컬 경로",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "이미지 찾아보기",
+    btnDlgLinkImageModeLinked:              "연결됨",
+    btnDlgLinkImageModeEmbedded:            "포함됨",
+    tipDlgLinkImageFolder:                  "이미지는 문서 폴더 또는 하위 폴더에 있어야 합니다.",
+    lblDlgLinkRelativePath:                 "상대 경로",
+    btnDlgLinkInsert:                       "삽입",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "저장되지 않은 변경 사항 -",
@@ -2793,32 +2840,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "다시 로드",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "굵게 (Ctrl+B)",
+    tipEditorItalic:                        "기울임꼴 (Ctrl+I)",
+    tipEditorStrikethrough:                 "취소선 (Ctrl+D)",
+    tipEditorHeading:                       "제목 (Ctrl+H)",
+    tipEditorBulletList:                    "글머리 기호 목록 (Ctrl+L)",
+    tipEditorNumberedList:                  "번호 매기기 목록 (Ctrl+U)",
+    tipEditorBlockquote:                    "인용 블록 (Ctrl+Q)",
+    tipEditorInlineCode:                    "인라인 코드 (Ctrl+E)",
+    tipEditorCodeBlock:                     "코드 블록 (Ctrl+M)",
+    tipEditorLink:                          "링크 (Ctrl+K)",
+    tipEditorImage:                         "이미지",
+    tipEditorHorizontalRule:                "가로선 (Ctrl+R)",
+    tipEditorAlignLeft:                     "왼쪽 정렬",
+    tipEditorAlignCenter:                   "가운데 정렬",
+    tipEditorAlignRight:                    "오른쪽 정렬",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "미리 보기에서 찾기…",
+    lblPreviewNoResults:                    "0개 결과",
+    tipPreviewFindPrev:                     "이전 (Shift+Enter)",
+    tipPreviewFindNext:                     "다음 (Enter)",
+    tipPreviewFindClose:                    "닫기 (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "정렬",
+    lblImagePropsWidth:                     "너비",
+    lblImagePropsHeight:                    "높이",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2829,7 +2877,7 @@ const TRANSLATIONS = {
   vi: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Hủy",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Phiên bản mới có sẵn:",
@@ -2845,11 +2893,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Mở tệp Markdown",
     ttlOsdSaveMd:                           "Lưu tệp Markdown",
+    ttlOsdOpenImage:                        "Chọn ảnh",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Tài liệu mới",
     tipHdrOpen:                             "Mở tệp Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Tạo mới",
     btnHdrSave:                             "Lưu",
     tipHdrSave:                             "Lưu",
     tipHdrSaveAs:                           "Lưu dưới dạng",
@@ -2892,16 +2941,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "chỉnh sửa và xem trước tệp Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Văn bản thay thế",
+    plhDlgLinkText:                         "Văn bản",
+    plhDlgLinkUrlOrPath:                    "URL hoặc đường dẫn cục bộ",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Tìm hình ảnh",
+    btnDlgLinkImageModeLinked:              "Đã liên kết",
+    btnDlgLinkImageModeEmbedded:            "Đã nhúng",
+    tipDlgLinkImageFolder:                  "Hình ảnh phải nằm trong thư mục tài liệu hoặc thư mục con.",
+    lblDlgLinkRelativePath:                 "Đường dẫn tương đối",
+    btnDlgLinkInsert:                       "Chèn",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Thay đổi chưa lưu -",
@@ -2910,32 +2959,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Tải lại",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "In đậm (Ctrl+B)",
+    tipEditorItalic:                        "In nghiêng (Ctrl+I)",
+    tipEditorStrikethrough:                 "Gạch ngang (Ctrl+D)",
+    tipEditorHeading:                       "Tiêu đề (Ctrl+H)",
+    tipEditorBulletList:                    "Danh sách dấu đầu dòng (Ctrl+L)",
+    tipEditorNumberedList:                  "Danh sách có số thứ tự (Ctrl+U)",
+    tipEditorBlockquote:                    "Trích dẫn khối (Ctrl+Q)",
+    tipEditorInlineCode:                    "Mã nội tuyến (Ctrl+E)",
+    tipEditorCodeBlock:                     "Khối mã (Ctrl+M)",
+    tipEditorLink:                          "Liên kết (Ctrl+K)",
+    tipEditorImage:                         "Hình ảnh",
+    tipEditorHorizontalRule:                "Đường kẻ ngang (Ctrl+R)",
+    tipEditorAlignLeft:                     "Căn trái",
+    tipEditorAlignCenter:                   "Căn giữa",
+    tipEditorAlignRight:                    "Căn phải",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Tìm trong bản xem trước…",
+    lblPreviewNoResults:                    "0 kết quả",
+    tipPreviewFindPrev:                     "Trước (Shift+Enter)",
+    tipPreviewFindNext:                     "Tiếp theo (Enter)",
+    tipPreviewFindClose:                    "Đóng (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "căn chỉnh",
+    lblImagePropsWidth:                     "chiều rộng",
+    lblImagePropsHeight:                    "chiều cao",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -2946,7 +2996,7 @@ const TRANSLATIONS = {
   th: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "ยกเลิก",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "มีเวอร์ชันใหม่:",
@@ -2962,11 +3012,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "เปิดไฟล์ Markdown",
     ttlOsdSaveMd:                           "บันทึกไฟล์ Markdown",
+    ttlOsdOpenImage:                        "เลือกรูปภาพ",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "เอกสารใหม่",
     tipHdrOpen:                             "เปิดไฟล์ Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "สร้างใหม่",
     btnHdrSave:                             "บันทึก",
     tipHdrSave:                             "บันทึก",
     tipHdrSaveAs:                           "บันทึกเป็น",
@@ -3009,16 +3060,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "แก้ไขและดูตัวอย่างไฟล์ Markdown",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "ข้อความแสดงแทน",
+    plhDlgLinkText:                         "ข้อความ",
+    plhDlgLinkUrlOrPath:                    "URL หรือพาธภายใน",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "ค้นหารูปภาพ",
+    btnDlgLinkImageModeLinked:              "เชื่อมโยง",
+    btnDlgLinkImageModeEmbedded:            "ฝังตัว",
+    tipDlgLinkImageFolder:                  "รูปภาพต้องอยู่ในโฟลเดอร์เอกสารหรือโฟลเดอร์ย่อย",
+    lblDlgLinkRelativePath:                 "พาธสัมพัทธ์",
+    btnDlgLinkInsert:                       "แทรก",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "การเปลี่ยนแปลงที่ยังไม่ได้บันทึก -",
@@ -3027,32 +3078,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "โหลดใหม่",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "ตัวหนา (Ctrl+B)",
+    tipEditorItalic:                        "ตัวเอียง (Ctrl+I)",
+    tipEditorStrikethrough:                 "ขีดทับ (Ctrl+D)",
+    tipEditorHeading:                       "หัวเรื่อง (Ctrl+H)",
+    tipEditorBulletList:                    "รายการหัวข้อย่อย (Ctrl+L)",
+    tipEditorNumberedList:                  "รายการลำดับเลข (Ctrl+U)",
+    tipEditorBlockquote:                    "บล็อกคำพูด (Ctrl+Q)",
+    tipEditorInlineCode:                    "โค้ดในบรรทัด (Ctrl+E)",
+    tipEditorCodeBlock:                     "บล็อกโค้ด (Ctrl+M)",
+    tipEditorLink:                          "ลิงก์ (Ctrl+K)",
+    tipEditorImage:                         "รูปภาพ",
+    tipEditorHorizontalRule:                "เส้นแนวนอน (Ctrl+R)",
+    tipEditorAlignLeft:                     "จัดชิดซ้าย",
+    tipEditorAlignCenter:                   "จัดกึ่งกลาง",
+    tipEditorAlignRight:                    "จัดชิดขวา",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "ค้นหาในหน้าตัวอย่าง…",
+    lblPreviewNoResults:                    "0 ผลลัพธ์",
+    tipPreviewFindPrev:                     "ก่อนหน้า (Shift+Enter)",
+    tipPreviewFindNext:                     "ถัดไป (Enter)",
+    tipPreviewFindClose:                    "ปิด (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "จัดแนว",
+    lblImagePropsWidth:                     "ความกว้าง",
+    lblImagePropsHeight:                    "ความสูง",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3063,7 +3115,7 @@ const TRANSLATIONS = {
   id: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Batal",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versi baru tersedia:",
@@ -3079,11 +3131,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Buka file Markdown",
     ttlOsdSaveMd:                           "Simpan file Markdown",
+    ttlOsdOpenImage:                        "Pilih Gambar",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Dokumen baru",
     tipHdrOpen:                             "Buka file Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Buat baru",
     btnHdrSave:                             "Simpan",
     tipHdrSave:                             "Simpan",
     tipHdrSaveAs:                           "Simpan sebagai",
@@ -3126,16 +3179,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edit dan pratinjau file Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Teks alternatif",
+    plhDlgLinkText:                         "Teks",
+    plhDlgLinkUrlOrPath:                    "URL atau jalur lokal",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Cari gambar",
+    btnDlgLinkImageModeLinked:              "Tertaut",
+    btnDlgLinkImageModeEmbedded:            "Tersemat",
+    tipDlgLinkImageFolder:                  "Gambar harus berada di folder dokumen atau subfolder.",
+    lblDlgLinkRelativePath:                 "Jalur relatif",
+    btnDlgLinkInsert:                       "Sisipkan",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Perubahan belum disimpan -",
@@ -3144,32 +3197,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Muat ulang",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Tebal (Ctrl+B)",
+    tipEditorItalic:                        "Miring (Ctrl+I)",
+    tipEditorStrikethrough:                 "Coret (Ctrl+D)",
+    tipEditorHeading:                       "Judul (Ctrl+H)",
+    tipEditorBulletList:                    "Daftar Berpoin (Ctrl+L)",
+    tipEditorNumberedList:                  "Daftar bernomor (Ctrl+U)",
+    tipEditorBlockquote:                    "Kutipan blok (Ctrl+Q)",
+    tipEditorInlineCode:                    "Kode sebaris (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kode (Ctrl+M)",
+    tipEditorLink:                          "Tautan (Ctrl+K)",
+    tipEditorImage:                         "Gambar",
+    tipEditorHorizontalRule:                "Garis horizontal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Rata kiri",
+    tipEditorAlignCenter:                   "Rata tengah",
+    tipEditorAlignRight:                    "Rata kanan",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Cari di pratinjau…",
+    lblPreviewNoResults:                    "0 hasil",
+    tipPreviewFindPrev:                     "Sebelumnya (Shift+Enter)",
+    tipPreviewFindNext:                     "Berikutnya (Enter)",
+    tipPreviewFindClose:                    "Tutup (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "perataan",
+    lblImagePropsWidth:                     "lebar",
+    lblImagePropsHeight:                    "tinggi",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3180,7 +3234,7 @@ const TRANSLATIONS = {
   ca: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Cancel·la",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versió disponible:",
@@ -3196,11 +3250,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Obre un fitxer Markdown",
     ttlOsdSaveMd:                           "Desa el fitxer Markdown",
+    ttlOsdOpenImage:                        "Selecciona una imatge",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nou document",
     tipHdrOpen:                             "Obrir un fitxer Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Crea'n un de nou",
     btnHdrSave:                             "Desa",
     tipHdrSave:                             "Desa",
     tipHdrSaveAs:                           "Desa com a",
@@ -3243,16 +3298,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "editeu i previsualitzeu fitxers Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Text alternatiu",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL o ruta local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Cerca una imatge",
+    btnDlgLinkImageModeLinked:              "Enllaçat",
+    btnDlgLinkImageModeEmbedded:            "Incrustat",
+    tipDlgLinkImageFolder:                  "La imatge ha de ser a la carpeta del document o en una subcarpeta.",
+    lblDlgLinkRelativePath:                 "Ruta relativa",
+    btnDlgLinkInsert:                       "Insereix",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Canvis no desats -",
@@ -3261,32 +3316,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Recarregar",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Negreta (Ctrl+B)",
+    tipEditorItalic:                        "Cursiva (Ctrl+I)",
+    tipEditorStrikethrough:                 "Ratllat (Ctrl+D)",
+    tipEditorHeading:                       "Títol (Ctrl+H)",
+    tipEditorBulletList:                    "Llista amb vinyetes (Ctrl+L)",
+    tipEditorNumberedList:                  "Llista numerada (Ctrl+U)",
+    tipEditorBlockquote:                    "Citació en bloc (Ctrl+Q)",
+    tipEditorInlineCode:                    "Codi en línia (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloc de codi (Ctrl+M)",
+    tipEditorLink:                          "Enllaç (Ctrl+K)",
+    tipEditorImage:                         "Imatge",
+    tipEditorHorizontalRule:                "Línia horitzontal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Alinea a l'esquerra",
+    tipEditorAlignCenter:                   "Centra",
+    tipEditorAlignRight:                    "Alinea a la dreta",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Cerca a la previsualització…",
+    lblPreviewNoResults:                    "0 resultats",
+    tipPreviewFindPrev:                     "Anterior (Maj+Retorn)",
+    tipPreviewFindNext:                     "Següent (Retorn)",
+    tipPreviewFindClose:                    "Tancar (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "alineació",
+    lblImagePropsWidth:                     "amplada",
+    lblImagePropsHeight:                    "alçada",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3297,7 +3353,7 @@ const TRANSLATIONS = {
   cs: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Zrušit",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nová verze je k dispozici:",
@@ -3313,11 +3369,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Otevřít soubor Markdown",
     ttlOsdSaveMd:                           "Uložit soubor Markdown",
+    ttlOsdOpenImage:                        "Vybrat obrázek",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nový dokument",
     tipHdrOpen:                             "Otevřít soubor Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Vytvořit nový",
     btnHdrSave:                             "Uložit",
     tipHdrSave:                             "Uložit",
     tipHdrSaveAs:                           "Uložit jako",
@@ -3360,16 +3417,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "upravujte a zobrazujte soubory Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Alternativní text",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL nebo místní cesta",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Vyhledat obrázek",
+    btnDlgLinkImageModeLinked:              "Propojeno",
+    btnDlgLinkImageModeEmbedded:            "Vloženo",
+    tipDlgLinkImageFolder:                  "Obrázek musí být ve složce dokumentu nebo podsložce.",
+    lblDlgLinkRelativePath:                 "Relativní cesta",
+    btnDlgLinkInsert:                       "Vložit",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Neuložené změny -",
@@ -3378,32 +3435,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Znovu načíst",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Tučné (Ctrl+B)",
+    tipEditorItalic:                        "Kurzíva (Ctrl+I)",
+    tipEditorStrikethrough:                 "Přeškrtnuté (Ctrl+D)",
+    tipEditorHeading:                       "Nadpis (Ctrl+H)",
+    tipEditorBulletList:                    "Seznam s odrážkami (Ctrl+L)",
+    tipEditorNumberedList:                  "Číslovaný seznam (Ctrl+U)",
+    tipEditorBlockquote:                    "Bloková citace (Ctrl+Q)",
+    tipEditorInlineCode:                    "Vložený kód (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kódu (Ctrl+M)",
+    tipEditorLink:                          "Odkaz (Ctrl+K)",
+    tipEditorImage:                         "Obrázek",
+    tipEditorHorizontalRule:                "Vodorovná čára (Ctrl+R)",
+    tipEditorAlignLeft:                     "Zarovnat vlevo",
+    tipEditorAlignCenter:                   "Zarovnat na střed",
+    tipEditorAlignRight:                    "Zarovnat vpravo",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Najít v náhledu…",
+    lblPreviewNoResults:                    "0 výsledků",
+    tipPreviewFindPrev:                     "Předchozí (Shift+Enter)",
+    tipPreviewFindNext:                     "Další (Enter)",
+    tipPreviewFindClose:                    "Zavřít (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "zarovnání",
+    lblImagePropsWidth:                     "šířka",
+    lblImagePropsHeight:                    "výška",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3414,7 +3472,7 @@ const TRANSLATIONS = {
   da: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Annuller",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny version tilgængelig:",
@@ -3430,11 +3488,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Åbn Markdown-fil",
     ttlOsdSaveMd:                           "Gem Markdown-fil",
+    ttlOsdOpenImage:                        "Vælg billede",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nyt dokument",
     tipHdrOpen:                             "Åbn en Markdown-fil",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Opret ny",
     btnHdrSave:                             "Gem",
     tipHdrSave:                             "Gem",
     tipHdrSaveAs:                           "Gem som",
@@ -3477,16 +3536,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "rediger og forhåndsvis Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternativ tekst",
+    plhDlgLinkText:                         "Tekst",
+    plhDlgLinkUrlOrPath:                    "URL eller lokal sti",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Søg efter et billede",
+    btnDlgLinkImageModeLinked:              "Linket",
+    btnDlgLinkImageModeEmbedded:            "Indlejret",
+    tipDlgLinkImageFolder:                  "Billedet skal være i dokumentmappen eller en undermappe.",
+    lblDlgLinkRelativePath:                 "Relativ sti",
+    btnDlgLinkInsert:                       "Indsæt",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Ugemte ændringer -",
@@ -3495,32 +3554,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Genindlæs",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Fed (Ctrl+B)",
+    tipEditorItalic:                        "Kursiv (Ctrl+I)",
+    tipEditorStrikethrough:                 "Gennemstreget (Ctrl+D)",
+    tipEditorHeading:                       "Overskrift (Ctrl+H)",
+    tipEditorBulletList:                    "Punktopstilling (Ctrl+L)",
+    tipEditorNumberedList:                  "Nummereret liste (Ctrl+U)",
+    tipEditorBlockquote:                    "Blokcitat (Ctrl+Q)",
+    tipEditorInlineCode:                    "Inline-kode (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kodeblok (Ctrl+M)",
+    tipEditorLink:                          "Link (Ctrl+K)",
+    tipEditorImage:                         "Billede",
+    tipEditorHorizontalRule:                "Vandret streg (Ctrl+R)",
+    tipEditorAlignLeft:                     "Venstrejuster",
+    tipEditorAlignCenter:                   "Centrer",
+    tipEditorAlignRight:                    "Højrejuster",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Find i forhåndsvisning…",
+    lblPreviewNoResults:                    "0 resultater",
+    tipPreviewFindPrev:                     "Forrige (Skift+Enter)",
+    tipPreviewFindNext:                     "Næste (Enter)",
+    tipPreviewFindClose:                    "Luk (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "justering",
+    lblImagePropsWidth:                     "bredde",
+    lblImagePropsHeight:                    "højde",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3531,7 +3591,7 @@ const TRANSLATIONS = {
   fi: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Peruuta",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Uusi versio saatavilla:",
@@ -3547,11 +3607,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Avaa Markdown-tiedosto",
     ttlOsdSaveMd:                           "Tallenna Markdown-tiedosto",
+    ttlOsdOpenImage:                        "Valitse kuva",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Uusi asiakirja",
     tipHdrOpen:                             "Avaa Markdown-tiedosto",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Luo uusi",
     btnHdrSave:                             "Tallenna",
     tipHdrSave:                             "Tallenna",
     tipHdrSaveAs:                           "Tallenna nimellä",
@@ -3594,16 +3655,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "muokkaa ja esikatsele Markdown-tiedostoja.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alt-teksti",
+    plhDlgLinkText:                         "Teksti",
+    plhDlgLinkUrlOrPath:                    "URL tai paikallinen polku",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Etsi kuva",
+    btnDlgLinkImageModeLinked:              "Linkitetty",
+    btnDlgLinkImageModeEmbedded:            "Upotettu",
+    tipDlgLinkImageFolder:                  "Kuvan on oltava asiakirjakansiossa tai alikansiossa.",
+    lblDlgLinkRelativePath:                 "Suhteellinen polku",
+    btnDlgLinkInsert:                       "Lisää",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Tallentamattomat muutokset -",
@@ -3612,32 +3673,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Lataa uudelleen",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Lihavointi (Ctrl+B)",
+    tipEditorItalic:                        "Kursivointi (Ctrl+I)",
+    tipEditorStrikethrough:                 "Yliviivaus (Ctrl+D)",
+    tipEditorHeading:                       "Otsikko (Ctrl+H)",
+    tipEditorBulletList:                    "Luettelomerkitty luettelo (Ctrl+L)",
+    tipEditorNumberedList:                  "Numeroitu luettelo (Ctrl+U)",
+    tipEditorBlockquote:                    "Lohkolainaus (Ctrl+Q)",
+    tipEditorInlineCode:                    "Rivinkoodi (Ctrl+E)",
+    tipEditorCodeBlock:                     "Koodilohko (Ctrl+M)",
+    tipEditorLink:                          "Linkki (Ctrl+K)",
+    tipEditorImage:                         "Kuva",
+    tipEditorHorizontalRule:                "Vaakaviiva (Ctrl+R)",
+    tipEditorAlignLeft:                     "Tasaa vasemmalle",
+    tipEditorAlignCenter:                   "Keskitä",
+    tipEditorAlignRight:                    "Tasaa oikealle",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Etsi esikatselusta…",
+    lblPreviewNoResults:                    "0 tulosta",
+    tipPreviewFindPrev:                     "Edellinen (Vaihto+Enter)",
+    tipPreviewFindNext:                     "Seuraava (Enter)",
+    tipPreviewFindClose:                    "Sulje (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "tasaus",
+    lblImagePropsWidth:                     "leveys",
+    lblImagePropsHeight:                    "korkeus",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3648,7 +3710,7 @@ const TRANSLATIONS = {
   ms: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Batal",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versi baharu tersedia:",
@@ -3664,11 +3726,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Buka fail Markdown",
     ttlOsdSaveMd:                           "Simpan fail Markdown",
+    ttlOsdOpenImage:                        "Pilih Imej",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Dokumen baharu",
     tipHdrOpen:                             "Buka fail Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Cipta baharu",
     btnHdrSave:                             "Simpan",
     tipHdrSave:                             "Simpan",
     tipHdrSaveAs:                           "Simpan sebagai",
@@ -3711,16 +3774,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edit dan pratonton fail Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Teks alternatif",
+    plhDlgLinkText:                         "Teks",
+    plhDlgLinkUrlOrPath:                    "URL atau laluan tempatan",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Cari imej",
+    btnDlgLinkImageModeLinked:              "Dipautkan",
+    btnDlgLinkImageModeEmbedded:            "Terbenam",
+    tipDlgLinkImageFolder:                  "Imej mesti berada dalam folder dokumen atau subfolder.",
+    lblDlgLinkRelativePath:                 "Laluan relatif",
+    btnDlgLinkInsert:                       "Sisip",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Perubahan belum disimpan -",
@@ -3729,32 +3792,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Muat semula",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Tebal (Ctrl+B)",
+    tipEditorItalic:                        "Italik (Ctrl+I)",
+    tipEditorStrikethrough:                 "Garis tengah (Ctrl+D)",
+    tipEditorHeading:                       "Tajuk (Ctrl+H)",
+    tipEditorBulletList:                    "Senarai Berbulet (Ctrl+L)",
+    tipEditorNumberedList:                  "Senarai bernombor (Ctrl+U)",
+    tipEditorBlockquote:                    "Petikan blok (Ctrl+Q)",
+    tipEditorInlineCode:                    "Kod sebaris (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kod (Ctrl+M)",
+    tipEditorLink:                          "Pautan (Ctrl+K)",
+    tipEditorImage:                         "Imej",
+    tipEditorHorizontalRule:                "Garis mendatar (Ctrl+R)",
+    tipEditorAlignLeft:                     "Jajar kiri",
+    tipEditorAlignCenter:                   "Jajar tengah",
+    tipEditorAlignRight:                    "Jajar kanan",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Cari dalam pratonton…",
+    lblPreviewNoResults:                    "0 hasil",
+    tipPreviewFindPrev:                     "Sebelumnya (Shift+Enter)",
+    tipPreviewFindNext:                     "Seterusnya (Enter)",
+    tipPreviewFindClose:                    "Tutup (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "jajar",
+    lblImagePropsWidth:                     "lebar",
+    lblImagePropsHeight:                    "tinggi",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3765,7 +3829,7 @@ const TRANSLATIONS = {
   hy: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Չեղարկել",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Նոր տարբերակ հասանելի է:",
@@ -3781,11 +3845,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Բացել Markdown ֆայլ",
     ttlOsdSaveMd:                           "Պահպանել Markdown ֆայլ",
+    ttlOsdOpenImage:                        "Ընտրել նկար",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Նոր փաստաթուղթ",
     tipHdrOpen:                             "Բացել Markdown ֆայլ",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Ստեղծել նոր",
     btnHdrSave:                             "Պահպանել",
     tipHdrSave:                             "Պահպանել",
     tipHdrSaveAs:                           "Պահպանել որպես",
@@ -3828,16 +3893,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "խմբագրեք և դիտեք Markdown ֆայլեր։",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Այլընտրանքային տեքստ",
+    plhDlgLinkText:                         "Տեքստ",
+    plhDlgLinkUrlOrPath:                    "URL կամ տեղական ուղի",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Փնտրել պատկեր",
+    btnDlgLinkImageModeLinked:              "Հղված",
+    btnDlgLinkImageModeEmbedded:            "Ներկառուցված",
+    tipDlgLinkImageFolder:                  "Պատկերը պետք է լինի փաստաթղթի թղթապանակում կամ ենթաթղթապանակում։",
+    lblDlgLinkRelativePath:                 "Հարաբերական ուղի",
+    btnDlgLinkInsert:                       "Տեղադրել",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Չպահպանված փոփոխություններ -",
@@ -3846,32 +3911,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Վերաբեռնել",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Թավ (Ctrl+B)",
+    tipEditorItalic:                        "Շեղագիր (Ctrl+I)",
+    tipEditorStrikethrough:                 "Գծանշում (Ctrl+D)",
+    tipEditorHeading:                       "Վերնագիր (Ctrl+H)",
+    tipEditorBulletList:                    "Ցուցակ կետերով (Ctrl+L)",
+    tipEditorNumberedList:                  "Թվարկված ցուցակ (Ctrl+U)",
+    tipEditorBlockquote:                    "Բլոկ մեջբերում (Ctrl+Q)",
+    tipEditorInlineCode:                    "Ներքին կոդ (Ctrl+E)",
+    tipEditorCodeBlock:                     "Կոդի բլոկ (Ctrl+M)",
+    tipEditorLink:                          "Հղում (Ctrl+K)",
+    tipEditorImage:                         "Պատկեր",
+    tipEditorHorizontalRule:                "Հորիզոնական գիծ (Ctrl+R)",
+    tipEditorAlignLeft:                     "Ձախից հավասարեցնել",
+    tipEditorAlignCenter:                   "Կենտրոնացնել",
+    tipEditorAlignRight:                    "Աջից հավասարեցնել",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Փնտրել նախադիտման մեջ…",
+    lblPreviewNoResults:                    "0 արդյունք",
+    tipPreviewFindPrev:                     "Նախորդ (Shift+Enter)",
+    tipPreviewFindNext:                     "Հաջորդը (Enter)",
+    tipPreviewFindClose:                    "Փակել (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "հավասարեցում",
+    lblImagePropsWidth:                     "լայնություն",
+    lblImagePropsHeight:                    "բարձրություն",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3882,7 +3948,7 @@ const TRANSLATIONS = {
   bg: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Отказ",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Налична е нова версия:",
@@ -3898,11 +3964,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Отвори Markdown файл",
     ttlOsdSaveMd:                           "Запази Markdown файл",
+    ttlOsdOpenImage:                        "Изберете изображение",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Нов документ",
     tipHdrOpen:                             "Отвори Markdown файл",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Създаване на нов",
     btnHdrSave:                             "Запази",
     tipHdrSave:                             "Запази",
     tipHdrSaveAs:                           "Запази като",
@@ -3945,16 +4012,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "редактирайте и преглеждайте Markdown файлове.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Алтернативен текст",
+    plhDlgLinkText:                         "Текст",
+    plhDlgLinkUrlOrPath:                    "URL адрес или локален път",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Търсене на изображение",
+    btnDlgLinkImageModeLinked:              "Свързано",
+    btnDlgLinkImageModeEmbedded:            "Вградено",
+    tipDlgLinkImageFolder:                  "Изображението трябва да е в папката с документи или в подпапка.",
+    lblDlgLinkRelativePath:                 "Относителен път",
+    btnDlgLinkInsert:                       "Вмъкване",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Незапазени промени -",
@@ -3963,32 +4030,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Презареди",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Удебелен (Ctrl+B)",
+    tipEditorItalic:                        "Курсив (Ctrl+I)",
+    tipEditorStrikethrough:                 "Зачеркнат (Ctrl+D)",
+    tipEditorHeading:                       "Заглавие (Ctrl+H)",
+    tipEditorBulletList:                    "Списък с точки (Ctrl+L)",
+    tipEditorNumberedList:                  "Номериран списък (Ctrl+U)",
+    tipEditorBlockquote:                    "Блоков цитат (Ctrl+Q)",
+    tipEditorInlineCode:                    "Вграден код (Ctrl+E)",
+    tipEditorCodeBlock:                     "Кодов блок (Ctrl+M)",
+    tipEditorLink:                          "Връзка (Ctrl+K)",
+    tipEditorImage:                         "Изображение",
+    tipEditorHorizontalRule:                "Хоризонтална линия (Ctrl+R)",
+    tipEditorAlignLeft:                     "Подравняване вляво",
+    tipEditorAlignCenter:                   "Подравняване в центъра",
+    tipEditorAlignRight:                    "Подравняване вдясно",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Търсене в преглед…",
+    lblPreviewNoResults:                    "0 резултата",
+    tipPreviewFindPrev:                     "Предишен (Shift+Enter)",
+    tipPreviewFindNext:                     "Следващ (Enter)",
+    tipPreviewFindClose:                    "Затвори (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "подравняване",
+    lblImagePropsWidth:                     "ширина",
+    lblImagePropsHeight:                    "височина",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -3999,7 +4067,7 @@ const TRANSLATIONS = {
   gl: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Cancelar",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versión dispoñible:",
@@ -4015,11 +4083,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Abrir ficheiro Markdown",
     ttlOsdSaveMd:                           "Gardar ficheiro Markdown",
+    ttlOsdOpenImage:                        "Seleccionar imaxe",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Novo documento",
     tipHdrOpen:                             "Abrir un ficheiro Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Crear un novo",
     btnHdrSave:                             "Gardar",
     tipHdrSave:                             "Gardar",
     tipHdrSaveAs:                           "Gardar como",
@@ -4062,16 +4131,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "edita e previsualiza ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Texto alternativo",
+    plhDlgLinkText:                         "Texto",
+    plhDlgLinkUrlOrPath:                    "URL ou ruta local",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Buscar unha imaxe",
+    btnDlgLinkImageModeLinked:              "Ligado",
+    btnDlgLinkImageModeEmbedded:            "Incrustado",
+    tipDlgLinkImageFolder:                  "A imaxe debe estar no cartafol do documento ou nun subcartafol.",
+    lblDlgLinkRelativePath:                 "Ruta relativa",
+    btnDlgLinkInsert:                       "Inserir",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Cambios sen gardar -",
@@ -4080,32 +4149,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Recargar",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Negra (Ctrl+B)",
+    tipEditorItalic:                        "Cursiva (Ctrl+I)",
+    tipEditorStrikethrough:                 "Tachado (Ctrl+D)",
+    tipEditorHeading:                       "Título (Ctrl+H)",
+    tipEditorBulletList:                    "Lista con viñetas (Ctrl+L)",
+    tipEditorNumberedList:                  "Lista numerada (Ctrl+U)",
+    tipEditorBlockquote:                    "Cita en bloque (Ctrl+Q)",
+    tipEditorInlineCode:                    "Código en liña (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloque de código (Ctrl+M)",
+    tipEditorLink:                          "Ligazón (Ctrl+K)",
+    tipEditorImage:                         "Imaxe",
+    tipEditorHorizontalRule:                "Liña horizontal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Aliñar á esquerda",
+    tipEditorAlignCenter:                   "Aliñar ao centro",
+    tipEditorAlignRight:                    "Aliñar á dereita",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Buscar na vista previa…",
+    lblPreviewNoResults:                    "0 resultados",
+    tipPreviewFindPrev:                     "Anterior (Maiús+Intro)",
+    tipPreviewFindNext:                     "Seguinte (Intro)",
+    tipPreviewFindClose:                    "Pechar (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "aliñamento",
+    lblImagePropsWidth:                     "ancho",
+    lblImagePropsHeight:                    "alto",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4116,7 +4186,7 @@ const TRANSLATIONS = {
   hu: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Mégse",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Új verzió elérhető:",
@@ -4132,11 +4202,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown fájl megnyitása",
     ttlOsdSaveMd:                           "Markdown fájl mentése",
+    ttlOsdOpenImage:                        "Kép kiválasztása",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Új dokumentum",
     tipHdrOpen:                             "Markdown fájl megnyitása",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Új létrehozása",
     btnHdrSave:                             "Mentés",
     tipHdrSave:                             "Mentés",
     tipHdrSaveAs:                           "Mentés másként",
@@ -4179,16 +4250,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "szerkessze és tekintse meg a Markdown fájlokat.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternatív szöveg",
+    plhDlgLinkText:                         "Szöveg",
+    plhDlgLinkUrlOrPath:                    "URL vagy helyi elérési út",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Kép keresése",
+    btnDlgLinkImageModeLinked:              "Hivatkozott",
+    btnDlgLinkImageModeEmbedded:            "Beágyazott",
+    tipDlgLinkImageFolder:                  "A képnek a dokumentum mappájában vagy egy almappájában kell lennie.",
+    lblDlgLinkRelativePath:                 "Relatív elérési út",
+    btnDlgLinkInsert:                       "Beszúrás",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Nem mentett változtatások -",
@@ -4197,32 +4268,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Újratöltés",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Félkövér (Ctrl+B)",
+    tipEditorItalic:                        "Dőlt (Ctrl+I)",
+    tipEditorStrikethrough:                 "Áthúzott (Ctrl+D)",
+    tipEditorHeading:                       "Címsor (Ctrl+H)",
+    tipEditorBulletList:                    "Felsorolás (Ctrl+L)",
+    tipEditorNumberedList:                  "Számozott lista (Ctrl+U)",
+    tipEditorBlockquote:                    "Blokkidézet (Ctrl+Q)",
+    tipEditorInlineCode:                    "Beágyazott kód (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kódblokk (Ctrl+M)",
+    tipEditorLink:                          "Hivatkozás (Ctrl+K)",
+    tipEditorImage:                         "Kép",
+    tipEditorHorizontalRule:                "Vízszintes vonal (Ctrl+R)",
+    tipEditorAlignLeft:                     "Balra igazítás",
+    tipEditorAlignCenter:                   "Középre igazítás",
+    tipEditorAlignRight:                    "Jobbra igazítás",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Keresés az előnézetben…",
+    lblPreviewNoResults:                    "0 találat",
+    tipPreviewFindPrev:                     "Előző (Shift+Enter)",
+    tipPreviewFindNext:                     "Következő (Enter)",
+    tipPreviewFindClose:                    "Bezárás (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "igazítás",
+    lblImagePropsWidth:                     "szélesség",
+    lblImagePropsHeight:                    "magasság",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4233,7 +4305,7 @@ const TRANSLATIONS = {
   lt: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Atšaukti",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Yra nauja versija:",
@@ -4249,11 +4321,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Atidaryti Markdown failą",
     ttlOsdSaveMd:                           "Išsaugoti Markdown failą",
+    ttlOsdOpenImage:                        "Pasirinkti paveikslėlį",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Naujas dokumentas",
     tipHdrOpen:                             "Atidaryti Markdown failą",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Sukurti naują",
     btnHdrSave:                             "Išsaugoti",
     tipHdrSave:                             "Išsaugoti",
     tipHdrSaveAs:                           "Išsaugoti kaip",
@@ -4296,16 +4369,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "redaguokite ir peržiūrėkite Markdown failus.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternatyvusis tekstas",
+    plhDlgLinkText:                         "Tekstas",
+    plhDlgLinkUrlOrPath:                    "URL arba vietinis kelias",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Ieškoti paveikslėlio",
+    btnDlgLinkImageModeLinked:              "Susietas",
+    btnDlgLinkImageModeEmbedded:            "Įdėtas",
+    tipDlgLinkImageFolder:                  "Paveikslėlis turi būti dokumentų aplanke arba poaplankyje.",
+    lblDlgLinkRelativePath:                 "Santykinis kelias",
+    btnDlgLinkInsert:                       "Įterpti",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Neišsaugoti pakeitimai -",
@@ -4314,32 +4387,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Perkrauti",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Paryškintasis (Ctrl+B)",
+    tipEditorItalic:                        "Kursyvas (Ctrl+I)",
+    tipEditorStrikethrough:                 "Perbrauktas (Ctrl+D)",
+    tipEditorHeading:                       "Antraštė (Ctrl+H)",
+    tipEditorBulletList:                    "Ženklintasis sąrašas (Ctrl+L)",
+    tipEditorNumberedList:                  "Numeruotas sąrašas (Ctrl+U)",
+    tipEditorBlockquote:                    "Bloko citata (Ctrl+Q)",
+    tipEditorInlineCode:                    "Eilutės kodas (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kodo blokas (Ctrl+M)",
+    tipEditorLink:                          "Nuoroda (Ctrl+K)",
+    tipEditorImage:                         "Paveikslėlis",
+    tipEditorHorizontalRule:                "Horizontali linija (Ctrl+R)",
+    tipEditorAlignLeft:                     "Lygiuoti kairėn",
+    tipEditorAlignCenter:                   "Lygiuoti centre",
+    tipEditorAlignRight:                    "Lygiuoti dešinėn",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Ieškoti peržiūroje…",
+    lblPreviewNoResults:                    "0 rezultatų",
+    tipPreviewFindPrev:                     "Ankstesnis (Shift+Enter)",
+    tipPreviewFindNext:                     "Kitas (Enter)",
+    tipPreviewFindClose:                    "Uždaryti (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "lygiavimas",
+    lblImagePropsWidth:                     "plotis",
+    lblImagePropsHeight:                    "aukštis",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4350,7 +4424,7 @@ const TRANSLATIONS = {
   mk: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Откажи",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Достапна е нова верзија:",
@@ -4366,11 +4440,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Отвори Markdown датотека",
     ttlOsdSaveMd:                           "Зачувај Markdown датотека",
+    ttlOsdOpenImage:                        "Избери слика",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Нов документ",
     tipHdrOpen:                             "Отвори Markdown датотека",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Креирај ново",
     btnHdrSave:                             "Зачувај",
     tipHdrSave:                             "Зачувај",
     tipHdrSaveAs:                           "Зачувај како",
@@ -4413,16 +4488,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "уредувај и прегледај Markdown датотеки.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Алтернативен текст",
+    plhDlgLinkText:                         "Текст",
+    plhDlgLinkUrlOrPath:                    "URL или локална патека",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Пребарај слика",
+    btnDlgLinkImageModeLinked:              "Поврзано",
+    btnDlgLinkImageModeEmbedded:            "Вградено",
+    tipDlgLinkImageFolder:                  "Сликата мора да биде во папката со документи или во потпапка.",
+    lblDlgLinkRelativePath:                 "Релативна патека",
+    btnDlgLinkInsert:                       "Вметни",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Незачувани промени -",
@@ -4431,32 +4506,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Повторно вчитај",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Задебелено (Ctrl+B)",
+    tipEditorItalic:                        "Курзив (Ctrl+I)",
+    tipEditorStrikethrough:                 "Прецртано (Ctrl+D)",
+    tipEditorHeading:                       "Наслов (Ctrl+H)",
+    tipEditorBulletList:                    "Список со точки (Ctrl+L)",
+    tipEditorNumberedList:                  "Нумерирана листа (Ctrl+U)",
+    tipEditorBlockquote:                    "Блок цитат (Ctrl+Q)",
+    tipEditorInlineCode:                    "Вграден код (Ctrl+E)",
+    tipEditorCodeBlock:                     "Код блок (Ctrl+M)",
+    tipEditorLink:                          "Врска (Ctrl+K)",
+    tipEditorImage:                         "Слика",
+    tipEditorHorizontalRule:                "Хоризонтална линија (Ctrl+R)",
+    tipEditorAlignLeft:                     "Порамни лево",
+    tipEditorAlignCenter:                   "Порамни центар",
+    tipEditorAlignRight:                    "Порамни десно",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Најди во преглед…",
+    lblPreviewNoResults:                    "0 резултати",
+    tipPreviewFindPrev:                     "Претходно (Shift+Enter)",
+    tipPreviewFindNext:                     "Следно (Enter)",
+    tipPreviewFindClose:                    "Затвори (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "порамнување",
+    lblImagePropsWidth:                     "ширина",
+    lblImagePropsHeight:                    "висина",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4467,7 +4543,7 @@ const TRANSLATIONS = {
   sr: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Откажи",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна је нова верзија:",
@@ -4483,11 +4559,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Отвори Markdown датотеку",
     ttlOsdSaveMd:                           "Сачувај Markdown датотеку",
+    ttlOsdOpenImage:                        "Изабери слику",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Нови документ",
     tipHdrOpen:                             "Отвори Markdown датотеку",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Креирај ново",
     btnHdrSave:                             "Сачувај",
     tipHdrSave:                             "Сачувај",
     tipHdrSaveAs:                           "Сачувај као",
@@ -4530,16 +4607,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "уређујте и прегледајте Markdown датотеке.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Алтернативни текст",
+    plhDlgLinkText:                         "Текст",
+    plhDlgLinkUrlOrPath:                    "URL или локална путања",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Потражи слику",
+    btnDlgLinkImageModeLinked:              "Повезано",
+    btnDlgLinkImageModeEmbedded:            "Уграђено",
+    tipDlgLinkImageFolder:                  "Слика мора бити у фасцикли документа или подфасцикли.",
+    lblDlgLinkRelativePath:                 "Релативна путања",
+    btnDlgLinkInsert:                       "Уметни",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Несачуване измене -",
@@ -4548,32 +4625,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Поново учитај",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Подебљано (Ctrl+B)",
+    tipEditorItalic:                        "Курзив (Ctrl+I)",
+    tipEditorStrikethrough:                 "Прецртано (Ctrl+D)",
+    tipEditorHeading:                       "Наслов (Ctrl+H)",
+    tipEditorBulletList:                    "Листа са симболима (Ctrl+L)",
+    tipEditorNumberedList:                  "Нумерисана листа (Ctrl+U)",
+    tipEditorBlockquote:                    "Блок цитат (Ctrl+Q)",
+    tipEditorInlineCode:                    "Уграђени код (Ctrl+E)",
+    tipEditorCodeBlock:                     "Блок кода (Ctrl+M)",
+    tipEditorLink:                          "Веза (Ctrl+K)",
+    tipEditorImage:                         "Слика",
+    tipEditorHorizontalRule:                "Хоризонтална линија (Ctrl+R)",
+    tipEditorAlignLeft:                     "Поравнај лево",
+    tipEditorAlignCenter:                   "Поравнај по средини",
+    tipEditorAlignRight:                    "Поравнај десно",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Пронађи у прегледу…",
+    lblPreviewNoResults:                    "0 резултата",
+    tipPreviewFindPrev:                     "Претходно (Shift+Enter)",
+    tipPreviewFindNext:                     "Следеће (Enter)",
+    tipPreviewFindClose:                    "Затвори (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "поравнање",
+    lblImagePropsWidth:                     "ширина",
+    lblImagePropsHeight:                    "висина",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4584,7 +4662,7 @@ const TRANSLATIONS = {
   sk: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Zrušiť",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "K dispozícii je nová verzia:",
@@ -4600,11 +4678,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Otvoriť Markdown súbor",
     ttlOsdSaveMd:                           "Uložiť Markdown súbor",
+    ttlOsdOpenImage:                        "Vybrať obrázok",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nový dokument",
     tipHdrOpen:                             "Otvoriť Markdown súbor",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Vytvoriť nový",
     btnHdrSave:                             "Uložiť",
     tipHdrSave:                             "Uložiť",
     tipHdrSaveAs:                           "Uložiť ako",
@@ -4647,16 +4726,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "upravujte a zobrazujte Markdown súbory.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
+    plhDlgLinkAltText:                      "Alternatívny text",
     plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkUrlOrPath:                    "URL alebo lokálna cesta",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Vyhľadať obrázok",
+    btnDlgLinkImageModeLinked:              "Prepojené",
+    btnDlgLinkImageModeEmbedded:            "Vložené",
+    tipDlgLinkImageFolder:                  "Obrázok musí byť v priečinku dokumentu alebo v podpriečinku.",
+    lblDlgLinkRelativePath:                 "Relatívna cesta",
+    btnDlgLinkInsert:                       "Vložiť",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Neuložené zmeny -",
@@ -4665,32 +4744,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Znovu načítať",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Tučné (Ctrl+B)",
+    tipEditorItalic:                        "Kurzíva (Ctrl+I)",
+    tipEditorStrikethrough:                 "Prečiarknuté (Ctrl+D)",
+    tipEditorHeading:                       "Nadpis (Ctrl+H)",
+    tipEditorBulletList:                    "Zoznam s odrážkami (Ctrl+L)",
+    tipEditorNumberedList:                  "Číslovaný zoznam (Ctrl+U)",
+    tipEditorBlockquote:                    "Bloková citácia (Ctrl+Q)",
+    tipEditorInlineCode:                    "Vložený kód (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kódu (Ctrl+M)",
+    tipEditorLink:                          "Odkaz (Ctrl+K)",
+    tipEditorImage:                         "Obrázok",
+    tipEditorHorizontalRule:                "Vodorovná čiara (Ctrl+R)",
+    tipEditorAlignLeft:                     "Zarovnať vľavo",
+    tipEditorAlignCenter:                   "Zarovnať na stred",
+    tipEditorAlignRight:                    "Zarovnať vpravo",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Nájsť v ukážke…",
+    lblPreviewNoResults:                    "0 výsledkov",
+    tipPreviewFindPrev:                     "Predchádzajúci (Shift+Enter)",
+    tipPreviewFindNext:                     "Ďalší (Enter)",
+    tipPreviewFindClose:                    "Zavrieť (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "zarovnanie",
+    lblImagePropsWidth:                     "šírka",
+    lblImagePropsHeight:                    "výška",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4701,7 +4781,7 @@ const TRANSLATIONS = {
   sl: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Prekliči",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Na voljo je nova različica:",
@@ -4717,11 +4797,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Odpri datoteko Markdown",
     ttlOsdSaveMd:                           "Shrani datoteko Markdown",
+    ttlOsdOpenImage:                        "Izberi sliko",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Nov dokument",
     tipHdrOpen:                             "Odpri datoteko Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Ustvari novo",
     btnHdrSave:                             "Shrani",
     tipHdrSave:                             "Shrani",
     tipHdrSaveAs:                           "Shrani kot",
@@ -4764,16 +4845,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "urejajte in pregledujte datoteke Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Nadomestno besedilo",
+    plhDlgLinkText:                         "Besedilo",
+    plhDlgLinkUrlOrPath:                    "URL ali lokalna pot",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Poišči sliko",
+    btnDlgLinkImageModeLinked:              "Povezano",
+    btnDlgLinkImageModeEmbedded:            "Vdelano",
+    tipDlgLinkImageFolder:                  "Slika mora biti v mapi dokumenta ali podmapi.",
+    lblDlgLinkRelativePath:                 "Relativna pot",
+    btnDlgLinkInsert:                       "Vstavi",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Neshranjene spremembe -",
@@ -4782,32 +4863,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Znova naloži",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Krepko (Ctrl+B)",
+    tipEditorItalic:                        "Ležeče (Ctrl+I)",
+    tipEditorStrikethrough:                 "Prečrtano (Ctrl+D)",
+    tipEditorHeading:                       "Naslov (Ctrl+H)",
+    tipEditorBulletList:                    "Seznam z oznakami (Ctrl+L)",
+    tipEditorNumberedList:                  "Oštevilčen seznam (Ctrl+U)",
+    tipEditorBlockquote:                    "Blokovna navedba (Ctrl+Q)",
+    tipEditorInlineCode:                    "Vrstična koda (Ctrl+E)",
+    tipEditorCodeBlock:                     "Blok kode (Ctrl+M)",
+    tipEditorLink:                          "Povezava (Ctrl+K)",
+    tipEditorImage:                         "Slika",
+    tipEditorHorizontalRule:                "Vodoravna črta (Ctrl+R)",
+    tipEditorAlignLeft:                     "Poravnaj levo",
+    tipEditorAlignCenter:                   "Poravnaj na sredino",
+    tipEditorAlignRight:                    "Poravnaj desno",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Najdi v predogledu…",
+    lblPreviewNoResults:                    "0 rezultatov",
+    tipPreviewFindPrev:                     "Prejšnji (Shift+Enter)",
+    tipPreviewFindNext:                     "Naslednje (Enter)",
+    tipPreviewFindClose:                    "Zapri (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "poravnava",
+    lblImagePropsWidth:                     "širina",
+    lblImagePropsHeight:                    "višina",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4818,7 +4900,7 @@ const TRANSLATIONS = {
   ta: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "ரத்துசெய்",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "புதிய பதிப்பு உள்ளது:",
@@ -4834,11 +4916,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown கோப்பைத் திறக்கவும்",
     ttlOsdSaveMd:                           "Markdown கோப்பை சேமிக்கவும்",
+    ttlOsdOpenImage:                        "படத்தைத் தேர்ந்தெடு",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "புதிய ஆவணம்",
     tipHdrOpen:                             "Markdown கோப்பைத் திறக்கவும்",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "புதியதை உருவாக்கு",
     btnHdrSave:                             "சேமி",
     tipHdrSave:                             "சேமி",
     tipHdrSaveAs:                           "இவ்வாறு சேமி",
@@ -4881,16 +4964,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown கோப்புகளை திருத்தி மற்றும் பார்க்கவும்.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "மாற்று உரை",
+    plhDlgLinkText:                         "உரை",
+    plhDlgLinkUrlOrPath:                    "URL அல்லது உள்ளூர் பாதை",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "படத்தைத் தேடு",
+    btnDlgLinkImageModeLinked:              "இணைக்கப்பட்டது",
+    btnDlgLinkImageModeEmbedded:            "உட்பொதிக்கப்பட்டது",
+    tipDlgLinkImageFolder:                  "படம் ஆவண கோப்புறையிலோ அல்லது துணை கோப்புறையிலோ இருக்க வேண்டும்.",
+    lblDlgLinkRelativePath:                 "சார்புப் பாதை",
+    btnDlgLinkInsert:                       "செருகு",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "சேமிக்கப்படாத மாற்றங்கள் -",
@@ -4899,32 +4982,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "மீண்டும் ஏற்று",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "தடித்த (Ctrl+B)",
+    tipEditorItalic:                        "சாய்வு (Ctrl+I)",
+    tipEditorStrikethrough:                 "குறுக்குக் கோடு (Ctrl+D)",
+    tipEditorHeading:                       "தலைப்பு (Ctrl+H)",
+    tipEditorBulletList:                    "புல்லட் பட்டியல் (Ctrl+L)",
+    tipEditorNumberedList:                  "எண் பட்டியல் (Ctrl+U)",
+    tipEditorBlockquote:                    "மேற்கோள் தொகுதி (Ctrl+Q)",
+    tipEditorInlineCode:                    "உள்ளமை குறியீடு (Ctrl+E)",
+    tipEditorCodeBlock:                     "குறியீடு தொகுதி (Ctrl+M)",
+    tipEditorLink:                          "இணைப்பு (Ctrl+K)",
+    tipEditorImage:                         "படம்",
+    tipEditorHorizontalRule:                "கிடைமட்ட வரி (Ctrl+R)",
+    tipEditorAlignLeft:                     "இடதுபுறம் சீரமை",
+    tipEditorAlignCenter:                   "மையத்தில் சீரமை",
+    tipEditorAlignRight:                    "வலதுபுறம் சீரமை",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "முன்னோட்டத்தில் தேடு…",
+    lblPreviewNoResults:                    "0 முடிவுகள்",
+    tipPreviewFindPrev:                     "முந்தையது (Shift+Enter)",
+    tipPreviewFindNext:                     "அடுத்தது (Enter)",
+    tipPreviewFindClose:                    "மூடு (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "சீரமைப்பு",
+    lblImagePropsWidth:                     "அகலம்",
+    lblImagePropsHeight:                    "உயரம்",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -4935,7 +5019,7 @@ const TRANSLATIONS = {
   hi: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "रद्द करें",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "नया संस्करण उपलब्ध है:",
@@ -4951,11 +5035,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown फ़ाइल खोलें",
     ttlOsdSaveMd:                           "Markdown फ़ाइल सहेजें",
+    ttlOsdOpenImage:                        "छवि चुनें",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "नया दस्तावेज़",
     tipHdrOpen:                             "Markdown फ़ाइल खोलें",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "नया बनाएँ",
     btnHdrSave:                             "सहेजें",
     tipHdrSave:                             "सहेजें",
     tipHdrSaveAs:                           "इस रूप में सहेजें",
@@ -4998,16 +5083,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown फ़ाइलें संपादित और देखें।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "वैकल्पिक टेक्स्ट",
+    plhDlgLinkText:                         "टेक्स्ट",
+    plhDlgLinkUrlOrPath:                    "URL या स्थानीय पाथ",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "छवि खोजें",
+    btnDlgLinkImageModeLinked:              "लिंक किया गया",
+    btnDlgLinkImageModeEmbedded:            "एम्बेड किया गया",
+    tipDlgLinkImageFolder:                  "छवि दस्तावेज़ फ़ोल्डर या उप-फ़ोल्डर में होनी चाहिए।",
+    lblDlgLinkRelativePath:                 "सापेक्ष पथ",
+    btnDlgLinkInsert:                       "सम्मिलित करें",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "असहेजे बदलाव -",
@@ -5016,32 +5101,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "पुनः लोड",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "बोल्ड (Ctrl+B)",
+    tipEditorItalic:                        "इटैलिक (Ctrl+I)",
+    tipEditorStrikethrough:                 "स्ट्राइकथ्रू (Ctrl+D)",
+    tipEditorHeading:                       "शीर्षक (Ctrl+H)",
+    tipEditorBulletList:                    "बुलेट सूची (Ctrl+L)",
+    tipEditorNumberedList:                  "संख्यांकित सूची (Ctrl+U)",
+    tipEditorBlockquote:                    "ब्लॉक उद्धरण (Ctrl+Q)",
+    tipEditorInlineCode:                    "इनलाइन कोड (Ctrl+E)",
+    tipEditorCodeBlock:                     "कोड ब्लॉक (Ctrl+M)",
+    tipEditorLink:                          "लिंक (Ctrl+K)",
+    tipEditorImage:                         "चित्र",
+    tipEditorHorizontalRule:                "क्षैतिज रेखा (Ctrl+R)",
+    tipEditorAlignLeft:                     "बाईं ओर संरेखित करें",
+    tipEditorAlignCenter:                   "केंद्र में संरेखित करें",
+    tipEditorAlignRight:                    "दाईं ओर संरेखित करें",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "पूर्वावलोकन में ढूँढें…",
+    lblPreviewNoResults:                    "0 परिणाम",
+    tipPreviewFindPrev:                     "पिछला (Shift+Enter)",
+    tipPreviewFindNext:                     "अगला (Enter)",
+    tipPreviewFindClose:                    "बंद करें (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "संरेखण",
+    lblImagePropsWidth:                     "चौड़ाई",
+    lblImagePropsHeight:                    "ऊँचाई",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5052,7 +5138,7 @@ const TRANSLATIONS = {
   bn: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "বাতিল করুন",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "নতুন সংস্করণ উপলব্ধ:",
@@ -5068,11 +5154,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown ফাইল খুলুন",
     ttlOsdSaveMd:                           "Markdown ফাইল সংরক্ষণ করুন",
+    ttlOsdOpenImage:                        "ছবি নির্বাচন করুন",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "নতুন নথি",
     tipHdrOpen:                             "Markdown ফাইল খুলুন",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "নতুন তৈরি করুন",
     btnHdrSave:                             "সংরক্ষণ করুন",
     tipHdrSave:                             "সংরক্ষণ করুন",
     tipHdrSaveAs:                           "এভাবে সংরক্ষণ করুন",
@@ -5115,16 +5202,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown ফাইল সম্পাদনা ও দেখুন।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "বিকল্প টেক্সট",
+    plhDlgLinkText:                         "টেক্সট",
+    plhDlgLinkUrlOrPath:                    "URL বা স্থানীয় পাথ",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "একটি ছবি খুঁজুন",
+    btnDlgLinkImageModeLinked:              "লিঙ্ক করা হয়েছে",
+    btnDlgLinkImageModeEmbedded:            "এম্বেড করা হয়েছে",
+    tipDlgLinkImageFolder:                  "ছবিটি ডকুমেন্ট ফোল্ডার বা একটি সাবফোল্ডারে থাকতে হবে।",
+    lblDlgLinkRelativePath:                 "আপেক্ষিক পথ",
+    btnDlgLinkInsert:                       "সন্নিবেশ করুন",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "অসংরক্ষিত পরিবর্তন -",
@@ -5133,32 +5220,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "পুনরায় লোড",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "মোটা (Ctrl+B)",
+    tipEditorItalic:                        "বাঁকা (Ctrl+I)",
+    tipEditorStrikethrough:                 "স্ট্রাইকথ্রু (Ctrl+D)",
+    tipEditorHeading:                       "শিরোনাম (Ctrl+H)",
+    tipEditorBulletList:                    "বুলেট তালিকা (Ctrl+L)",
+    tipEditorNumberedList:                  "ক্রমিক তালিকা (Ctrl+U)",
+    tipEditorBlockquote:                    "ব্লক উদ্ধৃতি (Ctrl+Q)",
+    tipEditorInlineCode:                    "ইনলাইন কোড (Ctrl+E)",
+    tipEditorCodeBlock:                     "কোড ব্লক (Ctrl+M)",
+    tipEditorLink:                          "লিঙ্ক (Ctrl+K)",
+    tipEditorImage:                         "ছবি",
+    tipEditorHorizontalRule:                "অনুভূমিক রেখা (Ctrl+R)",
+    tipEditorAlignLeft:                     "বামে সারিবদ্ধ করুন",
+    tipEditorAlignCenter:                   "কেন্দ্রে সারিবদ্ধ করুন",
+    tipEditorAlignRight:                    "ডানে সারিবদ্ধ করুন",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "পূর্বরূপে খুঁজুন…",
+    lblPreviewNoResults:                    "0 ফলাফল",
+    tipPreviewFindPrev:                     "পূর্ববর্তী (Shift+Enter)",
+    tipPreviewFindNext:                     "পরবর্তী (Enter)",
+    tipPreviewFindClose:                    "বন্ধ করুন (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "বিন্যাস",
+    lblImagePropsWidth:                     "প্রস্থ",
+    lblImagePropsHeight:                    "উচ্চতা",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5169,7 +5257,7 @@ const TRANSLATIONS = {
   ur: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "منسوخ کریں",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "نیا ورژن دستیاب ہے:",
@@ -5185,11 +5273,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown فائل کھولیں",
     ttlOsdSaveMd:                           "Markdown فائل محفوظ کریں",
+    ttlOsdOpenImage:                        "تصویر منتخب کریں",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "نئی دستاویز",
     tipHdrOpen:                             "Markdown فائل کھولیں",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "نیا بنائیں",
     btnHdrSave:                             "محفوظ کریں",
     tipHdrSave:                             "محفوظ کریں",
     tipHdrSaveAs:                           "اس طرح محفوظ کریں",
@@ -5232,16 +5321,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown فائلیں ترمیم اور دیکھیں۔",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "متبادل متن",
+    plhDlgLinkText:                         "متن",
+    plhDlgLinkUrlOrPath:                    "URL یا مقامی راستہ",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "تصویر تلاش کریں",
+    btnDlgLinkImageModeLinked:              "منسلک",
+    btnDlgLinkImageModeEmbedded:            "ایمبیڈڈ",
+    tipDlgLinkImageFolder:                  "تصویر دستاویز فولڈر یا ذیلی فولڈر میں ہونی چاہیے۔",
+    lblDlgLinkRelativePath:                 "متعلقہ راستہ",
+    btnDlgLinkInsert:                       "داخل کریں",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "غیر محفوظ تبدیلیاں -",
@@ -5250,32 +5339,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "دوبارہ لوڈ کریں",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "بولڈ (Ctrl+B)",
+    tipEditorItalic:                        "اٹالک (Ctrl+I)",
+    tipEditorStrikethrough:                 "سٹرائیک تھرو (Ctrl+D)",
+    tipEditorHeading:                       "سرخی (Ctrl+H)",
+    tipEditorBulletList:                    "بلٹ لسٹ (Ctrl+L)",
+    tipEditorNumberedList:                  "شماریاتی فہرست (Ctrl+U)",
+    tipEditorBlockquote:                    "بلاک اقتباس (Ctrl+Q)",
+    tipEditorInlineCode:                    "ان لائن کوڈ (Ctrl+E)",
+    tipEditorCodeBlock:                     "کوڈ بلاک (Ctrl+M)",
+    tipEditorLink:                          "لنک (Ctrl+K)",
+    tipEditorImage:                         "تصویر",
+    tipEditorHorizontalRule:                "افقی لکیر (Ctrl+R)",
+    tipEditorAlignLeft:                     "بائیں سیدھ کریں",
+    tipEditorAlignCenter:                   "مرکز میں سیدھ کریں",
+    tipEditorAlignRight:                    "دائیں سیدھ کریں",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "پیش منظر میں تلاش کریں…",
+    lblPreviewNoResults:                    "0 نتائج",
+    tipPreviewFindPrev:                     "پچھلا (Shift+Enter)",
+    tipPreviewFindNext:                     "اگلا (Enter)",
+    tipPreviewFindClose:                    "بند کریں (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "سیدھ",
+    lblImagePropsWidth:                     "چوڑائی",
+    lblImagePropsHeight:                    "اونچائی",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5286,7 +5376,7 @@ const TRANSLATIONS = {
   sw: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Ghairi",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Toleo jipya linapatikana:",
@@ -5302,11 +5392,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Fungua faili ya Markdown",
     ttlOsdSaveMd:                           "Hifadhi faili ya Markdown",
+    ttlOsdOpenImage:                        "Chagua Picha",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Hati mpya",
     tipHdrOpen:                             "Fungua faili ya Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Unda mpya",
     btnHdrSave:                             "Hifadhi",
     tipHdrSave:                             "Hifadhi",
     tipHdrSaveAs:                           "Hifadhi kama",
@@ -5349,16 +5440,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "hariri na uone faili za Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Maandishi mbadala",
+    plhDlgLinkText:                         "Maandishi",
+    plhDlgLinkUrlOrPath:                    "URL au njia ya ndani",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Tafuta picha",
+    btnDlgLinkImageModeLinked:              "Imeunganishwa",
+    btnDlgLinkImageModeEmbedded:            "Imepachikwa",
+    tipDlgLinkImageFolder:                  "Picha lazima iwe kwenye folda ya hati au folda ndogo.",
+    lblDlgLinkRelativePath:                 "Njia tegemezi",
+    btnDlgLinkInsert:                       "Ingiza",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Mabadiliko ambayo hayajahifadhiwa -",
@@ -5367,32 +5458,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Pakia tena",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Herufi nzito (Ctrl+B)",
+    tipEditorItalic:                        "Herufi mlalo (Ctrl+I)",
+    tipEditorStrikethrough:                 "Mstari katikati (Ctrl+D)",
+    tipEditorHeading:                       "Kichwa (Ctrl+H)",
+    tipEditorBulletList:                    "Orodha yenye vitone (Ctrl+L)",
+    tipEditorNumberedList:                  "Orodha yenye namba (Ctrl+U)",
+    tipEditorBlockquote:                    "Nukuu ya kuzuia (Ctrl+Q)",
+    tipEditorInlineCode:                    "Msimbo wa ndani (Ctrl+E)",
+    tipEditorCodeBlock:                     "Kizuizi cha msimbo (Ctrl+M)",
+    tipEditorLink:                          "Kiungo (Ctrl+K)",
+    tipEditorImage:                         "Picha",
+    tipEditorHorizontalRule:                "Mstari mlalo (Ctrl+R)",
+    tipEditorAlignLeft:                     "Pangilia kushoto",
+    tipEditorAlignCenter:                   "Pangilia katikati",
+    tipEditorAlignRight:                    "Pangilia kulia",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Tafuta katika onyesho la kukagua…",
+    lblPreviewNoResults:                    "0 matokeo",
+    tipPreviewFindPrev:                     "Iliyotangulia (Shift+Enter)",
+    tipPreviewFindNext:                     "Inayofuata (Enter)",
+    tipPreviewFindClose:                    "Funga (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "mpangilio",
+    lblImagePropsWidth:                     "upana",
+    lblImagePropsHeight:                    "urefu",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5403,7 +5495,7 @@ const TRANSLATIONS = {
   pa: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "ਰੱਦ ਕਰੋ",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "ਨਵਾਂ ਸੰਸਕਰਨ ਉਪਲਬਧ ਹੈ:",
@@ -5419,11 +5511,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown ਫਾਈਲ ਖੋਲ੍ਹੋ",
     ttlOsdSaveMd:                           "Markdown ਫਾਈਲ ਸੇਵ ਕਰੋ",
+    ttlOsdOpenImage:                        "ਚਿੱਤਰ ਚੁਣੋ",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "ਨਵਾਂ ਦਸਤਾਵੇਜ਼",
     tipHdrOpen:                             "Markdown ਫਾਈਲ ਖੋਲ੍ਹੋ",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "ਨਵਾਂ ਬਣਾਓ",
     btnHdrSave:                             "ਸੇਵ ਕਰੋ",
     tipHdrSave:                             "ਸੇਵ ਕਰੋ",
     tipHdrSaveAs:                           "ਇਸ ਤਰ੍ਹਾਂ ਸੇਵ ਕਰੋ",
@@ -5466,16 +5559,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown ਫਾਈਲਾਂ ਸੰਪਾਦਿਤ ਅਤੇ ਦੇਖੋ।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "ਬਦਲਵਾਂ ਪਾਠ",
+    plhDlgLinkText:                         "ਪਾਠ",
+    plhDlgLinkUrlOrPath:                    "URL ਜਾਂ ਸਥਾਨਕ ਪਾਥ",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "ਇੱਕ ਚਿੱਤਰ ਲੱਭੋ",
+    btnDlgLinkImageModeLinked:              "ਲਿੰਕ ਕੀਤਾ ਗਿਆ",
+    btnDlgLinkImageModeEmbedded:            "ਏਮਬੈੱਡ ਕੀਤਾ ਗਿਆ",
+    tipDlgLinkImageFolder:                  "ਚਿੱਤਰ ਦਸਤਾਵੇਜ਼ ਫੋਲਡਰ ਜਾਂ ਇੱਕ ਸਬਫੋਲਡਰ ਵਿੱਚ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।",
+    lblDlgLinkRelativePath:                 "ਸਾਪੇਖਿਕ ਪਾਥ",
+    btnDlgLinkInsert:                       "ਸ਼ਾਮਲ ਕਰੋ",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "ਸੇਵ ਨਹੀਂ ਕੀਤੇ ਬਦਲਾਅ -",
@@ -5484,32 +5577,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "ਦੁਬਾਰਾ ਲੋਡ ਕਰੋ",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "ਗੂੜ੍ਹਾ (Ctrl+B)",
+    tipEditorItalic:                        "ਇਟੈਲਿਕ (Ctrl+I)",
+    tipEditorStrikethrough:                 "ਸਟ੍ਰਾਈਕਥਰੂ (Ctrl+D)",
+    tipEditorHeading:                       "ਸਿਰਲੇਖ (Ctrl+H)",
+    tipEditorBulletList:                    "ਬੁਲੇਟ ਸੂਚੀ (Ctrl+L)",
+    tipEditorNumberedList:                  "ਨੰਬਰ ਵਾਲੀ ਸੂਚੀ (Ctrl+U)",
+    tipEditorBlockquote:                    "ਬਲਾਕ ਹਵਾਲਾ (Ctrl+Q)",
+    tipEditorInlineCode:                    "ਇਨਲਾਈਨ ਕੋਡ (Ctrl+E)",
+    tipEditorCodeBlock:                     "ਕੋਡ ਬਲਾਕ (Ctrl+M)",
+    tipEditorLink:                          "ਲਿੰਕ (Ctrl+K)",
+    tipEditorImage:                         "ਚਿੱਤਰ",
+    tipEditorHorizontalRule:                "ਹਰੀਜ਼ਟਲ ਲਾਈਨ (Ctrl+R)",
+    tipEditorAlignLeft:                     "ਖੱਬੇ ਪਾਸੇ ਇਕਸਾਰ ਕਰੋ",
+    tipEditorAlignCenter:                   "ਕੇਂਦਰ ਵਿੱਚ ਇਕਸਾਰ ਕਰੋ",
+    tipEditorAlignRight:                    "ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ ਕਰੋ",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "ਝਲਕ ਵਿੱਚ ਲੱਭੋ…",
+    lblPreviewNoResults:                    "0 ਨਤੀਜੇ",
+    tipPreviewFindPrev:                     "ਪਿਛਲਾ (Shift+Enter)",
+    tipPreviewFindNext:                     "ਅਗਲਾ (Enter)",
+    tipPreviewFindClose:                    "ਬੰਦ ਕਰੋ (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "ਅਲਾਈਨ",
+    lblImagePropsWidth:                     "ਚੌੜਾਈ",
+    lblImagePropsHeight:                    "ਉਚਾਈ",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5520,7 +5614,7 @@ const TRANSLATIONS = {
   ha: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Soke",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Sabon sigar yana nan:",
@@ -5536,11 +5630,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Buɗe fayil ɗin Markdown",
     ttlOsdSaveMd:                           "Ajiye fayil ɗin Markdown",
+    ttlOsdOpenImage:                        "Zaɓi Hoto",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Sabon takarda",
     tipHdrOpen:                             "Buɗe fayil ɗin Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Ƙirƙiri sabo",
     btnHdrSave:                             "Ajiye",
     tipHdrSave:                             "Ajiye",
     tipHdrSaveAs:                           "Ajiye a matsayin",
@@ -5583,16 +5678,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "gyara kuma kalli fayilolin Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Rubutun madadin",
+    plhDlgLinkText:                         "Rubutu",
+    plhDlgLinkUrlOrPath:                    "URL ko hanyar gida",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Nemo hoto",
+    btnDlgLinkImageModeLinked:              "Haɗaɗɗe",
+    btnDlgLinkImageModeEmbedded:            "An saka",
+    tipDlgLinkImageFolder:                  "Hoton dole ne ya kasance a cikin babban fayil ɗin takarda ko babban fayil na ciki.",
+    lblDlgLinkRelativePath:                 "Hanyar dangi",
+    btnDlgLinkInsert:                       "Saka",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Canje-canje da ba a ajiye ba -",
@@ -5601,32 +5696,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Sake loda",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Rubutu mai kauri (Ctrl+B)",
+    tipEditorItalic:                        "Rubutu mai karkata (Ctrl+I)",
+    tipEditorStrikethrough:                 "Layi a tsakiya (Ctrl+D)",
+    tipEditorHeading:                       "Kanun (Ctrl+H)",
+    tipEditorBulletList:                    "Jerin abubuwan da aka yiwa alama (Ctrl+L)",
+    tipEditorNumberedList:                  "Lissafin lambobi (Ctrl+U)",
+    tipEditorBlockquote:                    "Tsayawa (Ctrl+Q)",
+    tipEditorInlineCode:                    "Lambar layi (Ctrl+E)",
+    tipEditorCodeBlock:                     "Tsayawa lambar (Ctrl+M)",
+    tipEditorLink:                          "Haɗi (Ctrl+K)",
+    tipEditorImage:                         "Hoto",
+    tipEditorHorizontalRule:                "Layin kwance (Ctrl+R)",
+    tipEditorAlignLeft:                     "Daidaita hagu",
+    tipEditorAlignCenter:                   "Daidaita tsakiya",
+    tipEditorAlignRight:                    "Daidaita dama",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Nemi a samfoti…",
+    lblPreviewNoResults:                    "0 sakamako",
+    tipPreviewFindPrev:                     "Na baya (Shift+Enter)",
+    tipPreviewFindNext:                     "Na gaba (Enter)",
+    tipPreviewFindClose:                    "Rufe (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "daidaita",
+    lblImagePropsWidth:                     "faɗi",
+    lblImagePropsHeight:                    "tsayi",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5637,7 +5733,7 @@ const TRANSLATIONS = {
   yo: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Fagilee",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ẹya tuntun wa:",
@@ -5653,11 +5749,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Ṣi fayili Markdown",
     ttlOsdSaveMd:                           "Fipamọ́ fayili Markdown",
+    ttlOsdOpenImage:                        "Yan Aworan",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Iwe tuntun",
     tipHdrOpen:                             "Ṣi faili Markdown",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Ṣẹda titun",
     btnHdrSave:                             "Fipamọ́",
     tipHdrSave:                             "Fipamọ́",
     tipHdrSaveAs:                           "Fipamọ́ gẹgẹ bí",
@@ -5700,16 +5797,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "ṣàtúnkọ àti wo àwọn fayili Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Ọrọ yiyan",
+    plhDlgLinkText:                         "Ọrọ",
+    plhDlgLinkUrlOrPath:                    "URL tabi ipa ọna agbegbe",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Wa aworan",
+    btnDlgLinkImageModeLinked:              "Ti sopọ",
+    btnDlgLinkImageModeEmbedded:            "Ti fi sii",
+    tipDlgLinkImageFolder:                  "Aworan gbọdọ wa ninu folda iwe tabi folda abẹlẹ.",
+    lblDlgLinkRelativePath:                 "Ọna ibatan",
+    btnDlgLinkInsert:                       "Fi sii",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Àwọn ìyípadà tí a kò fipamọ́ -",
@@ -5718,32 +5815,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "Tún ṣe",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "Gbígbóná (Ctrl+B)",
+    tipEditorItalic:                        "Ìtálíkì (Ctrl+I)",
+    tipEditorStrikethrough:                 "Ìlà-kọja (Ctrl+D)",
+    tipEditorHeading:                       "Àkọlé (Ctrl+H)",
+    tipEditorBulletList:                    "Àtòjọ àmì-ìtọ́ka (Ctrl+L)",
+    tipEditorNumberedList:                  "Akojọ nọmba (Ctrl+U)",
+    tipEditorBlockquote:                    "Àtúmọ̀ ọ̀rọ̀ (Ctrl+Q)",
+    tipEditorInlineCode:                    "Koodu inu ila (Ctrl+E)",
+    tipEditorCodeBlock:                     "Koodu Àkọsílẹ̀ (Ctrl+M)",
+    tipEditorLink:                          "Ọna asopọ (Ctrl+K)",
+    tipEditorImage:                         "Aworan",
+    tipEditorHorizontalRule:                "Ìlà pete (Ctrl+R)",
+    tipEditorAlignLeft:                     "Ṣe deede si apa osi",
+    tipEditorAlignCenter:                   "Ṣe deede si aarin",
+    tipEditorAlignRight:                    "Ṣe deede si apa ọtun",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Wa ninu awotẹlẹ…",
+    lblPreviewNoResults:                    "0 esi",
+    tipPreviewFindPrev:                     "Ti tẹlẹ (Shift+Enter)",
+    tipPreviewFindNext:                     "T’okan (Enter)",
+    tipPreviewFindClose:                    "Pa (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "tito",
+    lblImagePropsWidth:                     "ìbú",
+    lblImagePropsHeight:                    "giga",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5754,7 +5852,7 @@ const TRANSLATIONS = {
   te: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "రద్దు చేయి",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "కొత్త వెర్షన్ అందుబాటులో ఉంది:",
@@ -5770,11 +5868,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown ఫైల్ తెరువు",
     ttlOsdSaveMd:                           "Markdown ఫైల్ సేవ్ చేయి",
+    ttlOsdOpenImage:                        "చిత్రాన్ని ఎంచుకోండి",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "కొత్త పత్రం",
     tipHdrOpen:                             "Markdown ఫైల్ తెరువు",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "కొత్తది సృష్టించు",
     btnHdrSave:                             "సేవ్ చేయి",
     tipHdrSave:                             "సేవ్ చేయి",
     tipHdrSaveAs:                           "ఇలా సేవ్ చేయి",
@@ -5817,16 +5916,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown ఫైల్‌లను సవరించి చూడండి.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "ప్రత్యామ్నాయ వచనం",
+    plhDlgLinkText:                         "వచనం",
+    plhDlgLinkUrlOrPath:                    "URL లేదా స్థానిక మార్గం",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "చిత్రాన్ని శోధించండి",
+    btnDlgLinkImageModeLinked:              "లింక్ చేయబడింది",
+    btnDlgLinkImageModeEmbedded:            "ఎంబెడ్ చేయబడింది",
+    tipDlgLinkImageFolder:                  "చిత్రం డాక్యుమెంట్ ఫోల్డర్ లేదా సబ్‌ఫోల్డర్‌లో ఉండాలి.",
+    lblDlgLinkRelativePath:                 "సాపేక్ష మార్గం",
+    btnDlgLinkInsert:                       "చొప్పించు",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "సేవ్ చేయని మార్పులు -",
@@ -5835,32 +5934,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "మళ్ళీ లోడ్ చేయి",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "బోల్డ్ (Ctrl+B)",
+    tipEditorItalic:                        "ఇటాలిక్ (Ctrl+I)",
+    tipEditorStrikethrough:                 "స్ట్రైక్‌త్రూ (Ctrl+D)",
+    tipEditorHeading:                       "శీర్షిక (Ctrl+H)",
+    tipEditorBulletList:                    "బుల్లెట్ జాబితా (Ctrl+L)",
+    tipEditorNumberedList:                  "సంఖ్యల జాబితా (Ctrl+U)",
+    tipEditorBlockquote:                    "బ్లాక్ కోట్ (Ctrl+Q)",
+    tipEditorInlineCode:                    "ఇన్‌లైన్ కోడ్ (Ctrl+E)",
+    tipEditorCodeBlock:                     "కోడ్ బ్లాక్ (Ctrl+M)",
+    tipEditorLink:                          "లింక్ (Ctrl+K)",
+    tipEditorImage:                         "చిత్రం",
+    tipEditorHorizontalRule:                "క్షితిజ సమాంతర గీత (Ctrl+R)",
+    tipEditorAlignLeft:                     "ఎడమకు సమలేఖనం చేయండి",
+    tipEditorAlignCenter:                   "మధ్యకు సమలేఖనం చేయండి",
+    tipEditorAlignRight:                    "కుడికి సమలేఖనం చేయండి",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "ప్రివ్యూలో కనుగొను…",
+    lblPreviewNoResults:                    "0 ఫలితాలు",
+    tipPreviewFindPrev:                     "మునుపటి (Shift+Enter)",
+    tipPreviewFindNext:                     "తదుపరి (Enter)",
+    tipPreviewFindClose:                    "మూసివేయి (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "సమలేఖనం",
+    lblImagePropsWidth:                     "వెడల్పు",
+    lblImagePropsHeight:                    "ఎత్తు",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5871,7 +5971,7 @@ const TRANSLATIONS = {
   mr: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "रद्द करा",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "नवीन आवृत्ती उपलब्ध आहे:",
@@ -5887,11 +5987,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Markdown फाइल उघडा",
     ttlOsdSaveMd:                           "Markdown फाइल सेव्ह करा",
+    ttlOsdOpenImage:                        "प्रतिमा निवडा",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "नवीन दस्तावेज",
     tipHdrOpen:                             "Markdown फाइल उघडा",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "नवीन तयार करा",
     btnHdrSave:                             "सेव्ह करा",
     tipHdrSave:                             "सेव्ह करा",
     tipHdrSaveAs:                           "म्हणून सेव्ह करा",
@@ -5934,16 +6035,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "Markdown फाइल्स संपादित आणि पाहा.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "पर्यायी मजकूर",
+    plhDlgLinkText:                         "मजकूर",
+    plhDlgLinkUrlOrPath:                    "URL किंवा स्थानिक मार्ग",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "प्रतिमा शोधा",
+    btnDlgLinkImageModeLinked:              "लिंक केलेले",
+    btnDlgLinkImageModeEmbedded:            "एम्बेड केलेले",
+    tipDlgLinkImageFolder:                  "प्रतिमा दस्तऐवज फोल्डरमध्ये किंवा उपफोल्डरमध्ये असणे आवश्यक आहे.",
+    lblDlgLinkRelativePath:                 "सापेक्ष मार्ग",
+    btnDlgLinkInsert:                       "घाला",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "न सेव्ह केलेले बदल -",
@@ -5952,32 +6053,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "पुन्हा लोड करा",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
-    tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorBold:                          "ठळक (Ctrl+B)",
+    tipEditorItalic:                        "तिर्यक (Ctrl+I)",
+    tipEditorStrikethrough:                 "स्ट्राइकथ्रू (Ctrl+D)",
+    tipEditorHeading:                       "शीर्षक (Ctrl+H)",
+    tipEditorBulletList:                    "बुलेट सूची (Ctrl+L)",
+    tipEditorNumberedList:                  "अंक सूची (Ctrl+U)",
+    tipEditorBlockquote:                    "ब्लॉक कोट (Ctrl+Q)",
+    tipEditorInlineCode:                    "इनलाइन कोड (Ctrl+E)",
+    tipEditorCodeBlock:                     "कोड ब्लॉक (Ctrl+M)",
+    tipEditorLink:                          "लिंक (Ctrl+K)",
+    tipEditorImage:                         "चित्र",
+    tipEditorHorizontalRule:                "क्षैतिज रेषा (Ctrl+R)",
+    tipEditorAlignLeft:                     "डावीकडे संरेखित करा",
+    tipEditorAlignCenter:                   "मध्यभागी संरेखित करा",
+    tipEditorAlignRight:                    "उजवीकडे संरेखित करा",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "पूर्वावलोकनात शोधा…",
+    lblPreviewNoResults:                    "0 परिणाम",
+    tipPreviewFindPrev:                     "मागील (Shift+Enter)",
+    tipPreviewFindNext:                     "पुढील (Enter)",
+    tipPreviewFindClose:                    "बंद करा (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "संरेखन",
+    lblImagePropsWidth:                     "रुंदी",
+    lblImagePropsHeight:                    "उंची",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",
@@ -5988,7 +6090,7 @@ const TRANSLATIONS = {
   tl: {
 
     // Prefix:Global - Scope:shared across all apps
-    btnGlobalCancel:                        "Cancel",
+    btnGlobalCancel:                        "Kanselahin",
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "May bagong bersyon:",
@@ -6004,11 +6106,12 @@ const TRANSLATIONS = {
     // Prefix:Osd - Scope:OS native dialog titles
     ttlOsdOpenMd:                           "Buksan ang Markdown na file",
     ttlOsdSaveMd:                           "I-save ang Markdown na file",
+    ttlOsdOpenImage:                        "Pumili ng Larawan",
 
     // Prefix:Hdr - Scope:top toolbar buttons and tooltips
     tipHdrNew:                              "Bagong dokumento",
     tipHdrOpen:                             "Buksan ang Markdown na file",
-    lblHdrNewDoc:                           "Create a new",
+    lblHdrNewDoc:                           "Gumawa ng bago",
     btnHdrSave:                             "I-save",
     tipHdrSave:                             "I-save",
     tipHdrSaveAs:                           "I-save bilang",
@@ -6051,16 +6154,16 @@ const TRANSLATIONS = {
     msgDlgSettingsAboutDesc:                "i-edit at tingnan ang mga Markdown na file.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
-    btnDlgLinkLink:                         "Link",
-    btnDlgLinkImage:                        "Image",
-    plhDlgLinkAltText:                      "Alt text",
-    plhDlgLinkText:                         "Text",
-    plhDlgLinkUrlOrPath:                    "URL or local path",
+    plhDlgLinkAltText:                      "Alternatibong teksto",
+    plhDlgLinkText:                         "Teksto",
+    plhDlgLinkUrlOrPath:                    "URL o lokal na landas",
     plhDlgLinkUrl:                          "URL",
-    btnDlgLinkBrowse:                       "Browse…",
-    tipDlgLinkImageFolder:                  "Image must be in the document folder or a subfolder",
-    lblDlgLinkRelativePath:                 "Relative path",
-    btnDlgLinkInsert:                       "Insert",
+    tipDlgLinkBrowse:                       "Maghanap ng larawan",
+    btnDlgLinkImageModeLinked:              "Naka-link",
+    btnDlgLinkImageModeEmbedded:            "Naka-embed",
+    tipDlgLinkImageFolder:                  "Ang larawan ay dapat nasa folder ng dokumento o isang subfolder.",
+    lblDlgLinkRelativePath:                 "Kaugnay na landas",
+    btnDlgLinkInsert:                       "Ipasok",
 
     // Prefix:DlgUnsaved - Scope:unsaved changes confirmation
     cfmDlgUnsavedMsg:                       "Hindi pa-save na mga pagbabago -",
@@ -6069,32 +6172,33 @@ const TRANSLATIONS = {
     btnDlgUnsavedReload:                    "I-reload",
 
     // Prefix:Editor - Scope:markdown editor area and toolbar
-    tipEditorBold:                          "Bold (Ctrl+B)",
+    tipEditorBold:                          "Matapang (Ctrl+B)",
     tipEditorItalic:                        "Italic (Ctrl+I)",
-    tipEditorStrikethrough:                 "Strikethrough (Ctrl+D)",
-    tipEditorHeading:                       "Heading (Ctrl+H)",
-    tipEditorBulletList:                    "Bullet list (Ctrl+L)",
-    tipEditorNumberedList:                  "Numbered list (Ctrl+U)",
-    tipEditorBlockquote:                    "Blockquote (Ctrl+Q)",
-    tipEditorInlineCode:                    "Inline code (Ctrl+E)",
-    tipEditorCodeBlock:                     "Code block (Ctrl+M)",
-    tipEditorLinkImage:                     "Link / Image (Ctrl+K)",
-    tipEditorHorizontalRule:                "Horizontal rule (Ctrl+R)",
-    tipEditorAlignLeft:                     "Align left",
-    tipEditorAlignCenter:                   "Align center",
-    tipEditorAlignRight:                    "Align right",
+    tipEditorStrikethrough:                 "Binura (Ctrl+D)",
+    tipEditorHeading:                       "Pamagat (Ctrl+H)",
+    tipEditorBulletList:                    "Listahan ng bullet (Ctrl+L)",
+    tipEditorNumberedList:                  "Nakalistang may bilang (Ctrl+U)",
+    tipEditorBlockquote:                    "Bloke ng sipi (Ctrl+Q)",
+    tipEditorInlineCode:                    "Inline na code (Ctrl+E)",
+    tipEditorCodeBlock:                     "Bloke ng code (Ctrl+M)",
+    tipEditorLink:                          "Link (Ctrl+K)",
+    tipEditorImage:                         "Larawan",
+    tipEditorHorizontalRule:                "Pahalang na linya (Ctrl+R)",
+    tipEditorAlignLeft:                     "I-align sa kaliwa",
+    tipEditorAlignCenter:                   "I-align sa gitna",
+    tipEditorAlignRight:                    "I-align sa kanan",
 
     // Prefix:Preview - Scope:preview panel and find bar
-    plhPreviewFind:                         "Find in preview…",
-    lblPreviewNoResults:                    "0 results",
-    tipPreviewFindPrev:                     "Previous (Shift+Enter)",
-    tipPreviewFindNext:                     "Next (Enter)",
-    tipPreviewFindClose:                    "Close (Escape)",
+    plhPreviewFind:                         "Hanapin sa preview…",
+    lblPreviewNoResults:                    "0 resulta",
+    tipPreviewFindPrev:                     "Nakaraan (Shift+Enter)",
+    tipPreviewFindNext:                     "Susunod (Enter)",
+    tipPreviewFindClose:                    "Isara (Escape)",
 
     // Prefix:ImageProps - Scope:inline image property popup
-    lblImagePropsAlign:                     "align",
-    lblImagePropsWidth:                     "width",
-    lblImagePropsHeight:                    "height",
+    lblImagePropsAlign:                     "pagkakahanay",
+    lblImagePropsWidth:                     "lapad",
+    lblImagePropsHeight:                    "taas",
     plhImagePropsPx:                        "px",
     tipImagePropsApply:                     "apply",
     tipImagePropsClear:                     "clear",

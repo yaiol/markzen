@@ -234,9 +234,13 @@ function startServer(callback) {
     }
   });
 
+  const IMAGE_MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', gif: 'image/gif',
+                       svg: 'image/svg+xml', webp: 'image/webp', bmp: 'image/bmp', ico: 'image/x-icon' };
+
   api.post('/open-image', async (req, res) => {
+    const { title } = req.body || {};
     const result = await dialog.showOpenDialog(mainWindow, {
-      title: 'Select Image',
+      title,
       filters: [
         { name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'ico'] },
         { name: 'All Files', extensions: ['*'] },
@@ -247,13 +251,22 @@ function startServer(callback) {
     res.json({ filePath: result.filePaths[0] });
   });
 
+  // Read an image file as a base64 data: URI, for embedding it directly in the document
+  api.post('/image-data-uri', (req, res) => {
+    const { filePath } = req.body || {};
+    try {
+      const ext  = path.extname(filePath).toLowerCase().slice(1);
+      const mime = IMAGE_MIME[ext] || 'application/octet-stream';
+      res.json({ dataUri: `data:${mime};base64,${fs.readFileSync(filePath).toString('base64')}` });
+    } catch { res.json(null); }
+  });
+
   // Serve local image files to the renderer - file:// is blocked by Electron security policy
   api.get('/local-image', (req, res) => {
     const filePath = decodeURIComponent(req.query.path || '');
     try {
       const ext  = path.extname(filePath).toLowerCase().slice(1);
-      const mime = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', gif: 'image/gif',
-                     svg: 'image/svg+xml', webp: 'image/webp', bmp: 'image/bmp', ico: 'image/x-icon' }[ext] || 'application/octet-stream';
+      const mime = IMAGE_MIME[ext] || 'application/octet-stream';
       res.setHeader('Content-Type', mime);
       res.send(fs.readFileSync(filePath));
     } catch { res.status(404).end(); }

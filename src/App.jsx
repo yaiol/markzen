@@ -29,6 +29,7 @@ import { AppHeader } from './lib/ui-header';
 import { NumberField } from './lib/ui-ctl-numberfield';
 import { Menu, MenuItem, MenuLabel, MenuDivider } from './lib/ui-ctl-menu';
 import { formats, defaultFormat, getFormatByExtension, FORMAT_ALIGN } from './formats/index';
+import { dataUriFold } from './lib/cm-datauri-fold';
 import FONT_CATALOG from '../seeds/fonts.json';
 // Storage namespace - single source: package.json `storagePrefix`. Never hardcode a prefix.
 const STORAGE_PREFIX = pkg.storagePrefix;
@@ -1511,11 +1512,21 @@ export default function App() {
   }
 
   // Always-fresh CM update callback - avoids stale closures in updateListener
-  openLinkPopupRef.current = (view) => {
+  openLinkPopupRef.current = (view, kind) => {
     const range  = view.state.selection.main;
-    const text   = view.state.sliceDoc(range.from, range.to);
     const coords = view.coordsAtPos(range.from);
-    setLinkPopup({ from: range.from, to: range.to, text, x: coords?.left ?? 200, y: coords?.bottom ?? 200 });
+    const at     = { x: coords?.left ?? 200, y: coords?.bottom ?? 200 };
+    // Re-edit mode: if the caret/selection sits on an existing link (or image) written in the active
+    // format, load ITS text + url and replace the whole construct — otherwise the markup would be
+    // swallowed as the new link's label.
+    const s       = activeFormatRef.current?.shortcuts;
+    const pattern = kind === 'image' ? s?.imagePattern : s?.linkPattern;
+    const found   = pattern && findConstructAt(view, range, pattern);
+    if (found) {
+      setLinkPopup({ kind, from: found.from, to: found.to, text: found.text, url: found.url, ...at });
+      return;
+    }
+    setLinkPopup({ kind, from: range.from, to: range.to, text: view.state.sliceDoc(range.from, range.to), url: '', ...at });
   };
 
   onCmUpdateRef.current = (update) => {
@@ -1547,6 +1558,7 @@ export default function App() {
         extensions: [
           basicSetup,
           markdown(),
+          dataUriFold,
           EditorView.lineWrapping,
           keymapCompartment.current.of([]),
           themeCompartment.current.of([]),
@@ -1613,7 +1625,7 @@ export default function App() {
       ...insert   ('Mod-r', s.horizontalRule),
       ...heading  ('Mod-h', s.headings),
       ...codeblock('Mod-m', s.codeBlock),
-      { key: 'Mod-k', run(view) { openLinkPopupRef.current?.(view); return true; } },
+      { key: 'Mod-k', run(view) { openLinkPopupRef.current?.(view, 'link'); return true; } },
     ];
     cmViewRef.current?.dispatch({
       effects: keymapCompartment.current.reconfigure(Prec.highest(keymap.of(bindings))),
@@ -2287,7 +2299,8 @@ export default function App() {
                     {btn(<Quote />,        t('tipEditorBlockquote'),     () => run(v => toggleLinePrefix(v, s.blockquote)))}
                     {btn(<Code />,         t('tipEditorInlineCode'),     () => run(v => toggleInlineFormat(v, s.inlineCode)))}
                     {btn(<Code2 />,        t('tipEditorCodeBlock'),      () => run(v => s.codeBlock && toggleCodeBlock(v, s.codeBlock.open, s.codeBlock.close)))}
-                    {btn(<Link />,         t('tipEditorLinkImage'),      () => run(v => openLinkPopupRef.current?.(v)))}
+                    {btn(<Link />,         t('tipEditorLink'),           () => run(v => openLinkPopupRef.current?.(v, 'link')))}
+                    {btn(<Image />,        t('tipEditorImage'),          () => run(v => openLinkPopupRef.current?.(v, 'image')))}
                     {btn(<Minus />,        t('tipEditorHorizontalRule'), () => run(v => s.horizontalRule && insertLine(v, s.horizontalRule)))}
                     {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
                     {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
@@ -2513,7 +2526,9 @@ export default function App() {
         return (
           <LinkPopup
             x={linkPopup.x} y={linkPopup.y}
+            mode={linkPopup.kind}
             initialText={linkPopup.text}
+            initialUrl={linkPopup.url}
             apiBase={API}
             docFilePath={activeTab?.filePath || ''}
             onConfirm={confirmLink}
@@ -2524,6 +2539,22 @@ export default function App() {
       })()}
     </>
   );
+}
+
+// Find a link/image construct of the active format that the selection sits on, so Ctrl+K (or the
+// toolbar button) re-edits it instead of nesting a new one. `pattern` is a format adapter's
+// {re, text, url} spec; the match must overlap the selection (or touch the caret when empty).
+function findConstructAt(view, range, pattern) {
+  const line = view.state.doc.lineAt(range.from);
+  const re   = new RegExp(pattern.re.source, 'g');
+  for (let m; (m = re.exec(line.text)) !== null; ) {
+    const from = line.from + m.index;
+    const to   = from + m[0].length;
+    if (range.from >= from && range.to <= to) {
+      return { from, to, text: pattern.text ? m[pattern.text] : '', url: m[pattern.url] };
+    }
+  }
+  return null;
 }
 
 // Returns true only when imgPath is in the same folder or a subfolder of docFilePath's directory.
@@ -2538,12 +2569,17 @@ function canRelativize(imgPath, docFilePath) {
   return docParts.length === common; // image is at or below the doc's directory
 }
 
-function LinkPopup({ x, y, initialText, apiBase, docFilePath, onConfirm, onCancel, langKey }) {
+// The insert popup for ONE kind — `mode` is 'link' or 'image', fixed by the toolbar button that
+// opened it (the two are separate dialogs; there is no in-popup switcher).
+function LinkPopup({ x, y, mode, initialText, initialUrl, apiBase, docFilePath, onConfirm, onCancel, langKey }) {
   const t = useT(langKey);
-  const [mode, setMode]       = React.useState('link');
   const [text, setText]       = React.useState(initialText);
-  const [url,  setUrl]        = React.useState('');
+  const [url,  setUrl]        = React.useState(initialUrl || '');
   const [relative, setRelative] = React.useState(false);
+  // Embedded = the image's bytes go INTO the document as a base64 data: URI (self-contained file);
+  // Linked = the document only points at the image path/URL. Linked is the default, except when
+  // re-editing an image that is already embedded.
+  const [embedded, setEmbedded] = React.useState(!!initialUrl?.startsWith('data:'));
   const urlRef  = React.useRef(null);
   const textRef = React.useRef(null);
 
@@ -2556,39 +2592,38 @@ function LinkPopup({ x, y, initialText, apiBase, docFilePath, onConfirm, onCance
     setRelative(canRelativize(val, docFilePath));
   };
 
-  const handleKey = (e) => {
-    if (e.key === 'Enter')  { e.preventDefault(); onConfirm(text, url, mode, relative); }
-    if (e.key === 'Escape') { e.preventDefault(); onCancel(); }
+  const post = async (endpoint, body) => {
+    const res = await fetch(`${apiBase}/${endpoint}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    return res.json();
   };
 
   const browse = async () => {
-    const res  = await fetch(`${apiBase}/open-image`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
-    const data = await res.json();
+    const data = await post('open-image', { title: t('ttlOsdOpenImage') });
     if (data?.filePath) { updateUrl(data.filePath); urlRef.current?.focus(); }
   };
 
-  const relPossible = mode === 'image' && canRelativize(url, docFilePath);
+  const isDataUri = url.startsWith('data:');
+
+  // Embedding reads the picked file only at insert time, so switching Linked/Embedded costs nothing
+  // until it is confirmed. A data: URI is never relativizable, hence relative: false.
+  const confirm = async () => {
+    if (mode === 'image' && embedded && !isDataUri) {
+      const data = await post('image-data-uri', { filePath: url.trim() });
+      if (data?.dataUri) onConfirm(text, data.dataUri, mode, false);
+      return;
+    }
+    onConfirm(text, url, mode, isDataUri ? false : relative);
+  };
+
+  const relPossible = mode === 'image' && !embedded && canRelativize(url, docFilePath);
+
+  const handleKey = (e) => {
+    if (e.key === 'Enter')  { e.preventDefault(); confirm(); }
+    if (e.key === 'Escape') { e.preventDefault(); onCancel(); }
+  };
 
   const popupW = 300;
   const left   = Math.min(x, window.innerWidth - popupW - 16);
-  const inputStyle = {
-    flex: 1, height: 30, boxSizing: 'border-box',     // [GUI Standard: ctlHeight]
-    background: 'var(--bg)', border: `1px solid var(--border-strong)`, borderRadius: 5,
-    padding: '0 8px', fontSize: 13, color: 'var(--text)', outline: 'none', fontFamily: 'inherit',
-  };
-  const tabStyle = (active) => ({
-    flex: 1, height: 30, boxSizing: 'border-box',     // [GUI Standard: ctlHeight]
-    padding: '0', fontSize: 12, fontWeight: active ? 600 : 400, cursor: 'pointer',
-    border: 'none', borderRadius: 4, background: active ? 'var(--accent)' : 'transparent',
-    color: active ? '#fff' : 'var(--text-dim)',
-  });
-  // Single-line action buttons (browse / cancel / insert) — all at the control height.
-  const btnStyle = (extra) => ({
-    height: 30, boxSizing: 'border-box',             // [GUI Standard: ctlHeight]
-    padding: '0 10px', fontSize: 12, borderRadius: 5, cursor: 'pointer',
-    border: `1px solid var(--border-strong)`, background: 'transparent', color: 'var(--text)',
-    ...extra,
-  });
 
   return (
     <div onKeyDown={handleKey} style={{
@@ -2597,32 +2632,39 @@ function LinkPopup({ x, y, initialText, apiBase, docFilePath, onConfirm, onCance
       borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
       padding: '10px 12px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: 8,
     }}>
-      <div style={{ display: 'flex', gap: 4, background: 'var(--bg)', borderRadius: 5, padding: 2 }}>
-        <button style={tabStyle(mode === 'link')}  onClick={() => setMode('link')}>{t('btnDlgLinkLink')}</button>
-        <button style={tabStyle(mode === 'image')} onClick={() => setMode('image')}>{t('btnDlgLinkImage')}</button>
-      </div>
-      <input ref={textRef} value={text} onChange={e => setText(e.target.value)}
-        placeholder={mode === 'image' ? t('plhDlgLinkAltText') : t('plhDlgLinkText')} style={inputStyle} />
+      <input ref={textRef} className="input" value={text} onChange={e => setText(e.target.value)}
+        placeholder={mode === 'image' ? t('plhDlgLinkAltText') : t('plhDlgLinkText')} />
       <div style={{ display: 'flex', gap: 6 }}>
-        <input ref={urlRef} value={url} onChange={e => updateUrl(e.target.value)}
-          placeholder={mode === 'image' ? t('plhDlgLinkUrlOrPath') : t('plhDlgLinkUrl')} style={inputStyle} />
-        {mode === 'image' && (
-          <button onClick={browse} style={btnStyle({ whiteSpace: 'nowrap' })}>{t('btnDlgLinkBrowse')}</button>
-        )}
+        {/* An already-embedded image is a huge base64 blob — show a short stand-in, not the payload. */}
+        <input ref={urlRef} className="input" style={{ flex: 1, minWidth: 0 }}
+          value={isDataUri ? `${url.slice(0, url.indexOf(';'))} …` : url}
+          readOnly={isDataUri} onChange={e => updateUrl(e.target.value)}
+          placeholder={mode === 'image' ? t('plhDlgLinkUrlOrPath') : t('plhDlgLinkUrl')} />
+        {mode === 'image' && <button className="btn icon" title={t('tipDlgLinkBrowse')} onClick={browse}><FolderOpen /></button>}
       </div>
       {mode === 'image' && (
-        <label title={!relPossible ? t('tipDlgLinkImageFolder') : ''}
-          style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12,
-                   color: relPossible ? 'var(--text)' : 'var(--text-mute)', cursor: relPossible ? 'pointer' : 'default', userSelect: 'none' }}>
+        <div style={{ display: 'flex', gap: 16 }}>
+          <label className="check-label">
+            <input type="radio" className="radio-box" name="imgMode" checked={!embedded} onChange={() => setEmbedded(false)} />
+            {t('btnDlgLinkImageModeLinked')}
+          </label>
+          <label className="check-label">
+            <input type="radio" className="radio-box" name="imgMode" checked={embedded} onChange={() => setEmbedded(true)} />
+            {t('btnDlgLinkImageModeEmbedded')}
+          </label>
+        </div>
+      )}
+      {mode === 'image' && !embedded && (
+        <label className="check-label" title={!relPossible ? t('tipDlgLinkImageFolder') : ''}
+          style={relPossible ? undefined : { color: 'var(--text-mute)', cursor: 'default' }}>
           <input type="checkbox" className="check-box" checked={relative} disabled={!relPossible}
-            onChange={e => setRelative(e.target.checked)} style={{ cursor: relPossible ? 'pointer' : 'default' }} />
+            onChange={e => setRelative(e.target.checked)} style={relPossible ? undefined : { cursor: 'default' }} />
           {t('lblDlgLinkRelativePath')}
         </label>
       )}
       <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
-        <button onClick={onCancel} style={btnStyle({ color: 'var(--text-dim)' })}>{t('btnGlobalCancel')}</button>
-        <button onClick={() => onConfirm(text, url, mode, relative)}
-          style={btnStyle({ border: 'none', background: 'var(--accent)', color: '#fff', fontWeight: 600 })}>{t('btnDlgLinkInsert')}</button>
+        <button className="btn" onClick={onCancel}>{t('btnGlobalCancel')}</button>
+        <button className="btn primary" onClick={confirm}>{t('btnDlgLinkInsert')}</button>
       </div>
     </div>
   );

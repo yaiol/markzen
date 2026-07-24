@@ -1,7 +1,7 @@
 {
   "name": "markzen",
   "productName": "Markzen",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "description": "Markdown editor/viewer",
   "private": true,

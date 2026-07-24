@@ -59,6 +59,8 @@ const textileAdapter = {
     codeBlock: { open: 'bc. ', close: '' },
     link:  (text, url) => `"${text}":${url}`,
     image: (alt,  url) => `!${url}(${alt})!`,
+    linkPattern:  { re: /"([^"]*)":(\S+)/g,          text: 1, url: 2 },
+    imagePattern: { re: /!([^!(]*)\(([^)]*)\)!/g,    text: 2, url: 1 },
     bulletList: '* ', numberedList: '# ', blockquote: 'bq. ', horizontalRule: '\n---\n',
   },
   extensions,

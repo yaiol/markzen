@@ -59,6 +59,8 @@ const asciidocAdapter = {
     codeBlock: { open: '[source]\n----\n', close: '\n----' },
     link:  (text, url) => `link:${url}[${text}]`,
     image: (alt,  url) => `image::${url}[${alt}]`,
+    linkPattern:  { re: /link:(\S*?)\[([^\]]*)\]/g,    text: 2, url: 1 },
+    imagePattern: { re: /image::(\S*?)\[([^\]]*)\]/g,  text: 2, url: 1 },
     bulletList: '* ', numberedList: '. ', blockquote: '> ', horizontalRule: "'''",
   },
   extensions,

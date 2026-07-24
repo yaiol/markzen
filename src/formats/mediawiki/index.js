@@ -14,6 +14,8 @@ const mediawikiAdapter = {
     codeBlock: { open: '<syntaxhighlight>\n', close: '\n</syntaxhighlight>' },
     link:  (text, url) => `[[${url}|${text}]]`,
     image: (alt,  url) => `[[File:${url}|${alt}]]`,
+    linkPattern:  { re: /\[\[(?!File:)([^|\]]*)\|([^\]]*)\]\]/g, text: 2, url: 1 },
+    imagePattern: { re: /\[\[File:([^|\]]*)\|([^\]]*)\]\]/g,     text: 2, url: 1 },
     bulletList: '* ', numberedList: '# ', blockquote: null, horizontalRule: '\n----\n',
   },
   extensions: [],

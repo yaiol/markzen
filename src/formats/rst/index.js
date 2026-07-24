@@ -59,6 +59,9 @@ const rstAdapter = {
     codeBlock: { open: '::\n\n    ', close: '' },
     link:  (text, url) => `\`${text} <${url}>\`_`,
     image: (alt,  url) => `.. image:: ${url}\n   :alt: ${alt}`,
+    linkPattern:  { re: /`([^`<]*)<([^>]*)>`_/g, text: 1, url: 2 },
+    imagePattern: null,   // the image directive spans two lines — not a single-line inline match
+
     bulletList: '- ', numberedList: '#. ', blockquote: '  ', horizontalRule: '\n----\n',
   },
   extensions,
