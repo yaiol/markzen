@@ -19,10 +19,30 @@ const DEV_PORT = pkg.devPort;
 const APP_NAME  = pkg.productName;
 const CLI_NAME  = pkg.cliName;
 // CLI instances get a unique temp userData dir so they don't conflict with a running
-// app instance's locked disk cache. Cleaned up on exit via app.on('quit').
+// app instance's locked disk cache.
+// ⚠ CLAUDE: cleanup is a SWEEP AT STARTUP, not a delete at exit. Deleting our own userData
+// while the process is still alive can never work on Windows — Chromium holds open handles on
+// Cache/Network/GPUCache, rmSync throws, and the dir leaks (178 of them before this was added).
+// A dir named after a PID that is no longer running is provably unlocked, so it can be removed.
 const rawArgsCli = process.argv.slice(!app.isPackaged ? 2 : 1);
 const isCLIearly = rawArgsCli.some(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i.test(a)) && rawArgsCli.includes('-o');
+function sweepStaleCliDirs() {
+  const tmp = os.tmpdir();
+  let entries;
+  try { entries = fs.readdirSync(tmp); } catch { return; }
+  for (const name of entries) {
+    const m = /^markzen-cli-(\d+)$/.exec(name);
+    if (!m) continue;
+    const pid = Number(m[1]);
+    if (pid === process.pid) continue;
+    // kill(pid, 0) = "does this pid exist?" — throws ESRCH when it doesn't. EPERM means it
+    // exists but isn't ours, so leave it alone.
+    try { process.kill(pid, 0); continue; } catch (e) { if (e.code !== 'ESRCH') continue; }
+    try { fs.rmSync(path.join(tmp, name), { recursive: true, force: true }); } catch {}
+  }
+}
 if (isCLIearly) {
+  sweepStaleCliDirs();
   app.setPath('userData', path.join(os.tmpdir(), `markzen-cli-${process.pid}`));
 } else {
   app.setPath('userData', path.join(app.getPath('appData'), 'yaiol', isDev ? `${APP_NAME} (Dev)` : APP_NAME));
@@ -607,12 +627,9 @@ function startServer(callback) {
       setTimeout(() => loadCliJob(SERVER_PORT), 100);
       return;
     }
-    setTimeout(() => {
-      if (isCLIearly) {
-        try { fs.rmSync(app.getPath('userData'), { recursive: true, force: true }); } catch {}
-      }
-      app.quit();
-    }, 200);
+    // No cleanup here — our own userData is still locked by Chromium at this point.
+    // The next CLI run sweeps it (see sweepStaleCliDirs at the top of this file).
+    setTimeout(() => app.quit(), 200);
   });
 
   findFreePort(4000, (port) => {

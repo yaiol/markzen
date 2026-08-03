@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5 — 2026-08-03
+
+- Fix CLI exports leaving an orphan temp folder behind on every run: each run now sweeps the leftover folders of runs that have exited, instead of trying to delete its own cache on the way out (which can never work on Windows while Chromium still holds it open)
+
 ## 1.0.4 — 2026-07-24
 
 - Insert an image as embedded or linked: embedded images are stored inside the document as base64 data, so the file is self-contained; linked images just point at a path or URL
