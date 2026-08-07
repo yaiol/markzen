@@ -117,6 +117,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Align left",
     tipEditorAlignCenter:                   "Align center",
     tipEditorAlignRight:                    "Align right",
+    tipEditorTable:                         "Insert table",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Find in preview…",
@@ -237,6 +238,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Aligner à gauche",
     tipEditorAlignCenter:                   "Centrer",
     tipEditorAlignRight:                    "Aligner à droite",
+    tipEditorTable:                         "Insérer un tableau",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Rechercher dans l'aperçu…",
@@ -356,6 +358,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Links ausrichten",
     tipEditorAlignCenter:                   "Zentrieren",
     tipEditorAlignRight:                    "Rechts ausrichten",
+    tipEditorTable:                         "Tabelle einfügen",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "In Vorschau suchen…",
@@ -475,6 +478,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Alinear a la izquierda",
     tipEditorAlignCenter:                   "Alinear al centro",
     tipEditorAlignRight:                    "Alinear a la derecha",
+    tipEditorTable:                         "Insertar tabla",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Buscar en la vista previa…",
@@ -594,6 +598,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Alinhar à esquerda",
     tipEditorAlignCenter:                   "Alinhar ao centro",
     tipEditorAlignRight:                    "Alinhar à direita",
+    tipEditorTable:                         "Inserir tabela",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Localizar na pré-visualização…",
@@ -713,6 +718,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Alinhar à esquerda",
     tipEditorAlignCenter:                   "Alinhar ao centro",
     tipEditorAlignRight:                    "Alinhar à direita",
+    tipEditorTable:                         "Inserir tabela",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Procurar na pré-visualização…",
@@ -832,6 +838,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Allinea a sinistra",
     tipEditorAlignCenter:                   "Allinea al centro",
     tipEditorAlignRight:                    "Allinea a destra",
+    tipEditorTable:                         "Inserisci tabella",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Trova nell'anteprima…",
@@ -951,6 +958,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Links uitlijnen",
     tipEditorAlignCenter:                   "Centreren",
     tipEditorAlignRight:                    "Rechts uitlijnen",
+    tipEditorTable:                         "Tabel invoegen",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Zoeken in voorbeeld…",
@@ -1070,6 +1078,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Выровнять по левому краю",
     tipEditorAlignCenter:                   "Выровнять по центру",
     tipEditorAlignRight:                    "Выровнять по правому краю",
+    tipEditorTable:                         "Вставить таблицу",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Найти в предпросмотре…",
@@ -1189,6 +1198,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Вирівняти по лівому краю",
     tipEditorAlignCenter:                   "Вирівняти по центру",
     tipEditorAlignRight:                    "Вирівняти по правому краю",
+    tipEditorTable:                         "Вставити таблицю",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Знайти в попередньому перегляді…",
@@ -1308,6 +1318,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Wyrównaj do lewej",
     tipEditorAlignCenter:                   "Wyrównaj do środka",
     tipEditorAlignRight:                    "Wyrównaj do prawej",
+    tipEditorTable:                         "Wstaw tabelę",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Znajdź w podglądzie…",
@@ -1427,6 +1438,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Aliniere la stânga",
     tipEditorAlignCenter:                   "Aliniere la centru",
     tipEditorAlignRight:                    "Aliniere la dreapta",
+    tipEditorTable:                         "Inserează tabel",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Căutare în previzualizare…",
@@ -1546,6 +1558,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Vänsterjustera",
     tipEditorAlignCenter:                   "Centrera",
     tipEditorAlignRight:                    "Högerjustera",
+    tipEditorTable:                         "Infoga tabell",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Sök i förhandsgranskning…",
@@ -1665,6 +1678,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Venstrejuster",
     tipEditorAlignCenter:                   "Midtstill",
     tipEditorAlignRight:                    "Høyrejuster",
+    tipEditorTable:                         "Sett inn tabell",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Finn i forhåndsvisning…",
@@ -1784,6 +1798,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Sola hizala",
     tipEditorAlignCenter:                   "Ortala",
     tipEditorAlignRight:                    "Sağa hizala",
+    tipEditorTable:                         "Tablo ekle",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Önizlemede bul…",
@@ -1903,6 +1918,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Poravnaj lijevo",
     tipEditorAlignCenter:                   "Poravnaj centrirano",
     tipEditorAlignRight:                    "Poravnaj desno",
+    tipEditorTable:                         "Umetni tablicu",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Pronađi u pregledu…",
@@ -2022,6 +2038,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Στοίχιση αριστερά",
     tipEditorAlignCenter:                   "Στοίχιση στο κέντρο",
     tipEditorAlignRight:                    "Στοίχιση δεξιά",
+    tipEditorTable:                         "Εισαγωγή πίνακα",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Εύρεση στην προεπισκόπηση…",
@@ -2141,6 +2158,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "יישר לשמאל",
     tipEditorAlignCenter:                   "יישר למרכז",
     tipEditorAlignRight:                    "יישר לימין",
+    tipEditorTable:                         "הוסף טבלה",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "חפש בתצוגה מקדימה…",
@@ -2260,6 +2278,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "محاذاة لليسار",
     tipEditorAlignCenter:                   "محاذاة للوسط",
     tipEditorAlignRight:                    "محاذاة لليمين",
+    tipEditorTable:                         "إدراج جدول",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "البحث في المعاينة…",
@@ -2379,6 +2398,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "تراز به چپ",
     tipEditorAlignCenter:                   "تراز وسط",
     tipEditorAlignRight:                    "تراز به راست",
+    tipEditorTable:                         "درج جدول",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "یافتن در پیش‌نمایش…",
@@ -2498,6 +2518,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "左对齐",
     tipEditorAlignCenter:                   "居中对齐",
     tipEditorAlignRight:                    "右对齐",
+    tipEditorTable:                         "插入表格",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "在预览中查找…",
@@ -2617,6 +2638,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "靠左對齊",
     tipEditorAlignCenter:                   "置中對齊",
     tipEditorAlignRight:                    "靠右對齊",
+    tipEditorTable:                         "插入表格",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "在預覽中尋找…",
@@ -2736,6 +2758,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "左揃え",
     tipEditorAlignCenter:                   "中央揃え",
     tipEditorAlignRight:                    "右揃え",
+    tipEditorTable:                         "テーブルを挿入",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "プレビューで検索…",
@@ -2855,6 +2878,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "왼쪽 정렬",
     tipEditorAlignCenter:                   "가운데 정렬",
     tipEditorAlignRight:                    "오른쪽 정렬",
+    tipEditorTable:                         "표 삽입",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "미리 보기에서 찾기…",
@@ -2974,6 +2998,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Căn trái",
     tipEditorAlignCenter:                   "Căn giữa",
     tipEditorAlignRight:                    "Căn phải",
+    tipEditorTable:                         "Chèn bảng",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Tìm trong bản xem trước…",
@@ -3093,6 +3118,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "จัดชิดซ้าย",
     tipEditorAlignCenter:                   "จัดกึ่งกลาง",
     tipEditorAlignRight:                    "จัดชิดขวา",
+    tipEditorTable:                         "แทรกตาราง",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "ค้นหาในหน้าตัวอย่าง…",
@@ -3212,6 +3238,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Rata kiri",
     tipEditorAlignCenter:                   "Rata tengah",
     tipEditorAlignRight:                    "Rata kanan",
+    tipEditorTable:                         "Sisipkan tabel",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Cari di pratinjau…",
@@ -3331,6 +3358,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Alinea a l'esquerra",
     tipEditorAlignCenter:                   "Centra",
     tipEditorAlignRight:                    "Alinea a la dreta",
+    tipEditorTable:                         "Insereix taula",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Cerca a la previsualització…",
@@ -3450,6 +3478,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Zarovnat vlevo",
     tipEditorAlignCenter:                   "Zarovnat na střed",
     tipEditorAlignRight:                    "Zarovnat vpravo",
+    tipEditorTable:                         "Vložit tabulku",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Najít v náhledu…",
@@ -3569,6 +3598,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Venstrejuster",
     tipEditorAlignCenter:                   "Centrer",
     tipEditorAlignRight:                    "Højrejuster",
+    tipEditorTable:                         "Indsæt tabel",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Find i forhåndsvisning…",
@@ -3688,6 +3718,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Tasaa vasemmalle",
     tipEditorAlignCenter:                   "Keskitä",
     tipEditorAlignRight:                    "Tasaa oikealle",
+    tipEditorTable:                         "Lisää taulukko",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Etsi esikatselusta…",
@@ -3807,6 +3838,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Jajar kiri",
     tipEditorAlignCenter:                   "Jajar tengah",
     tipEditorAlignRight:                    "Jajar kanan",
+    tipEditorTable:                         "Sisipkan jadual",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Cari dalam pratonton…",
@@ -3926,6 +3958,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Ձախից հավասարեցնել",
     tipEditorAlignCenter:                   "Կենտրոնացնել",
     tipEditorAlignRight:                    "Աջից հավասարեցնել",
+    tipEditorTable:                         "Տեղադրել աղյուսակ",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Փնտրել նախադիտման մեջ…",
@@ -4045,6 +4078,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Подравняване вляво",
     tipEditorAlignCenter:                   "Подравняване в центъра",
     tipEditorAlignRight:                    "Подравняване вдясно",
+    tipEditorTable:                         "Вмъкни таблица",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Търсене в преглед…",
@@ -4164,6 +4198,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Aliñar á esquerda",
     tipEditorAlignCenter:                   "Aliñar ao centro",
     tipEditorAlignRight:                    "Aliñar á dereita",
+    tipEditorTable:                         "Inserir táboa",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Buscar na vista previa…",
@@ -4283,6 +4318,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Balra igazítás",
     tipEditorAlignCenter:                   "Középre igazítás",
     tipEditorAlignRight:                    "Jobbra igazítás",
+    tipEditorTable:                         "Táblázat beszúrása",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Keresés az előnézetben…",
@@ -4402,6 +4438,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Lygiuoti kairėn",
     tipEditorAlignCenter:                   "Lygiuoti centre",
     tipEditorAlignRight:                    "Lygiuoti dešinėn",
+    tipEditorTable:                         "Įterpti lentelę",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Ieškoti peržiūroje…",
@@ -4521,6 +4558,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Порамни лево",
     tipEditorAlignCenter:                   "Порамни центар",
     tipEditorAlignRight:                    "Порамни десно",
+    tipEditorTable:                         "Вметни табела",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Најди во преглед…",
@@ -4640,6 +4678,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Поравнај лево",
     tipEditorAlignCenter:                   "Поравнај по средини",
     tipEditorAlignRight:                    "Поравнај десно",
+    tipEditorTable:                         "Уметни табелу",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Пронађи у прегледу…",
@@ -4759,6 +4798,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Zarovnať vľavo",
     tipEditorAlignCenter:                   "Zarovnať na stred",
     tipEditorAlignRight:                    "Zarovnať vpravo",
+    tipEditorTable:                         "Vložiť tabuľku",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Nájsť v ukážke…",
@@ -4878,6 +4918,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Poravnaj levo",
     tipEditorAlignCenter:                   "Poravnaj na sredino",
     tipEditorAlignRight:                    "Poravnaj desno",
+    tipEditorTable:                         "Vstavi tabelo",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Najdi v predogledu…",
@@ -4997,6 +5038,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "இடதுபுறம் சீரமை",
     tipEditorAlignCenter:                   "மையத்தில் சீரமை",
     tipEditorAlignRight:                    "வலதுபுறம் சீரமை",
+    tipEditorTable:                         "அட்டவணையைச் செருகு",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "முன்னோட்டத்தில் தேடு…",
@@ -5116,6 +5158,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "बाईं ओर संरेखित करें",
     tipEditorAlignCenter:                   "केंद्र में संरेखित करें",
     tipEditorAlignRight:                    "दाईं ओर संरेखित करें",
+    tipEditorTable:                         "तालिका डालें",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "पूर्वावलोकन में ढूँढें…",
@@ -5235,6 +5278,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "বামে সারিবদ্ধ করুন",
     tipEditorAlignCenter:                   "কেন্দ্রে সারিবদ্ধ করুন",
     tipEditorAlignRight:                    "ডানে সারিবদ্ধ করুন",
+    tipEditorTable:                         "সারণি সন্নিবেশ করুন",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "পূর্বরূপে খুঁজুন…",
@@ -5354,6 +5398,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "بائیں سیدھ کریں",
     tipEditorAlignCenter:                   "مرکز میں سیدھ کریں",
     tipEditorAlignRight:                    "دائیں سیدھ کریں",
+    tipEditorTable:                         "ٹیبل داخل کریں",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "پیش منظر میں تلاش کریں…",
@@ -5473,6 +5518,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Pangilia kushoto",
     tipEditorAlignCenter:                   "Pangilia katikati",
     tipEditorAlignRight:                    "Pangilia kulia",
+    tipEditorTable:                         "Ingiza jedwali",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Tafuta katika onyesho la kukagua…",
@@ -5592,6 +5638,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "ਖੱਬੇ ਪਾਸੇ ਇਕਸਾਰ ਕਰੋ",
     tipEditorAlignCenter:                   "ਕੇਂਦਰ ਵਿੱਚ ਇਕਸਾਰ ਕਰੋ",
     tipEditorAlignRight:                    "ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ ਕਰੋ",
+    tipEditorTable:                         "ਸਾਰਣੀ ਸ਼ਾਮਲ ਕਰੋ",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "ਝਲਕ ਵਿੱਚ ਲੱਭੋ…",
@@ -5711,6 +5758,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Daidaita hagu",
     tipEditorAlignCenter:                   "Daidaita tsakiya",
     tipEditorAlignRight:                    "Daidaita dama",
+    tipEditorTable:                         "Saka tebur",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Nemi a samfoti…",
@@ -5830,6 +5878,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "Ṣe deede si apa osi",
     tipEditorAlignCenter:                   "Ṣe deede si aarin",
     tipEditorAlignRight:                    "Ṣe deede si apa ọtun",
+    tipEditorTable:                         "Fi tabili sii",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Wa ninu awotẹlẹ…",
@@ -5949,6 +5998,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "ఎడమకు సమలేఖనం చేయండి",
     tipEditorAlignCenter:                   "మధ్యకు సమలేఖనం చేయండి",
     tipEditorAlignRight:                    "కుడికి సమలేఖనం చేయండి",
+    tipEditorTable:                         "పట్టికను చొప్పించు",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "ప్రివ్యూలో కనుగొను…",
@@ -6068,6 +6118,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "डावीकडे संरेखित करा",
     tipEditorAlignCenter:                   "मध्यभागी संरेखित करा",
     tipEditorAlignRight:                    "उजवीकडे संरेखित करा",
+    tipEditorTable:                         "टेबल घाला",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "पूर्वावलोकनात शोधा…",
@@ -6187,6 +6238,7 @@ const TRANSLATIONS = {
     tipEditorAlignLeft:                     "I-align sa kaliwa",
     tipEditorAlignCenter:                   "I-align sa gitna",
     tipEditorAlignRight:                    "I-align sa kanan",
+    tipEditorTable:                         "Ipasok ang talahanayan",
 
     // Prefix:Preview - Scope:preview panel and find bar
     plhPreviewFind:                         "Hanapin sa preview…",

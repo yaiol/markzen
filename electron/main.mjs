@@ -25,7 +25,7 @@ const CLI_NAME  = pkg.cliName;
 // Cache/Network/GPUCache, rmSync throws, and the dir leaks (178 of them before this was added).
 // A dir named after a PID that is no longer running is provably unlocked, so it can be removed.
 const rawArgsCli = process.argv.slice(!app.isPackaged ? 2 : 1);
-const isCLIearly = rawArgsCli.some(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i.test(a)) && rawArgsCli.includes('-o');
+const isCLIearly = rawArgsCli.some(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki|bbcode|bb)$/i.test(a)) && rawArgsCli.includes('-o');
 function sweepStaleCliDirs() {
   const tmp = os.tmpdir();
   let entries;
@@ -58,13 +58,13 @@ let SERVER_PORT = 4000;
 
 // File passed via double-click / file association - argv[1] in packaged, argv[2]+ in dev
 const rawArgs = process.argv.slice(isDev ? 2 : 1);
-const startFile = rawArgs.find(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i.test(a) && fs.existsSync(a)) || null;
+const startFile = rawArgs.find(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki|bbcode|bb)$/i.test(a) && fs.existsSync(a)) || null;
 
 // CLI mode: markzen.exe source.md -o output.pdf [source2.md -o output2.pdf ...]
 // (format inferred from each output's extension). BATCH: any number of `src -o out` pairs
 // run in ONE Electron boot — the window reloads per job (see /cli-done), which is what
 // makes N docs cost ~2s each instead of a full ~15s app boot per doc.
-const SRC_EXT_RE = /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i;
+const SRC_EXT_RE = /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki|bbcode|bb)$/i;
 const cliJobs = [];
 for (let i = 0; i < rawArgs.length; i++) {
   if (!SRC_EXT_RE.test(rawArgs[i]) || !fs.existsSync(rawArgs[i])) continue;
@@ -94,7 +94,7 @@ if (!isCLI) {
       mainWindow.focus();
     }
     const fp = argv.slice(isDev ? 2 : 1)
-      .find(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki)$/i.test(a) && fs.existsSync(a));
+      .find(a => /\.(md|markdown|adoc|asciidoc|asc|rst|rest|org|textile|dj|wiki|mediawiki|bbcode|bb)$/i.test(a) && fs.existsSync(a));
     if (fp) pendingFiles.push(fp);
   });
 }
@@ -239,7 +239,7 @@ function startServer(callback) {
     const result = await dialog.showOpenDialog(mainWindow, {
       title,
       filters: filters || [
-        { name: "Text Files", extensions: ["md", "markdown", "adoc", "asciidoc", "asc", "rst", "rest", "org", "textile", "dj", "wiki", "mediawiki"] },
+        { name: "Text Files", extensions: ["md", "markdown", "adoc", "asciidoc", "asc", "rst", "rest", "org", "textile", "dj", "wiki", "mediawiki", "bbcode", "bb"] },
         { name: "All Files", extensions: ["*"] }
       ],
       properties: ["openFile"]
@@ -480,6 +480,16 @@ function startServer(callback) {
     opendocument: 'opendocument',
   };
 
+  // ⚠ CLAUDE: reading and writing are NOT symmetric, and collapsing these back
+  // into one map silently breaks BBCode. Pandoc 3.9 ships six BBCode WRITERS
+  // (bbcode, _phpbb, _xenforo, _steam, _fluxbb, _hubzilla) but NO BBCode reader.
+  // So .bbcode is a direct export target, while a .bbcode SOURCE is handed to
+  // pandoc as the HTML Markzen already rendered (App.jsx sends fromFormat
+  // 'html' for it). hubzilla is the chosen dialect: the only one that keeps
+  // real [h1] headings, tables, [hr] AND images - bbcode_steam drops images.
+  const PANDOC_READ_MAP = { ...PANDOC_FORMAT_MAP, html: 'html' };
+  const PANDOC_WRITE_MAP = { ...PANDOC_FORMAT_MAP, bbcode: 'bbcode_hubzilla' };
+
   function getPandocPath() {
     let platform;
     if (process.platform === 'win32')       platform = 'win';
@@ -496,11 +506,11 @@ function startServer(callback) {
 
   api.post('/convert-format', async (req, res) => {
     const { text, fromFormat, toFormat, fileName, sourceFilePath, title } = req.body;
-    const from = PANDOC_FORMAT_MAP[fromFormat];
-    const to   = PANDOC_FORMAT_MAP[toFormat];
+    const from = PANDOC_READ_MAP[fromFormat];
+    const to   = PANDOC_WRITE_MAP[toFormat];
     if (!from || !to) { res.status(400).json({ error: 'Unsupported format' }); return; }
 
-    const extMap = { markdown: 'md', asciidoc: 'adoc', rst: 'rst', org: 'org', textile: 'textile', djot: 'dj', epub3: 'epub', fb2: 'fb2', latex: 'tex', pptx: 'pptx', revealjs: 'html', mediawiki: 'wiki', typst: 'typ', icml: 'icml', ipynb: 'ipynb', opml: 'opml', docx: 'docx', rtf: 'rtf', odt: 'odt', docbook: 'xml', jats: 'xml', tei: 'xml', opendocument: 'xml' };
+    const extMap = { bbcode: 'bbcode', markdown: 'md', asciidoc: 'adoc', rst: 'rst', org: 'org', textile: 'textile', djot: 'dj', epub3: 'epub', fb2: 'fb2', latex: 'tex', pptx: 'pptx', revealjs: 'html', mediawiki: 'wiki', typst: 'typ', icml: 'icml', ipynb: 'ipynb', opml: 'opml', docx: 'docx', rtf: 'rtf', odt: 'odt', docbook: 'xml', jats: 'xml', tei: 'xml', opendocument: 'xml' };
     const ext  = extMap[toFormat] || toFormat;
     const base = (fileName || 'document').replace(/\.[^.]+$/, '');
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.6 — 2026-08-07
+
+- Open, edit, preview and export **BBCode** (`.bbcode`) — the eighth markup format, with its own file icon and file association. Pandoc can write BBCode but cannot read it, so exporting uses its `bbcode_hubzilla` dialect (the only one that keeps real headings, tables, rules and images) while reading uses Markzen's own parser, deliberately tolerant of the many forum dialects
+- Insert a table from the editor toolbar: pick the size on a hover grid and Markzen writes it in whatever markup is open — Markdown, AsciiDoc, reStructuredText, Org, Textile, Djot, MediaWiki or BBCode
+- Fix the submenus of the Convert menu (Ebooks, Word Processor, Presentation, …) being impossible to open: the flyout was drawn inside the menu's own scroll box, which clipped it out of sight as soon as the menu was long enough to scroll
+- Fix menus being capped at a fixed 320 px and scrolling even with plenty of window left — a dropdown now uses the height actually available on screen
+- Fix several submenus staying on screen at once when moving down a menu, each lingering until its own timer expired
+- Add a shared hover-grid table-size picker to the UI catalog, and run the toolbar's table insert and the tab-separated-paste table through one shared insertion path
+
 ## 1.0.5 — 2026-08-03
 
 - Fix CLI exports leaving an orphan temp folder behind on every run: each run now sweeps the leftover folders of runs that have exited, instead of trying to delete its own cache on the way out (which can never work on Windows while Chromium still holds it open)

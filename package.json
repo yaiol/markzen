@@ -1,7 +1,7 @@
 {
   "name": "markzen",
   "productName": "Markzen",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "description": "Markdown editor/viewer",
   "private": true,
@@ -133,6 +133,13 @@
         "description": "AsciiDoc document",
         "role": "Editor",
         "icon": "public/ext-adoc"
+      },
+      {
+        "ext": "bbcode",
+        "name": "BBCode File",
+        "description": "BBCode document",
+        "role": "Editor",
+        "icon": "public/ext-bbcode"
       },
       {
         "ext": "dj",

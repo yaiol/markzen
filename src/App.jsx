@@ -12,10 +12,12 @@ import { EditorView, keymap } from '@codemirror/view';
 import { EditorState, EditorSelection, Compartment, Prec } from '@codemirror/state';
 import { markdown } from '@codemirror/lang-markdown';
 import { oneDark } from '@codemirror/theme-one-dark';
-import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, Sun, Moon, X, Info, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check } from 'lucide-react';
+import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, Sun, Moon, X, Info, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table } from 'lucide-react';
 import { GithubIcon } from './lib/ui-icons';
 import { Splitter } from './lib/ui-ctl-splitter';
 import { CollapseToggle } from './lib/ui-ctl-collapsetoggle';
+import { Popover } from './lib/ui-ctl-popover';
+import { TableGrid } from './lib/ui-ctl-tablegrid';
 import DOMPurify from 'dompurify';
 import katex from 'katex';
 import { Transformer, builtInPlugins } from 'markmap-lib';
@@ -370,7 +372,72 @@ function parseTsvTable(text) {
   return { header, rows };
 }
 
+// An empty table of the given size, in the { header, rows } shape every adapter's
+// formatTable() takes - so the toolbar's size picker and a TSV paste produce a
+// table through exactly the same path, in whatever format is open.
+function emptyTable(rows, cols) {
+  const blank = () => Array.from({ length: cols }, () => '');
+  return { header: blank(), rows: Array.from({ length: Math.max(0, rows - 1) }, blank) };
+}
+
+// Write a { header, rows } table into the editor at the caret, in the active
+// format's syntax. Shared by the TSV paste handler and the toolbar picker.
+function insertTable(view, fmt, table, userEvent = 'input') {
+  if (!fmt?.formatTable) return false;
+  const inserted = fmt.formatTable(table);
+  const { from, to } = view.state.selection.main;
+  view.dispatch({
+    changes: { from, to, insert: inserted },
+    selection: EditorSelection.cursor(from + inserted.length),
+    scrollIntoView: true,
+    userEvent,
+  });
+  return true;
+}
+
+// ⚠ CLAUDE: an asymmetric pair ([b]…[/b], BBCode) cannot use the algorithm
+// below - it relies on ONE string being both opener and closer, so scanning for
+// a "partner" is meaningless when the two differ. Keep the two paths separate.
+function toggleInlinePair(view, open, close) {
+  const changes = view.state.changeByRange(range => {
+    const { state } = view;
+    const { from, to } = range;
+    const selected = state.sliceDoc(from, to);
+
+    // Pair inside the selection → strip every occurrence.
+    if (selected.includes(open) && selected.includes(close)) {
+      const stripped = selected.split(open).join('').split(close).join('');
+      return {
+        changes: { from, to, insert: stripped },
+        range: EditorSelection.range(from, from + stripped.length),
+      };
+    }
+
+    // Pair hugging the selection → swallow the surrounding tags.
+    const before = state.sliceDoc(Math.max(0, from - open.length), from);
+    const after  = state.sliceDoc(to, Math.min(state.doc.length, to + close.length));
+    if (before === open && after === close) {
+      return {
+        changes: { from: from - open.length, to: to + close.length, insert: selected },
+        range: EditorSelection.range(from - open.length, from - open.length + selected.length),
+      };
+    }
+
+    const wrapped = open + selected + close;
+    return {
+      changes: { from, to, insert: wrapped },
+      range: selected
+        ? EditorSelection.range(from, from + wrapped.length)
+        : EditorSelection.cursor(from + open.length),
+    };
+  });
+
+  view.dispatch(changes, { scrollIntoView: true, userEvent: 'input' });
+  return true;
+}
+
 function toggleInlineFormat(view, marker) {
+  if (marker && typeof marker === 'object') return toggleInlinePair(view, marker.open, marker.close);
   const { state } = view;
   const mLen = marker.length;
   const docLen = state.doc.length;
@@ -446,7 +513,51 @@ function toggleInlineFormat(view, marker) {
 // Toggle a line prefix (e.g. '- ', '> ', '1. ') on all lines in the selection.
 // detect: optional regex to recognise an existing prefix (e.g. /^\d+\. / for numbered lists)
 // If ALL lines already have the prefix → remove it. Otherwise → add it to all.
+// A block form ({ open, close, item }) wraps the selection instead of only
+// prefixing it - BBCode lists are [list] … [/list] around [*] items, and its
+// blockquote is [quote] … [/quote] with no per-line marker at all.
+function toggleLineBlock(view, { open, close, item = '' }) {
+  const { state } = view;
+  const sel = state.selection.main;
+  const startLine = state.doc.lineAt(sel.from);
+  const endLine   = state.doc.lineAt(sel.to);
+  const from = startLine.from;
+  const to   = endLine.to;
+  const body = state.sliceDoc(from, to);
+
+  // Already wrapped → unwrap and drop the item markers.
+  const wrapRe = new RegExp(`^${escapeRe(open)}([\\s\\S]*)${escapeRe(close)}$`);
+  const m = wrapRe.exec(body);
+  if (m) {
+    const inner = item
+      ? m[1].split('\n').map(l => l.startsWith(item) ? l.slice(item.length) : l).join('\n')
+      : m[1];
+    view.dispatch({
+      changes: { from, to, insert: inner },
+      selection: EditorSelection.range(from, from + inner.length),
+      scrollIntoView: true, userEvent: 'input',
+    });
+    return true;
+  }
+
+  const inner = item
+    ? body.split('\n').map(l => (l.trim() ? item + l : l)).join('\n')
+    : body;
+  const wrapped = open + inner + close;
+  view.dispatch({
+    changes: { from, to, insert: wrapped },
+    selection: EditorSelection.range(from, from + wrapped.length),
+    scrollIntoView: true, userEvent: 'input',
+  });
+  return true;
+}
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function toggleLinePrefix(view, prefix, detect = null) {
+  if (prefix && typeof prefix === 'object') return toggleLineBlock(view, prefix);
   const { state } = view;
   const hasPrefix = line => detect ? detect.test(line.text) : line.text.startsWith(prefix);
   const stripPrefix = text => detect ? text.replace(detect, '') : text.slice(prefix.length);
@@ -479,14 +590,29 @@ function cycleHeading(view, levels) {
   const { state } = view;
   const line = state.doc.lineAt(state.selection.main.from);
 
+  // Wrapped headings ({ open, close }, BBCode's [h1]…[/h1]) cycle the same way;
+  // only "detect" and "strip" differ from the prefix form.
+  const wrapped = levels[0] && typeof levels[0] === 'object';
+  const has     = (lvl, text) => wrapped
+    ? text.startsWith(levels[lvl].open) && text.endsWith(levels[lvl].close)
+    : text.startsWith(levels[lvl]);
+
   let currentLevel = 0;
   for (let i = levels.length - 1; i >= 0; i--) {
-    if (line.text.startsWith(levels[i])) { currentLevel = i + 1; break; }
+    if (has(i, line.text)) { currentLevel = i + 1; break; }
   }
 
   const nextLevel = (currentLevel + 1) % (levels.length + 1);
-  const stripped  = currentLevel > 0 ? line.text.slice(levels[currentLevel - 1].length) : line.text;
-  const newText   = nextLevel > 0 ? levels[nextLevel - 1] + stripped : stripped;
+  const cur       = levels[currentLevel - 1];
+  const stripped  = currentLevel > 0
+    ? (wrapped
+        ? line.text.slice(cur.open.length, line.text.length - cur.close.length)
+        : line.text.slice(cur.length))
+    : line.text;
+  const next      = levels[nextLevel - 1];
+  const newText   = nextLevel > 0
+    ? (wrapped ? next.open + stripped + next.close : next + stripped)
+    : stripped;
 
   view.dispatch({
     changes: { from: line.from, to: line.to, insert: newText },
@@ -664,6 +790,8 @@ export default function App() {
   const htmlForTabRef         = useRef(null);      // which tab the `html` state currently belongs to
   const rewroteHtmlRef        = useRef(false);     // whether the last pane layout effect rewrote the DOM
   const openLinkPopupRef      = useRef(null);       // set below; called by Ctrl+K keymap handler
+  const tableBtnRef           = useRef(null);       // anchor for the insert-table size grid
+  const [showTableGrid, setShowTableGrid] = useState(false);
   const findInputRef          = useRef(null);
   const findMarksRef          = useRef([]);
   const [findOpen, setFindOpen]   = useState(false);
@@ -1070,9 +1198,13 @@ export default function App() {
       counts[slug] = (counts[slug] || 0) + 1;
       if (counts[slug] > 1) slug = `${slug}-${counts[slug] - 1}`;
       el.id = slug;
-      // Find line offset in editor - use the format's heading marker char (# for md, = for adoc)
-      const headingChar = (activeFormat.shortcuts?.headings?.[0] || '# ')[0];
+      // Find line offset in editor - use the format's heading marker char (# for md, = for adoc).
+      // A format whose headings WRAP rather than prefix ([h1]…[/h1], BBCode) supplies
+      // its own headingMatch(); without one the marker-repeat below never matches.
+      const firstHeading = activeFormat.shortcuts?.headings?.[0];
+      const headingChar = (typeof firstHeading === 'string' ? firstHeading : '# ')[0];
       const prefix = headingChar.repeat(level);
+      const matchHeading = activeFormat.headingMatch;
       const key = `${level}:${text}`;
       headingCounters[key] = (headingCounters[key] || 0) + 1;
       const targetOcc = headingCounters[key];
@@ -1080,8 +1212,14 @@ export default function App() {
       let lineNumber = 0; // 0-indexed line number; resolved to CM pos at click time
       for (let i = 0; i < lines.length; i++) {
         const t2 = lines[i].trimStart();
-        if ((t2.startsWith(prefix + ' ') || t2.startsWith(prefix + '\t')) && !t2.startsWith(prefix + headingChar)) {
-          const heading = stripInlineMd(t2.slice(level + 1).trim());
+        let raw = null;
+        if (matchHeading) {
+          raw = matchHeading(t2, level);
+        } else if ((t2.startsWith(prefix + ' ') || t2.startsWith(prefix + '\t')) && !t2.startsWith(prefix + headingChar)) {
+          raw = t2.slice(level + 1);
+        }
+        if (raw != null) {
+          const heading = stripInlineMd(raw.trim());
           if (heading === text.replace(/\s+/g, ' ')) { occ++; if (occ === targetOcc) { lineNumber = i; break; } }
         }
       }
@@ -1583,15 +1721,8 @@ export default function App() {
               if (!table) return false;
               const fmt = activeFormatRef.current;
               if (!fmt?.formatTable) return false;
-              const inserted = fmt.formatTable(table);
               event.preventDefault();
-              const { from, to } = view.state.selection.main;
-              view.dispatch({
-                changes: { from, to, insert: inserted },
-                selection: EditorSelection.cursor(from + inserted.length),
-                scrollIntoView: true,
-                userEvent: 'input.paste',
-              });
+              insertTable(view, fmt, table, 'input.paste');
               return true;
             },
           }),
@@ -1780,10 +1911,18 @@ export default function App() {
   }
 
   // Convert the active doc to another lightweight-markup format (writes via save dialog).
+  // ⚠ CLAUDE: Pandoc can WRITE BBCode but cannot READ it, so a .bbcode source
+  // cannot be sent as-is - it travels as the HTML we already rendered, tagged
+  // fromFormat 'html'. Every other format is handed over verbatim.
   async function convertTo(f) {
+    const fromBbcode = activeFormat.id === 'bbcode';
     const r = await fetch(`${API}/convert-format`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: activeTab.text, fromFormat: activeFormat.id, toFormat: f.id, fileName: activeTab.fileName, sourceFilePath: activeTab.filePath, title: t('ttlHdrConvertSave') }),
+      body: JSON.stringify({
+        text: fromBbcode ? html : activeTab.text,
+        fromFormat: fromBbcode ? 'html' : activeFormat.id,
+        toFormat: f.id, fileName: activeTab.fileName, sourceFilePath: activeTab.filePath, title: t('ttlHdrConvertSave'),
+      }),
     });
     if (!r.ok) { const e = await r.json(); alert(e.error || 'Conversion failed'); }
   }
@@ -2309,6 +2448,21 @@ export default function App() {
                     {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
                     {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
                     {fmtAlign && btn(<AlignRight />,  t('tipEditorAlignRight'),  () => run(v => applyAlign(v, fmtAlign.right)),  !fmtAlign.right)}
+                    {/* Insert table — the trigger is a plain toolbar .btn.icon like every
+                        other one here; the size grid is the shared TableGrid inside the
+                        shared Popover, which owns portal + placement + dismiss. */}
+                    <button ref={tableBtnRef} className="btn icon" title={t('tipEditorTable')}
+                      disabled={dis || !activeFormat.formatTable}
+                      onClick={() => setShowTableGrid(v => !v)}>
+                      <Table />
+                    </button>
+                    <Popover anchorRef={tableBtnRef} open={showTableGrid}
+                      onClose={() => setShowTableGrid(false)} maxWidth={260} maxHeight={220}>
+                      <TableGrid onPick={(rows, cols) => {
+                        setShowTableGrid(false);
+                        run(v => insertTable(v, activeFormat, emptyTable(rows, cols)));
+                      }} />
+                    </Popover>
                   </div>
                 );
               })()}

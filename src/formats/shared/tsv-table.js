@@ -112,3 +112,23 @@ export function formatRstTable({ header, rows }) {
   }
   return out.join('\n');
 }
+
+// ─── BBCode ──────────────────────────────────────────────────────────────────
+// [table][tr][th]…[/th][/tr][tr][td]…[/td][/tr][/table] — the shape Pandoc's
+// BBCode writers emit, so a pasted table round-trips through export/import.
+// BBCode has no escape character; the bracket is what breaks a cell, so the
+// two that matter are encoded as HTML entities (which every renderer passes
+// through, and which our own reader escapes back to visible text).
+function escapeBBCodeCell(s) {
+  return String(s ?? '').replace(/\r?\n/g, ' ').replace(/\[/g, '&#91;').replace(/]/g, '&#93;');
+}
+
+export function formatBBCodeTable({ header, rows }) {
+  const out = ['[table]'];
+  out.push(`[tr]${header.map(c => `[th]${escapeBBCodeCell(c)}[/th]`).join('')}[/tr]`);
+  for (const row of rows) {
+    out.push(`[tr]${row.map(c => `[td]${escapeBBCodeCell(c)}[/td]`).join('')}[/tr]`);
+  }
+  out.push('[/table]');
+  return out.join('\n');
+}

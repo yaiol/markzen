@@ -5,6 +5,7 @@ import orgAdapter        from './org/index';
 import textileAdapter    from './textile/index';
 import djotAdapter       from './djot/index';
 import mediawikiAdapter  from './mediawiki/index';
+import bbcodeAdapter     from './bbcode/index';
 
 // ─── Format registry ──────────────────────────────────────────────────────────
 // All registered adapters. Add new formats here.
@@ -16,6 +17,7 @@ export const formats = [
   textileAdapter,
   djotAdapter,
   mediawikiAdapter,
+  bbcodeAdapter,
 ];
 
 // Default format (used for New Document and as fallback)
@@ -50,6 +52,7 @@ export function getFormatByExtension(ext) {
 // │ RST      │ .. class:: text-left     │ .. class:: text-center │ .. class:: text-right    │
 // │ Org      │ - (not standard)         │ #+BEGIN_CENTER         │ - (not standard)         │
 // │ Textile  │ <. paragraph             │ =. paragraph           │ >. paragraph             │
+// │ BBCode   │ [left]…[/left]           │ [center]…[/center]     │ [right]…[/right]         │
 // └──────────┴──────────────────────────┴────────────────────────┴──────────────────────────┘
 export const FORMAT_ALIGN = {
   asciidoc: {
@@ -74,5 +77,10 @@ export const FORMAT_ALIGN = {
     left:   { open: '<. ', close: '', linePrefix: true },
     center: { open: '=. ', close: '', linePrefix: true },
     right:  { open: '>. ', close: '', linePrefix: true },
+  },
+  bbcode: {
+    left:   { open: '[left]',   close: '[/left]'   },
+    center: { open: '[center]', close: '[/center]' },
+    right:  { open: '[right]',  close: '[/right]'  },
   },
 };
