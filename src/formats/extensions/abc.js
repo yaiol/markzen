@@ -1,12 +1,22 @@
-import ABCJS from 'abcjs';
 import { createExtension } from '../shared/extensionFactory';
 import { readMznStyle } from '../shared/utils';
+
+// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
+// binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
+let ABCJS;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ABCJS = (await import('abcjs')).default;
+})());
 
 export default createExtension({
   id: 'abc',
   containerClass: 'abc-notation',
 
-  render(div) {
+  async render(div) {
+
+    await __loadLibs();
     // Read mzn style before render - ABCJS overwrites div.style during draw,
     // so any styles set before render are lost. Apply alignment AFTER.
     const hint = div.previousElementSibling;

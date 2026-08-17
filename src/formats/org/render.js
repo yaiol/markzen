@@ -1,13 +1,24 @@
-import { unified } from 'unified';
-import uniorgParse from 'uniorg-parse';
-import uniorgRehype from 'uniorg-rehype';
-import rehypeStringify from 'rehype-stringify';
 
-// ─── Unified pipeline - singleton ────────────────────────────────────────────
-const processor = unified()
-  .use(uniorgParse)
-  .use(uniorgRehype)
-  .use(rehypeStringify);
+// ⚠ CLAUDE: this parser is loaded the first time a document of THIS format is opened,
+// never at startup — a static import puts the whole parser in the entry chunk, which every
+// user pays for even when they only ever open Markdown. The exported toHtml is async for
+// that reason; App.jsx's single call site already handles a Promise. Do not restore a
+// top-level import or drop the async.
+let unified, uniorgParse, uniorgRehype, rehypeStringify;
+let processor;                  // unified pipeline singleton, built inside the loader
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ({ unified } = await import('unified'));
+  uniorgParse = (await import('uniorg-parse')).default;
+  uniorgRehype = (await import('uniorg-rehype')).default;
+  rehypeStringify = (await import('rehype-stringify')).default;
+  // ─── Unified pipeline - singleton ──────────────────────────────────────────
+  // Built here, not at module scope: `unified` does not exist before the import above.
+  processor = unified()
+    .use(uniorgParse)
+    .use(uniorgRehype)
+    .use(rehypeStringify);
+})());
 
 // ─── Org-Mode → HTML ─────────────────────────────────────────────────────────
 // uniorg-rehype outputs math as <span class="math math-inline"> and
@@ -19,7 +30,8 @@ const processor = unified()
 //
 // ⚠ CLAUDE: katex protectMath is not called - uniorg emits math spans directly;
 // orgToHtml() converts them to \(...\) / \[...\] which the katex inject() handles.
-export function orgToHtml(text) {
+export async function orgToHtml(text) {
+  await __loadLibs();
   let html = processor.processSync(text).toString();
 
   // Normalize src-block pre wrapper - extensions expect plain <pre>

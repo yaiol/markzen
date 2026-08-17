@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.7 — 2026-08-17
+
+- **Markzen now starts in a fraction of the time.** Nearly forty rendering libraries were imported at launch — 35.5 MB in the entry chunk, about 3055 ms of a 3.5 s cold start — paid by everyone who opened a plain `.md`. Each is now loaded the first time a document actually uses it, which takes the entry chunk to 1.48 MB with no preloading; the three libraries only exporting needs (markmap, VexFlow, Plotly) load on the first export, and the interface translations are split per language so one is parsed instead of fifty
+- **Box-drawing characters in code blocks are no longer broken.** The cause is Google's webfont subsetter, not the fonts: JetBrains Mono's Google build ships none of the eleven box glyphs while the official build has all of them. JetBrains Mono and Source Code Pro are therefore bundled with Markzen in three weights each, which also makes them work offline on a fresh profile. Cascadia Code and Fira Code are replaced by Cascadia Mono and Fira Mono — the ligature-free variants, because a ligature draws `!=` as a single `≠` and a document viewer must show the characters that are in the file. DM Mono is dropped; its upstream font has the block in no build
+- **A code font now travels with the exported file.** Bundled fonts are embedded as data URIs in HTML and PDF exports, so a document keeps its alignment on a machine that never had the font. The editor pane also takes the same font stack as the preview instead of its own hardcoded fallback chain, so the two panes and the export finally agree
+- **One Appearance button replaces four toolbar controls.** The style template and the heading, body and code font pickers now sit in a single labelled panel behind a palette button
+- **Any packaged release can be timed without a special build.** Five startup marks from OS process creation to the renderer's first paint, writing nothing unless `YAIOL_STARTUP_LOG` is set
+- Adopt the shared catalog's `.pop-form` / `.pop-field` popover-panel classes, and take the shared `i18n-split` build step in as `main/scripts/i18n-split.mjs` so the build reaches nothing outside the repo
+
 ## 1.0.6 — 2026-08-07
 
 - Open, edit, preview and export **BBCode** (`.bbcode`) — the eighth markup format, with its own file icon and file association. Pandoc can write BBCode but cannot read it, so exporting uses its `bbcode_hubzilla` dialect (the only one that keeps real headings, tables, rules and images) while reading uses Markzen's own parser, deliberately tolerant of the many forum dialects

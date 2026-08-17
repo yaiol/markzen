@@ -1,15 +1,22 @@
-import { Transformer, builtInPlugins } from 'markmap-lib';
-import { Markmap } from 'markmap-view';
-import katex from 'katex';
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle } from '../shared/utils';
 
-// Markmap transformer - katex plugin disabled so $...$ survives as &#x24;...&#x24;
-// in content strings. Math is pre-rendered into root.content before Markmap.create().
-// ⚠ CLAUDE: Do NOT re-enable the built-in katex plugin - it conflicts with our math pipeline.
-export const markmapTransformer = new Transformer(
-  builtInPlugins.filter(p => p.name !== 'katex')
-);
+// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
+// binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
+let Transformer, builtInPlugins, Markmap, katex;
+let markmapTransformer;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ({ Transformer, builtInPlugins } = await import('markmap-lib'));
+  ({ Markmap } = await import('markmap-view'));
+  katex = (await import('katex')).default;
+  // Markmap transformer - katex plugin disabled so $...$ survives as &#x24;...&#x24;
+  // in content strings. Math is pre-rendered into root.content before Markmap.create().
+  // ⚠ CLAUDE: Do NOT re-enable the built-in katex plugin - it conflicts with our math pipeline.
+  // Built here, not at module scope: `Transformer` does not exist before the import above.
+  markmapTransformer = new Transformer(builtInPlugins.filter(p => p.name !== 'katex'));
+})());
 
 export function applyMathToMarkmapRoot(node) {
   if (typeof node.content === 'string' && node.content.includes('&#x24;')) {
@@ -22,14 +29,17 @@ export function applyMathToMarkmapRoot(node) {
   node.children?.forEach(applyMathToMarkmapRoot);
 }
 
-// Export Markmap class for use in getExportHtml
-export { Markmap };
+// ⚠ CLAUDE: `Markmap` and `markmapTransformer` are no longer exported. They were unused —
+// App.jsx keeps its own copies for getExportHtml (also lazy-loaded there). Re-exporting a
+// binding that is undefined until __loadLibs() runs is a trap; don't reintroduce it.
 
 export default createExtension({
   id: 'markmap',
   containerClass: 'markmap-container',
 
-  render(div, src) {
+  async render(div, src) {
+
+    await __loadLibs();
     // Wait for fonts, then a RAF for layout, then render; fit() needs another frame
     return new Promise(resolve => {
       const mznStyle = applyMznStyle(div);

@@ -1,12 +1,23 @@
+
+// ⚠ CLAUDE: this parser is loaded the first time a document of THIS format is opened,
+// never at startup — a static import puts the whole parser in the entry chunk, which every
+// user pays for even when they only ever open Markdown. The exported toHtml is async for
+// that reason; App.jsx's single call site already handles a Promise. Do not restore a
+// top-level import or drop the async.
+let convert;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ({ convert } = await import('asciidoctor'));
+})());
 // asciidoctor 4 exports convert/load as top-level named functions (the v3 callable
 // default factory, `Asciidoctor()`, was removed).
-import { convert } from 'asciidoctor';
 
 // ─── AsciiDoc → HTML ──────────────────────────────────────────────────────────
 // safe: 'safe' allows most content but restricts dangerous directives.
 // header_footer: false - we inject into an existing HTML page, not a standalone doc.
 // showtitle: true - render the = Title line as an <h1>.
 export async function asciidocToHtml(text) {
+  await __loadLibs();
   // ⚠ CLAUDE: asciidoctor v4's ESM convert() is ASYNC (returns a Promise) — it MUST be awaited, or the
   // .replace() normalisation below gets a Promise and throws (v3's synchronous factory was removed).
   let html = await convert(text || '', {

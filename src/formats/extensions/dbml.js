@@ -1,6 +1,14 @@
-import { Parser as DbmlParser } from '@dbml/core';
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle, fixSvgDims } from '../shared/utils';
+
+// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
+// binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
+let DbmlParser;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ({ Parser: DbmlParser } = await import('@dbml/core'));
+})());
 
 function renderDbml(src) {
   const db = DbmlParser.parse(src, 'dbml');
@@ -90,7 +98,9 @@ export default createExtension({
   id: 'dbml',
   containerClass: 'dbml-diagram',
 
-  render(div, src) {
+  async render(div, src) {
+
+    await __loadLibs();
     const mznStyle = applyMznStyle(div);
     div.innerHTML = renderDbml(src);
     if (mznStyle.align) fixSvgDims(div);

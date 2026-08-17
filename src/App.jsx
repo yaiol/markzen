@@ -12,7 +12,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { EditorState, EditorSelection, Compartment, Prec } from '@codemirror/state';
 import { markdown } from '@codemirror/lang-markdown';
 import { oneDark } from '@codemirror/theme-one-dark';
-import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, Sun, Moon, X, Info, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table } from 'lucide-react';
+import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, Sun, Moon, X, Info, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table, Palette } from 'lucide-react';
 import { GithubIcon } from './lib/ui-icons';
 import { Splitter } from './lib/ui-ctl-splitter';
 import { CollapseToggle } from './lib/ui-ctl-collapsetoggle';
@@ -20,11 +20,25 @@ import { Popover } from './lib/ui-ctl-popover';
 import { TableGrid } from './lib/ui-ctl-tablegrid';
 import DOMPurify from 'dompurify';
 import katex from 'katex';
-import { Transformer, builtInPlugins } from 'markmap-lib';
-import { Markmap } from 'markmap-view';
-import { Factory, Renderer, VoiceMode } from 'vexflow';
-import Plotly from 'plotly.js-dist-min';
-import { useT, LANGUAGES } from './i18n';
+// ⚠ CLAUDE: markmap, vexflow and plotly are loaded ON FIRST EXPORT, never at startup. They are
+// used only by getExportHtml()'s rasterisation passes, and static imports here put all three in
+// the entry chunk — every user paid ~3s of cold start for libraries most never touch. Keep the
+// bindings declared here and resolved in loadExportLibs(); do NOT restore top-level imports.
+let Transformer, builtInPlugins, Markmap, Factory, Renderer, VoiceMode, Plotly;
+let markmapTransformer;
+let __exportLibsP;
+const loadExportLibs = () => (__exportLibsP ??= (async () => {
+  ({ Transformer, builtInPlugins } = await import('markmap-lib'));
+  ({ Markmap } = await import('markmap-view'));
+  ({ Factory, Renderer, VoiceMode } = await import('vexflow'));
+  Plotly = (await import('plotly.js-dist-min')).default;
+  // Markmap transformer - built-in katex plugin disabled so $...$ survives as &#x24;...&#x24;
+  // in the content strings. We render math directly into root.content before Markmap.create(),
+  // so every render cycle (initial + collapse/expand) uses the pre-rendered KaTeX HTML.
+  // Built here, not at module scope: `Transformer` does not exist before the import above.
+  markmapTransformer = new Transformer(builtInPlugins.filter(p => p.name !== 'katex'));
+})());
+import { useT, LANGUAGES } from './i18n-gen';
 import { checkForUpdate } from './lib/update-check';
 import { UpdateBanner } from './lib/ui-update-banner';
 import { AppHeader } from './lib/ui-header';
@@ -104,13 +118,6 @@ function getCliParams() {
   return { outPath: atob(enc), format: fmt };
 }
 const CLI = getCliParams();
-
-// Markmap transformer - built-in katex plugin disabled so $...$ survives as &#x24;...&#x24;
-// in the content strings. We render math directly into root.content before Markmap.create(),
-// so every render cycle (initial + collapse/expand) uses the pre-rendered KaTeX HTML.
-const markmapTransformer = new Transformer(
-  builtInPlugins.filter(p => p.name !== 'katex')
-);
 
 function applyMathToMarkmapRoot(node) {
   if (typeof node.content === 'string' && node.content.includes('&#x24;')) {
@@ -198,13 +205,32 @@ const STYLE_TEMPLATES = [
 // Colors come from the shared palette (src/assets/ui-colors.css) via var(--token).
 
 
+// Emit @font-face rules for a locally bundled family (seeds/*.woff2, served by GET /fonts/:name).
+// ⚠ CLAUDE: the per-weight files carry their own internal names ("JetBrains Mono SemiBold"), so the
+// family name MUST be declared here — that is what unifies them into one weighted family.
+function localFontFaces(font) {
+  if (!font?.files) return '';
+  return font.files.map(f =>
+    `@font-face{font-family:'${font.family}';src:url('${API}/fonts/${f.file}') format('woff2');font-weight:${f.weight};font-style:normal;font-display:block;}`
+  ).join('\n    ');
+}
+
 function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
-  // Always-loaded workspace fonts (Inter UI + JetBrains Mono) + any picked content fonts on top.
-  const _baseImps = ['Inter:wght@400;500;600;700', 'JetBrains+Mono:wght@400;500;600'];
+  // ⚠ CLAUDE: JetBrains Mono is bundled LOCALLY, not imported from Google. Google's build of it
+  // strips the box-drawing block (U+2500-257F) — verified 2026-08-17, 0/11 glyphs — so every ASCII
+  // box diagram misaligned: the missing characters fell back to another font with a different
+  // advance width. The official JetBrains build has 11/11 box + 4/4 triangles. Same for Source
+  // Code Pro. Do NOT move either back into the Google @import.
+  const JB = FONT_CATALOG.code.find(f => f.key === 'jetbrains-mono');
+  const _baseImps = ['Inter:wght@400;500;600;700'];
   const _imps = [...new Set([..._baseImps, ...[fontHeading, fontBody, fontCode].filter(f => f.import).map(f => f.import)])];
   const _gf = `@import url('https://fonts.googleapis.com/css2?family=${_imps.join('&family=')}&display=swap');`;
+  // JetBrains Mono always loads (workspace mono standard, used by .chordpro-sheet et al.);
+  // the picked code font loads too when it is a bundled one.
+  const _local = [localFontFaces(JB), fontCode?.key === JB?.key ? '' : localFontFaces(fontCode)].filter(Boolean).join('\n    ');
   return `
     ${_gf}
+    ${_local}
     /* Palette (--bg, --accent, --text, …) comes from lib/ui-colors.css, switched by data-theme on <html>. */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body, #root { height: 100%; overflow: hidden; }
@@ -229,6 +255,11 @@ function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
     .md-body a:hover { text-decoration: underline; }
     .md-body code { background: var(--bg-row); color: var(--text); padding: 2px 6px; border-radius: 4px; font-family: ${fontCode.stack}; font-size: 0.9em; }
     .md-body pre { background: var(--bg-row); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 1em 0; font-family: ${fontCode.stack}; position: relative; }
+    /* ⚠ CLAUDE: the EDITOR's code font lives here, not in the CodeMirror theme, so it resolves
+       from the SAME stack as .md-body pre above. When the two differed, a glyph missing from the
+       webfont (box-drawing chars in ASCII diagrams) fell back to a different font per pane and
+       the columns stopped lining up. One source, or they drift again. */
+    .cm-editor, .cm-editor .cm-content, .cm-editor .cm-gutters { font-family: ${fontCode.stack}; }
     .md-body pre code { background: none; padding: 0; font-size: 0.88em; }
     .md-body .table-wrap { position: relative; }
     .md-body pre .copy-code-btn,
@@ -723,6 +754,12 @@ export default function App() {
   const [lang, setLang]         = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-lang`)  || 'en');
   const [fontKeyHeading, setFontKeyHeading] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-heading`) || 'oswald');
   const [fontKeyBody,    setFontKeyBody]    = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-body`)    || 'inter');
+  // ⚠ CLAUDE: the code-font catalog lists ONLY fonts whose Google webfont ships the box-drawing
+  // block (U+2500-257F). A font without it substitutes those characters from another font, whose
+  // advance width differs, and every ASCII box diagram misaligns. Verified 2026-08-17: of 36
+  // Google monospace families only 7 qualify. Never add a code font without checking.
+  // A stored key that no longer exists falls through to FONT_CATALOG.code[0] — intended, since
+  // the fonts removed here were the broken ones.
   const [fontKeyCode,    setFontKeyCode]    = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-code`)    || 'jetbrains-mono');
   const [styleTemplateKey, setStyleTemplateKey] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-styleTemplate`) || 'standard');
   const [showSettings, setShowSettings] = useState(false);
@@ -774,6 +811,7 @@ export default function App() {
   const centerRef          = useRef(null);
   const newDocBtnRef       = useRef(null);
   const convertBtnRef      = useRef(null);
+  const appearanceBtnRef   = useRef(null);   // anchor for the style + fonts panel
   const cmViewRef          = useRef(null);
   const onCmUpdateRef      = useRef(null);
   const activeFormatRef    = useRef(null);
@@ -792,6 +830,7 @@ export default function App() {
   const openLinkPopupRef      = useRef(null);       // set below; called by Ctrl+K keymap handler
   const tableBtnRef           = useRef(null);       // anchor for the insert-table size grid
   const [showTableGrid, setShowTableGrid] = useState(false);
+  const [showAppearance, setShowAppearance] = useState(false);
   const findInputRef          = useRef(null);
   const findMarksRef          = useRef([]);
   const [findOpen, setFindOpen]   = useState(false);
@@ -840,11 +879,29 @@ export default function App() {
       } catch { return null; }
     }
     const [bravuraUri, academicoUri] = await Promise.all([fontToDataUri('bravura.woff2'), fontToDataUri('academico.woff2')]);
+    // ⚠ CLAUDE: bundled code fonts must be EMBEDDED in the export too. The exported HTML/PDF has
+    // no access to the app's local /fonts endpoint, so without this the reader falls back to a
+    // system font — and any ASCII box diagram misaligns in the exported document even though it
+    // looked right on screen. Google-hosted picks ride the @import in buildCss() as before.
+    const embedLocal = async (font) => {
+      if (!font?.files) return '';
+      const faces = await Promise.all(font.files.map(async (f) => {
+        const uri = await fontToDataUri(f.file);
+        return uri ? `@font-face{font-family:'${font.family}';src:url('${uri}') format('woff2');font-weight:${f.weight};font-style:normal;}` : '';
+      }));
+      return faces.filter(Boolean).join('\n');
+    };
+    const jbCatalog = FONT_CATALOG.code.find(f => f.key === 'jetbrains-mono');
+    const localFontCss = [
+      await embedLocal(jbCatalog),
+      fontCode?.key === jbCatalog?.key ? '' : await embedLocal(fontCode),
+    ].filter(Boolean).join('\n');
     const vexflowFonts = [
       bravuraUri  ? `@font-face{font-family:'Bravura';src:url('${bravuraUri}') format('woff2');}` : '',
       academicoUri ? `@font-face{font-family:'Academico';src:url('${academicoUri}') format('woff2');}` : '',
     ].filter(Boolean).join('\n');
-    return (vexflowFonts ? vexflowFonts + '\n' : '') + buildCss(fontHeading, fontBody, fontCode, templateCss) + '\n' + docStyles + '\n' + linkStyles.join('\n');
+    return (vexflowFonts ? vexflowFonts + '\n' : '') + (localFontCss ? localFontCss + '\n' : '')
+      + buildCss(fontHeading, fontBody, fontCode, templateCss) + '\n' + docStyles + '\n' + linkStyles.join('\n');
   }
 
   // For export: clone the live DOM, then in order:
@@ -856,6 +913,7 @@ export default function App() {
   //  6. VexFlow → SVG left as-is (HTML) or canvas PNG (PDF); Bravura in getExportCss()
   // No DOMPurify - content is our own pipeline output; SVG attributes must survive.
   async function getExportHtml(forPdf = false) {
+    await loadExportLibs();          // markmap / vexflow / plotly — see the top of this file
     const container = previewRef.current;
     if (!container) return html;
     const clone = container.cloneNode(true);
@@ -1704,8 +1762,14 @@ export default function App() {
           EditorView.lineWrapping,
           keymapCompartment.current.of([]),
           themeCompartment.current.of([]),
+          // ⚠ CLAUDE: NO fontFamily here. It was hardcoded to a stack that differed from the
+          // preview's ('JetBrains Mono','Fira Code',monospace vs 'JetBrains Mono',monospace), so
+          // any glyph missing from the webfont — box-drawing characters in ASCII diagrams —
+          // fell back to a DIFFERENT font on each side and the two panes stopped aligning. It
+          // also ignored the user's code-font setting entirely. The family now comes from
+          // buildCss() (`.cm-editor`), the same single source as `.md-body pre`.
           EditorView.theme({
-            '&':            { height: '100%', fontFamily: "'JetBrains Mono','Fira Code',monospace", fontSize: '13px' },
+            '&':            { height: '100%', fontSize: '13px' },
             '.cm-scroller': { lineHeight: '1.6', overflowY: 'auto' },
             '.cm-content':  { padding: '12px' },
             '.cm-focused':  { outline: 'none' },
@@ -2243,25 +2307,42 @@ export default function App() {
             </button>
           </div>
 
-          {/* Style template */}
-          <select className="select" value={styleTemplateKey} onChange={e => setStyleTemplateKey(e.target.value)}
-            title={t('tipHdrStyleTemplate')}>
-            {STYLE_TEMPLATES.map(tpl => <option key={tpl.key} value={tpl.key}>{tpl.label}</option>)}
-          </select>
-
-          {/* Font selects - Heading / Body / Code */}
-          <select className="select" value={fontKeyHeading} onChange={e => setFontKeyHeading(e.target.value)}
-            title={t('tipHdrFontHeading')}>
-            {FONT_CATALOG.heading.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
-          </select>
-          <select className="select" value={fontKeyBody} onChange={e => setFontKeyBody(e.target.value)}
-            title={t('tipHdrFontBody')}>
-            {FONT_CATALOG.body.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
-          </select>
-          <select className="select" value={fontKeyCode} onChange={e => setFontKeyCode(e.target.value)}
-            title={t('tipHdrFontCode')}>
-            {FONT_CATALOG.code.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
-          </select>
+          {/* Appearance — the style template and the three fonts. The trigger is a plain toolbar
+              .btn.icon like every other one here; the panel is the shared Popover (portal +
+              placement + dismiss) holding catalog .pop-field rows. */}
+          <button ref={appearanceBtnRef} className={`btn icon${showAppearance ? ' active' : ''}`}
+            title={t('tipHdrAppearance')} onClick={() => setShowAppearance(v => !v)}>
+            <Palette />
+          </button>
+          <Popover anchorRef={appearanceBtnRef} open={showAppearance}
+            onClose={() => setShowAppearance(false)}>
+            <div className="pop-form">
+              <div className="pop-field">
+                <label className="pop-field-label">{t('lblHdrAppearanceStyle')}</label>
+                <select className="select" value={styleTemplateKey} onChange={e => setStyleTemplateKey(e.target.value)}>
+                  {STYLE_TEMPLATES.map(tpl => <option key={tpl.key} value={tpl.key}>{tpl.label}</option>)}
+                </select>
+              </div>
+              <div className="pop-field">
+                <label className="pop-field-label">{t('lblHdrAppearanceFontHeading')}</label>
+                <select className="select" value={fontKeyHeading} onChange={e => setFontKeyHeading(e.target.value)}>
+                  {FONT_CATALOG.heading.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+                </select>
+              </div>
+              <div className="pop-field">
+                <label className="pop-field-label">{t('lblHdrAppearanceFontBody')}</label>
+                <select className="select" value={fontKeyBody} onChange={e => setFontKeyBody(e.target.value)}>
+                  {FONT_CATALOG.body.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+                </select>
+              </div>
+              <div className="pop-field">
+                <label className="pop-field-label">{t('lblHdrAppearanceFontCode')}</label>
+                <select className="select" value={fontKeyCode} onChange={e => setFontKeyCode(e.target.value)}>
+                  {FONT_CATALOG.code.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+                </select>
+              </div>
+            </div>
+          </Popover>
 
           <span className="bar-spacer" />
           {/* Settings + Help — the standard group, pushed right (only group aligned right). */}

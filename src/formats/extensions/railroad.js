@@ -1,5 +1,9 @@
+// ⚠ CLAUDE: railroad-diagrams stays a STATIC import — renderRailroad() runs inside the
+// SYNCHRONOUS inject(). It cannot be lazy-loaded without making inject async, and the library
+// is small. Do not "fix" this to match the lazy-loading extensions.
 import { Diagram, Sequence, Choice, Optional, OneOrMore, ZeroOrMore, Terminal, NonTerminal, Skip } from 'railroad-diagrams';
 import { decodeHtmlEntities, applyMznStyle } from '../shared/utils';
+
 
 // ─── Railroad DSL parser ──────────────────────────────────────────────────────
 // DSL: 'term' "term"  nonterm  (a|b|c)  [optional]  {zero-or-more}  {one-or-more}+

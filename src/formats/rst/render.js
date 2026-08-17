@@ -1,4 +1,14 @@
-import rst2html from 'rst2html';
+
+// ⚠ CLAUDE: this parser is loaded the first time a document of THIS format is opened,
+// never at startup — a static import puts the whole parser in the entry chunk, which every
+// user pays for even when they only ever open Markdown. The exported toHtml is async for
+// that reason; App.jsx's single call site already handles a Promise. Do not restore a
+// top-level import or drop the async.
+let rst2html;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  rst2html = (await import('rst2html')).default;
+})());
 
 // ─── Pre-process: math - two separate passes at different pipeline positions ───
 // rst2html passes $ characters through unchanged - they never reach katex.
@@ -156,7 +166,8 @@ function escapeHtml(str) {
 }
 
 // ─── RST → HTML ──────────────────────────────────────────────────────────────
-export function rstToHtml(text) {
+export async function rstToHtml(text) {
+  await __loadLibs();
   // Order matters - see comments on extractDisplayMath / extractInlineMath above.
   text = extractDisplayMath(text);                          // $$...$$ → .. code-block:: katex
   const { processed: afterBlocks, blocks } = extractCodeBlocks(text); // extract all code blocks

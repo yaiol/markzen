@@ -1,3 +1,7 @@
+// ⚠ CLAUDE: katex stays a STATIC import while every other library is lazy-loaded. It is used
+// from inject(), which is SYNCHRONOUS by contract (all 30 extension injects share that shape),
+// and this extension has `render: null` — there is no async point to load it at. Making inject
+// async would change the adapter contract for every format. Do not "fix" this for consistency.
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 

@@ -1,12 +1,22 @@
-import cytoscape from 'cytoscape';
 import { createExtension } from '../shared/extensionFactory';
 import { readMznStyle, applyMznAlign } from '../shared/utils';
+
+// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
+// binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
+let cytoscape;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  cytoscape = (await import('cytoscape')).default;
+})());
 
 export default createExtension({
   id: 'cytoscape',
   containerClass: 'cytoscape-diagram',
 
-  render(div, src, ctx) {
+  async render(div, src, ctx) {
+
+    await __loadLibs();
     const mznStyle = readMznStyle(div);
     const spec = JSON.parse(src);
     div.innerHTML = '';

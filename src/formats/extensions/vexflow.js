@@ -1,6 +1,14 @@
-import { Factory, Renderer, VoiceMode } from 'vexflow';
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle } from '../shared/utils';
+
+// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
+// binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
+let Factory, Renderer, VoiceMode;
+let __libsP;
+const __loadLibs = () => (__libsP ??= (async () => {
+  ({ Factory, Renderer, VoiceMode } = await import('vexflow'));
+})());
 
 // ─── PDF export helper - re-renders using CANVAS backend so Bravura glyphs render
 // correctly in the print window (document.fonts already loaded in current window).
@@ -36,7 +44,9 @@ export default createExtension({
   id: 'vexflow',
   containerClass: 'vexflow-diagram',
 
-  render(div, src) {
+  async render(div, src) {
+
+    await __loadLibs();
     // VexFlow 5 loads its Bravura music font asynchronously - use RAF to wait for layout
     // ⚠ CLAUDE: see local/markzen-bug-vexflow-chess.md for background on the timing issue
     return new Promise(resolve => {

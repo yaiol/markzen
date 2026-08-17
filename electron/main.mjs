@@ -10,6 +10,8 @@ import { execFile } from "child_process";
 import { watch } from "chokidar";
 import { fileURLToPath } from "node:url";
 import pkg from "../package.json" with { type: "json" };
+import { mark, dumpStartupTiming } from "./startup-timing.mjs";
+mark("electron boot + module imports");
 
 // ESM has no __dirname - derive it from import.meta.url.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -318,8 +320,10 @@ function startServer(callback) {
 
   // Serve font files from seeds/ - used by getExportCss() to embed as data URIs
   api.get('/fonts/:name', (req, res) => {
-    const allowed = ['bravura.woff2', 'academico.woff2'];
-    if (!allowed.includes(req.params.name)) { res.status(404).end(); return; }
+    // ⚠ CLAUDE: pattern guard, not a hand-maintained list — the bundled set grows (VexFlow's
+    // bravura/academico, plus the self-hosted code fonts). The regex allows no path separators
+    // and no dots beyond the extension, so it cannot traverse out of SEEDS_DIR.
+    if (!/^[a-z0-9-]+\.woff2$/.test(req.params.name)) { res.status(404).end(); return; }
     const file = path.join(SEEDS_DIR, req.params.name);
     if (!fs.existsSync(file)) { res.status(404).end(); return; }
     res.setHeader('Content-Type', 'font/woff2');
@@ -645,6 +649,7 @@ function startServer(callback) {
   findFreePort(4000, (port) => {
     SERVER_PORT = port;
     api.listen(port, () => {
+      mark("express listening");
       if (!isCLI) console.log(`${APP_NAME} API on http://localhost:${port}`);
       if (callback) callback(port);
     });
@@ -702,6 +707,8 @@ function createWindow(port) {
       mainWindow.loadFile(path.join(__dirname, "../dist/index.html"), { query });
     }
   }
+  mark("BrowserWindow created");
+  mainWindow.webContents.once('did-finish-load', () => { mark("renderer did-finish-load"); dumpStartupTiming({ appName: APP_NAME, isDev, userDataPath: app.getPath("userData") }); });
   mainWindow.webContents.on('did-finish-load', () => mainWindow.setTitle(isDev ? `${APP_NAME} (Dev)` : APP_NAME));
   // ⚠ CLAUDE: Ctrl+Shift+I is dead because Menu.setApplicationMenu(null) removes the default shortcut.
   // This restores it in dev only - do NOT remove.
@@ -729,7 +736,7 @@ function createWindow(port) {
   });
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(() => { mark("app.whenReady");
   Menu.setApplicationMenu(null);
   startServer((port) => createWindow(port));
 });
