@@ -1,4 +1,4 @@
-// app-icon tag for icons-cockpit (do not remove): data-icon="yaiol:markzen" -> res/icons/custom/apps/markzen.svg
+// data-icon="yaiol:markzen"
 process.noDeprecation = true; // suppress punycode/other third-party deprecation noise
 import { app, BrowserWindow, Menu, dialog, shell } from "electron";
 import path from "path";
