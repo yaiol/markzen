@@ -65,7 +65,7 @@ function renderDbml(src) {
     texts += `<text x="${x + COL_W / 2}" y="${y + HDR_H - 8}" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="'Inter',system-ui,sans-serif">${t.name}</text>`;
     fields.forEach((f, fi) => {
       const fy = y + HDR_H + PAD / 2 + fi * FIELD_H;
-      const isPk = f.pk || (f.dbdefault && f.dbdefault.value === 'increment');
+      const isPk = f.pk || f.increment;
       const typeStr = f.type?.type_name || '';
       texts += `<text x="${x + 10}" y="${fy + 14}" font-size="11" fill="${isPk ? '#5a4fff' : '#333'}" font-weight="${isPk ? '600' : '400'}" font-family="'DM Mono','Fira Code',monospace">${f.name}</text>`;
       texts += `<text x="${x + COL_W - 10}" y="${fy + 14}" text-anchor="end" font-size="10" fill="#999" font-family="'DM Mono','Fira Code',monospace">${typeStr}</text>`;

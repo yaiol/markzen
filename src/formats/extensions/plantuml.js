@@ -32,7 +32,7 @@ export default {
         try {
           const src = decodeHtmlEntities(code).trim();
           const url = `https://www.plantuml.com/plantuml/svg/~1${encodePlantUML(src)}`;
-          return `<div class="plantuml-block" data-mzn-lang="plantuml" data-mzn-nth="${n}"><img src="${url}" alt="PlantUML diagram"></div>`;
+          return `<div class="plantuml-block" data-mzn-lang="plantuml" data-mzn-nth="${n}" data-mzn-src="${encodeURIComponent(src)}"><img src="${url}" alt="PlantUML diagram"></div>`;
         } catch (e) {
           return `<div class="plantuml-block" data-mzn-lang="plantuml" data-mzn-nth="${n}"><pre style="color:red">PlantUML error: ${e.message}</pre></div>`;
         }

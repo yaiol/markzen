@@ -39,7 +39,7 @@ function injectBlocks(html, langPattern, containerClass, dataKey, langId, trim) 
       const src = trim
         ? decodeHtmlEntities(code).trim()
         : decodeHtmlEntities(code);
-      return `<div class="${containerClass}" data-mzn-lang="${langId}" data-mzn-nth="${++nth}" data-${dataKey}="${encodeURIComponent(src)}"></div>`;
+      return `<div class="${containerClass}" data-mzn-lang="${langId}" data-mzn-nth="${++nth}" data-mzn-src="${encodeURIComponent(src)}" data-${dataKey}="${encodeURIComponent(src)}"></div>`;
     }
   );
 }

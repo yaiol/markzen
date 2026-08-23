@@ -101,7 +101,7 @@ export default {
       (_, code) => {
         const n = ++nth;
         try {
-          return `<div class="railroad-block" data-mzn-lang="railroad" data-mzn-nth="${n}">${renderRailroad(decodeHtmlEntities(code).trim())}</div>`;
+          return `<div class="railroad-block" data-mzn-lang="railroad" data-mzn-nth="${n}" data-mzn-src="${encodeURIComponent(decodeHtmlEntities(code).trim())}">${renderRailroad(decodeHtmlEntities(code).trim())}</div>`;
         } catch (e) {
           return `<div class="railroad-block" data-mzn-lang="railroad" data-mzn-nth="${n}"><pre style="color:red">Railroad error: ${e.message}</pre></div>`;
         }

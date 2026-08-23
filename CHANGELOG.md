@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.8 — 2026-08-23
+
+- **Mermaid diagrams that failed with "Syntax error in text" now render.** Each block was handed to `mermaid.run()`, which takes its input from the element's `innerHTML` and rewrites it — decoding entities, dedenting, normalising `<br>` — before parsing, so the diagram source made a round trip through the DOM before Mermaid ever saw it. Diagrams that are valid (unchanged in Mermaid Live) came back as errors: 18 of the 20 blocks in one test document. The fenced block's exact text is now kept on the element and passed straight to `mermaid.render()`, so markup-looking content — a `<br/>` in a mindmap, an `&nbsp;` in a block diagram — reaches Mermaid instead of being eaten by the DOM
+- **The diagram size and alignment panel no longer edits the wrong block.** It located a block by counting occurrences of the language in the source, while the preview numbered only the blocks it actually turned into diagrams. A document that *displays* a fenced example of the same language makes the two counts diverge, and every style then landed on the block before the one being pointed at. The panel now finds the block by its own text
+- **File pickers reopen in the folder you last used.** Electron 43 made a dialog with no explicit path start in Downloads and stopped the system restoring the previous folder, so every Open began in the wrong place. Markzen now records the folder per dialog — one for documents, one for images — and reopens there, across restarts
+- **The update banner's links work, and follow the interface language.** "What's new" pointed at `changelog.html`, a page the website no longer publishes since release notes moved to a single `help/releases/` page — the link was dead. Both banner links also clamped the language to one of four, so a reader in any other language landed on the English page even where a translated one exists
+- Bring dependencies up to date, Electron 42 → 43 and `@dbml/core` 8 → 10 among them; DBML moved the auto-increment marker to a field of its own, so primary-key highlighting in DBML diagrams follows it. Vite's config is renamed `vite.config.mjs`
+
 ## 1.0.7 — 2026-08-17
 
 - **Markzen now starts in a fraction of the time.** Nearly forty rendering libraries were imported at launch — 35.5 MB in the entry chunk, about 3055 ms of a 3.5 s cold start — paid by everyone who opened a plain `.md`. Each is now loaded the first time a document actually uses it, which takes the entry chunk to 1.48 MB with no preloading; the three libraries only exporting needs (markmap, VexFlow, Plotly) load on the first export, and the interface translations are split per language so one is parsed instead of fifty

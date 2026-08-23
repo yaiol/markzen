@@ -11,6 +11,7 @@ import { watch } from "chokidar";
 import { fileURLToPath } from "node:url";
 import pkg from "../package.json" with { type: "json" };
 import { mark, dumpStartupTiming } from "./startup-timing.mjs";
+import { lastDir, rememberDir } from "./dialog-memory.mjs";
 mark("electron boot + module imports");
 
 // ESM has no __dirname - derive it from import.meta.url.
@@ -243,6 +244,7 @@ function startServer(callback) {
     const { title, filters } = req.body || {};
     const result = await dialog.showOpenDialog(mainWindow, {
       title,
+      defaultPath: lastDir("open-file"),
       filters: filters || [
         { name: "Text Files", extensions: ["md", "markdown", "adoc", "asciidoc", "asc", "rst", "rest", "org", "textile", "dj", "wiki", "mediawiki", "bbcode", "bb"] },
         { name: "All Files", extensions: ["*"] }
@@ -251,6 +253,7 @@ function startServer(callback) {
     });
     if (result.canceled || !result.filePaths.length) { res.json(null); return; }
     const filePath = result.filePaths[0];
+    rememberDir("open-file", filePath);
     try {
       const text = fs.readFileSync(filePath, "utf8");
       res.json({ filePath, text });
@@ -266,6 +269,7 @@ function startServer(callback) {
     const { title } = req.body || {};
     const result = await dialog.showOpenDialog(mainWindow, {
       title,
+      defaultPath: lastDir("open-image"),
       filters: [
         { name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'ico'] },
         { name: 'All Files', extensions: ['*'] },
@@ -273,6 +277,7 @@ function startServer(callback) {
       properties: ['openFile'],
     });
     if (result.canceled || !result.filePaths.length) { res.json(null); return; }
+    rememberDir("open-image", result.filePaths[0]);
     res.json({ filePath: result.filePaths[0] });
   });
 
@@ -302,11 +307,13 @@ function startServer(callback) {
     const { title } = req.body || {};
     const result = await dialog.showOpenDialog(mainWindow, {
       title,
+      defaultPath: lastDir("open-file"),
       filters: [{ name: "Markdown Files", extensions: ["md", "markdown"] }, { name: "All Files", extensions: ["*"] }],
       properties: ["openFile"]
     });
     if (result.canceled || !result.filePaths.length) { res.json(null); return; }
     const filePath = result.filePaths[0];
+    rememberDir("open-file", filePath);
     try { res.json({ filePath, text: fs.readFileSync(filePath, "utf8") }); } catch { res.json(null); }
   });
 

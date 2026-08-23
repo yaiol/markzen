@@ -1368,23 +1368,42 @@ export default function App() {
       .catch(err => console.error('[mzn] link open error:', err));
   }
 
-  function applyStyleToSource(lang, nth, directives) {
+  // Locate the fence by its own CONTENT (data-mzn-src), never by an ordinal. The renderer
+  // numbers the blocks showdown actually turned into diagrams; a source scan counts fence
+  // lines. A document that DISPLAYS a fenced example of the same language makes the two
+  // disagree, and every style landed on the previous block (found 2026-08-23).
+  // `dup` picks between byte-identical blocks.
+  function applyStyleToSource(lang, blockSrc, dup, directives) {
     const view = cmViewRef.current;
-    if (!view) return;
+    if (!view || !blockSrc) return;
     preservePreviewScrollRef.current = previewRef.current?.scrollTop ?? null;
     suppressSyncRef.current = true;
     const text = view.state.doc.toString();
     const lines = text.split('\n');
     const isAdoc = activeFormat.id === 'asciidoc';
 
-    // Find nth occurrence of the fenced block in source
     const langEsc = lang.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const langRe = isAdoc
       ? new RegExp('^\\[source,' + langEsc + '\\]\\s*$')
       : new RegExp('^```' + langEsc + '\\s*$');
-    let count = 0, fenceLineIdx = -1;
+    // the dup-th occurrence of this block's text
+    let at = -1, from = 0;
+    for (let k = 0; k <= (dup || 0); k++) {
+      at = text.indexOf(blockSrc, from);
+      if (at < 0) break;
+      from = at + 1;
+    }
+    if (at < 0) return;
+    // which line that offset falls on, then the nearest opening fence at or above it
+    let acc = 0, srcLine = lines.length - 1;
     for (let i = 0; i < lines.length; i++) {
-      if (lines[i].trim().match(langRe)) { count++; if (count === nth) { fenceLineIdx = i; break; } }
+      const next = acc + lines[i].length + 1;
+      if (at < next) { srcLine = i; break; }
+      acc = next;
+    }
+    let fenceLineIdx = -1;
+    for (let i = srcLine; i >= 0; i--) {
+      if (lines[i].trim().match(langRe)) { fenceLineIdx = i; break; }
     }
     if (fenceLineIdx === -1) return;
 
@@ -2599,14 +2618,18 @@ export default function App() {
                 clearTimeout(stylePanelLeaveTimer.current);
                 const lang = target.dataset.mznLang;
                 if (EXT_STYLE_INCOMPATIBLE.has(lang)) return;
-                const nth = parseInt(target.dataset.mznNth, 10);
+                // The block's own text + which of the byte-identical copies this one is.
+                const blockSrc = decodeURIComponent(target.dataset.mznSrc || '');
+                const sameLang = [...previewRef.current.querySelectorAll('[data-mzn-lang="' + lang + '"]')]
+                  .filter(el => el.dataset.mznSrc === target.dataset.mznSrc);
+                const dup = Math.max(0, sameLang.indexOf(target));
                 const hint = target.previousElementSibling;
                 const currentStyle = (hint?.classList.contains('mzn-style-hint'))
                   ? (() => { try { return JSON.parse(decodeURIComponent(hint.dataset.mznStyle || '{}')); } catch { return {}; } })()
                   : {};
                 const rect = target.getBoundingClientRect();
                 const pRect = previewRef.current.getBoundingClientRect();
-                setStylePanel({ lang, nth, top: rect.top - pRect.top + previewRef.current.scrollTop, currentStyle, wInput: currentStyle.width || '', hInput: currentStyle.height || '' });
+                setStylePanel({ lang, blockSrc, dup, top: rect.top - pRect.top + previewRef.current.scrollTop, currentStyle, wInput: currentStyle.width || '', hInput: currentStyle.height || '' });
               }}
               onMouseLeave={() => {
                 stylePanelLeaveTimer.current = setTimeout(() => setStylePanel(null), 400);
@@ -2626,7 +2649,7 @@ export default function App() {
                   const commit = () => {
                     const newStyle = { ...stylePanel.currentStyle };
                     if (inputVal) newStyle[dim] = inputVal; else delete newStyle[dim];
-                    applyStyleToSource(stylePanel.lang, stylePanel.nth, newStyle);
+                    applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, newStyle);
                   };
                   return (
                     <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
@@ -2637,7 +2660,7 @@ export default function App() {
                         onKeyDown={e => { if (e.key === 'Enter') commit(); }} />
                       <button className="btn icon" title={t('tipImagePropsApply')} onClick={commit}><Check /></button>
                       {stylePanel.currentStyle[dim] && (
-                        <button className="btn icon subtle" title={t('tipImagePropsClear')} onClick={() => { const newStyle = { ...stylePanel.currentStyle }; delete newStyle[dim]; applyStyleToSource(stylePanel.lang, stylePanel.nth, newStyle); }}><X /></button>
+                        <button className="btn icon subtle" title={t('tipImagePropsClear')} onClick={() => { const newStyle = { ...stylePanel.currentStyle }; delete newStyle[dim]; applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, newStyle); }}><X /></button>
                       )}
                     </div>
                   );
@@ -2671,7 +2694,7 @@ export default function App() {
                         onClick={() => {
                           const newStyle = { ...stylePanel.currentStyle };
                           if (newStyle.align === a) delete newStyle.align; else newStyle.align = a;
-                          applyStyleToSource(stylePanel.lang, stylePanel.nth, newStyle);
+                          applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, newStyle);
                         }}
                        >
                         {a === 'left' ? '⬅' : a === 'center' ? '↔' : '➡'}
@@ -2682,7 +2705,7 @@ export default function App() {
                   {EXT_SUPPORTS_WIDTH.has(stylePanel.lang)  && dimRow('width',  t('lblImagePropsWidth'),  'wInput')}
                   {EXT_SUPPORTS_HEIGHT.has(stylePanel.lang) && dimRow('height', t('lblImagePropsHeight'), 'hInput')}
                   {/* Remove all */}
-                  <button className="btn" onClick={() => applyStyleToSource(stylePanel.lang, stylePanel.nth, {})}
+                  <button className="btn" onClick={() => applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, {})}
                     style={{ marginTop: 2 }}>
                     {t('btnImagePropsRemoveStyle')}
                   </button>
