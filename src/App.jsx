@@ -133,6 +133,11 @@ function applyMathToMarkmapRoot(node) {
 // ─── App identity - single source of truth for the app name ──────────────────
 const APP_NAME    = pkg.productName;
 const APP_VERSION = pkg.version;
+// The full build IDENTITY shown to the user: the release version plus the build counter (the 4th
+// segment a buffered commit bumps), or just the release version on a clean release build.
+// ⚠ CLAUDE: APP_VERSION itself stays plain 3-part semver and must NOT absorb this - the update
+// check compares it against the published beacon, and a 4-part string is not semver. Display only.
+const APP_VERSION_BUILD = pkg.build?.buildNumber ? `${pkg.version}.${pkg.build.buildNumber}` : pkg.version;
 
 // GitHub source - owner is constant (yaiol); repo name is the app id (pkg.name).
 const GITHUB_URL = `https://github.com/yaiol/${pkg.name}`;
@@ -1738,6 +1743,13 @@ export default function App() {
       setLinkPopup({ kind, from: found.from, to: found.to, text: found.text, url: found.url, ...at });
       return;
     }
+    // A URL-shaped selection is the link's TARGET, not its label - prefill the url field and let the
+    // popup focus the empty text field (see LinkPopup's focus effect).
+    const sel = view.state.sliceDoc(range.from, range.to).trim();
+    if (isUrlLike(sel)) {
+      setLinkPopup({ kind, from: range.from, to: range.to, text: '', url: sel, ...at });
+      return;
+    }
     setLinkPopup({ kind, from: range.from, to: range.to, text: view.state.sliceDoc(range.from, range.to), url: '', ...at });
   };
 
@@ -2196,7 +2208,7 @@ export default function App() {
               <img src={yaiolLogo} alt="Yaiol" style={{ width: 120, height: 'auto', flexShrink: 0 }} />
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
                 <div className="dlg-about-desc">
-                  {APP_NAME} <b>v{APP_VERSION}</b> by yaiol
+                  {APP_NAME} <b>v{APP_VERSION_BUILD}</b> by yaiol
                 </div>
                 <div className="dlg-about-id" style={{ color: 'var(--text-dim)' }}>{t('msgDlgSettingsAboutDesc')}</div>
               </div>
@@ -2219,7 +2231,7 @@ export default function App() {
         <UpdateBanner info={updateInfo} appId={pkg.name} lang={lang} storagePrefix={STORAGE_PREFIX} t={t} onClose={() => setUpdateInfo(null)} />
 
         {/* ── Header bar ── */}
-        <AppHeader appName={APP_NAME} appVersion={APP_VERSION}>
+        <AppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD}>
 
           {/* File actions — one welded group: New · Open · Save · Save As (standard file
               icons, CLAUDE-ui-standards). ⚠ The New-doc flyout lives OUTSIDE the .barh-grp, in this
@@ -2810,6 +2822,12 @@ function findConstructAt(view, range, pattern) {
     }
   }
   return null;
+}
+
+// A selection that is itself a URL (scheme://, www., mailto:) or a Windows/POSIX absolute file path
+// - used to decide whether Ctrl+K should treat it as the target instead of the label.
+function isUrlLike(s) {
+  return /^(?:[a-z][a-z0-9+.-]*:\/\/|www\.|mailto:|[a-z]:[\\/]|\/)\S+$/i.test(s) && !/\s/.test(s);
 }
 
 // Returns true only when imgPath is in the same folder or a subfolder of docFilePath's directory.

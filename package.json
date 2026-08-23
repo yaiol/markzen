@@ -237,7 +237,8 @@
       "createStartMenuShortcut": true,
       "menuCategory": "yaiol",
       "shortcutName": "Markzen",
-      "uninstallDisplayName": "yaiol Markzen"
+      "uninstallDisplayName": "yaiol Markzen",
+      "artifactName": "${productName} Setup ${buildVersion}.${ext}"
     },
     "publish": [
       {
@@ -245,6 +246,7 @@
         "owner": "yaiol",
         "repo": "markzen"
       }
-    ]
+    ],
+    "buildNumber": "1"
   }
 }
