@@ -16,9 +16,23 @@ window.katex = katex;
 
 const mathStore = [];
 
+// ─── Entry points for parsers that do NOT use $...$ ───────────────────────────
+// MediaWiki writes math as <math>…</math> tags, so it cannot go through protectMath's
+// dollar scanning (and must not — a wiki article's "$5" is prose, not math). It extracts
+// the tags itself and registers each one here, getting back the same placeholder token
+// inject() already knows how to replace. Keep the token shape in sync with protectMath.
+export function resetMath() {
+  mathStore.length = 0;
+}
+
+export function protectMathToken(tex, display) {
+  mathStore.push({ tex, display });
+  return `MATHPLACEHOLDER${mathStore.length - 1}ENDMATH`;
+}
+
 // Called in render pipeline BEFORE showdown conversion
 export function protectMath(md) {
-  mathStore.length = 0;
+  resetMath();
   // Single pass: skip fenced code blocks and inline code spans, protect $$...$$ then $...$
   md = md.replace(/(`{3,})[^\n]*\n[\s\S]*?\n\1[ \t]*(?=\n|$)|`[^`\n]*`|(\$\$[\s\S]*?\$\$)|(\$[^\n$]*?\$)/g, (match, fenced, block, inline) => {
     if (fenced !== undefined) return match;

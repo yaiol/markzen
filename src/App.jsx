@@ -50,46 +50,43 @@ import FONT_CATALOG from '../seeds/fonts.json';
 // Storage namespace - single source: package.json `storagePrefix`. Never hardcode a prefix.
 const STORAGE_PREFIX = pkg.storagePrefix;
 
-const NATIVE_EXPORT_FORMATS = [
-  { id: 'epub3', label: 'EPUB 3 (.epub)',             ext: 'epub' },
-  { id: 'docx',  label: 'Microsoft Word (.docx)',     ext: 'docx' },
-  { id: 'odt',   label: 'OpenDocument (.odt)',        ext: 'odt'  },
-  { id: 'pptx',  label: 'PowerPoint (.pptx)',         ext: 'pptx' },
-  { id: 'rtf',   label: 'Rich Text Format (.rtf)',    ext: 'rtf'  },
-];
+// Targets that are exported from the RENDERED document (so diagrams, formulas and scores
+// survive as images). Everything else in the menu below is handed to the converter as source.
+// Labels live in PANDOC_EXPORT_SECTIONS — this list is only consulted to pick the route.
+const NATIVE_EXPORT_FORMATS = ['epub3', 'docx', 'odt', 'pptx', 'rtf'];
 
 const PANDOC_EXPORT_SECTIONS = [
-  { section: 'Ebooks', formats: [
+  { sectionKey: 'lblHdrConvertEbooks', formats: [
     { id: 'epub3', label: 'EPUB 3 (.epub)'      },
     { id: 'fb2',   label: 'FictionBook2 (.fb2)' },
   ]},
-  { section: 'Word Processor', formats: [
+  { sectionKey: 'lblHdrConvertWordProcessor', formats: [
     { id: 'docx', label: 'Microsoft Word (.docx)'    },
     { id: 'odt',  label: 'OpenDocument (.odt)'       },
     { id: 'rtf',  label: 'Rich Text Format (.rtf)'   },
   ]},
-  { section: 'Presentation', formats: [
+  { sectionKey: 'lblHdrConvertPresentation', formats: [
     { id: 'pptx',     label: 'Microsoft PowerPoint (.pptx)' },
     { id: 'revealjs', label: 'reveal.js (.html)'            },
   ]},
-  { section: 'Typesetting', formats: [
+  { sectionKey: 'lblHdrConvertTypesetting', formats: [
     { id: 'icml',  label: 'InDesign ICML (.icml)' },
     { id: 'latex', label: 'LaTeX (.tex)'          },
     { id: 'typst', label: 'Typst (.typ)'          },
   ]},
-  { section: 'XML', formats: [
+  { sectionKey: 'lblHdrConvertXml', formats: [
     { id: 'docbook',      label: 'DocBook (.xml)'          },
     { id: 'jats',         label: 'JATS (.xml)'             },
     { id: 'opendocument', label: 'OpenDocument XML (.xml)' },
     { id: 'tei',          label: 'TEI Simple (.xml)'       },
   ]},
-  { section: 'Wiki', formats: [
-    { id: 'mediawiki', label: 'MediaWiki (.wiki)' },
-  ]},
-  { section: 'Notebook', formats: [
+  // ⚠ CLAUDE: no MediaWiki section here. MediaWiki is a first-class markup format, so it is
+  // already offered by the "Lightweight markup" list above (built from the format registry) and
+  // both entries produced the same .wiki file from the same writer. Do not re-add it.
+  { sectionKey: 'lblHdrConvertNotebook', formats: [
     { id: 'ipynb', label: 'Jupyter Notebook (.ipynb)' },
   ]},
-  { section: 'Outline', formats: [
+  { sectionKey: 'lblHdrConvertOutline', formats: [
     { id: 'opml', label: 'OPML (.opml)' },
   ]},
 ];
@@ -853,6 +850,8 @@ export default function App() {
   const tabsRef = useRef(tabs);
   tabsRef.current = tabs;
   const doSaveRef = useRef(null);
+  const [closing, setClosing] = useState(false);   // a window close is walking the unsaved tabs
+  const allowCloseRef = useRef(false);             // the sequence is done - stop guarding
 
   // New Document format picker dropdown state
   const [showNewDocMenu, setShowNewDocMenu] = useState(false);
@@ -2016,16 +2015,40 @@ export default function App() {
   // several documents at once.
   useEffect(() => {
     const onBeforeUnload = (e) => {
-      const unsaved = tabsRef.current.find(tab => tab.unsaved);
-      if (!unsaved) return;                       // nothing at risk - let it close
+      if (allowCloseRef.current) return;          // the sequence finished - let it go
+      if (!tabsRef.current.some(tab => tab.unsaved)) return;   // nothing at risk
       e.preventDefault();
       e.returnValue = false;                      // Electron: any set value cancels the close
-      setActiveTabId(unsaved.id);                 // show the user WHICH file is being asked about
-      setConfirmCloseId(unsaved.id);
+      setClosing(true);                           // the effect below drives the rest
     };
     window.addEventListener('beforeunload', onBeforeUnload);
     return () => window.removeEventListener('beforeunload', onBeforeUnload);
   }, []);
+
+  // ── The close SEQUENCE ─────────────────────────────────────────────────────
+  // ⚠ CLAUDE: closing the window must walk EVERY unsaved tab, not just the first. The first
+  // version asked about file 1 and then simply stopped: discard it and the window stayed open with
+  // files 2 and 3 still dirty, so you had to hit the X once per file and it read as a broken guard.
+  // `closing` is the intent, and it OUTLIVES each individual answer - this effect re-targets the
+  // next dirty tab every time `tabs` changes, then closes the window when none are left.
+  //
+  // ⚠ Driven by an EFFECT, not by the button handlers, on purpose: after a Save or a Discard the
+  // remaining tabs are only known once React has applied the state update. Advancing inside
+  // doForceClose would read the list as it was before the tab it just closed.
+  //
+  // ⚠ Cancelling (the confirm's X, or backing out of a Save-As) clears `closing` — the whole
+  // sequence aborts, it does not skip that file and carry on. Backing out means "don't close".
+  useEffect(() => {
+    if (!closing) return;
+    const next = tabs.find(tab => tab.unsaved);
+    if (next) { setActiveTabId(next.id); setConfirmCloseId(next.id); return; }
+    setClosing(false);
+    allowCloseRef.current = true;
+    // Ask the main process rather than window.close(): Electron's renderer close is
+    // gated on how the window was created, and a close that silently does nothing would be a
+    // worse bug than the one this fixes. Same Express pattern every other main-process action uses.
+    fetch(`${API}/close-window`, { method: 'POST' }).catch(() => { allowCloseRef.current = false; });
+  }, [closing, tabs]);
 
   async function doSaveAs() {
     if (!activeTab) return;
@@ -2068,7 +2091,7 @@ export default function App() {
   // Export the active doc to a Pandoc/native format; native targets render the HTML,
   // everything else goes through the same markup conversion as convertTo.
   async function exportTo(f) {
-    if (!NATIVE_EXPORT_FORMATS.some(n => n.id === f.id)) return convertTo(f);
+    if (!NATIVE_EXPORT_FORMATS.includes(f.id)) return convertTo(f);
     const html = await getExportHtmlFlattened();
     const css  = await getExportCss();
     const r = await fetch(`${API}/export-native`, {
@@ -2188,7 +2211,7 @@ export default function App() {
       const res = await fetch(`${API}/save-md-as`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: tab.text, fileName: tab.fileName, sourceFilePath: tab.filePath, title: t('ttlOsdSaveMd') }) });
       const data = await res.json();
-      if (!data) { setConfirmCloseId(null); return; } // user cancelled
+      if (!data) { setConfirmCloseId(null); setClosing(false); return; } // user cancelled - abort the whole close
     }
     doForceClose(tabId);
   }
@@ -2317,13 +2340,13 @@ export default function App() {
                 <ArrowLeftRight />
               </button>
               <Menu anchorRef={convertBtnRef} open={showConvertMenu} onClose={() => setShowConvertMenu(false)} title={t('lblHdrConvertTo')}>
-                <MenuLabel>Lightweight markup</MenuLabel>
+                <MenuLabel>{t('lblHdrConvertMarkup')}</MenuLabel>
                 {formats.filter(f => f.id !== activeFormat.id).sort((a, b) => a.label.localeCompare(b.label)).map(f => (
                   <MenuItem key={f.id} label={f.label} onClick={() => convertTo(f)} />
                 ))}
                 <MenuDivider />
-                {PANDOC_EXPORT_SECTIONS.map(({ section, formats: sectionFmts }) => (
-                  <MenuItem key={section} label={section} submenu={
+                {PANDOC_EXPORT_SECTIONS.map(({ sectionKey, formats: sectionFmts }) => (
+                  <MenuItem key={sectionKey} label={t(sectionKey)} submenu={
                     sectionFmts.map(f => <MenuItem key={f.id} label={f.label} onClick={() => exportTo(f)} />)
                   } />
                 ))}
@@ -2454,7 +2477,14 @@ export default function App() {
                 borderBottom: isActive ? `2px solid var(--accent)` : '2px solid transparent',
                 color: isActive ? 'var(--text)' : 'var(--text-mute)',
                 fontSize: 13,                       // [GUI Standard: ctlFontSize]
-                minWidth: 80, maxWidth: 200,
+                // ⚠ CLAUDE: a tab is capped at 200px, but the CONFIRM row that replaces its label
+                // ("Unsaved changes -" + Save + Discard + X) needs roughly 300. Capped, it
+                // overflowed the tab and painted over the NEXT tab's name - two rows of text on
+                // top of each other. While a confirm is up the tab sizes to its content instead;
+                // `flexShrink: 0` above already stops the strip squeezing it back.
+                minWidth: 80,
+                maxWidth: (isConfirming || isConfirmingReload) ? 'none' : 200,
+                overflow: 'hidden',
               }}>
                 {!isConfirming && !isConfirmingReload && <>
                   {tab.unsaved && (
@@ -2474,24 +2504,30 @@ export default function App() {
                   </button>
                 </>}
                 {isConfirming && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
                     <span style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedMsg')}</span>
-                    <button onClick={e => { e.stopPropagation(); doSaveAndClose(tab.id); }} className="btn primary">
+                    {/* the SMALL tier (ui-app.css §2.1): this confirm lives INSIDE a 30px tab, so
+                        the 30px base leaves it no room to breathe. Size variant only - Save keeps
+                        `primary`, Discard the plain frame. */}
+                    <button onClick={e => { e.stopPropagation(); doSaveAndClose(tab.id); }} className="btn small primary">
                       {t('btnHdrSave')}
                     </button>
-                    <button onClick={e => { e.stopPropagation(); doForceClose(tab.id); }} className="btn">
+                    <button onClick={e => { e.stopPropagation(); doForceClose(tab.id); }} className="btn small">
                       {t('btnDlgUnsavedDiscard')}
                     </button>
-                    <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); setConfirmCloseId(null); }}
+                    <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); setConfirmCloseId(null); setClosing(false); }}
                      >
                       <X />
                     </button>
                   </div>
                 )}
                 {isConfirmingReload && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
                     <span style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedReload')}</span>
-                    <button onClick={e => { e.stopPropagation(); doReload(); }} className="btn primary">
+                    {/* small tier, like its Save/Discard twin above - same 30px tab, and the X
+                        beside it was already `.btn.icon.small.subtle`, so the base size was the
+                        odd one out in this row. */}
+                    <button onClick={e => { e.stopPropagation(); doReload(); }} className="btn small primary">
                       {t('btnDlgUnsavedReload')}
                     </button>
                     <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); setConfirmReloadId(null); setPendingReloadData(null); }}
@@ -2566,7 +2602,66 @@ export default function App() {
 
           {/* Center view - force single when no document is open */}
           {(() => { const eMode = activeTab ? centerMode : 'single'; return (
-          <div ref={centerRef} style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          {/* ⚠ CLAUDE: THE TOOLBAR IS ABOVE THE SPLIT, NOT INSIDE THE EDITOR COLUMN.
+              It used to live in the editor pane, so in split mode the preview column began at the
+              very top of the row and its first heading was drawn level with the editor's icons -
+              two different things sharing one line. One full-width band means both panes start
+              below the same rule, which is the only way the two columns line up.
+              ⚠ Do NOT 'fix' this instead by giving the preview its own empty band: `.barf` has no
+              fixed height (ui-app.css - it is sized by its buttons), so a duplicated spacer drifts
+              the moment a button is added or the icon size changes.
+              Hidden when the editor is hidden: in preview-only mode it would act on nothing. */}
+          {(eMode === 'split' || centerView === 'editor') && (() => {
+              const s   = activeFormat.shortcuts || {};
+              const dis = !activeTab;
+              const run = (fn) => { const v = cmViewRef.current; if (!v) return; v.focus(); fn(v); };
+              const btn = (icon, title, onClick, disabled = false) => (
+                <button title={title} disabled={dis || disabled} onClick={onClick} className="btn icon">{icon}</button>
+              );
+              // ⚠ CLAUDE: every button below passes `!s.<shortcut>` as its disabled flag, and
+              // that flag is NOT decoration: a null entry in an adapter's `shortcuts` means the
+              // language has no such construct (MediaWiki has no inline code and no blockquote),
+              // and each handler dereferences the marker - `marker.length` on null throws. A button
+              // added here without its flag ships one that looks live and breaks on click. The
+              // keymap effect above applies the same rule by skipping the binding entirely.
+              const fmtAlign = FORMAT_ALIGN[activeFormat.id];
+              return (
+                <div className="barf" style={{ padding: '6px 10px', background: 'var(--pnl-bgd)', borderBottom: `1px solid var(--border)`, flexShrink: 0 }}>
+                  {btn(<Bold />,         t('tipEditorBold'),           () => run(v => toggleInlineFormat(v, s.bold)),   !s.bold)}
+                  {btn(<Italic />,       t('tipEditorItalic'),         () => run(v => toggleInlineFormat(v, s.italic)), !s.italic)}
+                  {btn(<Strikethrough />, t('tipEditorStrikethrough'), () => run(v => toggleInlineFormat(v, s.strikethrough)), !s.strikethrough)}
+                  {btn(<Heading />,      t('tipEditorHeading'),        () => run(v => cycleHeading(v, s.headings)), !s.headings?.length)}
+                  {btn(<List />,         t('tipEditorBulletList'),     () => run(v => toggleLinePrefix(v, s.bulletList)),   !s.bulletList)}
+                  {btn(<ListOrdered />,  t('tipEditorNumberedList'),   () => run(v => toggleLinePrefix(v, s.numberedList, s.numberedList === '1. ' ? /^\d+\.\s/ : null)), !s.numberedList)}
+                  {btn(<Quote />,        t('tipEditorBlockquote'),     () => run(v => toggleLinePrefix(v, s.blockquote)),   !s.blockquote)}
+                  {btn(<Code />,         t('tipEditorInlineCode'),     () => run(v => toggleInlineFormat(v, s.inlineCode)), !s.inlineCode)}
+                  {btn(<Code2 />,        t('tipEditorCodeBlock'),      () => run(v => toggleCodeBlock(v, s.codeBlock.open, s.codeBlock.close)), !s.codeBlock)}
+                  {btn(<Link />,         t('tipEditorLink'),           () => run(v => openLinkPopupRef.current?.(v, 'link')))}
+                  {btn(<Image />,        t('tipEditorImage'),          () => run(v => openLinkPopupRef.current?.(v, 'image')))}
+                  {btn(<Minus />,        t('tipEditorHorizontalRule'), () => run(v => insertLine(v, s.horizontalRule)), !s.horizontalRule)}
+                  {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
+                  {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
+                  {fmtAlign && btn(<AlignRight />,  t('tipEditorAlignRight'),  () => run(v => applyAlign(v, fmtAlign.right)),  !fmtAlign.right)}
+                  {/* Insert table — the trigger is a plain toolbar .btn.icon like every
+                      other one here; the size grid is the shared TableGrid inside the
+                      shared Popover, which owns portal + placement + dismiss. */}
+                  <button ref={tableBtnRef} className="btn icon" title={t('tipEditorTable')}
+                    disabled={dis || !activeFormat.formatTable}
+                    onClick={() => setShowTableGrid(v => !v)}>
+                    <Table />
+                  </button>
+                  <Popover anchorRef={tableBtnRef} open={showTableGrid}
+                    onClose={() => setShowTableGrid(false)} maxWidth={260} maxHeight={220}>
+                    <TableGrid onPick={(rows, cols) => {
+                      setShowTableGrid(false);
+                      run(v => insertTable(v, activeFormat, emptyTable(rows, cols)));
+                    }} />
+                  </Popover>
+                </div>
+              );
+          })()}
+          <div ref={centerRef} style={{ flex: 1, minHeight: 0, display: 'flex', overflow: 'hidden' }}>
 
             {/* Editor panel - always in DOM so CM keeps its instance */}
             <div style={{
@@ -2577,51 +2672,6 @@ export default function App() {
               flexDirection: 'column',
               borderRight: eMode === 'split' ? `1px solid var(--border)` : 'none',
             }}>
-              {/* Editor toolbar */}
-              {(() => {
-                const s   = activeFormat.shortcuts || {};
-                const dis = !activeTab;
-                const run = (fn) => { const v = cmViewRef.current; if (!v) return; v.focus(); fn(v); };
-                const btn = (icon, title, onClick, disabled = false) => (
-                  <button title={title} disabled={dis || disabled} onClick={onClick} className="btn icon">{icon}</button>
-                );
-                const fmtAlign = FORMAT_ALIGN[activeFormat.id];
-                return (
-                  <div className="barf" style={{ padding: '6px 10px', background: 'var(--pnl-bgd)', borderBottom: `1px solid var(--border)`, flexShrink: 0 }}>
-                    {btn(<Bold />,         t('tipEditorBold'),           () => run(v => toggleInlineFormat(v, s.bold)))}
-                    {btn(<Italic />,       t('tipEditorItalic'),         () => run(v => toggleInlineFormat(v, s.italic)))}
-                    {btn(<Strikethrough />, t('tipEditorStrikethrough'), () => run(v => toggleInlineFormat(v, s.strikethrough)), !s.strikethrough)}
-                    {btn(<Heading />,      t('tipEditorHeading'),        () => run(v => cycleHeading(v, s.headings)))}
-                    {btn(<List />,         t('tipEditorBulletList'),     () => run(v => toggleLinePrefix(v, s.bulletList)))}
-                    {btn(<ListOrdered />,  t('tipEditorNumberedList'),   () => run(v => toggleLinePrefix(v, s.numberedList, s.numberedList === '1. ' ? /^\d+\.\s/ : null)))}
-                    {btn(<Quote />,        t('tipEditorBlockquote'),     () => run(v => toggleLinePrefix(v, s.blockquote)))}
-                    {btn(<Code />,         t('tipEditorInlineCode'),     () => run(v => toggleInlineFormat(v, s.inlineCode)))}
-                    {btn(<Code2 />,        t('tipEditorCodeBlock'),      () => run(v => s.codeBlock && toggleCodeBlock(v, s.codeBlock.open, s.codeBlock.close)))}
-                    {btn(<Link />,         t('tipEditorLink'),           () => run(v => openLinkPopupRef.current?.(v, 'link')))}
-                    {btn(<Image />,        t('tipEditorImage'),          () => run(v => openLinkPopupRef.current?.(v, 'image')))}
-                    {btn(<Minus />,        t('tipEditorHorizontalRule'), () => run(v => s.horizontalRule && insertLine(v, s.horizontalRule)))}
-                    {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
-                    {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
-                    {fmtAlign && btn(<AlignRight />,  t('tipEditorAlignRight'),  () => run(v => applyAlign(v, fmtAlign.right)),  !fmtAlign.right)}
-                    {/* Insert table — the trigger is a plain toolbar .btn.icon like every
-                        other one here; the size grid is the shared TableGrid inside the
-                        shared Popover, which owns portal + placement + dismiss. */}
-                    <button ref={tableBtnRef} className="btn icon" title={t('tipEditorTable')}
-                      disabled={dis || !activeFormat.formatTable}
-                      onClick={() => setShowTableGrid(v => !v)}>
-                      <Table />
-                    </button>
-                    <Popover anchorRef={tableBtnRef} open={showTableGrid}
-                      onClose={() => setShowTableGrid(false)} maxWidth={260} maxHeight={220}>
-                      <TableGrid onPick={(rows, cols) => {
-                        setShowTableGrid(false);
-                        run(v => insertTable(v, activeFormat, emptyTable(rows, cols)));
-                      }} />
-                    </Popover>
-                  </div>
-                );
-              })()}
-
               <div ref={editorContainerRef}
                 style={{ flex: 1, overflow: 'hidden', background: 'var(--bg-input)', color: 'var(--text)' }} />
             </div>
@@ -2784,6 +2834,7 @@ export default function App() {
             </div>
             </div>{/* end preview wrapper */}
 
+          </div>
           </div>
           ); })()}
 

@@ -14,13 +14,82 @@ It is equally a **viewer**: open a `.md` file from the toolbar or by double-clic
 
 ## Features
 
-- **Reads eight markup languages** - Markdown, AsciiDoc, reStructuredText, Org, Textile, Djot, MediaWiki, or BBCode, each rendered live with no conversion step.
-- **30 rendering extensions** - turn fenced code blocks into live diagrams, charts, math formulas, music scores, chess boards, and QR codes.
+- **Reads eight markup languages** - Markdown (`.md`, `.markdown`), AsciiDoc (`.adoc`, `.asciidoc`, `.asc`), reStructuredText (`.rst`, `.rest`), Org (`.org`), Textile (`.textile`), Djot (`.dj`), MediaWiki (`.wiki`, `.mediawiki`) or BBCode (`.bbcode`, `.bb`) - the format is chosen by the file's extension and each is rendered live, with no conversion step.
+- **Live figures from fenced code blocks** - diagrams, charts, maths, music scores, chess and Go boards, QR codes and chemical structures. Every one is listed under [Compatibility](#compatibility).
 - **Exports to 20+ formats** - ebook, Word or OpenDocument, PowerPoint or reveal.js deck, LaTeX or Typst, a Jupyter notebook, and more - or convert straight to another markup language.
 - **A real editor, with live preview** - a full CodeMirror editor (syntax highlighting, formatting shortcuts, search) with the styled result updating side by side as you type.
 - **Tables without the syntax** - pick a size from a grid and Markzen writes the table in whatever markup you are in; paste a block of spreadsheet cells and it becomes a native table the same way.
 - **Typeset typography** - separate fonts for headings, body, and code plus five style templates make documents read like print.
 - **Automatic table of contents** - built from your headings, always in sync; click any entry to jump to that section.
+
+---
+
+## Compatibility
+
+<!-- compat:formats -->
+### What each markup language supports
+
+| Markup language | File extensions | Live figures | TOC | Formula in a sentence | Cannot express |
+|---|---|---|---|---|---|
+| Markdown | `.md` `.markdown` | all | yes | `$…$` | text alignment |
+| AsciiDoc | `.adoc` `.asciidoc` `.asc` | all but `style` | yes | block only | strikethrough |
+| reStructuredText | `.rst` `.rest` | all but `style` | yes | `$…$` | strikethrough |
+| Org | `.org` | all but `style` | yes | `$…$` | left / right alignment |
+| Textile | `.textile` | all but `style` | yes | block only | - |
+| Djot | `.dj` | all but `style` | yes | `` $`…` `` | - |
+| MediaWiki | `.wiki` `.mediawiki` | all but `style` | yes | `<math>` | inline code, strikethrough, blockquote, alignment |
+| BBCode | `.bbcode` `.bb` | all but `style` | yes | block only | - |
+<!-- /compat:formats -->
+
+`style` is the one extension not available everywhere - it applies CSS to the document itself, which
+only the Markdown adapter loads. The block is spelled with backticks in six languages,
+`[code=<tag>]…[/code]` in BBCode and `<syntaxhighlight lang="<tag>">…</syntaxhighlight>` in MediaWiki.
+
+**Cannot express** is a property of the markup language, not of Markzen: where a language defines no
+notation, the toolbar button is disabled rather than writing a private dialect.
+
+<!-- compat:extensions -->
+### Rendering extensions
+
+| Category | Extension | Block tag | Engine | Notes |
+|---|---|---|---|---|
+| Diagrams | Mermaid | `mermaid` | mermaid 11.17.0 | flowcharts, sequence, class, Gantt, ER, state |
+|  | Graphviz | `graphviz` | @hpcc-js/wasm 2.35.0 | the DOT language |
+|  | Cytoscape | `cytoscape` | cytoscape 3.34.1 | network graphs; interactive |
+|  | Markmap | `markmap` | markmap-lib 0.18.12 | mind map from an outline |
+|  | Timeline | `timeline` | built-in | vertical event timeline |
+| Software diagrams | Nomnoml | `nomnoml` | nomnoml 1.7.0 | UML |
+|  | PlantUML | `plantuml` | plantuml.com | UML - **needs an internet connection** |
+|  | DBML | `dbml` | @dbml/core 10.1.1 | database schema |
+| Charts | Chart.js | `chartjs` | chart.js 4.5.1 | bar, line, pie, radar |
+|  | Vega-Lite | `vega-lite` | vega-embed 7.1.0 | declarative charts from JSON |
+|  | ECharts | `echarts` | echarts 6.1.0 | large interactive charts |
+| IT development | Pseudocode | `pseudocode` | pseudocode 2.4.1 | typeset algorithms |
+|  | Tabulator | `tabulator` | tabulator-tables 6.5.2 | sortable interactive table |
+|  | Bytefield | `bytefield` | built-in | bit / byte field layouts |
+|  | QR Code | `qrcode` | qrcode 1.5.4 |  |
+|  | Railroad | `railroad` | railroad-diagrams 1.0.0 | syntax diagrams |
+|  | WaveDrom | `wavedrom` | wavedrom 3.6.2 | digital timing diagrams |
+| Mathematics | KaTeX | `katex` | katex 0.18.4 | also inline, per the table above |
+|  | AsciiMath | `asciimath` | asciimath2tex 1.5.0 | plain-text maths |
+| Graphs | function-plot | `fnplot` | built-in | function curves (custom canvas renderer) |
+|  | JSXGraph | `jsxgraph` | jsxgraph 1.13.2 | interactive geometry |
+|  | Plotly | `plotly` | plotly.js-dist-min 3.7.0 | scientific and 3-D charts |
+| Sciences | SMILES | `smiles` | smiles-drawer 2.4.1 | chemical structures |
+| Music | ABC Notation | `abc` | abcjs 6.7.0 | sheet music from plain text |
+|  | VexFlow | `vexflow` | vexflow 5.0.0 | engraved staves |
+|  | VexChords | `vexchords` | vexchords 1.2.0 | guitar chord diagrams |
+|  | ChordPro | `chordpro` | chordsheetjs 15.6.2 | chords above lyrics |
+|  | MusicXML | `musicxml` | opensheetmusicdisplay 2.1.2 | full scores |
+| Games | Chess | `chess` | chess.js 1.4.0 | board from a FEN position |
+|  | Go Board | `goboard` | built-in | 9x9, 13x13, 19x19 |
+| Document | Markzen | `markzen` | built-in | invisible - figure placement / TOC override |
+|  | Style | `style` | built-in | invisible - document-scoped CSS, **Markdown only** |
+<!-- /compat:extensions -->
+
+Both tables are hand-written and audited against the source by `scripts/check-compat.mjs`
+(`npm run check:compat`), which re-derives the file extensions, TOC support, per-format extension
+sets and engine versions from `src/formats/` and `package.json` and reports any drift.
 
 ---
 
@@ -68,7 +137,7 @@ The 30 extensions (`src/formats/extensions/`) turn a fenced code block - tagged 
 
 ### Export pipeline
 
-Export and format conversion run in the Electron main process through a **bundled Pandoc binary** (`vendor/pandoc/`, flattened into the packaged app's resources). The renderer renders the document to HTML, then posts it to a local endpoint that shells out to Pandoc to produce the target format. Two surfaces use this: *native export* (EPUB, Word, OpenDocument, PowerPoint, RTF) and the broader *format conversion* (LaTeX, Typst, reveal.js, DocBook, JATS, Jupyter, OPML, and the rest). PDF, HTML, and print are produced directly from the rendered preview (`/save-pdf`, `/save-html`, `/print`).
+Export and format conversion run in the Electron main process through a **bundled Pandoc binary** (`vendor/pandoc/`, flattened into the packaged app's resources). Two surfaces use it, and what they hand Pandoc differs. *Native export* (EPUB, Word, OpenDocument, PowerPoint, RTF - the `NATIVE_EXPORT_FORMATS` list in `App.jsx`) posts the **rendered HTML**, with extension figures flattened to images, so diagrams, formulas and scores survive into the output. *Format conversion* (LaTeX, Typst, reveal.js, DocBook, JATS, Jupyter, OPML, and every markup-to-markup target) posts the document's **source text**, so an extension block lands in the output as a plain code block rather than a figure. PDF, HTML, and print are produced directly from the rendered preview (`/save-pdf`, `/save-html`, `/print`).
 
 **BBCode is the one asymmetric format.** Pandoc can *write* BBCode (it ships six forum dialects) but has no BBCode *reader*, so the two directions take different paths: exporting **to** BBCode goes through Pandoc like everything else (using `bbcode_hubzilla`, the only dialect that preserves real `[h1]` headings, tables, rules **and** images), while *reading* a `.bbcode` file uses Markzen's own parser in `src/formats/bbcode/render.js`. Converting a `.bbcode` document **to** another format therefore hands Pandoc the already-rendered HTML instead of the source. BBCode has no specification and every forum differs, so the parser is deliberately tolerant: it accepts the common spellings side by side (`[list]`/`[ul]`, `[s]`/`[strike]`, `[h1]`/`[heading=1]`, `[code]`/`[icode]`/`[noparse]`) and leaves any tag it does not know as literal text rather than dropping it.
 

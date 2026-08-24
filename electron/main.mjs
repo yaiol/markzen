@@ -192,6 +192,17 @@ function startServer(callback) {
     res.json(out);
   });
 
+  // Close the window once the renderer has walked every unsaved tab.
+  // ⚠ CLAUDE: the renderer CANNOT do this itself. Its `beforeunload` cancels the close (that is how
+  // the unsaved-changes guard works), and `window.close()` from a renderer is gated on how the
+  // window was created - a close that silently does nothing would be a worse bug than the one the
+  // guard fixes. `destroy()` rather than `close()` so it cannot be re-cancelled by the very guard
+  // that asked for it; by this point every dirty tab has been saved or discarded on purpose.
+  api.post("/close-window", (_req, res) => {
+    res.json({ ok: true });
+    if (mainWindow) mainWindow.destroy();
+  });
+
   api.post("/save-md", async (req, res) => {
     const { filePath, text } = req.body;
     try {

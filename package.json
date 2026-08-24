@@ -27,7 +27,8 @@
     "dist": "npm run ci:prepare && npm run build && electron-builder --win --x64",
     "dist:mac": "npm run ci:prepare && npm run build && electron-builder --mac",
     "dist:linux": "npm run ci:prepare && npm run build && electron-builder --linux",
-    "check:extensions": "node scripts/check-extensions.js"
+    "check:extensions": "node scripts/check-extensions.js",
+    "check:compat": "node scripts/check-compat.mjs"
   },
   "dependencies": {
     "brace-expansion": "^5.0.9",
@@ -144,6 +145,13 @@
         "icon": "public/ext-bbcode"
       },
       {
+        "ext": "bb",
+        "name": "BBCode File",
+        "description": "BBCode document",
+        "role": "Editor",
+        "icon": "public/ext-bbcode"
+      },
+      {
         "ext": "dj",
         "name": "Djot File",
         "description": "Djot document",
@@ -191,6 +199,20 @@
         "description": "Textile document",
         "role": "Editor",
         "icon": "public/ext-textile"
+      },
+      {
+        "ext": "wiki",
+        "name": "MediaWiki File",
+        "description": "MediaWiki document",
+        "role": "Editor",
+        "icon": "public/ext-wiki"
+      },
+      {
+        "ext": "mediawiki",
+        "name": "MediaWiki File",
+        "description": "MediaWiki document",
+        "role": "Editor",
+        "icon": "public/ext-wiki"
       }
     ],
     "win": {
@@ -247,6 +269,6 @@
         "repo": "markzen"
       }
     ],
-    "buildNumber": "2"
+    "buildNumber": "3"
   }
 }
