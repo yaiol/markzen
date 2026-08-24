@@ -48,6 +48,7 @@
     "@djot/djot": "^0.3.2",
     "@hpcc-js/wasm": "^2.35.0",
     "@hpcc-js/wasm-graphviz": "^1.28.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@vitejs/plugin-react": "^6.1.0",
     "abcjs": "^6.7.0",
     "asciidoctor": "^4.0.11",
@@ -94,6 +95,7 @@
     "vexchords": "^1.2.0",
     "vexflow": "^5.0.0",
     "vite": "^8.2.2",
+    "vite-plugin-svgr": "^5.2.0",
     "wait-on": "^9.1.0",
     "wavedrom": "^3.6.2"
   },
@@ -209,6 +211,13 @@
       },
       {
         "ext": "mediawiki",
+        "name": "MediaWiki File",
+        "description": "MediaWiki document",
+        "role": "Editor",
+        "icon": "public/ext-wiki"
+      },
+      {
+        "ext": "wikitext",
         "name": "MediaWiki File",
         "description": "MediaWiki document",
         "role": "Editor",
