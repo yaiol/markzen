@@ -257,7 +257,7 @@ function startServer(callback) {
       title,
       defaultPath: lastDir("open-file"),
       filters: filters || [
-        { name: "Text Files", extensions: ["md", "markdown", "adoc", "asciidoc", "asc", "rst", "rest", "org", "textile", "dj", "wiki", "mediawiki", "bbcode", "bb"] },
+        { name: "Text Files", extensions: ["md", "markdown", "adoc", "asciidoc", "asc", "rst", "rest", "org", "textile", "dj", "wiki", "mediawiki", "wikitext", "bbcode", "bb"] },
         { name: "All Files", extensions: ["*"] }
       ],
       properties: ["openFile"]

@@ -37,7 +37,7 @@ It is equally a **viewer**: open a `.md` file from the toolbar or by double-clic
 | Org | `.org` | all but `style` | yes | `$…$` | left / right alignment |
 | Textile | `.textile` | all but `style` | yes | block only | - |
 | Djot | `.dj` | all but `style` | yes | `` $`…` `` | - |
-| MediaWiki | `.wiki` `.mediawiki` | all but `style` | yes | `<math>` | inline code, strikethrough, blockquote, alignment |
+| MediaWiki | `.wiki` `.mediawiki` `.wikitext` | all but `style` | yes | `<math>` | inline code, strikethrough, blockquote, alignment |
 | BBCode | `.bbcode` `.bb` | all but `style` | yes | block only | - |
 <!-- /compat:formats -->
 

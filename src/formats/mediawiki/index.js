@@ -45,8 +45,8 @@ const extensions = [
 const mediawikiAdapter = {
   id: 'mediawiki',
   label: 'MediaWiki',
-  fileExtensions: ['.wiki', '.mediawiki'],
-  fileFilter: [{ name: 'MediaWiki', extensions: ['wiki', 'mediawiki'] }],
+  fileExtensions: ['.wiki', '.mediawiki', '.wikitext'],
+  fileFilter: [{ name: 'MediaWiki', extensions: ['wiki', 'mediawiki', 'wikitext'] }],
   supportsToc: true,
   shortcuts: {
     bold: "'''", italic: "''", inlineCode: null, strikethrough: null,

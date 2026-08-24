@@ -462,6 +462,68 @@ function toggleInlinePair(view, open, close) {
   return true;
 }
 
+// ─── Source mapping: rendered block → the source line it came from ───────────
+// ⚠ CLAUDE: this is deliberately NOT a parser source map. Markzen renders eight markup
+// languages through eight third-party parsers and most expose no source positions at all
+// (wtf_wikipedia discards whatever it does not understand). Matching the RENDERED text back
+// to the source text is the one technique that works identically for all eight — it is the
+// same thing buildToc() has always done for headings, generalised to every block.
+
+// The source line keeps inline markup (`code`, **bold**, [link](url)) that the rendered DOM
+// text does not. Strip it before matching or nothing with formatting in it ever matches.
+const stripInlineMarkup = s => s
+  .replace(/`([^`]+)`/g, '$1')
+  .replace(/\*\*([^*]+)\*\*/g, '$1').replace(/__([^_]+)__/g, '$1')
+  .replace(/~~([^~]+)~~/g, '$1')
+  .replace(/\*([^*]+)\*/g, '$1').replace(/_([^_]+)_/g, '$1')
+  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+  .replace(/\s+/g, ' ').trim();
+
+// Blocks a click can land on. Deliberately excludes tr/td: a table is located as a whole,
+// so the <table> stays a leaf and one stamp covers it.
+const SRC_BLOCK_SEL = 'p,h1,h2,h3,h4,h5,h6,li,pre,table,blockquote,[data-mzn-lang]';
+
+const normForMatch = s => stripInlineMarkup(String(s)).toLowerCase();
+
+// Forward-only scan: rendered blocks appear in source order, so each search starts where the
+// previous match ended. That keeps this O(lines + blocks) instead of O(lines x blocks), and it
+// resolves repeated text (two identical paragraphs) to the right occurrence for free.
+function findLineFrom(normLines, needle, from) {
+  if (!needle) return -1;
+  for (let i = from; i < normLines.length; i++) if (normLines[i].includes(needle)) return i;
+  for (let i = 0; i < from; i++)              if (normLines[i].includes(needle)) return i;  // wrap: better a hit than none
+  return -1;
+}
+
+// Stamp every leaf block in the preview with data-src-line (0-indexed).
+function mapSourceLines(root, text) {
+  if (!root || !text) return;
+  const normLines = text.split('\n').map(normForMatch);
+  const all = [...root.querySelectorAll(SRC_BLOCK_SEL)];
+  // Only the innermost block is stamped — a <blockquote> wrapping a <p> would otherwise
+  // consume the same line and push the scan past its own child.
+  const leaves = all.filter(el => !el.querySelector(SRC_BLOCK_SEL));
+  let cursor = 0;
+  for (const el of leaves) {
+    let needle;
+    const enc = el.dataset?.mznSrc;
+    if (enc) {
+      // An extension figure has no text in the output — locate it by its own fenced source,
+      // which inject() already stored on the element. These are the blocks the old
+      // proportional sync got most wrong, so they matter most here.
+      try { needle = normForMatch(decodeURIComponent(enc).split('\n').find(l => l.trim()) || ''); }
+      catch { needle = ''; }
+    } else {
+      needle = normForMatch(el.textContent || '').slice(0, 60);
+    }
+    if (!needle || needle.length < 3) continue;
+    const line = findLineFrom(normLines, needle, cursor);
+    if (line < 0) continue;
+    el.dataset.srcLine = String(line);
+    cursor = line + 1;
+  }
+}
+
 function toggleInlineFormat(view, marker) {
   if (marker && typeof marker === 'object') return toggleInlinePair(view, marker.open, marker.close);
   const { state } = view;
@@ -1243,16 +1305,9 @@ export default function App() {
     const counts = {};
     const lines = activeTab.text.split('\n');
     const headingCounters = {};
-    // ⚠ CLAUDE: the source heading line keeps inline markup (`.mpeg`, **bold**, [link](url))
-    // but the rendered DOM text does not. Strip it before matching, or any heading with
-    // inline formatting fails to match and the editor jump silently lands on line 1.
-    const stripInlineMd = s => s
-      .replace(/`([^`]+)`/g, '$1')
-      .replace(/\*\*([^*]+)\*\*/g, '$1').replace(/__([^_]+)__/g, '$1')
-      .replace(/~~([^~]+)~~/g, '$1')
-      .replace(/\*([^*]+)\*/g, '$1').replace(/_([^_]+)_/g, '$1')
-      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-      .replace(/\s+/g, ' ').trim();
+    // The source heading line keeps inline markup the rendered DOM text does not — shared with
+    // the block source mapper, see stripInlineMarkup at the top of this file.
+    const stripInlineMd = stripInlineMarkup;
     const items = nodes.map(el => {
       const text = el.textContent.trim();
       const level = parseInt(el.tagName[1], 10);
@@ -1655,7 +1710,7 @@ export default function App() {
     });
   }, [html, activeTabId, paneTick]); // eslint-disable-line
   // syncScroll only after a real rewrite (edit) — on a tab switch the pane keeps its own scroll
-  useEffect(() => { if (rewroteHtmlRef.current) syncScroll(); buildToc(); }, [html, activeTabId, paneTick]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { mapSourceLines(previewRef.current, activeTab?.text || ''); if (rewroteHtmlRef.current) syncScroll(); buildToc(); }, [html, activeTabId, paneTick]); // eslint-disable-line react-hooks/exhaustive-deps
   // Theme change - notify active format (e.g. mermaid re-initializes with new theme)
   useEffect(() => { activeFormat.onThemeChange?.(themeKey); }, [themeKey, activeFormat]); // eslint-disable-line
   // Single postRender dispatch - all DOM rendering delegated to the active format adapter.
@@ -1730,8 +1785,44 @@ export default function App() {
     }
     const totalLines = view.state.doc.lines;
     const cursorLine = view.state.doc.lineAt(view.state.selection.main.head).number - 1;
+
+    // ⚠ CLAUDE: positional first, proportional only as a fallback. The old line-ratio
+    // (cursorLine / totalLines applied to pixel height) assumes every source line occupies
+    // the same vertical space in the output — which is false the moment a document holds a
+    // diagram or a table: ten lines of mermaid render as one figure, ten lines of prose as
+    // ten lines. The denser the document, the further off it lands. mapSourceLines() stamps
+    // each rendered block with its source line, so the pane can be scrolled to the block the
+    // caret is actually inside. Do not restore the ratio as the primary path.
+    let best = null;
+    for (const el of preview.querySelectorAll('[data-src-line]')) {
+      const line = Number(el.dataset.srcLine);
+      if (line <= cursorLine && (best === null || line > best.line)) best = { line, el };
+    }
+    if (best) {
+      preview.scrollTop += best.el.getBoundingClientRect().top - preview.getBoundingClientRect().top;
+      return;
+    }
     const ratio = totalLines <= 1 ? 0 : cursorLine / (totalLines - 1);
     preview.scrollTop = ratio * (preview.scrollHeight - preview.clientHeight);
+  }
+
+  // Preview → editor. The gesture is isolated here on purpose: to move it to Alt+click or a
+  // context-menu item, change the handler wired on the preview pane, not this function.
+  function jumpEditorToPreviewLine(target) {
+    const el = target?.closest?.('[data-src-line]');
+    const view = cmViewRef.current;
+    if (!el || !view) return false;
+    const line = Number(el.dataset.srcLine) + 1;           // CM lines are 1-indexed
+    if (!Number.isFinite(line) || line < 1 || line > view.state.doc.lines) return false;
+    const pos = view.state.doc.line(line).from;
+    suppressSyncRef.current = true;                        // this is a jump, not an edit
+    const editorVisible = centerMode === 'split' || centerView === 'editor';
+    view.dispatch({
+      selection: EditorSelection.cursor(pos),
+      ...(editorVisible ? { effects: EditorView.scrollIntoView(pos, { y: 'center' }) } : {}),
+    });
+    if (editorVisible) view.focus();
+    return true;
   }
 
   // Always-fresh CM update callback - avoids stale closures in updateListener
@@ -2724,6 +2815,12 @@ export default function App() {
               padding: '32px 48px',
               visibility: tab.id === activeTabId ? 'visible' : 'hidden',
             }}
+              // Preview → editor. Double-click, not single: a single click still has to select
+              // text. Swapping the gesture means changing THIS line only — the lookup and the
+              // jump live in jumpEditorToPreviewLine().
+              onDoubleClick={e => {
+                if (jumpEditorToPreviewLine(e.target)) e.preventDefault();
+              }}
               onMouseOver={e => {
                 const target = e.target.closest('[data-mzn-lang]');
                 if (!target) return;
