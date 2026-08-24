@@ -846,6 +846,13 @@ export default function App() {
     ? (formats.find(f => f.id === activeTab.formatId) || defaultFormat)
     : defaultFormat;
   activeFormatRef.current = activeFormat;
+  // ⚠ CLAUDE: window-level listeners below (Ctrl+S, the close guard) must see the CURRENT tabs and
+  // the CURRENT doSave, but must not be re-registered on every keystroke - a dep on `tabs` would
+  // tear down and re-add a listener for each character typed. Same render-time ref assignment as
+  // activeFormatRef above; the listeners read `.current` and are registered exactly once.
+  const tabsRef = useRef(tabs);
+  tabsRef.current = tabs;
+  const doSaveRef = useRef(null);
 
   // New Document format picker dropdown state
   const [showNewDocMenu, setShowNewDocMenu] = useState(false);
@@ -1976,6 +1983,49 @@ export default function App() {
       body: JSON.stringify({ filePath: activeTab.filePath, text: activeTab.text }) });
     setTabs(prev => prev.map(tab => tab.id === activeTabId ? { ...tab, unsaved: false } : tab));
   }
+
+  doSaveRef.current = doSave;
+
+  // ── Ctrl+S — save the current document ─────────────────────────────────────
+  // ⚠ CLAUDE: a WINDOW listener, not an editor keymap. The shortcut has to work wherever focus is
+  // (preview pane, sidebar, the find box), and the editor does not have focus in half of those.
+  // doSave() already routes a never-saved document to Save-As, so Ctrl+S covers a brand-new doc.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey) return;
+      if (e.key !== 's' && e.key !== 'S') return;
+      e.preventDefault();          // or the browser's own Save-page dialog opens
+      doSaveRef.current?.();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  // ── Closing the WINDOW with unsaved work ───────────────────────────────────
+  // ⚠ CLAUDE: closing a TAB has always prompted (requestCloseTab); closing the WINDOW did not, so
+  // an unsaved document was discarded silently with no way back - write a new doc, forget to save,
+  // hit the X, and the work is gone. Reported 2026-08-24.
+  //
+  // In Electron a renderer `beforeunload` that sets returnValue CANCELS the close, and - unlike a
+  // browser - shows no native dialog of its own, so the app is free to ask in its own words. We
+  // reuse the tab's EXISTING inline confirm (Save / Discard / cancel) rather than inventing a
+  // window-level dialog: same control, already translated, and it names the file at risk.
+  //
+  // Multiple unsaved tabs resolve one at a time - the close is refused again until none are left.
+  // Deliberate: each file gets its own Save-or-discard decision, and no single click can throw away
+  // several documents at once.
+  useEffect(() => {
+    const onBeforeUnload = (e) => {
+      const unsaved = tabsRef.current.find(tab => tab.unsaved);
+      if (!unsaved) return;                       // nothing at risk - let it close
+      e.preventDefault();
+      e.returnValue = false;                      // Electron: any set value cancels the close
+      setActiveTabId(unsaved.id);                 // show the user WHICH file is being asked about
+      setConfirmCloseId(unsaved.id);
+    };
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, []);
 
   async function doSaveAs() {
     if (!activeTab) return;
