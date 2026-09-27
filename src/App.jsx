@@ -6,14 +6,14 @@
 //   Never paste translations by hand. The scripts ARE the work.
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import pkg from '../package.json';
-import yaiolLogo from './assets/yaiol-logo.svg';
 import { basicSetup } from 'codemirror';
 import { EditorView, keymap } from '@codemirror/view';
 import { EditorState, EditorSelection, Compartment, Prec } from '@codemirror/state';
 import { markdown } from '@codemirror/lang-markdown';
 import { oneDark } from '@codemirror/theme-one-dark';
-import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, Sun, Moon, X, Info, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table, Palette } from 'lucide-react';
+import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, X, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table, Palette } from 'lucide-react';
 import { GithubIcon } from './lib/ui-icons';
+import { SettingsView } from './lib/ui-settings';
 import { Splitter } from './lib/ui-ctl-splitter';
 import { CollapseToggle } from './lib/ui-ctl-collapsetoggle';
 import { Popover } from './lib/ui-ctl-popover';
@@ -821,7 +821,6 @@ export default function App() {
   const [styleTemplateKey, setStyleTemplateKey] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-styleTemplate`) || 'standard');
   const [showSettings, setShowSettings] = useState(false);
   const [showConvertMenu, setShowConvertMenu] = useState(false);
-  const [tabSettingsActive, setTabSettingsActive]   = useState('display');
   const [html, setHtml]           = useState('');
   const [paneTick, setPaneTick]   = useState(0); // forces a pane write when setHtml gets an identical string (two tabs, same content)
   const [fontSize, setFontSize]   = useState(() => parseInt(localStorage.getItem(`${STORAGE_PREFIX}-fontsize`) || '15', 10));
@@ -2307,82 +2306,6 @@ export default function App() {
     doForceClose(tabId);
   }
 
-  // ─── Settings modal ──────────────────────────────────────────
-
-  function SettingsModal() {
-    return (
-      <div className="dl-backdrop"
-        onMouseDown={e => { if (e.target === e.currentTarget) closeSettings(); }}>
-        <div className="dlg" onKeyDown={e => {
-          if (e.key === 'Escape') closeSettings();
-          if (e.key !== 'Tab') return;
-          const els = [...e.currentTarget.querySelectorAll('button, input, select, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled && el.offsetParent !== null);
-          const first = els[0]; const last = els[els.length - 1];
-          if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-          else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
-        }}>
-          {/* Header */}
-          <div className="dlg-head">
-            <span className="dlg-title"><Settings />{t('ttlDlgSettings')}</span>
-            <button className="dl-close" ref={el => { if (el && !el.dataset.didFocus) { el.dataset.didFocus = '1'; el.focus(); } }}
-              onClick={() => closeSettings()}>
-              <X />
-            </button>
-          </div>
-          {/* Tab bar */}
-          <div className="tabs">
-            {[{ key: 'display', label: t('tabDlgSettingsDisplay'), Icon: Sun }, { key: 'about', label: t('tabDlgSettingsAbout'), Icon: Info }].map(({ key, label, Icon }) => {
-              const active = tabSettingsActive === key;
-              return (
-                <button key={key} className={`tab${active ? ' active' : ''}`} onClick={() => setTabSettingsActive(key)}>
-                  <Icon />{label}
-                </button>
-              );
-            })}
-          </div>
-          {/* Content - grid stacks all tabs in one cell, height = tallest tab, no yoyo */}
-          <div className="dlg-body" style={{ display: 'grid' }}>
-            {/* display tab */}
-            <div style={{ gridArea: '1/1', visibility: tabSettingsActive === 'display' ? 'visible' : 'hidden', zIndex: tabSettingsActive === 'display' ? 1 : 0, background: 'var(--dlg-bgd)', transition: 'none' }}>
-              {/* Language */}
-              <div className="dlg-field">
-                <label className="dlg-field-label">{t('lblDlgSettingsDisplayLang')}</label>
-                <select className="select" value={lang} onChange={e => setLang(e.target.value)}>
-                  {LANGUAGES.map(l => <option key={l.key} value={l.key}>{l.label}</option>)}
-                </select>
-              </div>
-              {/* Theme */}
-              <div className="dlg-field divider">
-                <label className="dlg-field-label">{t('lblDlgSettingsDisplayTheme')}</label>
-                <div className="opt-btns">
-                  {[{ key: 'dark', Icon: Moon }, { key: 'light', Icon: Sun }].map(({ key: tk, Icon }) => {
-                    const active = themeKey === tk;
-                    return (
-                      <button key={tk} className={`opt-btn${active ? ' active' : ''}`} onClick={() => setThemeKey(tk)}>
-                        <Icon />
-                        <span>{t(tk === 'dark' ? 'btnDlgSettingsDisplayThemeDark' : 'btnDlgSettingsDisplayThemeLight')}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            {/* about tab */}
-            <div className="dlg-about" style={{ gridArea: '1/1', visibility: tabSettingsActive === 'about' ? 'visible' : 'hidden', zIndex: tabSettingsActive === 'about' ? 1 : 0, background: 'var(--dlg-bgd)', transition: 'none' }}>
-              <img src={yaiolLogo} alt="Yaiol" style={{ width: 120, height: 'auto', flexShrink: 0 }} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
-                <div className="dlg-about-desc">
-                  {APP_NAME} <b>v{APP_VERSION_BUILD}</b> by yaiol
-                </div>
-                <div className="dlg-about-id" style={{ color: 'var(--text-dim)' }}>{t('msgDlgSettingsAboutDesc')}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <style>{buildCss(fontHeading, fontBody, fontCode, templateCss)}</style>
@@ -2541,14 +2464,15 @@ export default function App() {
             <button className="btn icon" title={t('tipHdrHelp')} onClick={() => window.open(getUrl(pkg.name, lang.replace(/_/g, '-'), 'help'), '_blank')}>
               <HelpCircle />
             </button>
-            <button className="btn icon" title={t('tipHdrSettings')} onClick={() => setShowSettings(true)}>
+            <button className={`btn icon stg-toggle ${showSettings ? 'active' : ''}`} title={t('tipHdrSettings')} aria-pressed={showSettings} onClick={() => setShowSettings(o => !o)}>
               <Settings />
             </button>
           </div>
 
         </AppHeader>
 
-        {/* ── Tab bar ── */}
+        {/* ── Tab bar ── the document strip belongs to the view, so the settings page hides it with the content. */}
+        {!showSettings && (
         <div style={{
           display: 'flex', alignItems: 'center', flexShrink: 0,
           background: 'var(--bg-elev)', borderBottom: `1px solid var(--border)`,
@@ -2631,11 +2555,19 @@ export default function App() {
             );
           })}
         </div>
+        )}
 
         {/* ── Main content area = .app-main content region (Rule 14): TOC + editor/
               preview split. Tagged in place with flex-direction:row so .app-main's
               column default doesn't stack it; header + tab bar above are chrome. ── */}
         <div className="app-main" style={{ flex: 1, display: 'flex', overflow: 'hidden', flexDirection: 'row' }}>
+          {showSettings && (
+            <SettingsView
+              t={t} appName={APP_NAME} appVersion={APP_VERSION_BUILD} languages={LANGUAGES}
+              lang={lang} setLang={setLang} theme={themeKey} setTheme={setThemeKey}
+              onClose={closeSettings}
+            />
+          )}
 
           {/* TOC panel (LEFT, toggleable) */}
           {showToc && activeFormat.supportsToc && tocItems.length > 0 && (
@@ -2702,13 +2634,14 @@ export default function App() {
               ⚠ Do NOT 'fix' this instead by giving the preview its own empty band: `.barf` has no
               fixed height (ui-app.css - it is sized by its buttons), so a duplicated spacer drifts
               the moment a button is added or the icon size changes.
-              Hidden when the editor is hidden: in preview-only mode it would act on nothing. */}
-          {(eMode === 'split' || centerView === 'editor') && (() => {
+              Hidden when the editor is hidden: in preview-only mode it would act on nothing - and
+              hidden when NO document is open: a row of greyed-out formatting buttons over an empty
+              window acts on nothing either. */}
+          {activeTab && (eMode === 'split' || centerView === 'editor') && (() => {
               const s   = activeFormat.shortcuts || {};
-              const dis = !activeTab;
               const run = (fn) => { const v = cmViewRef.current; if (!v) return; v.focus(); fn(v); };
               const btn = (icon, title, onClick, disabled = false) => (
-                <button title={title} disabled={dis || disabled} onClick={onClick} className="btn icon">{icon}</button>
+                <button title={title} disabled={disabled} onClick={onClick} className="btn icon">{icon}</button>
               );
               // ⚠ CLAUDE: every button below passes `!s.<shortcut>` as its disabled flag, and
               // that flag is NOT decoration: a null entry in an adapter's `shortcuts` means the
@@ -2738,7 +2671,7 @@ export default function App() {
                       other one here; the size grid is the shared TableGrid inside the
                       shared Popover, which owns portal + placement + dismiss. */}
                   <button ref={tableBtnRef} className="btn icon" title={t('tipEditorTable')}
-                    disabled={dis || !activeFormat.formatTable}
+                    disabled={!activeFormat.formatTable}
                     onClick={() => setShowTableGrid(v => !v)}>
                     <Table />
                   </button>
@@ -2961,7 +2894,6 @@ export default function App() {
 
       </div>
 
-      {showSettings && SettingsModal()}
 
       {linkPopup && (() => {
         const confirmLink = (text, url, mode, useRelative) => {

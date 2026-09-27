@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.10 — 2026-09-27
+
+- **Settings opens as a full page instead of a dialog.** The settings button in the header now takes over the window below the header: the Display and About sections are listed in a rail on the left and the chosen one fills the rest. The open documents stay loaded underneath, so their undo history and scroll position are still there when you come back. You can leave with the back arrow beside the title, the settings button again, or `Esc`. While the page is open, the other header buttons and the app's keyboard shortcuts are switched off, so none of them can act on a document you can't see
+- **Notices shown while a dialog is open can be read.** A notice such as "Copied" used to appear behind the dialog's blurred background, so it came out dim and smeared. It now shows in front of the dialog
+- **The formatting toolbar is hidden when no document is open.** It used to show a row of greyed-out buttons over an empty window
+- Text fields and dropdowns in the toolbars and dialogs use a lighter grey background, so they stand out from the surface around them
+- The README has a new layout, with a logo, a hero screenshot, release and download badges, and a navigation row
+
 ## 1.0.9 — 2026-08-26
 
 - **MediaWiki documents keep their formulas and code blocks.** The parser behind MediaWiki discards whatever it doesn't understand, silently and without an error, so `<math>`, `<syntaxhighlight>` and `<pre>` vanished from the preview — taking every formula and every code block in the document with them. Each is now lifted out before parsing and rendered: `<math>` through the same maths engine the other languages use, inline by default and displayed for `display="block"` (which is how Wikipedia writes most of its formulas), and `<syntaxhighlight lang="…">` as a code block in its language

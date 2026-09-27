@@ -78,19 +78,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Open settings",
     tipHdrHelp:                             "Help",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Settings",
-    tabDlgSettingsDisplay:                  "Display",
-    tabDlgSettingsAbout:                    "About",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Settings",
+    tipStgBack:                             "Back",
+    tabStgDisplay:                          "Display",
+    tabStgAbout:                            "About",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Language",
-    lblDlgSettingsDisplayTheme:             "Theme",
-    btnDlgSettingsDisplayThemeDark:         "Dark",
-    btnDlgSettingsDisplayThemeLight:        "Light",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Language",
+    lblStgDisplayTheme:                     "Theme",
+    btnStgDisplayThemeDark:                 "Dark",
+    btnStgDisplayThemeLight:                "Light",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edit and preview Markdown files.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edit and preview Markdown files.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt text",
@@ -208,19 +209,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Ouvrir les paramètres",
     tipHdrHelp:                             "Aide",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Paramètres",
-    tabDlgSettingsDisplay:                  "Affichage",
-    tabDlgSettingsAbout:                    "À propos",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Paramètres",
+    tipStgBack:                             "Retour",
+    tabStgDisplay:                          "Affichage",
+    tabStgAbout:                            "À propos",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Langue",
-    lblDlgSettingsDisplayTheme:             "Thème",
-    btnDlgSettingsDisplayThemeDark:         "Sombre",
-    btnDlgSettingsDisplayThemeLight:        "Clair",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Langue",
+    lblStgDisplayTheme:                     "Thème",
+    btnStgDisplayThemeDark:                 "Sombre",
+    btnStgDisplayThemeLight:                "Clair",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "modifiez et prévisualisez des fichiers Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "modifiez et prévisualisez des fichiers Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texte alternatif",
@@ -337,19 +339,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Einstellungen öffnen",
     tipHdrHelp:                             "Hilfe",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Einstellungen",
-    tabDlgSettingsDisplay:                  "Anzeige",
-    tabDlgSettingsAbout:                    "Über",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Einstellungen",
+    tipStgBack:                             "Zurück",
+    tabStgDisplay:                          "Anzeige",
+    tabStgAbout:                            "Über",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Sprache",
-    lblDlgSettingsDisplayTheme:             "Thema",
-    btnDlgSettingsDisplayThemeDark:         "Dunkel",
-    btnDlgSettingsDisplayThemeLight:        "Hell",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Sprache",
+    lblStgDisplayTheme:                     "Thema",
+    btnStgDisplayThemeDark:                 "Dunkel",
+    btnStgDisplayThemeLight:                "Hell",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown-Dateien bearbeiten und anzeigen.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown-Dateien bearbeiten und anzeigen.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativtext",
@@ -466,19 +469,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Abrir configuración",
     tipHdrHelp:                             "Ayuda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Configuración",
-    tabDlgSettingsDisplay:                  "Pantalla",
-    tabDlgSettingsAbout:                    "Acerca de",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Configuración",
+    tipStgBack:                             "Atrás",
+    tabStgDisplay:                          "Pantalla",
+    tabStgAbout:                            "Acerca de",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Idioma",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Oscuro",
-    btnDlgSettingsDisplayThemeLight:        "Claro",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Idioma",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Oscuro",
+    btnStgDisplayThemeLight:                "Claro",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edita y previsualiza archivos Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edita y previsualiza archivos Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -595,19 +599,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Abrir definições",
     tipHdrHelp:                             "Ajuda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Definições",
-    tabDlgSettingsDisplay:                  "Exibição",
-    tabDlgSettingsAbout:                    "Sobre",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Definições",
+    tipStgBack:                             "Voltar",
+    tabStgDisplay:                          "Exibição",
+    tabStgAbout:                            "Sobre",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Idioma",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Escuro",
-    btnDlgSettingsDisplayThemeLight:        "Claro",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Idioma",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Escuro",
+    btnStgDisplayThemeLight:                "Claro",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edite e visualize ficheiros Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -724,19 +729,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Abrir definições",
     tipHdrHelp:                             "Ajuda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Definições",
-    tabDlgSettingsDisplay:                  "Apresentação",
-    tabDlgSettingsAbout:                    "Sobre",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Definições",
+    tipStgBack:                             "Voltar",
+    tabStgDisplay:                          "Apresentação",
+    tabStgAbout:                            "Sobre",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Idioma",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Escuro",
-    btnDlgSettingsDisplayThemeLight:        "Claro",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Idioma",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Escuro",
+    btnStgDisplayThemeLight:                "Claro",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edite e visualize ficheiros Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -853,19 +859,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Apri impostazioni",
     tipHdrHelp:                             "Aiuto",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Impostazioni",
-    tabDlgSettingsDisplay:                  "Visualizzazione",
-    tabDlgSettingsAbout:                    "Informazioni",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Impostazioni",
+    tipStgBack:                             "Indietro",
+    tabStgDisplay:                          "Visualizzazione",
+    tabStgAbout:                            "Informazioni",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Lingua",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Scuro",
-    btnDlgSettingsDisplayThemeLight:        "Chiaro",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Lingua",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Scuro",
+    btnStgDisplayThemeLight:                "Chiaro",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "modifica e visualizza file Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "modifica e visualizza file Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Testo alternativo",
@@ -982,19 +989,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Instellingen openen",
     tipHdrHelp:                             "Hulp",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Instellingen",
-    tabDlgSettingsDisplay:                  "Weergave",
-    tabDlgSettingsAbout:                    "Over",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Instellingen",
+    tipStgBack:                             "Terug",
+    tabStgDisplay:                          "Weergave",
+    tabStgAbout:                            "Over",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Taal",
-    lblDlgSettingsDisplayTheme:             "Thema",
-    btnDlgSettingsDisplayThemeDark:         "Donker",
-    btnDlgSettingsDisplayThemeLight:        "Licht",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Taal",
+    lblStgDisplayTheme:                     "Thema",
+    btnStgDisplayThemeDark:                 "Donker",
+    btnStgDisplayThemeLight:                "Licht",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "bewerk en bekijk Markdown-bestanden.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "bewerk en bekijk Markdown-bestanden.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt-tekst",
@@ -1111,19 +1119,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Открыть настройки",
     tipHdrHelp:                             "Помощь",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Настройки",
-    tabDlgSettingsDisplay:                  "Отображение",
-    tabDlgSettingsAbout:                    "О программе",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Настройки",
+    tipStgBack:                             "Назад",
+    tabStgDisplay:                          "Отображение",
+    tabStgAbout:                            "О программе",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Язык",
-    lblDlgSettingsDisplayTheme:             "Тема",
-    btnDlgSettingsDisplayThemeDark:         "Тёмная",
-    btnDlgSettingsDisplayThemeLight:        "Светлая",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Язык",
+    lblStgDisplayTheme:                     "Тема",
+    btnStgDisplayThemeDark:                 "Тёмная",
+    btnStgDisplayThemeLight:                "Светлая",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "редактирование и просмотр Markdown-файлов.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "редактирование и просмотр Markdown-файлов.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Альтернативный текст",
@@ -1240,19 +1249,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Відкрити налаштування",
     tipHdrHelp:                             "Довідка",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Налаштування",
-    tabDlgSettingsDisplay:                  "Відображення",
-    tabDlgSettingsAbout:                    "Про програму",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Налаштування",
+    tipStgBack:                             "Назад",
+    tabStgDisplay:                          "Відображення",
+    tabStgAbout:                            "Про програму",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Мова",
-    lblDlgSettingsDisplayTheme:             "Тема",
-    btnDlgSettingsDisplayThemeDark:         "Темна",
-    btnDlgSettingsDisplayThemeLight:        "Світла",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Мова",
+    lblStgDisplayTheme:                     "Тема",
+    btnStgDisplayThemeDark:                 "Темна",
+    btnStgDisplayThemeLight:                "Світла",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "редагування та перегляд файлів Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "редагування та перегляд файлів Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Альтернативний текст",
@@ -1369,19 +1379,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Otwórz ustawienia",
     tipHdrHelp:                             "Pomoc",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Ustawienia",
-    tabDlgSettingsDisplay:                  "Wyświetlanie",
-    tabDlgSettingsAbout:                    "O programie",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Ustawienia",
+    tipStgBack:                             "Wstecz",
+    tabStgDisplay:                          "Wyświetlanie",
+    tabStgAbout:                            "O programie",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Język",
-    lblDlgSettingsDisplayTheme:             "Motyw",
-    btnDlgSettingsDisplayThemeDark:         "Ciemny",
-    btnDlgSettingsDisplayThemeLight:        "Jasny",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Język",
+    lblStgDisplayTheme:                     "Motyw",
+    btnStgDisplayThemeDark:                 "Ciemny",
+    btnStgDisplayThemeLight:                "Jasny",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edytuj i podglądaj pliki Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edytuj i podglądaj pliki Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Tekst alternatywny",
@@ -1498,19 +1509,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Deschide setări",
     tipHdrHelp:                             "Ajutor",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Setări",
-    tabDlgSettingsDisplay:                  "Afișaj",
-    tabDlgSettingsAbout:                    "Despre",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Setări",
+    tipStgBack:                             "Înapoi",
+    tabStgDisplay:                          "Afișaj",
+    tabStgAbout:                            "Despre",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Limbă",
-    lblDlgSettingsDisplayTheme:             "Temă",
-    btnDlgSettingsDisplayThemeDark:         "Întunecat",
-    btnDlgSettingsDisplayThemeLight:        "Deschis",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Limbă",
+    lblStgDisplayTheme:                     "Temă",
+    btnStgDisplayThemeDark:                 "Întunecat",
+    btnStgDisplayThemeLight:                "Deschis",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "editați și vizualizați fișiere Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "editați și vizualizați fișiere Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Text alternativ",
@@ -1627,19 +1639,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Öppna inställningar",
     tipHdrHelp:                             "Hjälp",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Inställningar",
-    tabDlgSettingsDisplay:                  "Visning",
-    tabDlgSettingsAbout:                    "Om",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Inställningar",
+    tipStgBack:                             "Tillbaka",
+    tabStgDisplay:                          "Visning",
+    tabStgAbout:                            "Om",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Språk",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Mörkt",
-    btnDlgSettingsDisplayThemeLight:        "Ljust",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Språk",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Mörkt",
+    btnStgDisplayThemeLight:                "Ljust",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "redigera och förhandsgranska Markdown-filer.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "redigera och förhandsgranska Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ text",
@@ -1756,19 +1769,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Åpne innstillinger",
     tipHdrHelp:                             "Hjelp",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Innstillinger",
-    tabDlgSettingsDisplay:                  "Visning",
-    tabDlgSettingsAbout:                    "Om",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Innstillinger",
+    tipStgBack:                             "Tilbake",
+    tabStgDisplay:                          "Visning",
+    tabStgAbout:                            "Om",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Språk",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Mørk",
-    btnDlgSettingsDisplayThemeLight:        "Lys",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Språk",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Mørk",
+    btnStgDisplayThemeLight:                "Lys",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "rediger og forhåndsvis Markdown-filer.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ tekst",
@@ -1885,19 +1899,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Ayarları aç",
     tipHdrHelp:                             "Yardım",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Ayarlar",
-    tabDlgSettingsDisplay:                  "Görünüm",
-    tabDlgSettingsAbout:                    "Hakkında",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Ayarlar",
+    tipStgBack:                             "Geri",
+    tabStgDisplay:                          "Görünüm",
+    tabStgAbout:                            "Hakkında",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Dil",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Koyu",
-    btnDlgSettingsDisplayThemeLight:        "Açık",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Dil",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Koyu",
+    btnStgDisplayThemeLight:                "Açık",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown dosyalarını düzenleyin ve önizleyin.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown dosyalarını düzenleyin ve önizleyin.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatif metin",
@@ -2014,19 +2029,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Otvori postavke",
     tipHdrHelp:                             "Pomoć",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Postavke",
-    tabDlgSettingsDisplay:                  "Prikaz",
-    tabDlgSettingsAbout:                    "O programu",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Postavke",
+    tipStgBack:                             "Natrag",
+    tabStgDisplay:                          "Prikaz",
+    tabStgAbout:                            "O programu",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Jezik",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Tamna",
-    btnDlgSettingsDisplayThemeLight:        "Svijetla",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Jezik",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Tamna",
+    btnStgDisplayThemeLight:                "Svijetla",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "uređujte i pregledajte Markdown datoteke.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "uređujte i pregledajte Markdown datoteke.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Zamjenski tekst",
@@ -2143,19 +2159,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Άνοιγμα ρυθμίσεων",
     tipHdrHelp:                             "Βοήθεια",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Ρυθμίσεις",
-    tabDlgSettingsDisplay:                  "Εμφάνιση",
-    tabDlgSettingsAbout:                    "Σχετικά",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Ρυθμίσεις",
+    tipStgBack:                             "Πίσω",
+    tabStgDisplay:                          "Εμφάνιση",
+    tabStgAbout:                            "Σχετικά",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Γλώσσα",
-    lblDlgSettingsDisplayTheme:             "Θέμα",
-    btnDlgSettingsDisplayThemeDark:         "Σκοτεινό",
-    btnDlgSettingsDisplayThemeLight:        "Φωτεινό",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Γλώσσα",
+    lblStgDisplayTheme:                     "Θέμα",
+    btnStgDisplayThemeDark:                 "Σκοτεινό",
+    btnStgDisplayThemeLight:                "Φωτεινό",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "επεξεργαστείτε και προβάλετε αρχεία Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "επεξεργαστείτε και προβάλετε αρχεία Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Εναλλακτικό κείμενο",
@@ -2272,19 +2289,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "פתח הגדרות",
     tipHdrHelp:                             "עזרה",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "הגדרות",
-    tabDlgSettingsDisplay:                  "תצוגה",
-    tabDlgSettingsAbout:                    "אודות",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "הגדרות",
+    tipStgBack:                             "חזור",
+    tabStgDisplay:                          "תצוגה",
+    tabStgAbout:                            "אודות",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "שפה",
-    lblDlgSettingsDisplayTheme:             "ערכת נושא",
-    btnDlgSettingsDisplayThemeDark:         "כהה",
-    btnDlgSettingsDisplayThemeLight:        "בהיר",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "שפה",
+    lblStgDisplayTheme:                     "ערכת נושא",
+    btnStgDisplayThemeDark:                 "כהה",
+    btnStgDisplayThemeLight:                "בהיר",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "ערוך וצפה בקבצי Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "ערוך וצפה בקבצי Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "טקסט חלופי",
@@ -2401,19 +2419,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "فتح الإعدادات",
     tipHdrHelp:                             "مساعدة",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "الإعدادات",
-    tabDlgSettingsDisplay:                  "العرض",
-    tabDlgSettingsAbout:                    "حول",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "الإعدادات",
+    tipStgBack:                             "رجوع",
+    tabStgDisplay:                          "العرض",
+    tabStgAbout:                            "حول",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "اللغة",
-    lblDlgSettingsDisplayTheme:             "السمة",
-    btnDlgSettingsDisplayThemeDark:         "داكن",
-    btnDlgSettingsDisplayThemeLight:        "فاتح",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "اللغة",
+    lblStgDisplayTheme:                     "السمة",
+    btnStgDisplayThemeDark:                 "داكن",
+    btnStgDisplayThemeLight:                "فاتح",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "حرِّر ملفات Markdown وعاينها.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "حرِّر ملفات Markdown وعاينها.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "نص بديل",
@@ -2530,19 +2549,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "باز کردن تنظیمات",
     tipHdrHelp:                             "راهنما",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "تنظیمات",
-    tabDlgSettingsDisplay:                  "نمایش",
-    tabDlgSettingsAbout:                    "درباره",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "تنظیمات",
+    tipStgBack:                             "بازگشت",
+    tabStgDisplay:                          "نمایش",
+    tabStgAbout:                            "درباره",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "زبان",
-    lblDlgSettingsDisplayTheme:             "پوسته",
-    btnDlgSettingsDisplayThemeDark:         "تاریک",
-    btnDlgSettingsDisplayThemeLight:        "روشن",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "زبان",
+    lblStgDisplayTheme:                     "پوسته",
+    btnStgDisplayThemeDark:                 "تاریک",
+    btnStgDisplayThemeLight:                "روشن",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "فایل‌های Markdown را ویرایش و پیش‌نمایش کنید.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "فایل‌های Markdown را ویرایش و پیش‌نمایش کنید.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "متن جایگزین",
@@ -2659,19 +2679,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "打开设置",
     tipHdrHelp:                             "帮助",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "设置",
-    tabDlgSettingsDisplay:                  "显示",
-    tabDlgSettingsAbout:                    "关于",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "设置",
+    tipStgBack:                             "返回",
+    tabStgDisplay:                          "显示",
+    tabStgAbout:                            "关于",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "语言",
-    lblDlgSettingsDisplayTheme:             "主题",
-    btnDlgSettingsDisplayThemeDark:         "深色",
-    btnDlgSettingsDisplayThemeLight:        "浅色",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "语言",
+    lblStgDisplayTheme:                     "主题",
+    btnStgDisplayThemeDark:                 "深色",
+    btnStgDisplayThemeLight:                "浅色",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "编辑并预览 Markdown 文件。",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "编辑并预览 Markdown 文件。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "替代文本",
@@ -2788,19 +2809,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "開啟設定",
     tipHdrHelp:                             "說明",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "設定",
-    tabDlgSettingsDisplay:                  "顯示",
-    tabDlgSettingsAbout:                    "關於",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "設定",
+    tipStgBack:                             "返回",
+    tabStgDisplay:                          "顯示",
+    tabStgAbout:                            "關於",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "語言",
-    lblDlgSettingsDisplayTheme:             "主題",
-    btnDlgSettingsDisplayThemeDark:         "深色",
-    btnDlgSettingsDisplayThemeLight:        "淺色",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "語言",
+    lblStgDisplayTheme:                     "主題",
+    btnStgDisplayThemeDark:                 "深色",
+    btnStgDisplayThemeLight:                "淺色",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "編輯並預覽 Markdown 檔案。",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "編輯並預覽 Markdown 檔案。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "替代文字",
@@ -2917,19 +2939,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "設定を開く",
     tipHdrHelp:                             "ヘルプ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "設定",
-    tabDlgSettingsDisplay:                  "表示",
-    tabDlgSettingsAbout:                    "概要",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "設定",
+    tipStgBack:                             "戻る",
+    tabStgDisplay:                          "表示",
+    tabStgAbout:                            "概要",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "言語",
-    lblDlgSettingsDisplayTheme:             "テーマ",
-    btnDlgSettingsDisplayThemeDark:         "ダーク",
-    btnDlgSettingsDisplayThemeLight:        "ライト",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "言語",
+    lblStgDisplayTheme:                     "テーマ",
+    btnStgDisplayThemeDark:                 "ダーク",
+    btnStgDisplayThemeLight:                "ライト",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown ファイルを編集・プレビューします。",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown ファイルを編集・プレビューします。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "代替テキスト",
@@ -3046,19 +3069,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "설정 열기",
     tipHdrHelp:                             "도움말",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "설정",
-    tabDlgSettingsDisplay:                  "표시",
-    tabDlgSettingsAbout:                    "정보",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "설정",
+    tipStgBack:                             "뒤로",
+    tabStgDisplay:                          "표시",
+    tabStgAbout:                            "정보",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "언어",
-    lblDlgSettingsDisplayTheme:             "테마",
-    btnDlgSettingsDisplayThemeDark:         "어둡게",
-    btnDlgSettingsDisplayThemeLight:        "밝게",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "언어",
+    lblStgDisplayTheme:                     "테마",
+    btnStgDisplayThemeDark:                 "어둡게",
+    btnStgDisplayThemeLight:                "밝게",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown 파일을 편집하고 미리 봅니다.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown 파일을 편집하고 미리 봅니다.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "대체 텍스트",
@@ -3175,19 +3199,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Mở cài đặt",
     tipHdrHelp:                             "Trợ giúp",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Cài đặt",
-    tabDlgSettingsDisplay:                  "Hiển thị",
-    tabDlgSettingsAbout:                    "Giới thiệu",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Cài đặt",
+    tipStgBack:                             "Quay lại",
+    tabStgDisplay:                          "Hiển thị",
+    tabStgAbout:                            "Giới thiệu",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Ngôn ngữ",
-    lblDlgSettingsDisplayTheme:             "Giao diện",
-    btnDlgSettingsDisplayThemeDark:         "Tối",
-    btnDlgSettingsDisplayThemeLight:        "Sáng",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Ngôn ngữ",
+    lblStgDisplayTheme:                     "Giao diện",
+    btnStgDisplayThemeDark:                 "Tối",
+    btnStgDisplayThemeLight:                "Sáng",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "chỉnh sửa và xem trước tệp Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "chỉnh sửa và xem trước tệp Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Văn bản thay thế",
@@ -3304,19 +3329,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "เปิดการตั้งค่า",
     tipHdrHelp:                             "ช่วยเหลือ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "การตั้งค่า",
-    tabDlgSettingsDisplay:                  "แสดงผล",
-    tabDlgSettingsAbout:                    "เกี่ยวกับ",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "การตั้งค่า",
+    tipStgBack:                             "ย้อนกลับ",
+    tabStgDisplay:                          "แสดงผล",
+    tabStgAbout:                            "เกี่ยวกับ",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "ภาษา",
-    lblDlgSettingsDisplayTheme:             "ธีม",
-    btnDlgSettingsDisplayThemeDark:         "มืด",
-    btnDlgSettingsDisplayThemeLight:        "สว่าง",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "ภาษา",
+    lblStgDisplayTheme:                     "ธีม",
+    btnStgDisplayThemeDark:                 "มืด",
+    btnStgDisplayThemeLight:                "สว่าง",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "แก้ไขและดูตัวอย่างไฟล์ Markdown",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "แก้ไขและดูตัวอย่างไฟล์ Markdown",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ข้อความแสดงแทน",
@@ -3433,19 +3459,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Buka pengaturan",
     tipHdrHelp:                             "Bantuan",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Pengaturan",
-    tabDlgSettingsDisplay:                  "Tampilan",
-    tabDlgSettingsAbout:                    "Tentang",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Pengaturan",
+    tipStgBack:                             "Kembali",
+    tabStgDisplay:                          "Tampilan",
+    tabStgAbout:                            "Tentang",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Bahasa",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Gelap",
-    btnDlgSettingsDisplayThemeLight:        "Terang",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Bahasa",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Gelap",
+    btnStgDisplayThemeLight:                "Terang",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edit dan pratinjau file Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edit dan pratinjau file Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Teks alternatif",
@@ -3562,19 +3589,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Obre la configuració",
     tipHdrHelp:                             "Ajuda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Configuració",
-    tabDlgSettingsDisplay:                  "Pantalla",
-    tabDlgSettingsAbout:                    "Quant a",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Configuració",
+    tipStgBack:                             "Enrere",
+    tabStgDisplay:                          "Pantalla",
+    tabStgAbout:                            "Quant a",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Idioma",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Fosc",
-    btnDlgSettingsDisplayThemeLight:        "Clar",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Idioma",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Fosc",
+    btnStgDisplayThemeLight:                "Clar",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "editeu i previsualitzeu fitxers Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "editeu i previsualitzeu fitxers Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Text alternatiu",
@@ -3691,19 +3719,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Otevřít nastavení",
     tipHdrHelp:                             "Nápověda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Nastavení",
-    tabDlgSettingsDisplay:                  "Zobrazení",
-    tabDlgSettingsAbout:                    "O aplikaci",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Nastavení",
+    tipStgBack:                             "Zpět",
+    tabStgDisplay:                          "Zobrazení",
+    tabStgAbout:                            "O aplikaci",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Jazyk",
-    lblDlgSettingsDisplayTheme:             "Motiv",
-    btnDlgSettingsDisplayThemeDark:         "Tmavý",
-    btnDlgSettingsDisplayThemeLight:        "Světlý",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Jazyk",
+    lblStgDisplayTheme:                     "Motiv",
+    btnStgDisplayThemeDark:                 "Tmavý",
+    btnStgDisplayThemeLight:                "Světlý",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "upravujte a zobrazujte soubory Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "upravujte a zobrazujte soubory Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativní text",
@@ -3820,19 +3849,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Åbn indstillinger",
     tipHdrHelp:                             "Hjælp",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Indstillinger",
-    tabDlgSettingsDisplay:                  "Visning",
-    tabDlgSettingsAbout:                    "Om",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Indstillinger",
+    tipStgBack:                             "Tilbage",
+    tabStgDisplay:                          "Visning",
+    tabStgAbout:                            "Om",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Sprog",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Mørkt",
-    btnDlgSettingsDisplayThemeLight:        "Lyst",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Sprog",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Mørkt",
+    btnStgDisplayThemeLight:                "Lyst",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "rediger og forhåndsvis Markdown-filer.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ tekst",
@@ -3949,19 +3979,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Avaa asetukset",
     tipHdrHelp:                             "Ohje",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Asetukset",
-    tabDlgSettingsDisplay:                  "Näyttö",
-    tabDlgSettingsAbout:                    "Tietoja",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Asetukset",
+    tipStgBack:                             "Takaisin",
+    tabStgDisplay:                          "Näyttö",
+    tabStgAbout:                            "Tietoja",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Kieli",
-    lblDlgSettingsDisplayTheme:             "Teema",
-    btnDlgSettingsDisplayThemeDark:         "Tumma",
-    btnDlgSettingsDisplayThemeLight:        "Vaalea",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Kieli",
+    lblStgDisplayTheme:                     "Teema",
+    btnStgDisplayThemeDark:                 "Tumma",
+    btnStgDisplayThemeLight:                "Vaalea",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "muokkaa ja esikatsele Markdown-tiedostoja.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "muokkaa ja esikatsele Markdown-tiedostoja.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt-teksti",
@@ -4078,19 +4109,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Buka tetapan",
     tipHdrHelp:                             "Bantuan",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Tetapan",
-    tabDlgSettingsDisplay:                  "Paparan",
-    tabDlgSettingsAbout:                    "Tentang",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Tetapan",
+    tipStgBack:                             "Kembali",
+    tabStgDisplay:                          "Paparan",
+    tabStgAbout:                            "Tentang",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Bahasa",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Gelap",
-    btnDlgSettingsDisplayThemeLight:        "Cerah",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Bahasa",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Gelap",
+    btnStgDisplayThemeLight:                "Cerah",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edit dan pratonton fail Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edit dan pratonton fail Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Teks alternatif",
@@ -4207,19 +4239,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Բացել կարգավորումները",
     tipHdrHelp:                             "Օգնություն",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Կարգավորումներ",
-    tabDlgSettingsDisplay:                  "Ցուցադրում",
-    tabDlgSettingsAbout:                    "Մասին",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Կարգավորումներ",
+    tipStgBack:                             "Հետ",
+    tabStgDisplay:                          "Ցուցադրում",
+    tabStgAbout:                            "Մասին",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Լեզու",
-    lblDlgSettingsDisplayTheme:             "Թեմա",
-    btnDlgSettingsDisplayThemeDark:         "Մուգ",
-    btnDlgSettingsDisplayThemeLight:        "Բաց",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Լեզու",
+    lblStgDisplayTheme:                     "Թեմա",
+    btnStgDisplayThemeDark:                 "Մուգ",
+    btnStgDisplayThemeLight:                "Բաց",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "խմբագրեք և դիտեք Markdown ֆայլեր։",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "խմբագրեք և դիտեք Markdown ֆայլեր։",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Այլընտրանքային տեքստ",
@@ -4336,19 +4369,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Отвори настройките",
     tipHdrHelp:                             "Помощ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Настройки",
-    tabDlgSettingsDisplay:                  "Дисплей",
-    tabDlgSettingsAbout:                    "За програмата",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Настройки",
+    tipStgBack:                             "Назад",
+    tabStgDisplay:                          "Дисплей",
+    tabStgAbout:                            "За програмата",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Език",
-    lblDlgSettingsDisplayTheme:             "Тема",
-    btnDlgSettingsDisplayThemeDark:         "Тъмна",
-    btnDlgSettingsDisplayThemeLight:        "Светла",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Език",
+    lblStgDisplayTheme:                     "Тема",
+    btnStgDisplayThemeDark:                 "Тъмна",
+    btnStgDisplayThemeLight:                "Светла",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "редактирайте и преглеждайте Markdown файлове.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "редактирайте и преглеждайте Markdown файлове.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативен текст",
@@ -4465,19 +4499,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Abrir configuración",
     tipHdrHelp:                             "Axuda",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Configuración",
-    tabDlgSettingsDisplay:                  "Pantalla",
-    tabDlgSettingsAbout:                    "Acerca de",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Configuración",
+    tipStgBack:                             "Atrás",
+    tabStgDisplay:                          "Pantalla",
+    tabStgAbout:                            "Acerca de",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Idioma",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Escuro",
-    btnDlgSettingsDisplayThemeLight:        "Claro",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Idioma",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Escuro",
+    btnStgDisplayThemeLight:                "Claro",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "edita e previsualiza ficheiros Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "edita e previsualiza ficheiros Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -4594,19 +4629,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Beállítások megnyitása",
     tipHdrHelp:                             "Súgó",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Beállítások",
-    tabDlgSettingsDisplay:                  "Megjelenítés",
-    tabDlgSettingsAbout:                    "Névjegy",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Beállítások",
+    tipStgBack:                             "Vissza",
+    tabStgDisplay:                          "Megjelenítés",
+    tabStgAbout:                            "Névjegy",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Nyelv",
-    lblDlgSettingsDisplayTheme:             "Téma",
-    btnDlgSettingsDisplayThemeDark:         "Sötét",
-    btnDlgSettingsDisplayThemeLight:        "Világos",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Nyelv",
+    lblStgDisplayTheme:                     "Téma",
+    btnStgDisplayThemeDark:                 "Sötét",
+    btnStgDisplayThemeLight:                "Világos",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "szerkessze és tekintse meg a Markdown fájlokat.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "szerkessze és tekintse meg a Markdown fájlokat.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatív szöveg",
@@ -4723,19 +4759,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Atidaryti nustatymus",
     tipHdrHelp:                             "Pagalba",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Nustatymai",
-    tabDlgSettingsDisplay:                  "Ekranas",
-    tabDlgSettingsAbout:                    "Apie",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Nustatymai",
+    tipStgBack:                             "Atgal",
+    tabStgDisplay:                          "Ekranas",
+    tabStgAbout:                            "Apie",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Kalba",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Tamsi",
-    btnDlgSettingsDisplayThemeLight:        "Šviesi",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Kalba",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Tamsi",
+    btnStgDisplayThemeLight:                "Šviesi",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "redaguokite ir peržiūrėkite Markdown failus.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "redaguokite ir peržiūrėkite Markdown failus.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatyvusis tekstas",
@@ -4852,19 +4889,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Отвори поставки",
     tipHdrHelp:                             "Помош",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Поставки",
-    tabDlgSettingsDisplay:                  "Приказ",
-    tabDlgSettingsAbout:                    "За апликацијата",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Поставки",
+    tipStgBack:                             "Назад",
+    tabStgDisplay:                          "Приказ",
+    tabStgAbout:                            "За апликацијата",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Јазик",
-    lblDlgSettingsDisplayTheme:             "Тема",
-    btnDlgSettingsDisplayThemeDark:         "Темна",
-    btnDlgSettingsDisplayThemeLight:        "Светла",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Јазик",
+    lblStgDisplayTheme:                     "Тема",
+    btnStgDisplayThemeDark:                 "Темна",
+    btnStgDisplayThemeLight:                "Светла",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "уредувај и прегледај Markdown датотеки.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "уредувај и прегледај Markdown датотеки.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативен текст",
@@ -4981,19 +5019,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Отвори подешавања",
     tipHdrHelp:                             "Помоћ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Подешавања",
-    tabDlgSettingsDisplay:                  "Приказ",
-    tabDlgSettingsAbout:                    "О апликацији",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Подешавања",
+    tipStgBack:                             "Назад",
+    tabStgDisplay:                          "Приказ",
+    tabStgAbout:                            "О апликацији",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Језик",
-    lblDlgSettingsDisplayTheme:             "Тема",
-    btnDlgSettingsDisplayThemeDark:         "Тамна",
-    btnDlgSettingsDisplayThemeLight:        "Светла",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Језик",
+    lblStgDisplayTheme:                     "Тема",
+    btnStgDisplayThemeDark:                 "Тамна",
+    btnStgDisplayThemeLight:                "Светла",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "уређујте и прегледајте Markdown датотеке.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "уређујте и прегледајте Markdown датотеке.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативни текст",
@@ -5110,19 +5149,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Otvoriť nastavenia",
     tipHdrHelp:                             "Pomoc",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Nastavenia",
-    tabDlgSettingsDisplay:                  "Zobrazenie",
-    tabDlgSettingsAbout:                    "O aplikácii",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Nastavenia",
+    tipStgBack:                             "Späť",
+    tabStgDisplay:                          "Zobrazenie",
+    tabStgAbout:                            "O aplikácii",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Jazyk",
-    lblDlgSettingsDisplayTheme:             "Motív",
-    btnDlgSettingsDisplayThemeDark:         "Tmavý",
-    btnDlgSettingsDisplayThemeLight:        "Svetlý",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Jazyk",
+    lblStgDisplayTheme:                     "Motív",
+    btnStgDisplayThemeDark:                 "Tmavý",
+    btnStgDisplayThemeLight:                "Svetlý",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "upravujte a zobrazujte Markdown súbory.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "upravujte a zobrazujte Markdown súbory.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatívny text",
@@ -5239,19 +5279,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Odpri nastavitve",
     tipHdrHelp:                             "Pomoč",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Nastavitve",
-    tabDlgSettingsDisplay:                  "Prikaz",
-    tabDlgSettingsAbout:                    "O programu",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Nastavitve",
+    tipStgBack:                             "Nazaj",
+    tabStgDisplay:                          "Prikaz",
+    tabStgAbout:                            "O programu",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Jezik",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Temna",
-    btnDlgSettingsDisplayThemeLight:        "Svetla",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Jezik",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Temna",
+    btnStgDisplayThemeLight:                "Svetla",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "urejajte in pregledujte datoteke Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "urejajte in pregledujte datoteke Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Nadomestno besedilo",
@@ -5368,19 +5409,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "அமைப்புகளைத் திறக்கவும்",
     tipHdrHelp:                             "உதவி",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "அமைப்புகள்",
-    tabDlgSettingsDisplay:                  "காட்சி",
-    tabDlgSettingsAbout:                    "பற்றி",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "அமைப்புகள்",
+    tipStgBack:                             "பின்செல்",
+    tabStgDisplay:                          "காட்சி",
+    tabStgAbout:                            "பற்றி",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "மொழி",
-    lblDlgSettingsDisplayTheme:             "தீம்",
-    btnDlgSettingsDisplayThemeDark:         "இருள்",
-    btnDlgSettingsDisplayThemeLight:        "ஒளி",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "மொழி",
+    lblStgDisplayTheme:                     "தீம்",
+    btnStgDisplayThemeDark:                 "இருள்",
+    btnStgDisplayThemeLight:                "ஒளி",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown கோப்புகளை திருத்தி மற்றும் பார்க்கவும்.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown கோப்புகளை திருத்தி மற்றும் பார்க்கவும்.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "மாற்று உரை",
@@ -5497,19 +5539,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "सेटिंग्स खोलें",
     tipHdrHelp:                             "सहायता",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "सेटिंग्स",
-    tabDlgSettingsDisplay:                  "प्रदर्शन",
-    tabDlgSettingsAbout:                    "के बारे में",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "सेटिंग्स",
+    tipStgBack:                             "वापस",
+    tabStgDisplay:                          "प्रदर्शन",
+    tabStgAbout:                            "के बारे में",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "भाषा",
-    lblDlgSettingsDisplayTheme:             "थीम",
-    btnDlgSettingsDisplayThemeDark:         "गहरा",
-    btnDlgSettingsDisplayThemeLight:        "हल्का",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "भाषा",
+    lblStgDisplayTheme:                     "थीम",
+    btnStgDisplayThemeDark:                 "गहरा",
+    btnStgDisplayThemeLight:                "हल्का",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown फ़ाइलें संपादित और देखें।",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown फ़ाइलें संपादित और देखें।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "वैकल्पिक टेक्स्ट",
@@ -5626,19 +5669,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "সেটিংস খুলুন",
     tipHdrHelp:                             "সাহায্য",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "সেটিংস",
-    tabDlgSettingsDisplay:                  "প্রদর্শন",
-    tabDlgSettingsAbout:                    "সম্পর্কে",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "সেটিংস",
+    tipStgBack:                             "পিছনে",
+    tabStgDisplay:                          "প্রদর্শন",
+    tabStgAbout:                            "সম্পর্কে",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "ভাষা",
-    lblDlgSettingsDisplayTheme:             "থিম",
-    btnDlgSettingsDisplayThemeDark:         "গাঢ়",
-    btnDlgSettingsDisplayThemeLight:        "হালকা",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "ভাষা",
+    lblStgDisplayTheme:                     "থিম",
+    btnStgDisplayThemeDark:                 "গাঢ়",
+    btnStgDisplayThemeLight:                "হালকা",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown ফাইল সম্পাদনা ও দেখুন।",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown ফাইল সম্পাদনা ও দেখুন।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "বিকল্প টেক্সট",
@@ -5755,19 +5799,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "ترتیبات کھولیں",
     tipHdrHelp:                             "مدد",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "ترتیبات",
-    tabDlgSettingsDisplay:                  "ڈسپلے",
-    tabDlgSettingsAbout:                    "کے بارے میں",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "ترتیبات",
+    tipStgBack:                             "واپس",
+    tabStgDisplay:                          "ڈسپلے",
+    tabStgAbout:                            "کے بارے میں",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "زبان",
-    lblDlgSettingsDisplayTheme:             "تھیم",
-    btnDlgSettingsDisplayThemeDark:         "گہرا",
-    btnDlgSettingsDisplayThemeLight:        "ہلکا",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "زبان",
+    lblStgDisplayTheme:                     "تھیم",
+    btnStgDisplayThemeDark:                 "گہرا",
+    btnStgDisplayThemeLight:                "ہلکا",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown فائلیں ترمیم اور دیکھیں۔",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown فائلیں ترمیم اور دیکھیں۔",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "متبادل متن",
@@ -5884,19 +5929,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Fungua mipangilio",
     tipHdrHelp:                             "Msaada",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Mipangilio",
-    tabDlgSettingsDisplay:                  "Onyesho",
-    tabDlgSettingsAbout:                    "Kuhusu",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Mipangilio",
+    tipStgBack:                             "Rudi",
+    tabStgDisplay:                          "Onyesho",
+    tabStgAbout:                            "Kuhusu",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Lugha",
-    lblDlgSettingsDisplayTheme:             "Mandhari",
-    btnDlgSettingsDisplayThemeDark:         "Giza",
-    btnDlgSettingsDisplayThemeLight:        "Mwanga",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Lugha",
+    lblStgDisplayTheme:                     "Mandhari",
+    btnStgDisplayThemeDark:                 "Giza",
+    btnStgDisplayThemeLight:                "Mwanga",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "hariri na uone faili za Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "hariri na uone faili za Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Maandishi mbadala",
@@ -6013,19 +6059,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
     tipHdrHelp:                             "ਮਦਦ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "ਸੈਟਿੰਗਾਂ",
-    tabDlgSettingsDisplay:                  "ਡਿਸਪਲੇ",
-    tabDlgSettingsAbout:                    "ਬਾਰੇ",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "ਸੈਟਿੰਗਾਂ",
+    tipStgBack:                             "ਵਾਪਸ",
+    tabStgDisplay:                          "ਡਿਸਪਲੇ",
+    tabStgAbout:                            "ਬਾਰੇ",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "ਭਾਸ਼ਾ",
-    lblDlgSettingsDisplayTheme:             "ਥੀਮ",
-    btnDlgSettingsDisplayThemeDark:         "ਗਹਿਰਾ",
-    btnDlgSettingsDisplayThemeLight:        "ਹਲਕਾ",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "ਭਾਸ਼ਾ",
+    lblStgDisplayTheme:                     "ਥੀਮ",
+    btnStgDisplayThemeDark:                 "ਗਹਿਰਾ",
+    btnStgDisplayThemeLight:                "ਹਲਕਾ",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown ਫਾਈਲਾਂ ਸੰਪਾਦਿਤ ਅਤੇ ਦੇਖੋ।",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown ਫਾਈਲਾਂ ਸੰਪਾਦਿਤ ਅਤੇ ਦੇਖੋ।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ਬਦਲਵਾਂ ਪਾਠ",
@@ -6142,19 +6189,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Buɗe saitunan",
     tipHdrHelp:                             "Taimako",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Saitunan",
-    tabDlgSettingsDisplay:                  "Nuna",
-    tabDlgSettingsAbout:                    "Game da",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Saitunan",
+    tipStgBack:                             "Baya",
+    tabStgDisplay:                          "Nuna",
+    tabStgAbout:                            "Game da",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Harshe",
-    lblDlgSettingsDisplayTheme:             "Jigo",
-    btnDlgSettingsDisplayThemeDark:         "Duhu",
-    btnDlgSettingsDisplayThemeLight:        "Haske",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Harshe",
+    lblStgDisplayTheme:                     "Jigo",
+    btnStgDisplayThemeDark:                 "Duhu",
+    btnStgDisplayThemeLight:                "Haske",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "gyara kuma kalli fayilolin Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "gyara kuma kalli fayilolin Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Rubutun madadin",
@@ -6271,19 +6319,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Ṣi ètò",
     tipHdrHelp:                             "Iranlọwọ",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Ètò",
-    tabDlgSettingsDisplay:                  "Ìfihàn",
-    tabDlgSettingsAbout:                    "Nípa",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Ètò",
+    tipStgBack:                             "Pada",
+    tabStgDisplay:                          "Ìfihàn",
+    tabStgAbout:                            "Nípa",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Èdè",
-    lblDlgSettingsDisplayTheme:             "Àkójọ",
-    btnDlgSettingsDisplayThemeDark:         "Òkùnkùn",
-    btnDlgSettingsDisplayThemeLight:        "Ìmọ́lẹ̀",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Èdè",
+    lblStgDisplayTheme:                     "Àkójọ",
+    btnStgDisplayThemeDark:                 "Òkùnkùn",
+    btnStgDisplayThemeLight:                "Ìmọ́lẹ̀",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "ṣàtúnkọ àti wo àwọn fayili Markdown.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "ṣàtúnkọ àti wo àwọn fayili Markdown.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Ọrọ yiyan",
@@ -6400,19 +6449,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "సెట్టింగులు తెరువు",
     tipHdrHelp:                             "సహాయం",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "సెట్టింగులు",
-    tabDlgSettingsDisplay:                  "ప్రదర్శన",
-    tabDlgSettingsAbout:                    "గురించి",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "సెట్టింగులు",
+    tipStgBack:                             "వెనుకకు",
+    tabStgDisplay:                          "ప్రదర్శన",
+    tabStgAbout:                            "గురించి",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "భాష",
-    lblDlgSettingsDisplayTheme:             "థీమ్",
-    btnDlgSettingsDisplayThemeDark:         "చీకటి",
-    btnDlgSettingsDisplayThemeLight:        "వెలుతురు",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "భాష",
+    lblStgDisplayTheme:                     "థీమ్",
+    btnStgDisplayThemeDark:                 "చీకటి",
+    btnStgDisplayThemeLight:                "వెలుతురు",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown ఫైల్‌లను సవరించి చూడండి.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown ఫైల్‌లను సవరించి చూడండి.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ప్రత్యామ్నాయ వచనం",
@@ -6529,19 +6579,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "सेटिंग्ज उघडा",
     tipHdrHelp:                             "मदत",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "सेटिंग्ज",
-    tabDlgSettingsDisplay:                  "प्रदर्शन",
-    tabDlgSettingsAbout:                    "बद्दल",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "सेटिंग्ज",
+    tipStgBack:                             "मागे",
+    tabStgDisplay:                          "प्रदर्शन",
+    tabStgAbout:                            "बद्दल",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "भाषा",
-    lblDlgSettingsDisplayTheme:             "थीम",
-    btnDlgSettingsDisplayThemeDark:         "गडद",
-    btnDlgSettingsDisplayThemeLight:        "हलका",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "भाषा",
+    lblStgDisplayTheme:                     "थीम",
+    btnStgDisplayThemeDark:                 "गडद",
+    btnStgDisplayThemeLight:                "हलका",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "Markdown फाइल्स संपादित आणि पाहा.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "Markdown फाइल्स संपादित आणि पाहा.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "पर्यायी मजकूर",
@@ -6658,19 +6709,20 @@ const TRANSLATIONS = {
     tipHdrSettings:                         "Buksan ang mga setting",
     tipHdrHelp:                             "Tulong",
 
-    // Prefix:DlgSettings - Scope:settings dialog
-    ttlDlgSettings:                         "Mga Setting",
-    tabDlgSettingsDisplay:                  "Display",
-    tabDlgSettingsAbout:                    "Tungkol sa",
+    // Prefix:Stg - Scope:settings view
+    ttlStg:                                 "Mga Setting",
+    tipStgBack:                             "Bumalik",
+    tabStgDisplay:                          "Display",
+    tabStgAbout:                            "Tungkol sa",
 
-    // Prefix:DlgSettingsDisplay - Scope:settings dialog (Display tab)
-    lblDlgSettingsDisplayLang:              "Wika",
-    lblDlgSettingsDisplayTheme:             "Tema",
-    btnDlgSettingsDisplayThemeDark:         "Madilim",
-    btnDlgSettingsDisplayThemeLight:        "Maliwanag",
+    // Prefix:StgDisplay - Scope:settings view (Display tab)
+    lblStgDisplayLang:                      "Wika",
+    lblStgDisplayTheme:                     "Tema",
+    btnStgDisplayThemeDark:                 "Madilim",
+    btnStgDisplayThemeLight:                "Maliwanag",
 
-    // Prefix:DlgSettingsAbout - Scope:settings dialog (About tab)
-    msgDlgSettingsAboutDesc:                "i-edit at tingnan ang mga Markdown na file.",
+    // Prefix:StgAbout - Scope:settings view (About tab)
+    msgStgAboutDesc:                        "i-edit at tingnan ang mga Markdown na file.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatibong teksto",
