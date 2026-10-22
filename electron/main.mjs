@@ -11,6 +11,7 @@ import { watch } from "chokidar";
 import { fileURLToPath } from "node:url";
 import pkg from "../package.json" with { type: "json" };
 import { mark, dumpStartupTiming } from "./startup-timing.mjs";
+import { registerNewsRoutes } from "./news.mjs";
 import { lastDir, rememberDir } from "./dialog-memory.mjs";
 mark("electron boot + module imports");
 
@@ -666,6 +667,8 @@ function startServer(callback) {
     // The next CLI run sweeps it (see sweepStaleCliDirs at the top of this file).
     setTimeout(() => app.quit(), 200);
   });
+
+  registerNewsRoutes(api, { appId: pkg.name, appVersion: pkg.version });
 
   findFreePort(4000, (port) => {
     SERVER_PORT = port;

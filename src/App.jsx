@@ -39,8 +39,9 @@ const loadExportLibs = () => (__exportLibsP ??= (async () => {
   markmapTransformer = new Transformer(builtInPlugins.filter(p => p.name !== 'katex'));
 })());
 import { useT, LANGUAGES } from './i18n-gen';
-import { checkForUpdate, getUrl } from './lib/update-check';
-import { UpdateBanner } from './lib/ui-update-banner';
+import { getUrl } from './lib/site-url';
+import { NewsLoader } from './lib/ui-news-loader';
+import { NewsSetting } from './lib/ui-news-setting';
 import { AppHeader } from './lib/ui-header';
 import { NumberField } from './lib/ui-ctl-numberfield';
 import { Menu, MenuItem, MenuLabel, MenuDivider } from './lib/ui-ctl-menu';
@@ -806,7 +807,14 @@ function applyAlign(view, spec) {
 }
 
 export default function App() {
-  const [updateInfo, setUpdateInfo]         = useState(null);
+  const [newsEnabled, setNewsEnabled] = useState(true);
+  useEffect(() => {
+    fetch(`${API}/news-settings`).then(r => r.json()).then(s => setNewsEnabled(s.enabled)).catch(() => {});
+  }, []);
+  function toggleNews(enabled) {
+    setNewsEnabled(enabled);
+    fetch(`${API}/news-settings`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ enabled }) }).catch(() => {});
+  }
   const [themeKey, setThemeKey] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-theme`) || 'light');
   const [lang, setLang]         = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-lang`)  || 'en');
   const [fontKeyHeading, setFontKeyHeading] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-heading`) || 'oswald');
@@ -1863,11 +1871,6 @@ export default function App() {
     }
   };
 
-  // Check for a new version once on launch (silent if up to date / offline / skipped)
-  useEffect(() => {
-    checkForUpdate({ appId: pkg.name, alias: STORAGE_PREFIX, currentVersion: APP_VERSION })
-      .then(u => { if (u) setUpdateInfo(u); });
-  }, []);
 
   // Create EditorView once on mount
   useEffect(() => {
@@ -2314,8 +2317,8 @@ export default function App() {
         onDragLeave={e => { if (!e.currentTarget.contains(e.relatedTarget)) setDragOver(false); }}
         onDrop={e => { e.preventDefault(); setDragOver(false); }}>
 
-        {/* ── Update banner ── */}
-        <UpdateBanner info={updateInfo} appId={pkg.name} lang={lang} storagePrefix={STORAGE_PREFIX} t={t} onClose={() => setUpdateInfo(null)} />
+        {/* ── A new version (first) and the yaiol news, in one dialog ── */}
+        <NewsLoader api={API} lang={lang} t={t} />
 
         {/* ── Header bar ── */}
         <AppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD}>
@@ -2565,6 +2568,9 @@ export default function App() {
             <SettingsView
               t={t} appName={APP_NAME} appVersion={APP_VERSION_BUILD} languages={LANGUAGES}
               lang={lang} setLang={setLang} theme={themeKey} setTheme={setThemeKey}
+              generalExtra={(
+                <NewsSetting enabled={newsEnabled} onChange={toggleNews} label={t('lblStgGeneralNews')} />
+              )}
               onClose={closeSettings}
             />
           )}
@@ -2641,7 +2647,7 @@ export default function App() {
               const s   = activeFormat.shortcuts || {};
               const run = (fn) => { const v = cmViewRef.current; if (!v) return; v.focus(); fn(v); };
               const btn = (icon, title, onClick, disabled = false) => (
-                <button title={title} disabled={disabled} onClick={onClick} className="btn icon">{icon}</button>
+                <button title={title} disabled={disabled} onClick={onClick} className="btn icon subtle">{icon}</button>
               );
               // ⚠ CLAUDE: every button below passes `!s.<shortcut>` as its disabled flag, and
               // that flag is NOT decoration: a null entry in an adapter's `shortcuts` means the
@@ -2667,10 +2673,10 @@ export default function App() {
                   {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
                   {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
                   {fmtAlign && btn(<AlignRight />,  t('tipEditorAlignRight'),  () => run(v => applyAlign(v, fmtAlign.right)),  !fmtAlign.right)}
-                  {/* Insert table — the trigger is a plain toolbar .btn.icon like every
+                  {/* Insert table — the trigger is a plain toolbar .btn.icon.subtle like every
                       other one here; the size grid is the shared TableGrid inside the
                       shared Popover, which owns portal + placement + dismiss. */}
-                  <button ref={tableBtnRef} className="btn icon" title={t('tipEditorTable')}
+                  <button ref={tableBtnRef} className="btn icon subtle" title={t('tipEditorTable')}
                     disabled={!activeFormat.formatTable}
                     onClick={() => setShowTableGrid(v => !v)}>
                     <Table />

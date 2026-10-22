@@ -24,10 +24,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "New version available:",
-    lnkUpdateWhatsNew:                      "What's new",
     btnUpdateDownload:                      "Download",
-    lnkUpdateSkip:                          "Skip this version",
-    tipUpdateDismiss:                       "Dismiss",
+    lblNewsHideForever:                     "Don't show again",
+    btnNewsOpenLink:                        "Learn more",
+    tipNewsDismiss:                         "Close",
+    lblStgGeneralNews:                      "Show news from yaiol",
+    btnNewsClose:                           "Close",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Open or drop a Markdown file here to view/edit it.",
@@ -81,14 +83,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Settings",
     tipStgBack:                             "Back",
-    tabStgDisplay:                          "Display",
     tabStgAbout:                            "About",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Language",
-    lblStgDisplayTheme:                     "Theme",
-    btnStgDisplayThemeDark:                 "Dark",
-    btnStgDisplayThemeLight:                "Light",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "General",
+    lblStgGeneralLang:                      "Language",
+    lblStgGeneralTheme:                     "Theme",
+    btnStgGeneralThemeDark:                 "Dark",
+    btnStgGeneralThemeLight:                "Light",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edit and preview Markdown files.",
@@ -155,10 +157,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nouvelle version disponible :",
-    lnkUpdateWhatsNew:                      "Nouveautés",
     btnUpdateDownload:                      "Télécharger",
-    lnkUpdateSkip:                          "Ignorer cette version",
-    tipUpdateDismiss:                       "Ignorer",
+    lblNewsHideForever:                     "Ne plus afficher",
+    btnNewsOpenLink:                        "En savoir plus",
+    tipNewsDismiss:                         "Fermer",
+    lblStgGeneralNews:                      "Afficher les actualités de yaiol",
+    btnNewsClose:                           "Fermer",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Ouvrez ou déposez un fichier Markdown ici pour l'afficher/modifier.",
@@ -212,14 +216,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Paramètres",
     tipStgBack:                             "Retour",
-    tabStgDisplay:                          "Affichage",
     tabStgAbout:                            "À propos",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Langue",
-    lblStgDisplayTheme:                     "Thème",
-    btnStgDisplayThemeDark:                 "Sombre",
-    btnStgDisplayThemeLight:                "Clair",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Général",
+    lblStgGeneralLang:                      "Langue",
+    lblStgGeneralTheme:                     "Thème",
+    btnStgGeneralThemeDark:                 "Sombre",
+    btnStgGeneralThemeLight:                "Clair",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "modifiez et prévisualisez des fichiers Markdown.",
@@ -285,10 +289,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Neue Version verfügbar:",
-    lnkUpdateWhatsNew:                      "Was ist neu",
     btnUpdateDownload:                      "Herunterladen",
-    lnkUpdateSkip:                          "Diese Version überspringen",
-    tipUpdateDismiss:                       "Schließen",
+    lblNewsHideForever:                     "Nicht mehr anzeigen",
+    btnNewsOpenLink:                        "Mehr erfahren",
+    tipNewsDismiss:                         "Schließen",
+    lblStgGeneralNews:                      "Nachrichten von yaiol anzeigen",
+    btnNewsClose:                           "Schließen",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Öffne oder lege eine Markdown-Datei hier ab, um sie anzuzeigen/bearbeiten.",
@@ -342,14 +348,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Einstellungen",
     tipStgBack:                             "Zurück",
-    tabStgDisplay:                          "Anzeige",
     tabStgAbout:                            "Über",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Sprache",
-    lblStgDisplayTheme:                     "Thema",
-    btnStgDisplayThemeDark:                 "Dunkel",
-    btnStgDisplayThemeLight:                "Hell",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Allgemein",
+    lblStgGeneralLang:                      "Sprache",
+    lblStgGeneralTheme:                     "Thema",
+    btnStgGeneralThemeDark:                 "Dunkel",
+    btnStgGeneralThemeLight:                "Hell",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown-Dateien bearbeiten und anzeigen.",
@@ -415,10 +421,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nueva versión disponible:",
-    lnkUpdateWhatsNew:                      "Novedades",
     btnUpdateDownload:                      "Descargar",
-    lnkUpdateSkip:                          "Omitir esta versión",
-    tipUpdateDismiss:                       "Descartar",
+    lblNewsHideForever:                     "No volver a mostrar",
+    btnNewsOpenLink:                        "Más información",
+    tipNewsDismiss:                         "Cerrar",
+    lblStgGeneralNews:                      "Mostrar noticias de yaiol",
+    btnNewsClose:                           "Cerrar",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Abre o suelta un archivo Markdown aquí para verlo/editarlo.",
@@ -472,14 +480,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Configuración",
     tipStgBack:                             "Atrás",
-    tabStgDisplay:                          "Pantalla",
     tabStgAbout:                            "Acerca de",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Idioma",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Oscuro",
-    btnStgDisplayThemeLight:                "Claro",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "General",
+    lblStgGeneralLang:                      "Idioma",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Oscuro",
+    btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edita y previsualiza archivos Markdown.",
@@ -545,10 +553,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versão disponível:",
-    lnkUpdateWhatsNew:                      "Novidades",
     btnUpdateDownload:                      "Baixar",
-    lnkUpdateSkip:                          "Ignorar esta versão",
-    tipUpdateDismiss:                       "Dispensar",
+    lblNewsHideForever:                     "Não mostrar novamente",
+    btnNewsOpenLink:                        "Saiba mais",
+    tipNewsDismiss:                         "Fechar",
+    lblStgGeneralNews:                      "Mostrar notícias de yaiol",
+    btnNewsClose:                           "Fechar",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Abra ou solte um arquivo Markdown aqui para visualizá-lo/editá-lo.",
@@ -602,14 +612,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Definições",
     tipStgBack:                             "Voltar",
-    tabStgDisplay:                          "Exibição",
     tabStgAbout:                            "Sobre",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Idioma",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Escuro",
-    btnStgDisplayThemeLight:                "Claro",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Geral",
+    lblStgGeneralLang:                      "Idioma",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Escuro",
+    btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
@@ -675,10 +685,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versão disponível:",
-    lnkUpdateWhatsNew:                      "Novidades",
     btnUpdateDownload:                      "Descarregar",
-    lnkUpdateSkip:                          "Ignorar esta versão",
-    tipUpdateDismiss:                       "Dispensar",
+    lblNewsHideForever:                     "Não mostrar novamente",
+    btnNewsOpenLink:                        "Saber mais",
+    tipNewsDismiss:                         "Fechar",
+    lblStgGeneralNews:                      "Mostrar notícias de yaiol",
+    btnNewsClose:                           "Fechar",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Abra ou solte um ficheiro Markdown aqui para visualizá-lo/editá-lo.",
@@ -732,14 +744,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Definições",
     tipStgBack:                             "Voltar",
-    tabStgDisplay:                          "Apresentação",
     tabStgAbout:                            "Sobre",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Idioma",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Escuro",
-    btnStgDisplayThemeLight:                "Claro",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Geral",
+    lblStgGeneralLang:                      "Idioma",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Escuro",
+    btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
@@ -805,10 +817,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nuova versione disponibile:",
-    lnkUpdateWhatsNew:                      "Novità",
     btnUpdateDownload:                      "Scarica",
-    lnkUpdateSkip:                          "Salta questa versione",
-    tipUpdateDismiss:                       "Ignora",
+    lblNewsHideForever:                     "Non mostrare più",
+    btnNewsOpenLink:                        "Scopri di più",
+    tipNewsDismiss:                         "Chiudi",
+    lblStgGeneralNews:                      "Mostra notizie da yaiol",
+    btnNewsClose:                           "Chiudi",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Apri o rilascia un file Markdown qui per visualizzarlo/modificarlo.",
@@ -862,14 +876,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Impostazioni",
     tipStgBack:                             "Indietro",
-    tabStgDisplay:                          "Visualizzazione",
     tabStgAbout:                            "Informazioni",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Lingua",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Scuro",
-    btnStgDisplayThemeLight:                "Chiaro",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Generale",
+    lblStgGeneralLang:                      "Lingua",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Scuro",
+    btnStgGeneralThemeLight:                "Chiaro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "modifica e visualizza file Markdown.",
@@ -935,10 +949,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nieuwe versie beschikbaar:",
-    lnkUpdateWhatsNew:                      "Wat is nieuw",
     btnUpdateDownload:                      "Downloaden",
-    lnkUpdateSkip:                          "Deze versie overslaan",
-    tipUpdateDismiss:                       "Sluiten",
+    lblNewsHideForever:                     "Niet meer tonen",
+    btnNewsOpenLink:                        "Meer informatie",
+    tipNewsDismiss:                         "Sluiten",
+    lblStgGeneralNews:                      "Nieuws van yaiol tonen",
+    btnNewsClose:                           "Sluiten",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Open of zet een Markdown-bestand hier neer om het te bekijken/bewerken.",
@@ -992,14 +1008,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Instellingen",
     tipStgBack:                             "Terug",
-    tabStgDisplay:                          "Weergave",
     tabStgAbout:                            "Over",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Taal",
-    lblStgDisplayTheme:                     "Thema",
-    btnStgDisplayThemeDark:                 "Donker",
-    btnStgDisplayThemeLight:                "Licht",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Algemeen",
+    lblStgGeneralLang:                      "Taal",
+    lblStgGeneralTheme:                     "Thema",
+    btnStgGeneralThemeDark:                 "Donker",
+    btnStgGeneralThemeLight:                "Licht",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "bewerk en bekijk Markdown-bestanden.",
@@ -1065,10 +1081,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна новая версия:",
-    lnkUpdateWhatsNew:                      "Что нового",
     btnUpdateDownload:                      "Скачать",
-    lnkUpdateSkip:                          "Пропустить эту версию",
-    tipUpdateDismiss:                       "Закрыть",
+    lblNewsHideForever:                     "Больше не показывать",
+    btnNewsOpenLink:                        "Узнать больше",
+    tipNewsDismiss:                         "Закрыть",
+    lblStgGeneralNews:                      "Показывать новости от yaiol",
+    btnNewsClose:                           "Закрыть",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Откройте или перетащите файл Markdown сюда, чтобы просмотреть/редактировать его.",
@@ -1122,14 +1140,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Настройки",
     tipStgBack:                             "Назад",
-    tabStgDisplay:                          "Отображение",
     tabStgAbout:                            "О программе",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Язык",
-    lblStgDisplayTheme:                     "Тема",
-    btnStgDisplayThemeDark:                 "Тёмная",
-    btnStgDisplayThemeLight:                "Светлая",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Общие",
+    lblStgGeneralLang:                      "Язык",
+    lblStgGeneralTheme:                     "Тема",
+    btnStgGeneralThemeDark:                 "Тёмная",
+    btnStgGeneralThemeLight:                "Светлая",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "редактирование и просмотр Markdown-файлов.",
@@ -1195,10 +1213,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна нова версія:",
-    lnkUpdateWhatsNew:                      "Що нового",
     btnUpdateDownload:                      "Завантажити",
-    lnkUpdateSkip:                          "Пропустити цю версію",
-    tipUpdateDismiss:                       "Закрити",
+    lblNewsHideForever:                     "Більше не показувати",
+    btnNewsOpenLink:                        "Дізнатися більше",
+    tipNewsDismiss:                         "Закрити",
+    lblStgGeneralNews:                      "Показувати новини від yaiol",
+    btnNewsClose:                           "Закрити",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Відкрийте або скиньте файл Markdown сюди, щоб переглянути/редагувати його.",
@@ -1252,14 +1272,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Налаштування",
     tipStgBack:                             "Назад",
-    tabStgDisplay:                          "Відображення",
     tabStgAbout:                            "Про програму",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Мова",
-    lblStgDisplayTheme:                     "Тема",
-    btnStgDisplayThemeDark:                 "Темна",
-    btnStgDisplayThemeLight:                "Світла",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Загальні",
+    lblStgGeneralLang:                      "Мова",
+    lblStgGeneralTheme:                     "Тема",
+    btnStgGeneralThemeDark:                 "Темна",
+    btnStgGeneralThemeLight:                "Світла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "редагування та перегляд файлів Markdown.",
@@ -1325,10 +1345,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Dostępna nowa wersja:",
-    lnkUpdateWhatsNew:                      "Co nowego",
     btnUpdateDownload:                      "Pobierz",
-    lnkUpdateSkip:                          "Pomiń tę wersję",
-    tipUpdateDismiss:                       "Zamknij",
+    lblNewsHideForever:                     "Nie pokazuj ponownie",
+    btnNewsOpenLink:                        "Dowiedz się więcej",
+    tipNewsDismiss:                         "Zamknij",
+    lblStgGeneralNews:                      "Pokaż wiadomości z yaiol",
+    btnNewsClose:                           "Zamknij",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Otwórz lub upuść plik Markdown tutaj, aby go wyświetlić/edytować.",
@@ -1382,14 +1404,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Ustawienia",
     tipStgBack:                             "Wstecz",
-    tabStgDisplay:                          "Wyświetlanie",
     tabStgAbout:                            "O programie",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Język",
-    lblStgDisplayTheme:                     "Motyw",
-    btnStgDisplayThemeDark:                 "Ciemny",
-    btnStgDisplayThemeLight:                "Jasny",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Ogólne",
+    lblStgGeneralLang:                      "Język",
+    lblStgGeneralTheme:                     "Motyw",
+    btnStgGeneralThemeDark:                 "Ciemny",
+    btnStgGeneralThemeLight:                "Jasny",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edytuj i podglądaj pliki Markdown.",
@@ -1455,10 +1477,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versiune nouă disponibilă:",
-    lnkUpdateWhatsNew:                      "Ce e nou",
     btnUpdateDownload:                      "Descarcă",
-    lnkUpdateSkip:                          "Omite această versiune",
-    tipUpdateDismiss:                       "Ignoră",
+    lblNewsHideForever:                     "Nu mai afișa",
+    btnNewsOpenLink:                        "Află mai multe",
+    tipNewsDismiss:                         "Închide",
+    lblStgGeneralNews:                      "Afișează știri de la yaiol",
+    btnNewsClose:                           "Închide",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Deschide sau plasează un fișier Markdown aici pentru a-l vizualiza/edita.",
@@ -1512,14 +1536,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Setări",
     tipStgBack:                             "Înapoi",
-    tabStgDisplay:                          "Afișaj",
     tabStgAbout:                            "Despre",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Limbă",
-    lblStgDisplayTheme:                     "Temă",
-    btnStgDisplayThemeDark:                 "Întunecat",
-    btnStgDisplayThemeLight:                "Deschis",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "General",
+    lblStgGeneralLang:                      "Limbă",
+    lblStgGeneralTheme:                     "Temă",
+    btnStgGeneralThemeDark:                 "Întunecat",
+    btnStgGeneralThemeLight:                "Deschis",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "editați și vizualizați fișiere Markdown.",
@@ -1585,10 +1609,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny version tillgänglig:",
-    lnkUpdateWhatsNew:                      "Vad är nytt",
     btnUpdateDownload:                      "Ladda ner",
-    lnkUpdateSkip:                          "Hoppa över den här versionen",
-    tipUpdateDismiss:                       "Avfärda",
+    lblNewsHideForever:                     "Visa inte igen",
+    btnNewsOpenLink:                        "Läs mer",
+    tipNewsDismiss:                         "Stäng",
+    lblStgGeneralNews:                      "Visa nyheter från yaiol",
+    btnNewsClose:                           "Stäng",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Öppna eller släpp en Markdown-fil här för att visa/redigera den.",
@@ -1642,14 +1668,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Inställningar",
     tipStgBack:                             "Tillbaka",
-    tabStgDisplay:                          "Visning",
     tabStgAbout:                            "Om",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Språk",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Mörkt",
-    btnStgDisplayThemeLight:                "Ljust",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Allmänt",
+    lblStgGeneralLang:                      "Språk",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Mörkt",
+    btnStgGeneralThemeLight:                "Ljust",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "redigera och förhandsgranska Markdown-filer.",
@@ -1715,10 +1741,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny versjon tilgjengelig:",
-    lnkUpdateWhatsNew:                      "Hva er nytt",
     btnUpdateDownload:                      "Last ned",
-    lnkUpdateSkip:                          "Hopp over denne versjonen",
-    tipUpdateDismiss:                       "Avvis",
+    lblNewsHideForever:                     "Ikke vis igjen",
+    btnNewsOpenLink:                        "Les mer",
+    tipNewsDismiss:                         "Lukk",
+    lblStgGeneralNews:                      "Vis nyheter fra yaiol",
+    btnNewsClose:                           "Lukk",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Åpne eller slipp en Markdown-fil her for å vise/redigere den.",
@@ -1772,14 +1800,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Innstillinger",
     tipStgBack:                             "Tilbake",
-    tabStgDisplay:                          "Visning",
     tabStgAbout:                            "Om",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Språk",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Mørk",
-    btnStgDisplayThemeLight:                "Lys",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Generelt",
+    lblStgGeneralLang:                      "Språk",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Mørk",
+    btnStgGeneralThemeLight:                "Lys",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
@@ -1845,10 +1873,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Yeni sürüm mevcut:",
-    lnkUpdateWhatsNew:                      "Yenilikler",
     btnUpdateDownload:                      "İndir",
-    lnkUpdateSkip:                          "Bu sürümü atla",
-    tipUpdateDismiss:                       "Kapat",
+    lblNewsHideForever:                     "Bir daha gösterme",
+    btnNewsOpenLink:                        "Daha fazla bilgi edin",
+    tipNewsDismiss:                         "Kapat",
+    lblStgGeneralNews:                      "yaiol'dan haberleri göster",
+    btnNewsClose:                           "Kapat",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Burada görüntülemek/düzenlemek için bir Markdown dosyası açın veya bırakın.",
@@ -1902,14 +1932,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Ayarlar",
     tipStgBack:                             "Geri",
-    tabStgDisplay:                          "Görünüm",
     tabStgAbout:                            "Hakkında",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Dil",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Koyu",
-    btnStgDisplayThemeLight:                "Açık",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Genel",
+    lblStgGeneralLang:                      "Dil",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Koyu",
+    btnStgGeneralThemeLight:                "Açık",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown dosyalarını düzenleyin ve önizleyin.",
@@ -1975,10 +2005,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova verzija dostupna:",
-    lnkUpdateWhatsNew:                      "Što je novo",
     btnUpdateDownload:                      "Preuzmi",
-    lnkUpdateSkip:                          "Preskoči ovu verziju",
-    tipUpdateDismiss:                       "Odbaci",
+    lblNewsHideForever:                     "Ne prikazuj ponovno",
+    btnNewsOpenLink:                        "Saznajte više",
+    tipNewsDismiss:                         "Zatvori",
+    lblStgGeneralNews:                      "Prikaži vijesti iz yaiol",
+    btnNewsClose:                           "Zatvori",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Otvori ili ispusti Markdown datoteku ovdje za prikaz/uređivanje.",
@@ -2032,14 +2064,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Postavke",
     tipStgBack:                             "Natrag",
-    tabStgDisplay:                          "Prikaz",
     tabStgAbout:                            "O programu",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Jezik",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Tamna",
-    btnStgDisplayThemeLight:                "Svijetla",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Općenito",
+    lblStgGeneralLang:                      "Jezik",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Tamna",
+    btnStgGeneralThemeLight:                "Svijetla",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "uređujte i pregledajte Markdown datoteke.",
@@ -2105,10 +2137,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Νέα έκδοση διαθέσιμη:",
-    lnkUpdateWhatsNew:                      "Τι νέο υπάρχει",
     btnUpdateDownload:                      "Λήψη",
-    lnkUpdateSkip:                          "Παράλειψη αυτής της έκδοσης",
-    tipUpdateDismiss:                       "Απόρριψη",
+    lblNewsHideForever:                     "Να μην εμφανιστεί ξανά",
+    btnNewsOpenLink:                        "Μάθετε περισσότερα",
+    tipNewsDismiss:                         "Κλείσιμο",
+    lblStgGeneralNews:                      "Εμφάνιση ειδήσεων από το yaiol",
+    btnNewsClose:                           "Κλείσιμο",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Ανοίξτε ή αποθέστε ένα αρχείο Markdown εδώ για προβολή/επεξεργασία.",
@@ -2162,14 +2196,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Ρυθμίσεις",
     tipStgBack:                             "Πίσω",
-    tabStgDisplay:                          "Εμφάνιση",
     tabStgAbout:                            "Σχετικά",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Γλώσσα",
-    lblStgDisplayTheme:                     "Θέμα",
-    btnStgDisplayThemeDark:                 "Σκοτεινό",
-    btnStgDisplayThemeLight:                "Φωτεινό",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Γενικά",
+    lblStgGeneralLang:                      "Γλώσσα",
+    lblStgGeneralTheme:                     "Θέμα",
+    btnStgGeneralThemeDark:                 "Σκοτεινό",
+    btnStgGeneralThemeLight:                "Φωτεινό",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "επεξεργαστείτε και προβάλετε αρχεία Markdown.",
@@ -2235,10 +2269,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "גרסה חדשה זמינה:",
-    lnkUpdateWhatsNew:                      "מה חדש",
     btnUpdateDownload:                      "הורדה",
-    lnkUpdateSkip:                          "דלג על גרסה זו",
-    tipUpdateDismiss:                       "בטל",
+    lblNewsHideForever:                     "אל תציג שוב",
+    btnNewsOpenLink:                        "למידע נוסף",
+    tipNewsDismiss:                         "סגור",
+    lblStgGeneralNews:                      "הצג חדשות מ-yaiol",
+    btnNewsClose:                           "סגור",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "פתח או שחרר קובץ Markdown כאן כדי להציגו/לערוך אותו.",
@@ -2292,14 +2328,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "הגדרות",
     tipStgBack:                             "חזור",
-    tabStgDisplay:                          "תצוגה",
     tabStgAbout:                            "אודות",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "שפה",
-    lblStgDisplayTheme:                     "ערכת נושא",
-    btnStgDisplayThemeDark:                 "כהה",
-    btnStgDisplayThemeLight:                "בהיר",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "כללי",
+    lblStgGeneralLang:                      "שפה",
+    lblStgGeneralTheme:                     "ערכת נושא",
+    btnStgGeneralThemeDark:                 "כהה",
+    btnStgGeneralThemeLight:                "בהיר",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "ערוך וצפה בקבצי Markdown.",
@@ -2365,10 +2401,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "إصدار جديد متوفر:",
-    lnkUpdateWhatsNew:                      "ما الجديد",
     btnUpdateDownload:                      "تنزيل",
-    lnkUpdateSkip:                          "تخطي هذا الإصدار",
-    tipUpdateDismiss:                       "تجاهل",
+    lblNewsHideForever:                     "عدم الإظهار مرة أخرى",
+    btnNewsOpenLink:                        "تعرّف على المزيد",
+    tipNewsDismiss:                         "إغلاق",
+    lblStgGeneralNews:                      "إظهار الأخبار من yaiol",
+    btnNewsClose:                           "إغلاق",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "افتح أو أفلت ملف Markdown هنا لعرضه/تحريره.",
@@ -2422,14 +2460,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "الإعدادات",
     tipStgBack:                             "رجوع",
-    tabStgDisplay:                          "العرض",
     tabStgAbout:                            "حول",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "اللغة",
-    lblStgDisplayTheme:                     "السمة",
-    btnStgDisplayThemeDark:                 "داكن",
-    btnStgDisplayThemeLight:                "فاتح",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "عام",
+    lblStgGeneralLang:                      "اللغة",
+    lblStgGeneralTheme:                     "السمة",
+    btnStgGeneralThemeDark:                 "داكن",
+    btnStgGeneralThemeLight:                "فاتح",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "حرِّر ملفات Markdown وعاينها.",
@@ -2495,10 +2533,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "نسخه جدید موجود است:",
-    lnkUpdateWhatsNew:                      "چه خبر",
     btnUpdateDownload:                      "دانلود",
-    lnkUpdateSkip:                          "رد کردن این نسخه",
-    tipUpdateDismiss:                       "رد کردن",
+    lblNewsHideForever:                     "دیگر نمایش نده",
+    btnNewsOpenLink:                        "بیشتر بدانید",
+    tipNewsDismiss:                         "بستن",
+    lblStgGeneralNews:                      "نمایش اخبار از yaiol",
+    btnNewsClose:                           "بستن",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "یک فایل Markdown را اینجا باز کنید یا رها کنید تا نمایش/ویرایش شود.",
@@ -2552,14 +2592,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "تنظیمات",
     tipStgBack:                             "بازگشت",
-    tabStgDisplay:                          "نمایش",
     tabStgAbout:                            "درباره",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "زبان",
-    lblStgDisplayTheme:                     "پوسته",
-    btnStgDisplayThemeDark:                 "تاریک",
-    btnStgDisplayThemeLight:                "روشن",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "عمومی",
+    lblStgGeneralLang:                      "زبان",
+    lblStgGeneralTheme:                     "پوسته",
+    btnStgGeneralThemeDark:                 "تاریک",
+    btnStgGeneralThemeLight:                "روشن",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "فایل‌های Markdown را ویرایش و پیش‌نمایش کنید.",
@@ -2625,10 +2665,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "新版本可用:",
-    lnkUpdateWhatsNew:                      "新功能",
     btnUpdateDownload:                      "下载",
-    lnkUpdateSkip:                          "跳过此版本",
-    tipUpdateDismiss:                       "忽略",
+    lblNewsHideForever:                     "不再显示",
+    btnNewsOpenLink:                        "了解更多",
+    tipNewsDismiss:                         "关闭",
+    lblStgGeneralNews:                      "显示来自 yaiol 的新闻",
+    btnNewsClose:                           "关闭",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "在此打开或拖放 Markdown 文件以查看/编辑。",
@@ -2682,14 +2724,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "设置",
     tipStgBack:                             "返回",
-    tabStgDisplay:                          "显示",
     tabStgAbout:                            "关于",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "语言",
-    lblStgDisplayTheme:                     "主题",
-    btnStgDisplayThemeDark:                 "深色",
-    btnStgDisplayThemeLight:                "浅色",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "常规",
+    lblStgGeneralLang:                      "语言",
+    lblStgGeneralTheme:                     "主题",
+    btnStgGeneralThemeDark:                 "深色",
+    btnStgGeneralThemeLight:                "浅色",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "编辑并预览 Markdown 文件。",
@@ -2755,10 +2797,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "新版本可用:",
-    lnkUpdateWhatsNew:                      "新功能",
     btnUpdateDownload:                      "下載",
-    lnkUpdateSkip:                          "跳過此版本",
-    tipUpdateDismiss:                       "忽略",
+    lblNewsHideForever:                     "不再顯示",
+    btnNewsOpenLink:                        "了解更多",
+    tipNewsDismiss:                         "關閉",
+    lblStgGeneralNews:                      "顯示來自 yaiol 的新聞",
+    btnNewsClose:                           "關閉",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "在此開啟或拖放 Markdown 檔案以檢視/編輯。",
@@ -2812,14 +2856,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "設定",
     tipStgBack:                             "返回",
-    tabStgDisplay:                          "顯示",
     tabStgAbout:                            "關於",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "語言",
-    lblStgDisplayTheme:                     "主題",
-    btnStgDisplayThemeDark:                 "深色",
-    btnStgDisplayThemeLight:                "淺色",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "一般",
+    lblStgGeneralLang:                      "語言",
+    lblStgGeneralTheme:                     "主題",
+    btnStgGeneralThemeDark:                 "深色",
+    btnStgGeneralThemeLight:                "淺色",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "編輯並預覽 Markdown 檔案。",
@@ -2885,10 +2929,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "新しいバージョンが利用可能です:",
-    lnkUpdateWhatsNew:                      "新機能",
     btnUpdateDownload:                      "ダウンロード",
-    lnkUpdateSkip:                          "このバージョンをスキップ",
-    tipUpdateDismiss:                       "閉じる",
+    lblNewsHideForever:                     "今後表示しない",
+    btnNewsOpenLink:                        "詳細を見る",
+    tipNewsDismiss:                         "閉じる",
+    lblStgGeneralNews:                      "yaiol からのニュースを表示",
+    btnNewsClose:                           "閉じる",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Markdown ファイルをここで開くかドロップして表示/編集します。",
@@ -2942,14 +2988,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "設定",
     tipStgBack:                             "戻る",
-    tabStgDisplay:                          "表示",
     tabStgAbout:                            "概要",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "言語",
-    lblStgDisplayTheme:                     "テーマ",
-    btnStgDisplayThemeDark:                 "ダーク",
-    btnStgDisplayThemeLight:                "ライト",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "一般",
+    lblStgGeneralLang:                      "言語",
+    lblStgGeneralTheme:                     "テーマ",
+    btnStgGeneralThemeDark:                 "ダーク",
+    btnStgGeneralThemeLight:                "ライト",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown ファイルを編集・プレビューします。",
@@ -3015,10 +3061,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "새 버전 사용 가능:",
-    lnkUpdateWhatsNew:                      "새로운 기능",
     btnUpdateDownload:                      "다운로드",
-    lnkUpdateSkip:                          "이 버전 건너뛰기",
-    tipUpdateDismiss:                       "닫기",
+    lblNewsHideForever:                     "다시 표시 안 함",
+    btnNewsOpenLink:                        "자세히 알아보기",
+    tipNewsDismiss:                         "닫기",
+    lblStgGeneralNews:                      "yaiol 뉴스 표시",
+    btnNewsClose:                           "닫기",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Markdown 파일을 여기서 열거나 드롭하여 보기/편집하세요.",
@@ -3072,14 +3120,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "설정",
     tipStgBack:                             "뒤로",
-    tabStgDisplay:                          "표시",
     tabStgAbout:                            "정보",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "언어",
-    lblStgDisplayTheme:                     "테마",
-    btnStgDisplayThemeDark:                 "어둡게",
-    btnStgDisplayThemeLight:                "밝게",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "일반",
+    lblStgGeneralLang:                      "언어",
+    lblStgGeneralTheme:                     "테마",
+    btnStgGeneralThemeDark:                 "어둡게",
+    btnStgGeneralThemeLight:                "밝게",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown 파일을 편집하고 미리 봅니다.",
@@ -3145,10 +3193,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Phiên bản mới có sẵn:",
-    lnkUpdateWhatsNew:                      "Có gì mới",
     btnUpdateDownload:                      "Tải xuống",
-    lnkUpdateSkip:                          "Bỏ qua phiên bản này",
-    tipUpdateDismiss:                       "Bỏ qua",
+    lblNewsHideForever:                     "Không hiển thị lại",
+    btnNewsOpenLink:                        "Tìm hiểu thêm",
+    tipNewsDismiss:                         "Đóng",
+    lblStgGeneralNews:                      "Hiển thị tin tức từ yaiol",
+    btnNewsClose:                           "Đóng",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Mở hoặc thả tệp Markdown vào đây để xem/chỉnh sửa.",
@@ -3202,14 +3252,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Cài đặt",
     tipStgBack:                             "Quay lại",
-    tabStgDisplay:                          "Hiển thị",
     tabStgAbout:                            "Giới thiệu",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Ngôn ngữ",
-    lblStgDisplayTheme:                     "Giao diện",
-    btnStgDisplayThemeDark:                 "Tối",
-    btnStgDisplayThemeLight:                "Sáng",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Chung",
+    lblStgGeneralLang:                      "Ngôn ngữ",
+    lblStgGeneralTheme:                     "Giao diện",
+    btnStgGeneralThemeDark:                 "Tối",
+    btnStgGeneralThemeLight:                "Sáng",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "chỉnh sửa và xem trước tệp Markdown.",
@@ -3275,10 +3325,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "มีเวอร์ชันใหม่:",
-    lnkUpdateWhatsNew:                      "มีอะไรใหม่",
     btnUpdateDownload:                      "ดาวน์โหลด",
-    lnkUpdateSkip:                          "ข้ามเวอร์ชันนี้",
-    tipUpdateDismiss:                       "ปิด",
+    lblNewsHideForever:                     "ไม่ต้องแสดงอีก",
+    btnNewsOpenLink:                        "เรียนรู้เพิ่มเติม",
+    tipNewsDismiss:                         "ปิด",
+    lblStgGeneralNews:                      "แสดงข่าวสารจาก yaiol",
+    btnNewsClose:                           "ปิด",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "เปิดหรือวางไฟล์ Markdown ที่นี่เพื่อดู/แก้ไข",
@@ -3332,14 +3384,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "การตั้งค่า",
     tipStgBack:                             "ย้อนกลับ",
-    tabStgDisplay:                          "แสดงผล",
     tabStgAbout:                            "เกี่ยวกับ",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "ภาษา",
-    lblStgDisplayTheme:                     "ธีม",
-    btnStgDisplayThemeDark:                 "มืด",
-    btnStgDisplayThemeLight:                "สว่าง",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "ทั่วไป",
+    lblStgGeneralLang:                      "ภาษา",
+    lblStgGeneralTheme:                     "ธีม",
+    btnStgGeneralThemeDark:                 "มืด",
+    btnStgGeneralThemeLight:                "สว่าง",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "แก้ไขและดูตัวอย่างไฟล์ Markdown",
@@ -3405,10 +3457,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versi baru tersedia:",
-    lnkUpdateWhatsNew:                      "Apa yang baru",
     btnUpdateDownload:                      "Unduh",
-    lnkUpdateSkip:                          "Lewati versi ini",
-    tipUpdateDismiss:                       "Abaikan",
+    lblNewsHideForever:                     "Jangan tampilkan lagi",
+    btnNewsOpenLink:                        "Pelajari lebih lanjut",
+    tipNewsDismiss:                         "Tutup",
+    lblStgGeneralNews:                      "Tampilkan berita dari yaiol",
+    btnNewsClose:                           "Tutup",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Buka atau lepaskan file Markdown di sini untuk melihat/mengeditnya.",
@@ -3462,14 +3516,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Pengaturan",
     tipStgBack:                             "Kembali",
-    tabStgDisplay:                          "Tampilan",
     tabStgAbout:                            "Tentang",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Bahasa",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Gelap",
-    btnStgDisplayThemeLight:                "Terang",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Umum",
+    lblStgGeneralLang:                      "Bahasa",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Gelap",
+    btnStgGeneralThemeLight:                "Terang",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edit dan pratinjau file Markdown.",
@@ -3535,10 +3589,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versió disponible:",
-    lnkUpdateWhatsNew:                      "Novetats",
     btnUpdateDownload:                      "Baixa",
-    lnkUpdateSkip:                          "Omet aquesta versió",
-    tipUpdateDismiss:                       "Descarta",
+    lblNewsHideForever:                     "No tornar a mostrar",
+    btnNewsOpenLink:                        "Més informació",
+    tipNewsDismiss:                         "Tancar",
+    lblStgGeneralNews:                      "Mostrar notícies de yaiol",
+    btnNewsClose:                           "Tancar",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Obre o deixa anar un fitxer Markdown aquí per visualitzar-lo/editar-lo.",
@@ -3592,14 +3648,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Configuració",
     tipStgBack:                             "Enrere",
-    tabStgDisplay:                          "Pantalla",
     tabStgAbout:                            "Quant a",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Idioma",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Fosc",
-    btnStgDisplayThemeLight:                "Clar",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "General",
+    lblStgGeneralLang:                      "Idioma",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Fosc",
+    btnStgGeneralThemeLight:                "Clar",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "editeu i previsualitzeu fitxers Markdown.",
@@ -3665,10 +3721,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nová verze je k dispozici:",
-    lnkUpdateWhatsNew:                      "Co je nového",
     btnUpdateDownload:                      "Stáhnout",
-    lnkUpdateSkip:                          "Přeskočit tuto verzi",
-    tipUpdateDismiss:                       "Zavřít",
+    lblNewsHideForever:                     "Nezobrazovat znovu",
+    btnNewsOpenLink:                        "Další informace",
+    tipNewsDismiss:                         "Zavřít",
+    lblStgGeneralNews:                      "Zobrazovat zprávy z yaiol",
+    btnNewsClose:                           "Zavřít",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Otevřete nebo přetáhněte soubor Markdown sem pro zobrazení/úpravu.",
@@ -3722,14 +3780,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Nastavení",
     tipStgBack:                             "Zpět",
-    tabStgDisplay:                          "Zobrazení",
     tabStgAbout:                            "O aplikaci",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Jazyk",
-    lblStgDisplayTheme:                     "Motiv",
-    btnStgDisplayThemeDark:                 "Tmavý",
-    btnStgDisplayThemeLight:                "Světlý",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Obecné",
+    lblStgGeneralLang:                      "Jazyk",
+    lblStgGeneralTheme:                     "Motiv",
+    btnStgGeneralThemeDark:                 "Tmavý",
+    btnStgGeneralThemeLight:                "Světlý",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "upravujte a zobrazujte soubory Markdown.",
@@ -3795,10 +3853,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ny version tilgængelig:",
-    lnkUpdateWhatsNew:                      "Hvad er nyt",
     btnUpdateDownload:                      "Download",
-    lnkUpdateSkip:                          "Spring denne version over",
-    tipUpdateDismiss:                       "Afvis",
+    lblNewsHideForever:                     "Vis ikke igen",
+    btnNewsOpenLink:                        "Læs mere",
+    tipNewsDismiss:                         "Luk",
+    lblStgGeneralNews:                      "Vis nyheder fra yaiol",
+    btnNewsClose:                           "Luk",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Åbn eller slip en Markdown-fil her for at se/redigere den.",
@@ -3852,14 +3912,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Indstillinger",
     tipStgBack:                             "Tilbage",
-    tabStgDisplay:                          "Visning",
     tabStgAbout:                            "Om",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Sprog",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Mørkt",
-    btnStgDisplayThemeLight:                "Lyst",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Generelt",
+    lblStgGeneralLang:                      "Sprog",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Mørkt",
+    btnStgGeneralThemeLight:                "Lyst",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
@@ -3925,10 +3985,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Uusi versio saatavilla:",
-    lnkUpdateWhatsNew:                      "Mitä uutta",
     btnUpdateDownload:                      "Lataa",
-    lnkUpdateSkip:                          "Ohita tämä versio",
-    tipUpdateDismiss:                       "Hylkää",
+    lblNewsHideForever:                     "Älä näytä uudelleen",
+    btnNewsOpenLink:                        "Lue lisää",
+    tipNewsDismiss:                         "Sulje",
+    lblStgGeneralNews:                      "Näytä uutiset yaiolista",
+    btnNewsClose:                           "Sulje",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Avaa tai pudota Markdown-tiedosto tähän nähdäksesi/muokataksesi sitä.",
@@ -3982,14 +4044,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Asetukset",
     tipStgBack:                             "Takaisin",
-    tabStgDisplay:                          "Näyttö",
     tabStgAbout:                            "Tietoja",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Kieli",
-    lblStgDisplayTheme:                     "Teema",
-    btnStgDisplayThemeDark:                 "Tumma",
-    btnStgDisplayThemeLight:                "Vaalea",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Yleiset",
+    lblStgGeneralLang:                      "Kieli",
+    lblStgGeneralTheme:                     "Teema",
+    btnStgGeneralThemeDark:                 "Tumma",
+    btnStgGeneralThemeLight:                "Vaalea",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "muokkaa ja esikatsele Markdown-tiedostoja.",
@@ -4055,10 +4117,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Versi baharu tersedia:",
-    lnkUpdateWhatsNew:                      "Apa yang baharu",
     btnUpdateDownload:                      "Muat turun",
-    lnkUpdateSkip:                          "Langkau versi ini",
-    tipUpdateDismiss:                       "Abaikan",
+    lblNewsHideForever:                     "Jangan tunjuk lagi",
+    btnNewsOpenLink:                        "Ketahui lebih lanjut",
+    tipNewsDismiss:                         "Tutup",
+    lblStgGeneralNews:                      "Tunjukkan berita dari yaiol",
+    btnNewsClose:                           "Tutup",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Buka atau lepaskan fail Markdown di sini untuk melihat/mengeditnya.",
@@ -4112,14 +4176,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Tetapan",
     tipStgBack:                             "Kembali",
-    tabStgDisplay:                          "Paparan",
     tabStgAbout:                            "Tentang",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Bahasa",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Gelap",
-    btnStgDisplayThemeLight:                "Cerah",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Umum",
+    lblStgGeneralLang:                      "Bahasa",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Gelap",
+    btnStgGeneralThemeLight:                "Cerah",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edit dan pratonton fail Markdown.",
@@ -4185,10 +4249,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Նոր տարբերակ հասանելի է:",
-    lnkUpdateWhatsNew:                      "Ինչ նորություն կա",
     btnUpdateDownload:                      "Ներբեռնել",
-    lnkUpdateSkip:                          "Բաց թողնել այս տարբերակը",
-    tipUpdateDismiss:                       "Մերժել",
+    lblNewsHideForever:                     "Այլևս չցուցադրել",
+    btnNewsOpenLink:                        "Իմանալ ավելին",
+    tipNewsDismiss:                         "Փակել",
+    lblStgGeneralNews:                      "Ցուցադրել նորություններ yaiol-ից",
+    btnNewsClose:                           "Փակել",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Բացեք կամ գցեք Markdown ֆայլ այստեղ՝ դիտելու/խմբագրելու համար։",
@@ -4242,14 +4308,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Կարգավորումներ",
     tipStgBack:                             "Հետ",
-    tabStgDisplay:                          "Ցուցադրում",
     tabStgAbout:                            "Մասին",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Լեզու",
-    lblStgDisplayTheme:                     "Թեմա",
-    btnStgDisplayThemeDark:                 "Մուգ",
-    btnStgDisplayThemeLight:                "Բաց",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Ընդհանուր",
+    lblStgGeneralLang:                      "Լեզու",
+    lblStgGeneralTheme:                     "Թեմա",
+    btnStgGeneralThemeDark:                 "Մուգ",
+    btnStgGeneralThemeLight:                "Բաց",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "խմբագրեք և դիտեք Markdown ֆայլեր։",
@@ -4315,10 +4381,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Налична е нова версия:",
-    lnkUpdateWhatsNew:                      "Какво ново",
     btnUpdateDownload:                      "Изтегли",
-    lnkUpdateSkip:                          "Пропусни тази версия",
-    tipUpdateDismiss:                       "Отхвърли",
+    lblNewsHideForever:                     "Не показвай отново",
+    btnNewsOpenLink:                        "Научете повече",
+    tipNewsDismiss:                         "Затвори",
+    lblStgGeneralNews:                      "Показвай новини от yaiol",
+    btnNewsClose:                           "Затвори",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Отворете или пуснете Markdown файл тук, за да го прегледате/редактирате.",
@@ -4372,14 +4440,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Настройки",
     tipStgBack:                             "Назад",
-    tabStgDisplay:                          "Дисплей",
     tabStgAbout:                            "За програмата",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Език",
-    lblStgDisplayTheme:                     "Тема",
-    btnStgDisplayThemeDark:                 "Тъмна",
-    btnStgDisplayThemeLight:                "Светла",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Общи",
+    lblStgGeneralLang:                      "Език",
+    lblStgGeneralTheme:                     "Тема",
+    btnStgGeneralThemeDark:                 "Тъмна",
+    btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "редактирайте и преглеждайте Markdown файлове.",
@@ -4445,10 +4513,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Nova versión dispoñible:",
-    lnkUpdateWhatsNew:                      "Novidades",
     btnUpdateDownload:                      "Descargar",
-    lnkUpdateSkip:                          "Omitir esta versión",
-    tipUpdateDismiss:                       "Descartar",
+    lblNewsHideForever:                     "Non mostrar de novo",
+    btnNewsOpenLink:                        "Máis información",
+    tipNewsDismiss:                         "Pechar",
+    lblStgGeneralNews:                      "Mostrar noticias de yaiol",
+    btnNewsClose:                           "Pechar",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Abre ou solta un ficheiro Markdown aquí para velo/editalo.",
@@ -4502,14 +4572,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Configuración",
     tipStgBack:                             "Atrás",
-    tabStgDisplay:                          "Pantalla",
     tabStgAbout:                            "Acerca de",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Idioma",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Escuro",
-    btnStgDisplayThemeLight:                "Claro",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Xeral",
+    lblStgGeneralLang:                      "Idioma",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Escuro",
+    btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "edita e previsualiza ficheiros Markdown.",
@@ -4575,10 +4645,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Új verzió elérhető:",
-    lnkUpdateWhatsNew:                      "Újdonságok",
     btnUpdateDownload:                      "Letöltés",
-    lnkUpdateSkip:                          "Verzió kihagyása",
-    tipUpdateDismiss:                       "Elvetés",
+    lblNewsHideForever:                     "Ne mutasd újra",
+    btnNewsOpenLink:                        "Tudjon meg többet",
+    tipNewsDismiss:                         "Bezárás",
+    lblStgGeneralNews:                      "Hírek megjelenítése a yaiol-tól",
+    btnNewsClose:                           "Bezárás",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Nyisson meg vagy ejtsen ide egy Markdown fájlt a megtekintéshez/szerkesztéshez.",
@@ -4632,14 +4704,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Beállítások",
     tipStgBack:                             "Vissza",
-    tabStgDisplay:                          "Megjelenítés",
     tabStgAbout:                            "Névjegy",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Nyelv",
-    lblStgDisplayTheme:                     "Téma",
-    btnStgDisplayThemeDark:                 "Sötét",
-    btnStgDisplayThemeLight:                "Világos",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Általános",
+    lblStgGeneralLang:                      "Nyelv",
+    lblStgGeneralTheme:                     "Téma",
+    btnStgGeneralThemeDark:                 "Sötét",
+    btnStgGeneralThemeLight:                "Világos",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "szerkessze és tekintse meg a Markdown fájlokat.",
@@ -4705,10 +4777,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Yra nauja versija:",
-    lnkUpdateWhatsNew:                      "Kas naujo",
     btnUpdateDownload:                      "Atsisiųsti",
-    lnkUpdateSkip:                          "Praleisti šią versiją",
-    tipUpdateDismiss:                       "Atmesti",
+    lblNewsHideForever:                     "Daugiau nerodyti",
+    btnNewsOpenLink:                        "Sužinoti daugiau",
+    tipNewsDismiss:                         "Uždaryti",
+    lblStgGeneralNews:                      "Rodyti naujienas iš yaiol",
+    btnNewsClose:                           "Uždaryti",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Atidarykite arba numeskite Markdown failą čia, kad peržiūrėtumėte/redaguotumėte.",
@@ -4762,14 +4836,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Nustatymai",
     tipStgBack:                             "Atgal",
-    tabStgDisplay:                          "Ekranas",
     tabStgAbout:                            "Apie",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Kalba",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Tamsi",
-    btnStgDisplayThemeLight:                "Šviesi",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Bendra",
+    lblStgGeneralLang:                      "Kalba",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Tamsi",
+    btnStgGeneralThemeLight:                "Šviesi",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "redaguokite ir peržiūrėkite Markdown failus.",
@@ -4835,10 +4909,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Достапна е нова верзија:",
-    lnkUpdateWhatsNew:                      "Што е ново",
     btnUpdateDownload:                      "Преземи",
-    lnkUpdateSkip:                          "Прескокни ја оваа верзија",
-    tipUpdateDismiss:                       "Отфрли",
+    lblNewsHideForever:                     "Не прикажувај повторно",
+    btnNewsOpenLink:                        "Дознајте повеќе",
+    tipNewsDismiss:                         "Затвори",
+    lblStgGeneralNews:                      "Прикажи вести од yaiol",
+    btnNewsClose:                           "Затвори",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Отворете или пуштете Markdown датотека овде за да ја прегледате/уредите.",
@@ -4892,14 +4968,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Поставки",
     tipStgBack:                             "Назад",
-    tabStgDisplay:                          "Приказ",
     tabStgAbout:                            "За апликацијата",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Јазик",
-    lblStgDisplayTheme:                     "Тема",
-    btnStgDisplayThemeDark:                 "Темна",
-    btnStgDisplayThemeLight:                "Светла",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Општо",
+    lblStgGeneralLang:                      "Јазик",
+    lblStgGeneralTheme:                     "Тема",
+    btnStgGeneralThemeDark:                 "Темна",
+    btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "уредувај и прегледај Markdown датотеки.",
@@ -4965,10 +5041,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Доступна је нова верзија:",
-    lnkUpdateWhatsNew:                      "Шта је ново",
     btnUpdateDownload:                      "Преузми",
-    lnkUpdateSkip:                          "Прескочи ову верзију",
-    tipUpdateDismiss:                       "Одбаци",
+    lblNewsHideForever:                     "Не приказуј поново",
+    btnNewsOpenLink:                        "Сазнајте више",
+    tipNewsDismiss:                         "Затвори",
+    lblStgGeneralNews:                      "Прикажи вести из yaiol",
+    btnNewsClose:                           "Затвори",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Отворите или превуците Markdown датотеку овде да бисте је прегледали/уредили.",
@@ -5022,14 +5100,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Подешавања",
     tipStgBack:                             "Назад",
-    tabStgDisplay:                          "Приказ",
     tabStgAbout:                            "О апликацији",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Језик",
-    lblStgDisplayTheme:                     "Тема",
-    btnStgDisplayThemeDark:                 "Тамна",
-    btnStgDisplayThemeLight:                "Светла",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Опште",
+    lblStgGeneralLang:                      "Језик",
+    lblStgGeneralTheme:                     "Тема",
+    btnStgGeneralThemeDark:                 "Тамна",
+    btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "уређујте и прегледајте Markdown датотеке.",
@@ -5095,10 +5173,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "K dispozícii je nová verzia:",
-    lnkUpdateWhatsNew:                      "Čo je nové",
     btnUpdateDownload:                      "Stiahnuť",
-    lnkUpdateSkip:                          "Preskočiť túto verziu",
-    tipUpdateDismiss:                       "Zavrieť",
+    lblNewsHideForever:                     "Nezobrazovať znova",
+    btnNewsOpenLink:                        "Zistiť viac",
+    tipNewsDismiss:                         "Zavrieť",
+    lblStgGeneralNews:                      "Zobrazovať správy z yaiol",
+    btnNewsClose:                           "Zavrieť",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Otvorte alebo presuňte Markdown súbor sem na zobrazenie/úpravu.",
@@ -5152,14 +5232,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Nastavenia",
     tipStgBack:                             "Späť",
-    tabStgDisplay:                          "Zobrazenie",
     tabStgAbout:                            "O aplikácii",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Jazyk",
-    lblStgDisplayTheme:                     "Motív",
-    btnStgDisplayThemeDark:                 "Tmavý",
-    btnStgDisplayThemeLight:                "Svetlý",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Všeobecné",
+    lblStgGeneralLang:                      "Jazyk",
+    lblStgGeneralTheme:                     "Motív",
+    btnStgGeneralThemeDark:                 "Tmavý",
+    btnStgGeneralThemeLight:                "Svetlý",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "upravujte a zobrazujte Markdown súbory.",
@@ -5225,10 +5305,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Na voljo je nova različica:",
-    lnkUpdateWhatsNew:                      "Kaj je novega",
     btnUpdateDownload:                      "Prenesi",
-    lnkUpdateSkip:                          "Preskoči to različico",
-    tipUpdateDismiss:                       "Zavrni",
+    lblNewsHideForever:                     "Ne prikazuj več",
+    btnNewsOpenLink:                        "Več o tem",
+    tipNewsDismiss:                         "Zapri",
+    lblStgGeneralNews:                      "Prikaži novice iz yaiol",
+    btnNewsClose:                           "Zapri",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Odprite ali spustite datoteko Markdown sem za ogled/urejanje.",
@@ -5282,14 +5364,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Nastavitve",
     tipStgBack:                             "Nazaj",
-    tabStgDisplay:                          "Prikaz",
     tabStgAbout:                            "O programu",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Jezik",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Temna",
-    btnStgDisplayThemeLight:                "Svetla",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Splošno",
+    lblStgGeneralLang:                      "Jezik",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Temna",
+    btnStgGeneralThemeLight:                "Svetla",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "urejajte in pregledujte datoteke Markdown.",
@@ -5355,10 +5437,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "புதிய பதிப்பு உள்ளது:",
-    lnkUpdateWhatsNew:                      "புதியது என்ன",
     btnUpdateDownload:                      "பதிவிறக்கு",
-    lnkUpdateSkip:                          "இந்த பதிப்பைத் தவிர்க்கவும்",
-    tipUpdateDismiss:                       "நிராகரி",
+    lblNewsHideForever:                     "மீண்டும் காட்டாதே",
+    btnNewsOpenLink:                        "மேலும் அறிக",
+    tipNewsDismiss:                         "மூடு",
+    lblStgGeneralNews:                      "yaiol இலிருந்து செய்திகளைக் காட்டு",
+    btnNewsClose:                           "மூடு",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "காண/திருத்த Markdown கோப்பை இங்கே திறக்கவும் அல்லது இழுக்கவும்.",
@@ -5412,14 +5496,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "அமைப்புகள்",
     tipStgBack:                             "பின்செல்",
-    tabStgDisplay:                          "காட்சி",
     tabStgAbout:                            "பற்றி",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "மொழி",
-    lblStgDisplayTheme:                     "தீம்",
-    btnStgDisplayThemeDark:                 "இருள்",
-    btnStgDisplayThemeLight:                "ஒளி",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "பொது",
+    lblStgGeneralLang:                      "மொழி",
+    lblStgGeneralTheme:                     "தீம்",
+    btnStgGeneralThemeDark:                 "இருள்",
+    btnStgGeneralThemeLight:                "ஒளி",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown கோப்புகளை திருத்தி மற்றும் பார்க்கவும்.",
@@ -5485,10 +5569,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "नया संस्करण उपलब्ध है:",
-    lnkUpdateWhatsNew:                      "नया क्या है",
     btnUpdateDownload:                      "डाउनलोड करें",
-    lnkUpdateSkip:                          "इस संस्करण को छोड़ें",
-    tipUpdateDismiss:                       "खारिज करें",
+    lblNewsHideForever:                     "दोबारा न दिखाएँ",
+    btnNewsOpenLink:                        "और जानें",
+    tipNewsDismiss:                         "बंद करें",
+    lblStgGeneralNews:                      "yaiol से समाचार दिखाएँ",
+    btnNewsClose:                           "बंद करें",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "देखने/संपादित करने के लिए Markdown फ़ाइल यहाँ खोलें या छोड़ें।",
@@ -5542,14 +5628,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "सेटिंग्स",
     tipStgBack:                             "वापस",
-    tabStgDisplay:                          "प्रदर्शन",
     tabStgAbout:                            "के बारे में",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "भाषा",
-    lblStgDisplayTheme:                     "थीम",
-    btnStgDisplayThemeDark:                 "गहरा",
-    btnStgDisplayThemeLight:                "हल्का",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "सामान्य",
+    lblStgGeneralLang:                      "भाषा",
+    lblStgGeneralTheme:                     "थीम",
+    btnStgGeneralThemeDark:                 "गहरा",
+    btnStgGeneralThemeLight:                "हल्का",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown फ़ाइलें संपादित और देखें।",
@@ -5615,10 +5701,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "নতুন সংস্করণ উপলব্ধ:",
-    lnkUpdateWhatsNew:                      "নতুন কি আছে",
     btnUpdateDownload:                      "ডাউনলোড করুন",
-    lnkUpdateSkip:                          "এই সংস্করণটি এড়িয়ে যান",
-    tipUpdateDismiss:                       "খারিজ করুন",
+    lblNewsHideForever:                     "আবার দেখাবেন না",
+    btnNewsOpenLink:                        "আরও জানুন",
+    tipNewsDismiss:                         "বন্ধ করুন",
+    lblStgGeneralNews:                      "yaiol থেকে খবর দেখান",
+    btnNewsClose:                           "বন্ধ করুন",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "দেখতে/সম্পাদনা করতে এখানে Markdown ফাইল খুলুন বা ফেলুন।",
@@ -5672,14 +5760,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "সেটিংস",
     tipStgBack:                             "পিছনে",
-    tabStgDisplay:                          "প্রদর্শন",
     tabStgAbout:                            "সম্পর্কে",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "ভাষা",
-    lblStgDisplayTheme:                     "থিম",
-    btnStgDisplayThemeDark:                 "গাঢ়",
-    btnStgDisplayThemeLight:                "হালকা",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "সাধারণ",
+    lblStgGeneralLang:                      "ভাষা",
+    lblStgGeneralTheme:                     "থিম",
+    btnStgGeneralThemeDark:                 "গাঢ়",
+    btnStgGeneralThemeLight:                "হালকা",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown ফাইল সম্পাদনা ও দেখুন।",
@@ -5745,10 +5833,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "نیا ورژن دستیاب ہے:",
-    lnkUpdateWhatsNew:                      "نیا کیا ہے",
     btnUpdateDownload:                      "ڈاؤن لوڈ کریں",
-    lnkUpdateSkip:                          "اس ورژن کو چھوڑ دیں",
-    tipUpdateDismiss:                       "مسترد کریں",
+    lblNewsHideForever:                     "دوبارہ نہ دکھائیں",
+    btnNewsOpenLink:                        "مزید جانیں",
+    tipNewsDismiss:                         "بند کریں",
+    lblStgGeneralNews:                      "yaiol سے خبریں دکھائیں",
+    btnNewsClose:                           "بند کریں",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "دیکھنے/ترمیم کرنے کے لیے یہاں Markdown فائل کھولیں یا چھوڑیں۔",
@@ -5802,14 +5892,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "ترتیبات",
     tipStgBack:                             "واپس",
-    tabStgDisplay:                          "ڈسپلے",
     tabStgAbout:                            "کے بارے میں",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "زبان",
-    lblStgDisplayTheme:                     "تھیم",
-    btnStgDisplayThemeDark:                 "گہرا",
-    btnStgDisplayThemeLight:                "ہلکا",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "عمومی",
+    lblStgGeneralLang:                      "زبان",
+    lblStgGeneralTheme:                     "تھیم",
+    btnStgGeneralThemeDark:                 "گہرا",
+    btnStgGeneralThemeLight:                "ہلکا",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown فائلیں ترمیم اور دیکھیں۔",
@@ -5875,10 +5965,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Toleo jipya linapatikana:",
-    lnkUpdateWhatsNew:                      "Nini kipya",
     btnUpdateDownload:                      "Pakua",
-    lnkUpdateSkip:                          "Ruka toleo hili",
-    tipUpdateDismiss:                       "Futa",
+    lblNewsHideForever:                     "Usionyeshe tena",
+    btnNewsOpenLink:                        "Jifunze zaidi",
+    tipNewsDismiss:                         "Funga",
+    lblStgGeneralNews:                      "Onyesha habari kutoka yaiol",
+    btnNewsClose:                           "Funga",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Fungua au dondosha faili ya Markdown hapa ili kuona/kuhariri.",
@@ -5932,14 +6024,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Mipangilio",
     tipStgBack:                             "Rudi",
-    tabStgDisplay:                          "Onyesho",
     tabStgAbout:                            "Kuhusu",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Lugha",
-    lblStgDisplayTheme:                     "Mandhari",
-    btnStgDisplayThemeDark:                 "Giza",
-    btnStgDisplayThemeLight:                "Mwanga",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Jumla",
+    lblStgGeneralLang:                      "Lugha",
+    lblStgGeneralTheme:                     "Mandhari",
+    btnStgGeneralThemeDark:                 "Giza",
+    btnStgGeneralThemeLight:                "Mwanga",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "hariri na uone faili za Markdown.",
@@ -6005,10 +6097,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "ਨਵਾਂ ਸੰਸਕਰਨ ਉਪਲਬਧ ਹੈ:",
-    lnkUpdateWhatsNew:                      "ਨਵਾਂ ਕੀ ਹੈ",
     btnUpdateDownload:                      "ਡਾਊਨਲੋਡ ਕਰੋ",
-    lnkUpdateSkip:                          "ਇਸ ਸੰਸਕਰਨ ਨੂੰ ਛੱਡੋ",
-    tipUpdateDismiss:                       "ਖਾਰਜ ਕਰੋ",
+    lblNewsHideForever:                     "ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ",
+    btnNewsOpenLink:                        "ਹੋਰ ਜਾਣੋ",
+    tipNewsDismiss:                         "ਬੰਦ ਕਰੋ",
+    lblStgGeneralNews:                      "yaiol ਤੋਂ ਖ਼ਬਰਾਂ ਦਿਖਾਓ",
+    btnNewsClose:                           "ਬੰਦ ਕਰੋ",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "ਦੇਖਣ/ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Markdown ਫਾਈਲ ਇੱਥੇ ਖੋਲ੍ਹੋ ਜਾਂ ਸੁੱਟੋ।",
@@ -6062,14 +6156,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "ਸੈਟਿੰਗਾਂ",
     tipStgBack:                             "ਵਾਪਸ",
-    tabStgDisplay:                          "ਡਿਸਪਲੇ",
     tabStgAbout:                            "ਬਾਰੇ",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "ਭਾਸ਼ਾ",
-    lblStgDisplayTheme:                     "ਥੀਮ",
-    btnStgDisplayThemeDark:                 "ਗਹਿਰਾ",
-    btnStgDisplayThemeLight:                "ਹਲਕਾ",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "ਆਮ",
+    lblStgGeneralLang:                      "ਭਾਸ਼ਾ",
+    lblStgGeneralTheme:                     "ਥੀਮ",
+    btnStgGeneralThemeDark:                 "ਗਹਿਰਾ",
+    btnStgGeneralThemeLight:                "ਹਲਕਾ",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown ਫਾਈਲਾਂ ਸੰਪਾਦਿਤ ਅਤੇ ਦੇਖੋ।",
@@ -6135,10 +6229,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Sabon sigar yana nan:",
-    lnkUpdateWhatsNew:                      "Menene sabo",
     btnUpdateDownload:                      "Zazzage",
-    lnkUpdateSkip:                          "Tsallake wannan sigar",
-    tipUpdateDismiss:                       "Watsar",
+    lblNewsHideForever:                     "Kada a sake nunawa",
+    btnNewsOpenLink:                        "Koyi game da shi",
+    tipNewsDismiss:                         "Rufe",
+    lblStgGeneralNews:                      "Nuna labarai daga yaiol",
+    btnNewsClose:                           "Rufe",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Buɗe ko zubda fayil ɗin Markdown anan don kallo/gyarawa.",
@@ -6192,14 +6288,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Saitunan",
     tipStgBack:                             "Baya",
-    tabStgDisplay:                          "Nuna",
     tabStgAbout:                            "Game da",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Harshe",
-    lblStgDisplayTheme:                     "Jigo",
-    btnStgDisplayThemeDark:                 "Duhu",
-    btnStgDisplayThemeLight:                "Haske",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Gabaɗaya",
+    lblStgGeneralLang:                      "Harshe",
+    lblStgGeneralTheme:                     "Jigo",
+    btnStgGeneralThemeDark:                 "Duhu",
+    btnStgGeneralThemeLight:                "Haske",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "gyara kuma kalli fayilolin Markdown.",
@@ -6265,10 +6361,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "Ẹya tuntun wa:",
-    lnkUpdateWhatsNew:                      "Kí ni titun",
     btnUpdateDownload:                      "Ṣe igbasilẹ",
-    lnkUpdateSkip:                          "Fo ẹya yii",
-    tipUpdateDismiss:                       "Foju pa",
+    lblNewsHideForever:                     "Maṣe fi han mọ",
+    btnNewsOpenLink:                        "Kọ́ ẹ̀kọ́ síwájú",
+    tipNewsDismiss:                         "Pa",
+    lblStgGeneralNews:                      "Fi iroyin lati yaiol han",
+    btnNewsClose:                           "Pade",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Ṣi tàbí sọ̀ fayili Markdown síbí láti wo/ṣàtúnkọ.",
@@ -6322,14 +6420,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Ètò",
     tipStgBack:                             "Pada",
-    tabStgDisplay:                          "Ìfihàn",
     tabStgAbout:                            "Nípa",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Èdè",
-    lblStgDisplayTheme:                     "Àkójọ",
-    btnStgDisplayThemeDark:                 "Òkùnkùn",
-    btnStgDisplayThemeLight:                "Ìmọ́lẹ̀",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Gbogbogbo",
+    lblStgGeneralLang:                      "Èdè",
+    lblStgGeneralTheme:                     "Àkójọ",
+    btnStgGeneralThemeDark:                 "Òkùnkùn",
+    btnStgGeneralThemeLight:                "Ìmọ́lẹ̀",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "ṣàtúnkọ àti wo àwọn fayili Markdown.",
@@ -6395,10 +6493,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "కొత్త వెర్షన్ అందుబాటులో ఉంది:",
-    lnkUpdateWhatsNew:                      "కొత్తవి ఏమిటి",
     btnUpdateDownload:                      "డౌన్‌లోడ్ చేయండి",
-    lnkUpdateSkip:                          "ఈ వెర్షన్‌ను దాటవేయి",
-    tipUpdateDismiss:                       "తిరస్కరించు",
+    lblNewsHideForever:                     "మళ్ళీ చూపవద్దు",
+    btnNewsOpenLink:                        "మరింత తెలుసుకోండి",
+    tipNewsDismiss:                         "మూసివేయండి",
+    lblStgGeneralNews:                      "yaiol నుండి వార్తలను చూపించు",
+    btnNewsClose:                           "మూసివేయి",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "చూడడానికి/సవరించడానికి Markdown ఫైల్‌ను ఇక్కడ తెరువు లేదా డ్రాప్ చేయి.",
@@ -6452,14 +6552,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "సెట్టింగులు",
     tipStgBack:                             "వెనుకకు",
-    tabStgDisplay:                          "ప్రదర్శన",
     tabStgAbout:                            "గురించి",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "భాష",
-    lblStgDisplayTheme:                     "థీమ్",
-    btnStgDisplayThemeDark:                 "చీకటి",
-    btnStgDisplayThemeLight:                "వెలుతురు",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "సాధారణ",
+    lblStgGeneralLang:                      "భాష",
+    lblStgGeneralTheme:                     "థీమ్",
+    btnStgGeneralThemeDark:                 "చీకటి",
+    btnStgGeneralThemeLight:                "వెలుతురు",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown ఫైల్‌లను సవరించి చూడండి.",
@@ -6525,10 +6625,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "नवीन आवृत्ती उपलब्ध आहे:",
-    lnkUpdateWhatsNew:                      "नवीन काय आहे",
     btnUpdateDownload:                      "डाउनलोड करा",
-    lnkUpdateSkip:                          "ही आवृत्ती वगळा",
-    tipUpdateDismiss:                       "डिसमिस करा",
+    lblNewsHideForever:                     "पुन्हा दाखवू नका",
+    btnNewsOpenLink:                        "अधिक जाणून घ्या",
+    tipNewsDismiss:                         "बंद करा",
+    lblStgGeneralNews:                      "yaiol कडून बातम्या दाखवा",
+    btnNewsClose:                           "बंद करा",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "पाहण्यासाठी/संपादित करण्यासाठी Markdown फाइल येथे उघडा किंवा टाका.",
@@ -6582,14 +6684,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "सेटिंग्ज",
     tipStgBack:                             "मागे",
-    tabStgDisplay:                          "प्रदर्शन",
     tabStgAbout:                            "बद्दल",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "भाषा",
-    lblStgDisplayTheme:                     "थीम",
-    btnStgDisplayThemeDark:                 "गडद",
-    btnStgDisplayThemeLight:                "हलका",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "सामान्य",
+    lblStgGeneralLang:                      "भाषा",
+    lblStgGeneralTheme:                     "थीम",
+    btnStgGeneralThemeDark:                 "गडद",
+    btnStgGeneralThemeLight:                "हलका",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "Markdown फाइल्स संपादित आणि पाहा.",
@@ -6655,10 +6757,12 @@ const TRANSLATIONS = {
 
     // Prefix:Update - Scope:in-app update notification banner
     lblUpdateAvailable:                     "May bagong bersyon:",
-    lnkUpdateWhatsNew:                      "Ano ang bago",
     btnUpdateDownload:                      "I-download",
-    lnkUpdateSkip:                          "Laktawan ang bersyon na ito",
-    tipUpdateDismiss:                       "Balewalain",
+    lblNewsHideForever:                     "Huwag nang ipakita muli",
+    btnNewsOpenLink:                        "Matuto pa",
+    tipNewsDismiss:                         "Isara",
+    lblStgGeneralNews:                      "Ipakita ang balita mula sa yaiol",
+    btnNewsClose:                           "Isara",
 
     // Prefix:App - Scope:app-level empty states
     empAppNoFile:                           "Buksan o i-drop ang isang Markdown na file dito para tingnan/i-edit.",
@@ -6712,14 +6816,14 @@ const TRANSLATIONS = {
     // Prefix:Stg - Scope:settings view
     ttlStg:                                 "Mga Setting",
     tipStgBack:                             "Bumalik",
-    tabStgDisplay:                          "Display",
     tabStgAbout:                            "Tungkol sa",
 
-    // Prefix:StgDisplay - Scope:settings view (Display tab)
-    lblStgDisplayLang:                      "Wika",
-    lblStgDisplayTheme:                     "Tema",
-    btnStgDisplayThemeDark:                 "Madilim",
-    btnStgDisplayThemeLight:                "Maliwanag",
+    // Prefix:StgGeneral - Scope:settings view (General tab)
+    tabStgGeneral:                          "Pangkalahatan",
+    lblStgGeneralLang:                      "Wika",
+    lblStgGeneralTheme:                     "Tema",
+    btnStgGeneralThemeDark:                 "Madilim",
+    btnStgGeneralThemeLight:                "Maliwanag",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
     msgStgAboutDesc:                        "i-edit at tingnan ang mga Markdown na file.",

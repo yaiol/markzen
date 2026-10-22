@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.11 — 2026-10-22
+
+- A newer version now appears as a card in a news dialog instead of a banner strip: the card lists the release notes newer than the running version, links to the download page, and Don't show again hides it until a still newer version is out
+- Occasional announcements from yaiol appear in the same dialog; Settings > General has a new Show news from yaiol switch that turns announcements off completely (the new-version card is not governed by it)
+- Number fields show the corrected value at once: a value typed outside the allowed range snaps to the nearest allowed number immediately, even when the stored value did not change
+- The editor toolbar buttons, including Insert table, have a lighter look without an outline until hovered
+
 ## 1.0.10 — 2026-09-27
 
 - **Settings opens as a full page instead of a dialog.** The settings button in the header now takes over the window below the header: the Display and About sections are listed in a rail on the left and the chosen one fills the rest. The open documents stay loaded underneath, so their undo history and scroll position are still there when you come back. You can leave with the back arrow beside the title, the settings button again, or `Esc`. While the page is open, the other header buttons and the app's keyboard shortcuts are switched off, so none of them can act on a document you can't see
