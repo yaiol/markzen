@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.12 — 2026-11-06
+
+- Nested lists now render at the right depth. A sub-item written CommonMark-style (two spaces under "- ", three under "1. ") nests under its parent, where the third level and deeper used to flatten by one step. Documents already indented with four spaces render as before
+
 ## 1.0.11 — 2026-10-22
 
 - A newer version now appears as a card in a news dialog instead of a banner strip: the card lists the release notes newer than the running version, links to the download page, and Don't show again hides it until a still newer version is out

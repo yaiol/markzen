@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import pkg from '../package.json';
 import { loadLang } from './i18n-gen';
-import './assets/ui-colors.css';
-import './assets/ui-app.css';
-import './assets/ui-listview.css';
+import './assets/uis-colors.css';
+import './assets/uis-app.css';
+import './assets/uis-listview.css';
 
 // ⚠ CLAUDE: the active language chunk is awaited BEFORE the first render, so a non-English
 // user never sees a flash of English. `.finally` (not `.then`) so a failed or unknown language

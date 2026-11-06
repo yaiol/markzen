@@ -1,6 +1,7 @@
 import { Converter } from 'showdown';
 import { parse as parseYaml } from 'yaml';
 import { protectMath } from '../extensions/katex';
+import { normalizeListIndent } from './listIndent';
 
 // ─── Showdown converter - singleton ──────────────────────────────────────────
 export const converter = new Converter({
@@ -14,6 +15,8 @@ export const converter = new Converter({
   simplifiedAutoLink: true,
   excludeTrailingPunctuationFromURLs: true,
   literalMidWordUnderscores: true,
+  // CommonMark nests a list under the text of its parent item (2 spaces under "- "); showdown wants 4 unless told otherwise
+  disableForced4SpacesIndentedSublists: true,
 });
 
 // ─── GitHub emoji map - fetched once, cached in localStorage ─────────────────
@@ -129,5 +132,5 @@ function extractFrontMatter(md) {
 
 export function markdownToHtml(md) {
   const { card, body } = extractFrontMatter(md);
-  return card + makeHtmlChunked(protectMath(emojify(normalizeWinPaths(body))));
+  return card + makeHtmlChunked(protectMath(emojify(normalizeWinPaths(normalizeListIndent(body)))));
 }

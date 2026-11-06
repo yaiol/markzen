@@ -12,12 +12,13 @@ import { EditorState, EditorSelection, Compartment, Prec } from '@codemirror/sta
 import { markdown } from '@codemirror/lang-markdown';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { FolderOpen, FilePlus, ChevronRight, ChevronUp, ChevronDown, Printer, FileDown, FileCode, Save, SavePlus, Settings, HelpCircle, X, Columns, Edit, Eye, Bold, Italic, Strikethrough, Heading, List, ListOrdered, Quote, Code, Code2, Link, Image, Minus, AlignLeft, AlignCenter, AlignRight, ArrowLeftRight, Search, Check, Table, Palette } from 'lucide-react';
-import { GithubIcon } from './lib/ui-icons';
-import { SettingsView } from './lib/ui-settings';
-import { Splitter } from './lib/ui-ctl-splitter';
-import { CollapseToggle } from './lib/ui-ctl-collapsetoggle';
-import { Popover } from './lib/ui-ctl-popover';
-import { TableGrid } from './lib/ui-ctl-tablegrid';
+import { UisIcoGithub } from './lib/uis-icons';
+import { UisStgView } from './lib/uis-stg-view';
+import { UisPnlSplitter } from './lib/uis-pnl-splitter';
+import { UisPnlToggle } from './lib/uis-pnl-toggle';
+import { UisPnlList } from './lib/uis-pnl-list';
+import { UisPopover } from './lib/uis-ctl-popover';
+import { UisTableGrid } from './lib/uis-ctl-tablegrid';
 import DOMPurify from 'dompurify';
 import katex from 'katex';
 // ⚠ CLAUDE: markmap, vexflow and plotly are loaded ON FIRST EXPORT, never at startup. They are
@@ -40,11 +41,10 @@ const loadExportLibs = () => (__exportLibsP ??= (async () => {
 })());
 import { useT, LANGUAGES } from './i18n-gen';
 import { getUrl } from './lib/site-url';
-import { NewsLoader } from './lib/ui-news-loader';
-import { NewsSetting } from './lib/ui-news-setting';
-import { AppHeader } from './lib/ui-header';
-import { NumberField } from './lib/ui-ctl-numberfield';
-import { Menu, MenuItem, MenuLabel, MenuDivider } from './lib/ui-ctl-menu';
+import { UisNewsLoader } from './lib/uis-news-loader';
+import { UisAppHeader } from './lib/uis-header';
+import { UisNum } from './lib/uis-num';
+import { UisMenu, UisMenuItem, UisMenuLabel, UisMenuDivider } from './lib/uis-ctl-menu';
 import { formats, defaultFormat, getFormatByExtension, FORMAT_ALIGN } from './formats/index';
 import { dataUriFold } from './lib/cm-datauri-fold';
 import FONT_CATALOG from '../seeds/fonts.json';
@@ -147,12 +147,12 @@ const STYLE_TEMPLATES = [
     key: 'github', label: 'GitHub',
     css: () => `
       .md-body { font-size: 16px; line-height: 1.5; }
-      .md-body h1, .md-body h2 { padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
+      .md-body h1, .md-body h2 { padding-bottom: 0.3em; border-bottom: 1px solid var(--uis-border); }
       .md-body h1 { font-size: 2em; } .md-body h2 { font-size: 1.5em; } .md-body h3 { font-size: 1.25em; }
-      .md-body code { background: var(--bg-row); border-radius: 6px; font-size: 85%; padding: 0.2em 0.4em; }
-      .md-body pre { background: var(--bg-row); border-radius: 6px; padding: 16px; font-size: 85%; }
-      .md-body blockquote { border-left: 4px solid var(--border); background: transparent; color: var(--text-dim); padding: 0 1em; margin: 0 0 16px; border-radius: 0; }
-      .md-body th { background: var(--bg-elev); } .md-body tr:nth-child(even) { background: var(--bg-elev); }
+      .md-body code { background: var(--uis-bg-row); border-radius: 6px; font-size: 85%; padding: 0.2em 0.4em; }
+      .md-body pre { background: var(--uis-bg-row); border-radius: 6px; padding: 16px; font-size: 85%; }
+      .md-body blockquote { border-left: 4px solid var(--uis-border); background: transparent; color: var(--uis-text-dim); padding: 0 1em; margin: 0 0 16px; border-radius: 0; }
+      .md-body th { background: var(--uis-bg-elev); } .md-body tr:nth-child(even) { background: var(--uis-bg-elev); }
     `,
   },
   {
@@ -172,12 +172,12 @@ const STYLE_TEMPLATES = [
     css: () => `
       .md-body { font-size: 15px; line-height: 1.7; }
       .md-body h1, .md-body h2, .md-body h3 { font-weight: 800; letter-spacing: -0.5px; border-bottom: none; }
-      .md-body h1 { font-size: 2.4em; color: var(--accent); margin-bottom: 0.4em; }
-      .md-body h2 { font-size: 1.7em; border-left: 4px solid var(--accent); padding-left: 12px; margin-top: 1.6em; }
-      .md-body h3 { font-size: 0.95em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
-      .md-body blockquote { background: var(--accent)18; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; font-weight: 500; }
-      .md-body code { background: var(--accent)18; color: var(--accent); }
-      .md-body th { background: var(--accent)22; color: var(--accent); }
+      .md-body h1 { font-size: 2.4em; color: var(--uis-accent); margin-bottom: 0.4em; }
+      .md-body h2 { font-size: 1.7em; border-left: 4px solid var(--uis-accent); padding-left: 12px; margin-top: 1.6em; }
+      .md-body h3 { font-size: 0.95em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--uis-text-dim); }
+      .md-body blockquote { background: var(--uis-accent)18; border-left: 4px solid var(--uis-accent); border-radius: 0 8px 8px 0; font-weight: 500; }
+      .md-body code { background: var(--uis-accent)18; color: var(--uis-accent); }
+      .md-body th { background: var(--uis-accent)22; color: var(--uis-accent); }
     `,
   },
   {
@@ -185,10 +185,10 @@ const STYLE_TEMPLATES = [
     css: () => `
       .md-body { font-size: 15px; line-height: 1.75; }
       .md-body h1, .md-body h2, .md-body h3 { font-weight: 600; border-bottom: none; margin-top: 1.8em; }
-      .md-body h1 { font-size: 1.6em; } .md-body h2 { font-size: 1.25em; } .md-body h3 { font-size: 1.05em; color: var(--text-dim); }
-      .md-body blockquote { border-left: 2px solid var(--border-strong); background: transparent; border-radius: 0; color: var(--text-dim); font-style: italic; padding: 4px 14px; }
-      .md-body pre { border: 1px solid var(--border); border-radius: 6px; }
-      .md-body th { font-weight: 600; background: transparent; border-bottom: 2px solid var(--border); }
+      .md-body h1 { font-size: 1.6em; } .md-body h2 { font-size: 1.25em; } .md-body h3 { font-size: 1.05em; color: var(--uis-text-dim); }
+      .md-body blockquote { border-left: 2px solid var(--uis-border-strong); background: transparent; border-radius: 0; color: var(--uis-text-dim); font-style: italic; padding: 4px 14px; }
+      .md-body pre { border: 1px solid var(--uis-border); border-radius: 6px; }
+      .md-body th { font-weight: 600; background: transparent; border-bottom: 2px solid var(--uis-border); }
       .md-body tr:nth-child(even) { background: transparent; }
     `,
   },
@@ -198,7 +198,7 @@ const STYLE_TEMPLATES = [
 // UI layout constants - single source of truth for all sizing
 // ─────────────────────────────────────────────────────────────────
 
-// Colors come from the shared palette (src/assets/ui-colors.css) via var(--token).
+// Colors come from the shared palette (src/assets/uis-colors.css) via var(--token).
 
 
 // Emit @font-face rules for a locally bundled family (seeds/*.woff2, served by GET /fonts/:name).
@@ -227,30 +227,30 @@ function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
   return `
     ${_gf}
     ${_local}
-    /* Palette (--bg, --accent, --text, …) comes from lib/ui-colors.css, switched by data-theme on <html>. */
+    /* Palette (--uis-bg, --uis-accent, --uis-text, …) comes from lib/uis-colors.css, switched by data-theme on <html>. */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body, #root { height: 100%; overflow: hidden; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 13px; }
+    body { background: var(--uis-bg); color: var(--uis-text); font-family: 'Inter', system-ui, sans-serif; font-size: 13px; }
     button { cursor: pointer; border: none; background: none; color: inherit; font-family: inherit; font-size: inherit; }
-    button:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 2px; border-radius: 4px; }
-    input, select { font-family: inherit; font-size: inherit; color: var(--text); background: var(--bg-input); border: 1px solid var(--border); border-radius: 4px; outline: none; }
-    input:focus, select:focus { border-color: var(--accent); }
-    /* .barh-app-name + .barh-app-version — shared, unscoped, in ui-app.css. Not redefined here. */
-    .md-body { line-height: 1.7; color: var(--text); font-size: 15px; font-family: ${fontBody.stack}; }
+    button:focus-visible { outline: 2px solid var(--uis-accent) !important; outline-offset: 2px; border-radius: 4px; }
+    input, select { font-family: inherit; font-size: inherit; color: var(--uis-text); background: var(--uis-bg-input); border: 1px solid var(--uis-border); border-radius: 4px; outline: none; }
+    input:focus, select:focus { border-color: var(--uis-accent); }
+    /* .uis-barh-app-name + .uis-barh-app-version — shared, unscoped, in uis-app.css. Not redefined here. */
+    .md-body { line-height: 1.7; color: var(--uis-text); font-size: 15px; font-family: ${fontBody.stack}; }
     .md-body h1, .md-body h2, .md-body h3, .md-body h4, .md-body h5, .md-body h6 { margin: 1.4em 0 0.5em; font-weight: 700; line-height: 1.25; font-family: ${fontHeading.stack}; }
-    .md-body h1 { font-size: 2em; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
-    .md-body h2 { font-size: 1.5em; border-bottom: 1px solid var(--border); padding-bottom: 0.2em; }
+    .md-body h1 { font-size: 2em; border-bottom: 1px solid var(--uis-border); padding-bottom: 0.3em; }
+    .md-body h2 { font-size: 1.5em; border-bottom: 1px solid var(--uis-border); padding-bottom: 0.2em; }
     .md-body h3 { font-size: 1.25em; }
     .md-body p { margin: 0.8em 0; }
-    .md-body .mzn-frontmatter { margin: 0 0 1.6em; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-elev); overflow: hidden; }
+    .md-body .mzn-frontmatter { margin: 0 0 1.6em; border: 1px solid var(--uis-border); border-radius: 8px; background: var(--uis-bg-elev); overflow: hidden; }
     .md-body .mzn-fm-row { display: flex; gap: 12px; padding: 6px 12px; }
-    .md-body .mzn-fm-row + .mzn-fm-row { border-top: 1px solid var(--border); }
-    .md-body .mzn-fm-key { flex: 0 0 8em; color: var(--text-dim); font-weight: 600; }
-    .md-body .mzn-fm-val { flex: 1; min-width: 0; color: var(--text); white-space: pre-wrap; word-break: break-word; }
-    .md-body a { color: var(--accent); text-decoration: none; }
+    .md-body .mzn-fm-row + .mzn-fm-row { border-top: 1px solid var(--uis-border); }
+    .md-body .mzn-fm-key { flex: 0 0 8em; color: var(--uis-text-dim); font-weight: 600; }
+    .md-body .mzn-fm-val { flex: 1; min-width: 0; color: var(--uis-text); white-space: pre-wrap; word-break: break-word; }
+    .md-body a { color: var(--uis-accent); text-decoration: none; }
     .md-body a:hover { text-decoration: underline; }
-    .md-body code { background: var(--bg-row); color: var(--text); padding: 2px 6px; border-radius: 4px; font-family: ${fontCode.stack}; font-size: 0.9em; }
-    .md-body pre { background: var(--bg-row); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 1em 0; font-family: ${fontCode.stack}; position: relative; }
+    .md-body code { background: var(--uis-bg-row); color: var(--uis-text); padding: 2px 6px; border-radius: 4px; font-family: ${fontCode.stack}; font-size: 0.9em; }
+    .md-body pre { background: var(--uis-bg-row); border: 1px solid var(--uis-border); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 1em 0; font-family: ${fontCode.stack}; position: relative; }
     /* ⚠ CLAUDE: the EDITOR's code font lives here, not in the CodeMirror theme, so it resolves
        from the SAME stack as .md-body pre above. When the two differed, a glyph missing from the
        webfont (box-drawing chars in ASCII diagrams) fell back to a different font per pane and
@@ -259,68 +259,68 @@ function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
     .md-body pre code { background: none; padding: 0; font-size: 0.88em; }
     .md-body .table-wrap { position: relative; }
     .md-body pre .copy-code-btn,
-    .md-body .table-wrap .copy-table-btn { position: absolute; top: 6px; right: 6px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 4px; padding: 3px 6px; cursor: pointer; opacity: 0; transition: opacity 0.15s; color: var(--text-dim); font-size: 12px; line-height: 1; display: flex; align-items: center; gap: 4px; z-index: 1; }
+    .md-body .table-wrap .copy-table-btn { position: absolute; top: 6px; right: 6px; background: var(--uis-bg-elev); border: 1px solid var(--uis-border); border-radius: 4px; padding: 3px 6px; cursor: pointer; opacity: 0; transition: opacity 0.15s; color: var(--uis-text-dim); font-size: 12px; line-height: 1; display: flex; align-items: center; gap: 4px; z-index: 1; }
     .md-body pre:hover .copy-code-btn,
     .md-body .table-wrap:hover .copy-table-btn { opacity: 0.7; }
     .md-body pre .copy-code-btn:hover,
-    .md-body .table-wrap .copy-table-btn:hover { opacity: 1; background: var(--accent); color: #fff; border-color: var(--accent); }
-    .md-body blockquote { border-left: 4px solid var(--accent); background: var(--bg-hov); margin: 1em 0; padding: 10px 16px; border-radius: 0 6px 6px 0; color: var(--text-dim); }
+    .md-body .table-wrap .copy-table-btn:hover { opacity: 1; background: var(--uis-accent); color: #fff; border-color: var(--uis-accent); }
+    .md-body blockquote { border-left: 4px solid var(--uis-accent); background: var(--uis-bg-hov); margin: 1em 0; padding: 10px 16px; border-radius: 0 6px 6px 0; color: var(--uis-text-dim); }
     .md-body ul, .md-body ol { padding-left: 1.8em; margin: 0.8em 0; }
     .md-body li { margin: 0.3em 0; }
     .md-body table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-    .md-body th, .md-body td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
-    .md-body th { background: var(--bg-elev); font-weight: 600; }
-    .md-body tr:nth-child(even) { background: var(--bg-elev); }
-    .md-body hr { border: none; border-top: 1px solid var(--border); margin: 1.5em 0; }
+    .md-body th, .md-body td { border: 1px solid var(--uis-border); padding: 8px 12px; text-align: left; }
+    .md-body th { background: var(--uis-bg-elev); font-weight: 600; }
+    .md-body tr:nth-child(even) { background: var(--uis-bg-elev); }
+    .md-body hr { border: none; border-top: 1px solid var(--uis-border); margin: 1.5em 0; }
     .md-body img { max-width: 100%; border-radius: 6px; }
     .text-left { text-align: left; }
     .text-center { text-align: center; }
     .text-right { text-align: right; }
     .center { text-align: center; }
-    .markmap-container { width: 100%; height: 420px; margin: 1em 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .markmap-container { width: 100%; height: 420px; margin: 1em 0; border: 1px solid var(--uis-border); border-radius: 8px; overflow: hidden; }
     .graphviz-diagram { width: 100%; margin: 1em 0; text-align: center; }
     .graphviz-diagram svg { max-width: 100%; height: auto; }
     .wavedrom-diagram { width: 100%; margin: 1em 0; overflow-x: auto; }
     .wavedrom-diagram svg { display: block; }
     .chordpro-sheet { margin: 1em 0; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; line-height: 1.4; }
     .chordpro-sheet h1.title { font-size: 1.3em; font-weight: 700; margin-bottom: 0.2em; font-family: 'Inter', system-ui, sans-serif; }
-    .chordpro-sheet h2.subtitle { font-size: 1em; font-weight: 400; color: var(--text-dim); margin-bottom: 0.8em; font-family: 'Inter', system-ui, sans-serif; }
+    .chordpro-sheet h2.subtitle { font-size: 1em; font-weight: 400; color: var(--uis-text-dim); margin-bottom: 0.8em; font-family: 'Inter', system-ui, sans-serif; }
     .chordpro-sheet .paragraph { margin-bottom: 1.2em; }
-    .chordpro-sheet .paragraph-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.3em; font-family: 'Inter', system-ui, sans-serif; }
+    .chordpro-sheet .paragraph-label { font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--uis-accent); margin-bottom: 0.3em; font-family: 'Inter', system-ui, sans-serif; }
     .chordpro-sheet .row { display: flex; flex-wrap: wrap; align-items: flex-end; line-height: 1; margin-bottom: 0.1em; }
     .chordpro-sheet .column { display: flex; flex-direction: column; margin-right: 2px; }
-    .chordpro-sheet .chord { color: var(--accent); font-weight: 600; white-space: pre; min-height: 1.2em; }
+    .chordpro-sheet .chord { color: var(--uis-accent); font-weight: 600; white-space: pre; min-height: 1.2em; }
     .chordpro-sheet .chord:empty { min-height: 1.2em; }
-    .chordpro-sheet .lyrics { white-space: pre; color: var(--text); }
+    .chordpro-sheet .lyrics { white-space: pre; color: var(--uis-text); }
     .chess-diagram { display: block; margin: 1em 0; }
-    .chess-diagram figcaption { text-align: center; font-size: 0.85em; color: var(--text-dim); margin-top: 0.4em; font-style: italic; }
+    .chess-diagram figcaption { text-align: center; font-size: 0.85em; color: var(--uis-text-dim); margin-top: 0.4em; font-style: italic; }
     .echarts-diagram { width: 100%; height: 350px; margin: 1em 0; }
     .vexflow-diagram { width: 100%; margin: 1em 0; overflow-x: auto; }
     .vexflow-diagram svg { display: block; }
     .vexchords-sheet { display: flex; flex-wrap: wrap; gap: 16px; margin: 1em 0; align-items: flex-start; }
     .vexchords-sheet .vexchords-chord { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    .vexchords-sheet .vexchords-name { font-size: 0.85em; font-weight: 600; color: var(--accent); text-align: center; font-family: 'Inter', system-ui, sans-serif; }
+    .vexchords-sheet .vexchords-name { font-size: 0.85em; font-weight: 600; color: var(--uis-accent); text-align: center; font-family: 'Inter', system-ui, sans-serif; }
     .asciimath-block { text-align: center; margin: 1em 0; overflow-x: auto; }
     .pseudocode-block { margin: 1em 0; }
-    .pseudocode-block .ps-algorithm { border: 1px solid var(--border); border-radius: 6px; padding: 0.5em 1em; background: var(--bg-elev); }
+    .pseudocode-block .ps-algorithm { border: 1px solid var(--uis-border); border-radius: 6px; padding: 0.5em 1em; background: var(--uis-bg-elev); }
     .plantuml-block { margin: 1em 0; text-align: center; }
     .plantuml-block img { max-width: 100%; height: auto; }
     .railroad-block { margin: 1em 0; overflow-x: auto; }
     svg.railroad-diagram { background: transparent; display: block; }
-    svg.railroad-diagram path { stroke-width: 2; stroke: var(--text); fill: none; }
-    svg.railroad-diagram text { font: bold 13px 'JetBrains Mono', monospace; fill: var(--text); text-anchor: middle; }
-    svg.railroad-diagram text.label { text-anchor: start; fill: var(--text-dim); }
-    svg.railroad-diagram text.comment { font: italic 11px 'JetBrains Mono', monospace; fill: var(--text-dim); }
-    svg.railroad-diagram rect { stroke-width: 2; stroke: var(--accent); fill: var(--bg-elev); }
-    svg.railroad-diagram rect.group-box { stroke: var(--border); stroke-dasharray: 10 5; fill: none; }
-    .cytoscape-diagram { width: 100%; height: 420px; margin: 1em 0; border-radius: 6px; background: var(--bg-elev); border: 1px solid var(--border); }
+    svg.railroad-diagram path { stroke-width: 2; stroke: var(--uis-text); fill: none; }
+    svg.railroad-diagram text { font: bold 13px 'JetBrains Mono', monospace; fill: var(--uis-text); text-anchor: middle; }
+    svg.railroad-diagram text.label { text-anchor: start; fill: var(--uis-text-dim); }
+    svg.railroad-diagram text.comment { font: italic 11px 'JetBrains Mono', monospace; fill: var(--uis-text-dim); }
+    svg.railroad-diagram rect { stroke-width: 2; stroke: var(--uis-accent); fill: var(--uis-bg-elev); }
+    svg.railroad-diagram rect.group-box { stroke: var(--uis-border); stroke-dasharray: 10 5; fill: none; }
+    .cytoscape-diagram { width: 100%; height: 420px; margin: 1em 0; border-radius: 6px; background: var(--uis-bg-elev); border: 1px solid var(--uis-border); }
     .go-board { display: inline-block; margin: 1em 0; }
-    .go-board figcaption { text-align: center; font-size: 0.85em; color: var(--text-dim); margin-top: 0.4em; font-style: italic; }
+    .go-board figcaption { text-align: center; font-size: 0.85em; color: var(--uis-text-dim); margin-top: 0.4em; font-style: italic; }
     .chartjs-diagram { width: 100%; max-width: 640px; margin: 1em auto; display: block; }
     .chartjs-diagram canvas { max-width: 100%; }
     .qrcode-diagram { display: flex; flex-direction: column; align-items: center; margin: 1em 0; gap: 6px; }
     .qrcode-diagram svg { width: 180px; height: 180px; }
-    .qrcode-caption { font-size: 0.8em; color: var(--text-mute); text-align: center; max-width: 240px; word-break: break-all; }
+    .qrcode-caption { font-size: 0.8em; color: var(--uis-text-mute); text-align: center; max-width: 240px; word-break: break-all; }
     .nomnoml-diagram { margin: 1em 0; overflow-x: auto; }
     .nomnoml-diagram svg { max-width: 100%; display: block; }
     .bytefield-diagram { margin: 1em 0; overflow-x: auto; }
@@ -546,7 +546,7 @@ function toggleInlineFormat(view, marker) {
       };
     }
 
-    // Even count → complete pairs inside selection → strip all
+    // Even uis-count → complete pairs inside selection → strip all
     if (markerCount % 2 === 0) {
       const stripped = selected.split(marker).join('');
       return {
@@ -555,7 +555,7 @@ function toggleInlineFormat(view, marker) {
       };
     }
 
-    // Odd count → one unmatched marker - scan outside, remove both internal + partner
+    // Odd uis-count → one unmatched marker - scan outside, remove both internal + partner
     const stripped = selected.split(marker).join('');
 
     // Scan forward for a closing partner
@@ -1216,7 +1216,7 @@ export default function App() {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ html, width: pw, height: ph }),
           });
-          if (resp.ok) {
+          if (resp.uis-ok) {
             const { dataUrl } = await resp.json();
             if (dataUrl) {
               const out = document.createElement('img');
@@ -1436,7 +1436,7 @@ export default function App() {
     e.preventDefault();
     const path = resolveDocRelativePath(raw.replace(/^file:\/+/i, '')).replace(/\//g, '\\');
     fetch(`${API}/read-file?path=${btoa(path)}`)
-      .then(r => r.ok ? r.json() : null)
+      .then(r => r.uis-ok ? r.json() : null)
       .then(data => { if (data?.text != null) openFileInNewTab(data.filePath, data.text); })
       .catch(err => console.error('[mzn] link open error:', err));
   }
@@ -2312,81 +2312,81 @@ export default function App() {
   return (
     <>
       <style>{buildCss(fontHeading, fontBody, fontCode, templateCss)}</style>
-      <div className="app-root" style={{ background: 'var(--bg)', color: 'var(--text)', position: 'relative' }}
+      <div className="uis-app-root" style={{ background: 'var(--uis-bg)', color: 'var(--uis-text)', position: 'relative' }}
         onDragOver={e => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={e => { if (!e.currentTarget.contains(e.relatedTarget)) setDragOver(false); }}
         onDrop={e => { e.preventDefault(); setDragOver(false); }}>
 
         {/* ── A new version (first) and the yaiol news, in one dialog ── */}
-        <NewsLoader api={API} lang={lang} t={t} />
+        <UisNewsLoader api={API} lang={lang} t={t} />
 
         {/* ── Header bar ── */}
-        <AppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD}>
+        <UisAppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD}>
 
           {/* File actions — one welded group: New · Open · Save · Save As (standard file
-              icons, CLAUDE-ui-standards). ⚠ The New-doc flyout lives OUTSIDE the .barh-grp, in this
-              relative wrapper: a menu placed inside a .barh-grp inherits `.barh-grp > *` height:100% and
+              icons, CLAUDE-ui-shared). ⚠ The New-doc flyout lives OUTSIDE the .uis-barh-grp, in this
+              relative wrapper: a menu placed inside a .uis-barh-grp inherits `.uis-barh-grp > *` height:100% and
               gets clipped to the 30px bar (only its header shows). */}
           <div style={{ position: 'relative' }}>
-            <div className="barh-grp">
-              <button ref={newDocBtnRef} className="btn icon" title={t('tipHdrNew')} onClick={() => setShowNewDocMenu(v => !v)}>
+            <div className="uis-barh-grp">
+              <button ref={newDocBtnRef} className="uis-btn ico" title={t('tipHdrNew')} onClick={() => setShowNewDocMenu(v => !v)}>
                 <FilePlus />
               </button>
-              <button className="btn icon" title={t('tipHdrOpen')} onClick={doOpenFile}>
+              <button className="uis-btn ico" title={t('tipHdrOpen')} onClick={doOpenFile}>
                 <FolderOpen />
               </button>
-              <button className="btn icon" title={t('tipHdrSave')} onClick={doSave} disabled={!activeTab?.unsaved}>
+              <button className="uis-btn ico" title={t('tipHdrSave')} onClick={doSave} disabled={!activeTab?.unsaved}>
                 <Save />
               </button>
-              <button className="btn icon" title={t('tipHdrSaveAs')} onClick={doSaveAs} disabled={!activeTab}>
+              <button className="uis-btn ico" title={t('tipHdrSaveAs')} onClick={doSaveAs} disabled={!activeTab}>
                 <SavePlus />
               </button>
             </div>
-            <Menu anchorRef={newDocBtnRef} open={showNewDocMenu} onClose={() => setShowNewDocMenu(false)} title={t('lblHdrNewDoc')}>
+            <UisMenu anchorRef={newDocBtnRef} open={showNewDocMenu} onClose={() => setShowNewDocMenu(false)} title={t('lblHdrNewDoc')}>
               {formats.map(fmt => (
-                <MenuItem key={fmt.id} label={fmt.label} onClick={() => openNewTabWithFormat(fmt.id)} />
+                <UisMenuItem key={fmt.id} label={fmt.label} onClick={() => openNewTabWithFormat(fmt.id)} />
               ))}
-            </Menu>
+            </UisMenu>
           </div>
 
-          {/* Convert format — a standalone control (not a file-op), a lone .btn.icon with its
-              flyout; the file icons are the welded group above. See CLAUDE-ui-standards. */}
+          {/* Convert format — a standalone control (not a file-op), a lone .uis-btn.ico with its
+              flyout; the file icons are the welded group above. See CLAUDE-ui-shared. */}
           {activeTab && <div style={{ position: 'relative', overflow: 'visible' }}>
-              <button ref={convertBtnRef} className="btn icon" title={t('tipHdrConvertFormat')}
+              <button ref={convertBtnRef} className="uis-btn ico" title={t('tipHdrConvertFormat')}
                 onClick={() => setShowConvertMenu(v => !v)}>
                 <ArrowLeftRight />
               </button>
-              <Menu anchorRef={convertBtnRef} open={showConvertMenu} onClose={() => setShowConvertMenu(false)} title={t('lblHdrConvertTo')}>
-                <MenuLabel>{t('lblHdrConvertMarkup')}</MenuLabel>
+              <UisMenu anchorRef={convertBtnRef} open={showConvertMenu} onClose={() => setShowConvertMenu(false)} title={t('lblHdrConvertTo')}>
+                <UisMenuLabel>{t('lblHdrConvertMarkup')}</UisMenuLabel>
                 {formats.filter(f => f.id !== activeFormat.id).sort((a, b) => a.label.localeCompare(b.label)).map(f => (
-                  <MenuItem key={f.id} label={f.label} onClick={() => convertTo(f)} />
+                  <UisMenuItem key={f.id} label={f.label} onClick={() => convertTo(f)} />
                 ))}
-                <MenuDivider />
+                <UisMenuDivider />
                 {PANDOC_EXPORT_SECTIONS.map(({ sectionKey, formats: sectionFmts }) => (
-                  <MenuItem key={sectionKey} label={t(sectionKey)} submenu={
-                    sectionFmts.map(f => <MenuItem key={f.id} label={f.label} onClick={() => exportTo(f)} />)
+                  <UisMenuItem key={sectionKey} label={t(sectionKey)} submenu={
+                    sectionFmts.map(f => <UisMenuItem key={f.id} label={f.label} onClick={() => exportTo(f)} />)
                   } />
                 ))}
-              </Menu>
+              </UisMenu>
           </div>}
 
           {/* Print / HTML / PDF / Native exports */}
-          <div className="barh-grp" style={{ position: 'relative', overflow: 'visible' }}>
-            <button className="btn icon" title={t('tipHdrPrint')} onClick={async () => {
+          <div className="uis-barh-grp" style={{ position: 'relative', overflow: 'visible' }}>
+            <button className="uis-btn ico" title={t('tipHdrPrint')} onClick={async () => {
               if (!html) return;
               fetch(`${API}/print`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ html: await getExportHtml(true), css: await getExportCss() }) });
             }}>
               <Printer />
             </button>
-            <button className="btn icon" title={t('tipHdrSaveHtml')} onClick={async () => {
+            <button className="uis-btn ico" title={t('tipHdrSaveHtml')} onClick={async () => {
               if (!html) return;
               fetch(`${API}/save-html`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ html: await getExportHtml(), css: await getExportCss(), fileName: activeTab.fileName, sourceFilePath: activeTab.filePath, title: t('ttlHdrSaveHtml') }) });
             }}>
               <FileCode />
             </button>
-            <button className="btn icon" title={t('tipHdrSavePdf')} onClick={async () => {
+            <button className="uis-btn ico" title={t('tipHdrSavePdf')} onClick={async () => {
               if (!html) return;
               fetch(`${API}/save-pdf`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ html: await getExportHtml(true), css: await getExportCss(), fileName: activeTab.fileName, sourceFilePath: activeTab.filePath, title: t('ttlHdrSavePdf') }) });
@@ -2396,89 +2396,89 @@ export default function App() {
           </div>
 
           {/* Zoom buttons */}
-          <div className="barh-grp">
-            <button className="btn icon" title={t('tipHdrZoomOut')} onClick={() => setFontSize(s => Math.max(10, s - 1))}>
+          <div className="uis-barh-grp">
+            <button className="uis-btn ico" title={t('tipHdrZoomOut')} onClick={() => setFontSize(s => Math.max(10, s - 1))}>
               <span style={{ fontWeight: 400, fontSize: 11 }}>A</span>
             </button>
-            <button className="btn icon" title={t('tipHdrZoomIn')} onClick={() => setFontSize(s => Math.min(28, s + 1))}>
+            <button className="uis-btn ico" title={t('tipHdrZoomIn')} onClick={() => setFontSize(s => Math.min(28, s + 1))}>
               <span style={{ fontWeight: 700, fontSize: 17 }}>A</span>
             </button>
           </div>
 
           {/* Center view toggle: multiple (split) | single edit | single preview */}
-          <div className="barh-grp">
-            <button className={`btn icon${centerMode === 'split' ? ' active' : ''}`} title={t('tipHdrModeSplit')}
+          <div className="uis-barh-grp">
+            <button className={`uis-btn ico${centerMode === 'split' ? ' active' : ''}`} title={t('tipHdrModeSplit')}
               onClick={() => setCenterMode('split')}>
               <Columns />
             </button>
-            <button className={`btn icon${centerMode === 'single' && centerView === 'editor' ? ' active' : ''}`} title={t('tipHdrShowEditor')}
+            <button className={`uis-btn ico${centerMode === 'single' && centerView === 'editor' ? ' active' : ''}`} title={t('tipHdrShowEditor')}
               onClick={() => { setCenterMode('single'); setCenterView('editor'); }}>
               <Edit />
             </button>
-            <button className={`btn icon${centerMode === 'single' && centerView === 'render' ? ' active' : ''}`} title={t('tipHdrViewRender')}
+            <button className={`uis-btn ico${centerMode === 'single' && centerView === 'render' ? ' active' : ''}`} title={t('tipHdrViewRender')}
               onClick={() => { setCenterMode('single'); setCenterView('render'); }}>
               <Eye />
             </button>
           </div>
 
           {/* Appearance — the style template and the three fonts. The trigger is a plain toolbar
-              .btn.icon like every other one here; the panel is the shared Popover (portal +
-              placement + dismiss) holding catalog .pop-field rows. */}
-          <button ref={appearanceBtnRef} className={`btn icon${showAppearance ? ' active' : ''}`}
+              .uis-btn.ico like every other one here; the panel is the shared UisPopover (portal +
+              placement + dismiss) holding catalog .uis-pop-field rows. */}
+          <button ref={appearanceBtnRef} className={`uis-btn ico${showAppearance ? ' active' : ''}`}
             title={t('tipHdrAppearance')} onClick={() => setShowAppearance(v => !v)}>
             <Palette />
           </button>
-          <Popover anchorRef={appearanceBtnRef} open={showAppearance}
+          <UisPopover anchorRef={appearanceBtnRef} open={showAppearance}
             onClose={() => setShowAppearance(false)}>
-            <div className="pop-form">
-              <div className="pop-field">
-                <label className="pop-field-label">{t('lblHdrAppearanceStyle')}</label>
-                <select className="select" value={styleTemplateKey} onChange={e => setStyleTemplateKey(e.target.value)}>
+            <div className="uis-pop-form">
+              <div className="uis-pop-field">
+                <label className="uis-pop-field-label">{t('lblHdrAppearanceStyle')}</label>
+                <select className="uis-ddn-std" value={styleTemplateKey} onChange={e => setStyleTemplateKey(e.target.value)}>
                   {STYLE_TEMPLATES.map(tpl => <option key={tpl.key} value={tpl.key}>{tpl.label}</option>)}
                 </select>
               </div>
-              <div className="pop-field">
-                <label className="pop-field-label">{t('lblHdrAppearanceFontHeading')}</label>
-                <select className="select" value={fontKeyHeading} onChange={e => setFontKeyHeading(e.target.value)}>
+              <div className="uis-pop-field">
+                <label className="uis-pop-field-label">{t('lblHdrAppearanceFontHeading')}</label>
+                <select className="uis-ddn-std" value={fontKeyHeading} onChange={e => setFontKeyHeading(e.target.value)}>
                   {FONT_CATALOG.heading.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
                 </select>
               </div>
-              <div className="pop-field">
-                <label className="pop-field-label">{t('lblHdrAppearanceFontBody')}</label>
-                <select className="select" value={fontKeyBody} onChange={e => setFontKeyBody(e.target.value)}>
+              <div className="uis-pop-field">
+                <label className="uis-pop-field-label">{t('lblHdrAppearanceFontBody')}</label>
+                <select className="uis-ddn-std" value={fontKeyBody} onChange={e => setFontKeyBody(e.target.value)}>
                   {FONT_CATALOG.body.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
                 </select>
               </div>
-              <div className="pop-field">
-                <label className="pop-field-label">{t('lblHdrAppearanceFontCode')}</label>
-                <select className="select" value={fontKeyCode} onChange={e => setFontKeyCode(e.target.value)}>
+              <div className="uis-pop-field">
+                <label className="uis-pop-field-label">{t('lblHdrAppearanceFontCode')}</label>
+                <select className="uis-ddn-std" value={fontKeyCode} onChange={e => setFontKeyCode(e.target.value)}>
                   {FONT_CATALOG.code.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
                 </select>
               </div>
             </div>
-          </Popover>
+          </UisPopover>
 
-          <span className="bar-spacer" />
+          <span className="uis-bar-spacer" />
           {/* Settings + Help — the standard group, pushed right (only group aligned right). */}
-          <div className="barh-grp">
-            <button className="btn icon" title="GitHub" onClick={() => window.open(GITHUB_URL, '_blank')}>
-              <GithubIcon />
+          <div className="uis-barh-grp">
+            <button className="uis-btn ico" title="GitHub" onClick={() => window.open(GITHUB_URL, '_blank')}>
+              <UisIcoGithub />
             </button>
-            <button className="btn icon" title={t('tipHdrHelp')} onClick={() => window.open(getUrl(pkg.name, lang.replace(/_/g, '-'), 'help'), '_blank')}>
+            <button className="uis-btn ico" title={t('tipHdrHelp')} onClick={() => window.open(getUrl(pkg.name, lang.replace(/_/g, '-'), 'help'), '_blank')}>
               <HelpCircle />
             </button>
-            <button className={`btn icon stg-toggle ${showSettings ? 'active' : ''}`} title={t('tipHdrSettings')} aria-pressed={showSettings} onClick={() => setShowSettings(o => !o)}>
+            <button className={`uis-btn ico uis-stg-toggle ${showSettings ? 'active' : ''}`} title={t('tipHdrSettings')} aria-pressed={showSettings} onClick={() => setShowSettings(o => !o)}>
               <Settings />
             </button>
           </div>
 
-        </AppHeader>
+        </UisAppHeader>
 
         {/* ── Tab bar ── the document strip belongs to the view, so the settings page hides it with the content. */}
         {!showSettings && (
         <div style={{
           display: 'flex', alignItems: 'center', flexShrink: 0,
-          background: 'var(--bg-elev)', borderBottom: `1px solid var(--border)`,
+          background: 'var(--uis-bg-elev)', borderBottom: `1px solid var(--uis-border)`,
           overflowX: 'auto', overflowY: 'hidden',
         }}>
           {tabs.map(tab => {
@@ -2490,10 +2490,10 @@ export default function App() {
                 display: 'flex', alignItems: 'center', flexShrink: 0,
                 height: 30,                           // [GUI Standard: ctlHeight]
                 padding: '0 6px 0 12px', cursor: 'pointer',
-                background: isActive ? 'var(--bg)' : 'transparent',
-                borderRight: `1px solid var(--border)`,
-                borderBottom: isActive ? `2px solid var(--accent)` : '2px solid transparent',
-                color: isActive ? 'var(--text)' : 'var(--text-mute)',
+                background: isActive ? 'var(--uis-bg)' : 'transparent',
+                borderRight: `1px solid var(--uis-border)`,
+                borderBottom: isActive ? `2px solid var(--uis-accent)` : '2px solid transparent',
+                color: isActive ? 'var(--uis-text)' : 'var(--uis-text-mute)',
                 fontSize: 13,                       // [GUI Standard: ctlFontSize]
                 // ⚠ CLAUDE: a tab is capped at 200px, but the CONFIRM row that replaces its label
                 // ("Unsaved changes -" + Save + Discard + X) needs roughly 300. Capped, it
@@ -2506,34 +2506,34 @@ export default function App() {
               }}>
                 {!isConfirming && !isConfirmingReload && <>
                   {tab.unsaved && (
-                    <span style={{ color: 'var(--accent)', marginRight: 4, fontSize: 10 }}>●</span>
+                    <span style={{ color: 'var(--uis-accent)', marginRight: 4, fontSize: 10 }}>●</span>
                   )}
                   <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {tab.fileName}
                   </span>
                   {tab.formatId && tab.formatId !== 'markdown' && (
-                    <span style={{ fontSize: 9, color: 'var(--text-mute)', background: 'var(--bg-elev)', border: `1px solid var(--border)`, borderRadius: 3, padding: '0 3px', flexShrink: 0, marginLeft: 2 }}>
+                    <span style={{ fontSize: 9, color: 'var(--uis-text-mute)', background: 'var(--uis-bg-elev)', border: `1px solid var(--uis-border)`, borderRadius: 3, padding: '0 3px', flexShrink: 0, marginLeft: 2 }}>
                       {tab.formatId}
                     </span>
                   )}
-                  <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); requestCloseTab(tab.id); }}
+                  <button className="uis-btn ico small subtle" onClick={e => { e.stopPropagation(); requestCloseTab(tab.id); }}
                    >
                     <X />
                   </button>
                 </>}
                 {isConfirming && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-                    <span style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedMsg')}</span>
-                    {/* the SMALL tier (ui-app.css §2.1): this confirm lives INSIDE a 30px tab, so
+                    <span style={{ color: 'var(--uis-text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedMsg')}</span>
+                    {/* the SMALL tier (uis-app.css §2.1): this confirm lives INSIDE a 30px tab, so
                         the 30px base leaves it no room to breathe. Size variant only - Save keeps
                         `primary`, Discard the plain frame. */}
-                    <button onClick={e => { e.stopPropagation(); doSaveAndClose(tab.id); }} className="btn small primary">
+                    <button onClick={e => { e.stopPropagation(); doSaveAndClose(tab.id); }} className="uis-btn small primary">
                       {t('btnHdrSave')}
                     </button>
-                    <button onClick={e => { e.stopPropagation(); doForceClose(tab.id); }} className="btn small">
+                    <button onClick={e => { e.stopPropagation(); doForceClose(tab.id); }} className="uis-btn small">
                       {t('btnDlgUnsavedDiscard')}
                     </button>
-                    <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); setConfirmCloseId(null); setClosing(false); }}
+                    <button className="uis-btn ico small subtle" onClick={e => { e.stopPropagation(); setConfirmCloseId(null); setClosing(false); }}
                      >
                       <X />
                     </button>
@@ -2541,14 +2541,14 @@ export default function App() {
                 )}
                 {isConfirmingReload && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-                    <span style={{ color: 'var(--text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedReload')}</span>
+                    <span style={{ color: 'var(--uis-text)', whiteSpace: 'nowrap' }}>{t('cfmDlgUnsavedReload')}</span>
                     {/* small tier, like its Save/Discard twin above - same 30px tab, and the X
-                        beside it was already `.btn.icon.small.subtle`, so the base size was the
+                        beside it was already `.uis-btn.ico.small.subtle`, so the base size was the
                         odd one out in this row. */}
-                    <button onClick={e => { e.stopPropagation(); doReload(); }} className="btn small primary">
+                    <button onClick={e => { e.stopPropagation(); doReload(); }} className="uis-btn small primary">
                       {t('btnDlgUnsavedReload')}
                     </button>
-                    <button className="btn icon small subtle" onClick={e => { e.stopPropagation(); setConfirmReloadId(null); setPendingReloadData(null); }}
+                    <button className="uis-btn ico small subtle" onClick={e => { e.stopPropagation(); setConfirmReloadId(null); setPendingReloadData(null); }}
                      >
                       <X />
                     </button>
@@ -2560,16 +2560,16 @@ export default function App() {
         </div>
         )}
 
-        {/* ── Main content area = .app-main content region (Rule 14): TOC + editor/
-              preview split. Tagged in place with flex-direction:row so .app-main's
+        {/* ── Main content area = .uis-app-main content region (Rule 14): TOC + editor/
+              preview split. Tagged in place with flex-direction:row so .uis-app-main's
               column default doesn't stack it; header + tab bar above are chrome. ── */}
-        <div className="app-main" style={{ flex: 1, display: 'flex', overflow: 'hidden', flexDirection: 'row' }}>
+        <div className="uis-app-main" style={{ flex: 1, display: 'flex', overflow: 'hidden', flexDirection: 'row' }}>
           {showSettings && (
-            <SettingsView
+            <UisStgView
               t={t} appName={APP_NAME} appVersion={APP_VERSION_BUILD} languages={LANGUAGES}
               lang={lang} setLang={setLang} theme={themeKey} setTheme={setThemeKey}
               generalExtra={(
-                <NewsSetting enabled={newsEnabled} onChange={toggleNews} label={t('lblStgGeneralNews')} />
+                <div className="uis-fld-labelled divider"><label className="uis-chk-lbl"><input type="checkbox" className="uis-chk-box" checked={newsEnabled} onChange={e => toggleNews(e.target.checked)} />{t('lblStgGeneralNews')}</label></div>
               )}
               onClose={closeSettings}
             />
@@ -2577,56 +2577,42 @@ export default function App() {
 
           {/* TOC panel (LEFT, toggleable) */}
           {showToc && activeFormat.supportsToc && tocItems.length > 0 && (
-            <div className="pnl" style={{ width: tocWidth, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 10px', borderBottom: `1px solid var(--border)`, flexShrink: 0 }}>
-                <span className="hint" style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t('tipHdrToc')}</span>
-                {[2, 3, 4].map(lvl => {
-                  const active = tocMaxLevel === lvl;
-                  return (
-                    <button key={lvl}
-                      onClick={() => setTocMaxLevel(v => v === lvl ? null : lvl)}
-                      title={t('tipHdrTocLevel').replace('{n}', lvl)}
-                      className={`btn icon small${active ? ' primary' : ''}`}>
-                      {lvl}
-                    </button>
-                  );
-                })}
-              </div>
-              <div className="lv-scroll" style={{ padding: '6px 0' }}>
-                {visibleTocItems().map((item) => {
-                  const tocColor = item.level === 1 ? 'var(--text)' : item.level === 2 ? 'var(--text-dim)' : 'var(--text-mute)';
-                  const tocWeight = item.level === 1 ? 700 : 400;
-                  const collapsed = tocCollapsed.has(item.id);
-                  return (
-                    <div key={item.id} className="lv-item" onClick={() => scrollToHeading(item.id)}
-                      style={{ paddingLeft: 10 + (item.level - 1) * 12 }}>
-                      {item.hasChildren ? (
-                        <button
-                          onClick={e => { e.stopPropagation(); toggleTocCollapse(item.id); }}
-                          title={t(collapsed ? 'tipHdrTocExpand' : 'tipHdrTocCollapse')}
-                          className="lv-item-icon"
-                          style={{ justifyContent: 'center', color: 'var(--text-mute)' }}>
-                          {collapsed ? <ChevronRight /> : <ChevronDown />}
-                        </button>
-                      ) : (
-                        <span className="lv-item-icon" style={{ width: 16 }} />
-                      )}
-                      <span className="lv-item-name" style={{ color: tocColor, fontWeight: tocWeight }}>{item.text}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <UisPnlList width={tocWidth} title={t('tipHdrToc')}
+              filters={[2, 3, 4].map(lvl => ({ key: lvl, label: String(lvl), title: t('tipHdrTocLevel').replace('{n}', lvl) }))}
+              activeFilter={tocMaxLevel} onFilter={lvl => setTocMaxLevel(v => v === lvl ? null : lvl)}>
+              {visibleTocItems().map((item) => {
+                const tocColor = item.level === 1 ? 'var(--uis-text)' : item.level === 2 ? 'var(--uis-text-dim)' : 'var(--uis-text-mute)';
+                const tocWeight = item.level === 1 ? 700 : 400;
+                const collapsed = tocCollapsed.has(item.id);
+                return (
+                  <div key={item.id} className="uis-lvw-item" onClick={() => scrollToHeading(item.id)}
+                    style={{ paddingLeft: 10 + (item.level - 1) * 12 }}>
+                    {item.hasChildren ? (
+                      <button
+                        onClick={e => { e.stopPropagation(); toggleTocCollapse(item.id); }}
+                        title={t(collapsed ? 'tipHdrTocExpand' : 'tipHdrTocCollapse')}
+                        className="uis-lvw-item-icon"
+                        style={{ justifyContent: 'center', color: 'var(--uis-text-mute)' }}>
+                        {collapsed ? <ChevronRight /> : <ChevronDown />}
+                      </button>
+                    ) : (
+                      <span className="uis-lvw-item-icon" style={{ width: 16 }} />
+                    )}
+                    <span className="uis-lvw-item-name" style={{ color: tocColor, fontWeight: tocWeight }}>{item.text}</span>
+                  </div>
+                );
+              })}
+            </UisPnlList>
           )}
 
           {/* TOC splitter */}
           {showToc && activeFormat.supportsToc && tocItems.length > 0 && (
-            <Splitter theme={themeKey} onResizeStart={startTocResize} />
+            <UisPnlSplitter theme={themeKey} onResizeStart={startTocResize} />
           )}
 
           {/* TOC toggle button */}
           {activeFormat.supportsToc && tocItems.length > 0 && (
-            <CollapseToggle open={showToc} onToggle={() => setShowToc(v => !v)} side="left" title={t('tipHdrToc')} />
+            <UisPnlToggle open={showToc} onToggle={() => setShowToc(v => !v)} side="left" title={t('tipHdrToc')} />
           )}
 
           {/* Center view - force single when no document is open */}
@@ -2637,8 +2623,8 @@ export default function App() {
               very top of the row and its first heading was drawn level with the editor's icons -
               two different things sharing one line. One full-width band means both panes start
               below the same rule, which is the only way the two columns line up.
-              ⚠ Do NOT 'fix' this instead by giving the preview its own empty band: `.barf` has no
-              fixed height (ui-app.css - it is sized by its buttons), so a duplicated spacer drifts
+              ⚠ Do NOT 'fix' this instead by giving the preview its own empty band: `.uis-barf` has no
+              fixed height (uis-app.css - it is sized by its buttons), so a duplicated spacer drifts
               the moment a button is added or the icon size changes.
               Hidden when the editor is hidden: in preview-only mode it would act on nothing - and
               hidden when NO document is open: a row of greyed-out formatting buttons over an empty
@@ -2647,7 +2633,7 @@ export default function App() {
               const s   = activeFormat.shortcuts || {};
               const run = (fn) => { const v = cmViewRef.current; if (!v) return; v.focus(); fn(v); };
               const btn = (icon, title, onClick, disabled = false) => (
-                <button title={title} disabled={disabled} onClick={onClick} className="btn icon subtle">{icon}</button>
+                <button title={title} disabled={disabled} onClick={onClick} className="uis-btn ico subtle">{icon}</button>
               );
               // ⚠ CLAUDE: every button below passes `!s.<shortcut>` as its disabled flag, and
               // that flag is NOT decoration: a null entry in an adapter's `shortcuts` means the
@@ -2657,7 +2643,7 @@ export default function App() {
               // keymap effect above applies the same rule by skipping the binding entirely.
               const fmtAlign = FORMAT_ALIGN[activeFormat.id];
               return (
-                <div className="barf" style={{ padding: '6px 10px', background: 'var(--pnl-bgd)', borderBottom: `1px solid var(--border)`, flexShrink: 0 }}>
+                <div className="uis-barf" style={{ padding: '6px 10px', background: 'var(--uis-pnl-bgd)', borderBottom: `1px solid var(--uis-border)`, flexShrink: 0 }}>
                   {btn(<Bold />,         t('tipEditorBold'),           () => run(v => toggleInlineFormat(v, s.bold)),   !s.bold)}
                   {btn(<Italic />,       t('tipEditorItalic'),         () => run(v => toggleInlineFormat(v, s.italic)), !s.italic)}
                   {btn(<Strikethrough />, t('tipEditorStrikethrough'), () => run(v => toggleInlineFormat(v, s.strikethrough)), !s.strikethrough)}
@@ -2673,21 +2659,21 @@ export default function App() {
                   {fmtAlign && btn(<AlignLeft />,   t('tipEditorAlignLeft'),   () => run(v => applyAlign(v, fmtAlign.left)),   !fmtAlign.left)}
                   {fmtAlign && btn(<AlignCenter />, t('tipEditorAlignCenter'), () => run(v => applyAlign(v, fmtAlign.center)), !fmtAlign.center)}
                   {fmtAlign && btn(<AlignRight />,  t('tipEditorAlignRight'),  () => run(v => applyAlign(v, fmtAlign.right)),  !fmtAlign.right)}
-                  {/* Insert table — the trigger is a plain toolbar .btn.icon.subtle like every
-                      other one here; the size grid is the shared TableGrid inside the
-                      shared Popover, which owns portal + placement + dismiss. */}
-                  <button ref={tableBtnRef} className="btn icon subtle" title={t('tipEditorTable')}
+                  {/* Insert table — the trigger is a plain toolbar .uis-btn.ico.subtle like every
+                      other one here; the size grid is the shared UisTableGrid inside the
+                      shared UisPopover, which owns portal + placement + dismiss. */}
+                  <button ref={tableBtnRef} className="uis-btn ico subtle" title={t('tipEditorTable')}
                     disabled={!activeFormat.formatTable}
                     onClick={() => setShowTableGrid(v => !v)}>
                     <Table />
                   </button>
-                  <Popover anchorRef={tableBtnRef} open={showTableGrid}
+                  <UisPopover anchorRef={tableBtnRef} open={showTableGrid}
                     onClose={() => setShowTableGrid(false)} maxWidth={260} maxHeight={220}>
-                    <TableGrid onPick={(rows, cols) => {
+                    <UisTableGrid onPick={(rows, cols) => {
                       setShowTableGrid(false);
                       run(v => insertTable(v, activeFormat, emptyTable(rows, cols)));
                     }} />
-                  </Popover>
+                  </UisPopover>
                 </div>
               );
           })()}
@@ -2700,15 +2686,15 @@ export default function App() {
                 ? 'flex'
                 : (activeTab && centerView === 'editor' ? 'flex' : 'none'),
               flexDirection: 'column',
-              borderRight: eMode === 'split' ? `1px solid var(--border)` : 'none',
+              borderRight: eMode === 'split' ? `1px solid var(--uis-border)` : 'none',
             }}>
               <div ref={editorContainerRef}
-                style={{ flex: 1, overflow: 'hidden', background: 'var(--bg-input)', color: 'var(--text)' }} />
+                style={{ flex: 1, overflow: 'hidden', background: 'var(--uis-bg-input)', color: 'var(--uis-text)' }} />
             </div>
 
             {/* Split-mode splitter */}
             {eMode === 'split' && (
-              <Splitter theme={themeKey} onResizeStart={startEditorResize} />
+              <UisPnlSplitter theme={themeKey} onResizeStart={startEditorResize} />
             )}
 
             {/* Preview panel - always in DOM; hidden in single+editor mode */}
@@ -2722,20 +2708,20 @@ export default function App() {
             }}>
             {/* Find bar - floats above content, does not scroll */}
             {findOpen && (
-              <div style={{ position: 'absolute', top: 10, right: 14, zIndex: 200, display: 'flex', alignItems: 'center', gap: 4, padding: '5px 8px', background: 'var(--pnl-bgd)', border: `1px solid var(--border-strong)`, borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.18)', minWidth: 280 }}>
-                <div className="search" style={{ flex: 1, minWidth: 0 }}>
-                  <span className="search-glyph"><Search /></span>
-                  <input ref={findInputRef} className="search-input" value={findQuery}
+              <div style={{ position: 'absolute', top: 10, right: 14, zIndex: 200, display: 'flex', alignItems: 'center', gap: 4, padding: '5px 8px', background: 'var(--uis-pnl-bgd)', border: `1px solid var(--uis-border-strong)`, borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.18)', minWidth: 280 }}>
+                <div className="uis-txt-search" style={{ flex: 1, minWidth: 0 }}>
+                  <span className="uis-txt-search-glyph"><Search /></span>
+                  <input ref={findInputRef} className="uis-txt-search-input" value={findQuery}
                     onChange={e => { setFindQuery(e.target.value); applyFind(e.target.value, 0); }}
                     onKeyDown={e => { if (e.key === 'Enter') { e.shiftKey ? navigateFind(-1) : navigateFind(1); } if (e.key === 'Escape') closeFind(); }}
                     placeholder={t('plhPreviewFind')} />
                 </div>
-                <span style={{ fontSize: 11, color: 'var(--text-dim)', whiteSpace: 'nowrap', minWidth: 52, textAlign: 'right' }}>
+                <span style={{ fontSize: 11, color: 'var(--uis-text-dim)', whiteSpace: 'nowrap', minWidth: 52, textAlign: 'right' }}>
                   {findQuery ? (findCount > 0 ? `${findIndex + 1} / ${findCount}` : t('lblPreviewNoResults')) : ''}
                 </span>
-                <button className="btn icon" onClick={() => navigateFind(-1)} title={t('tipPreviewFindPrev')}><ChevronUp /></button>
-                <button className="btn icon" onClick={() => navigateFind(1)}  title={t('tipPreviewFindNext')}><ChevronDown /></button>
-                <button className="search-clear" onClick={closeFind} title={t('tipPreviewFindClose')}><X className="icon-inline" /></button>
+                <button className="uis-btn ico" onClick={() => navigateFind(-1)} title={t('tipPreviewFindPrev')}><ChevronUp /></button>
+                <button className="uis-btn ico" onClick={() => navigateFind(1)}  title={t('tipPreviewFindNext')}><ChevronDown /></button>
+                <button className="uis-txt-search-clear" onClick={closeFind} title={t('tipPreviewFindClose')}><X className="uis-ico-inline" /></button>
               </div>
             )}
             {/* ⚠ CLAUDE: one preview pane per tab, kept alive and toggled with `visibility`
@@ -2801,14 +2787,14 @@ export default function App() {
                   };
                   return (
                     <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-                      <span style={{ fontSize: 11, color: 'var(--text-mute)', width: 32 }}>{label}</span>
-                      <NumberField allowEmpty placeholder={t('plhImagePropsPx')} value={inputVal} width={56}
+                      <span style={{ fontSize: 11, color: 'var(--uis-text-mute)', width: 32 }}>{label}</span>
+                      <UisNum allowEmpty placeholder={t('plhImagePropsPx')} value={inputVal} width={56}
                         className={stylePanel.currentStyle[dim] ? 'is-active' : ''}
                         onChange={v => setStylePanel(p => ({ ...p, [inputKey]: v }))}
                         onKeyDown={e => { if (e.key === 'Enter') commit(); }} />
-                      <button className="btn icon" title={t('tipImagePropsApply')} onClick={commit}><Check /></button>
+                      <button className="uis-btn ico" title={t('tipImagePropsApply')} onClick={commit}><Check /></button>
                       {stylePanel.currentStyle[dim] && (
-                        <button className="btn icon subtle" title={t('tipImagePropsClear')} onClick={() => { const newStyle = { ...stylePanel.currentStyle }; delete newStyle[dim]; applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, newStyle); }}><X /></button>
+                        <button className="uis-btn ico subtle" title={t('tipImagePropsClear')} onClick={() => { const newStyle = { ...stylePanel.currentStyle }; delete newStyle[dim]; applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, newStyle); }}><X /></button>
                       )}
                     </div>
                   );
@@ -2822,8 +2808,8 @@ export default function App() {
                     top: stylePanel.top + 4,
                     right: 52,
                     zIndex: 100,
-                    background: 'var(--pnl-bgd)',
-                    border: `1px solid var(--border)`,
+                    background: 'var(--uis-pnl-bgd)',
+                    border: `1px solid var(--uis-border)`,
                     borderRadius: 8,
                     padding: '8px 10px',
                     display: 'flex',
@@ -2831,14 +2817,14 @@ export default function App() {
                     gap: 6,
                     boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
                     fontSize: 12,
-                    color: 'var(--text-dim)',
+                    color: 'var(--uis-text-dim)',
                     minWidth: 160,
                   }}>
                   {/* Align row */}
                   <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-                    <span style={{ fontSize: 11, color: 'var(--text-mute)', marginRight: 2 }}>{t('lblImagePropsAlign')}</span>
+                    <span style={{ fontSize: 11, color: 'var(--uis-text-mute)', marginRight: 2 }}>{t('lblImagePropsAlign')}</span>
                     {['left','center','right'].map(a => (
-                      <button className="btn icon primary" key={a} title={a}
+                      <button className="uis-btn ico primary" key={a} title={a}
                         onClick={() => {
                           const newStyle = { ...stylePanel.currentStyle };
                           if (newStyle.align === a) delete newStyle.align; else newStyle.align = a;
@@ -2853,7 +2839,7 @@ export default function App() {
                   {EXT_SUPPORTS_WIDTH.has(stylePanel.lang)  && dimRow('width',  t('lblImagePropsWidth'),  'wInput')}
                   {EXT_SUPPORTS_HEIGHT.has(stylePanel.lang) && dimRow('height', t('lblImagePropsHeight'), 'hInput')}
                   {/* Remove all */}
-                  <button className="btn" onClick={() => applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, {})}
+                  <button className="uis-btn" onClick={() => applyStyleToSource(stylePanel.lang, stylePanel.blockSrc, stylePanel.dup, {})}
                     style={{ marginTop: 2 }}>
                     {t('btnImagePropsRemoveStyle')}
                   </button>
@@ -2863,7 +2849,7 @@ export default function App() {
             </div>
             ))}
             {tabs.length === 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-mute)', fontSize: 15 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--uis-text-mute)', fontSize: 15 }}>
                 {t('empAppNoFile')}
               </div>
             )}
@@ -2893,8 +2879,8 @@ export default function App() {
               });
             }}
             onDragOver={e => e.preventDefault()}
-            style={{ position: 'fixed', inset: 0, background: 'var(--accent)' + '22', border: `3px dashed var(--accent)`, borderRadius: 8, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--accent)' }}>{t('empAppDropFile')}</span>
+            style={{ position: 'fixed', inset: 0, background: 'var(--uis-accent)' + '22', border: `3px dashed var(--uis-accent)`, borderRadius: 8, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--uis-accent)' }}>{t('empAppDropFile')}</span>
           </div>
         )}
 
@@ -3037,43 +3023,43 @@ function LinkPopup({ x, y, mode, initialText, initialUrl, apiBase, docFilePath, 
   return (
     <div onKeyDown={handleKey} style={{
       position: 'fixed', top: y + 6, left, width: popupW,
-      background: 'var(--bg-elev)', border: `1px solid var(--border)`,
+      background: 'var(--uis-bg-elev)', border: `1px solid var(--uis-border)`,
       borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
       padding: '10px 12px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: 8,
     }}>
-      <input ref={textRef} className="input" value={text} onChange={e => setText(e.target.value)}
+      <input ref={textRef} className="uis-txt" value={text} onChange={e => setText(e.target.value)}
         placeholder={mode === 'image' ? t('plhDlgLinkAltText') : t('plhDlgLinkText')} />
       <div style={{ display: 'flex', gap: 6 }}>
         {/* An already-embedded image is a huge base64 blob — show a short stand-in, not the payload. */}
-        <input ref={urlRef} className="input" style={{ flex: 1, minWidth: 0 }}
+        <input ref={urlRef} className="uis-txt" style={{ flex: 1, minWidth: 0 }}
           value={isDataUri ? `${url.slice(0, url.indexOf(';'))} …` : url}
           readOnly={isDataUri} onChange={e => updateUrl(e.target.value)}
           placeholder={mode === 'image' ? t('plhDlgLinkUrlOrPath') : t('plhDlgLinkUrl')} />
-        {mode === 'image' && <button className="btn icon" title={t('tipDlgLinkBrowse')} onClick={browse}><FolderOpen /></button>}
+        {mode === 'image' && <button className="uis-btn ico" title={t('tipDlgLinkBrowse')} onClick={browse}><FolderOpen /></button>}
       </div>
       {mode === 'image' && (
         <div style={{ display: 'flex', gap: 16 }}>
-          <label className="check-label">
-            <input type="radio" className="radio-box" name="imgMode" checked={!embedded} onChange={() => setEmbedded(false)} />
+          <label className="uis-chk-lbl">
+            <input type="radio" className="uis-rad" name="imgMode" checked={!embedded} onChange={() => setEmbedded(false)} />
             {t('btnDlgLinkImageModeLinked')}
           </label>
-          <label className="check-label">
-            <input type="radio" className="radio-box" name="imgMode" checked={embedded} onChange={() => setEmbedded(true)} />
+          <label className="uis-chk-lbl">
+            <input type="radio" className="uis-rad" name="imgMode" checked={embedded} onChange={() => setEmbedded(true)} />
             {t('btnDlgLinkImageModeEmbedded')}
           </label>
         </div>
       )}
       {mode === 'image' && !embedded && (
-        <label className="check-label" title={!relPossible ? t('tipDlgLinkImageFolder') : ''}
-          style={relPossible ? undefined : { color: 'var(--text-mute)', cursor: 'default' }}>
-          <input type="checkbox" className="check-box" checked={relative} disabled={!relPossible}
+        <label className="uis-chk-lbl" title={!relPossible ? t('tipDlgLinkImageFolder') : ''}
+          style={relPossible ? undefined : { color: 'var(--uis-text-mute)', cursor: 'default' }}>
+          <input type="checkbox" className="uis-chk-box" checked={relative} disabled={!relPossible}
             onChange={e => setRelative(e.target.checked)} style={relPossible ? undefined : { cursor: 'default' }} />
           {t('lblDlgLinkRelativePath')}
         </label>
       )}
       <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
-        <button className="btn" onClick={onCancel}>{t('btnGlobalCancel')}</button>
-        <button className="btn primary" onClick={confirm}>{t('btnDlgLinkInsert')}</button>
+        <button className="uis-btn" onClick={onCancel}>{t('btnGlobalCancel')}</button>
+        <button className="uis-btn primary" onClick={confirm}>{t('btnDlgLinkInsert')}</button>
       </div>
     </div>
   );

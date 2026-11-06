@@ -43,15 +43,15 @@ const foldPlugin = ViewPlugin.fromClass(class {
   provide: p => EditorView.atomicRanges.of(view => view.plugin(p)?.deco || Decoration.none),
 });
 
-// Colours come from the app theme tokens (ui-colors.css) so the chip follows light/dark.
+// Colours come from the app theme tokens (uis-colors.css) so the chip follows light/dark.
 const chipTheme = EditorView.baseTheme({
   '.cm-datauri-chip': {
     display: 'inline-block',
     padding: '0 6px',
     borderRadius: '4px',
-    border: '1px solid var(--border)',
-    background: 'var(--bg-row)',
-    color: 'var(--text-dim)',
+    border: '1px solid var(--uis-border)',
+    background: 'var(--uis-bg-row)',
+    color: 'var(--uis-text-dim)',
     fontSize: '85%',
     whiteSpace: 'nowrap',
     cursor: 'default',
