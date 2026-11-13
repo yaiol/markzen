@@ -1,9 +1,9 @@
 {
   "name": "markzen",
   "productName": "Markzen",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "MIT",
-  "description": "Markdown editor/viewer",
+  "description": "Markdown editor with live preview that reads eight markup languages and exports to 20+ formats.",
   "private": true,
   "author": "yaiol",
   "main": "electron/main.mjs",

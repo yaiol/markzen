@@ -41,8 +41,9 @@ const loadExportLibs = () => (__exportLibsP ??= (async () => {
 })());
 import { useT, LANGUAGES } from './i18n-gen';
 import { getUrl } from './lib/site-url';
-import { UisNewsLoader } from './lib/uis-news-loader';
+import { UisNewsLoader, UisBtnUpdate, UisBtnNews } from './lib/uis-news-loader';
 import { UisAppHeader } from './lib/uis-header';
+import { UisBarWindow, LbsHokWindow } from './lib/uis-bar-window';
 import { UisNum } from './lib/uis-num';
 import { UisMenu, UisMenuItem, UisMenuLabel, UisMenuDivider } from './lib/uis-ctl-menu';
 import { formats, defaultFormat, getFormatByExtension, FORMAT_ALIGN } from './formats/index';
@@ -828,6 +829,8 @@ export default function App() {
   const [fontKeyCode,    setFontKeyCode]    = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-code`)    || 'jetbrains-mono');
   const [styleTemplateKey, setStyleTemplateKey] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-styleTemplate`) || 'standard');
   const [showSettings, setShowSettings] = useState(false);
+  // The window bar: its three buttons act through the main process, which also says when the window is maximized.
+  const windowBar = LbsHokWindow(API);
   const [showConvertMenu, setShowConvertMenu] = useState(false);
   const [html, setHtml]           = useState('');
   const [paneTick, setPaneTick]   = useState(0); // forces a pane write when setHtml gets an identical string (two tabs, same content)
@@ -2321,7 +2324,24 @@ export default function App() {
         <UisNewsLoader api={API} lang={lang} t={t} />
 
         {/* ── Header bar ── */}
-        <UisAppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD}>
+        {/* ── Window bar ── the app's own title bar: the window has no system frame. */}
+        <UisBarWindow appName={APP_NAME} appVersion={APP_VERSION_BUILD} iconSrc="./app.png" maximized={windowBar.maximized}
+          tipMinimize={t('tipWinMinimize')} tipMaximize={t('tipWinMaximize')} tipRestore={t('tipWinRestore')} tipClose={t('tipWinClose')}
+          onMinimize={windowBar.minimize} onMaximize={windowBar.maximize} onClose={windowBar.close}>
+          <button className={`uis-barh-window-btn uis-stg-toggle ${showSettings ? 'active' : ''}`} title={t('tipHdrSettings')} aria-pressed={showSettings} onClick={() => setShowSettings(o => !o)}>
+            <Settings />
+          </button>
+          <button className="uis-barh-window-btn" title={t('tipHdrHelp')} onClick={() => window.open(getUrl(pkg.name, lang.replace(/_/g, '-'), 'help'), '_blank')}>
+            <HelpCircle />
+          </button>
+          <button className="uis-barh-window-btn" title="GitHub" onClick={() => window.open(GITHUB_URL, '_blank')}>
+            <UisIcoGithub />
+          </button>
+          <UisBtnUpdate t={t} />
+          <UisBtnNews t={t} />
+        </UisBarWindow>
+        {/* The name and the version are in the window bar, so the header holds the work buttons only. */}
+        <UisAppHeader appName={APP_NAME} appVersion={APP_VERSION_BUILD} bare>
 
           {/* File actions — one welded group: New · Open · Save · Save As (standard file
               icons, CLAUDE-ui-shared). ⚠ The New-doc flyout lives OUTSIDE the .uis-barh-grp, in this
@@ -2458,19 +2478,6 @@ export default function App() {
             </div>
           </UisPopover>
 
-          <span className="uis-bar-spacer" />
-          {/* Settings + Help — the standard group, pushed right (only group aligned right). */}
-          <div className="uis-barh-grp">
-            <button className="uis-btn ico" title="GitHub" onClick={() => window.open(GITHUB_URL, '_blank')}>
-              <UisIcoGithub />
-            </button>
-            <button className="uis-btn ico" title={t('tipHdrHelp')} onClick={() => window.open(getUrl(pkg.name, lang.replace(/_/g, '-'), 'help'), '_blank')}>
-              <HelpCircle />
-            </button>
-            <button className={`uis-btn ico uis-stg-toggle ${showSettings ? 'active' : ''}`} title={t('tipHdrSettings')} aria-pressed={showSettings} onClick={() => setShowSettings(o => !o)}>
-              <Settings />
-            </button>
-          </div>
 
         </UisAppHeader>
 

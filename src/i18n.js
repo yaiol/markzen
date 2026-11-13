@@ -28,6 +28,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Don't show again",
     btnNewsOpenLink:                        "Learn more",
     tipNewsDismiss:                         "Close",
+    tipNewsShow:                            "News",
     lblStgGeneralNews:                      "Show news from yaiol",
     btnNewsClose:                           "Close",
 
@@ -77,7 +78,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Heading",
     lblHdrAppearanceFontBody:               "Body",
     lblHdrAppearanceFontCode:               "Code",
-    tipHdrSettings:                         "Open settings",
+    tipHdrSettings:                         "Settings",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimize",
+    tipWinMaximize:                         "Maximize",
+    tipWinRestore:                          "Restore",
+    tipWinClose:                            "Close",
+
     tipHdrHelp:                             "Help",
 
     // Prefix:Stg - Scope:settings view
@@ -93,7 +101,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Light",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edit and preview Markdown files.",
+    msgStgAboutDesc:                        "Markdown editor with live preview that reads eight markup languages and exports to 20+ formats.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt text",
@@ -161,6 +169,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Ne plus afficher",
     btnNewsOpenLink:                        "En savoir plus",
     tipNewsDismiss:                         "Fermer",
+    tipNewsShow:                            "Actualités",
     lblStgGeneralNews:                      "Afficher les actualités de yaiol",
     btnNewsClose:                           "Fermer",
 
@@ -210,7 +219,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Titre",
     lblHdrAppearanceFontBody:               "Corps",
     lblHdrAppearanceFontCode:               "Code",
-    tipHdrSettings:                         "Ouvrir les paramètres",
+    tipHdrSettings:                         "Paramètres",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimiser",
+    tipWinMaximize:                         "Agrandir",
+    tipWinRestore:                          "Restaurer",
+    tipWinClose:                            "Fermer",
+
     tipHdrHelp:                             "Aide",
 
     // Prefix:Stg - Scope:settings view
@@ -226,7 +242,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Clair",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "modifiez et prévisualisez des fichiers Markdown.",
+    msgStgAboutDesc:                        "Éditeur Markdown avec aperçu en direct qui lit huit langages de balisage et exporte vers plus de 20 formats.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texte alternatif",
@@ -293,6 +309,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Nicht mehr anzeigen",
     btnNewsOpenLink:                        "Mehr erfahren",
     tipNewsDismiss:                         "Schließen",
+    tipNewsShow:                            "Nachrichten",
     lblStgGeneralNews:                      "Nachrichten von yaiol anzeigen",
     btnNewsClose:                           "Schließen",
 
@@ -342,7 +359,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Überschrift",
     lblHdrAppearanceFontBody:               "Text",
     lblHdrAppearanceFontCode:               "Code",
-    tipHdrSettings:                         "Einstellungen öffnen",
+    tipHdrSettings:                         "Einstellungen",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimieren",
+    tipWinMaximize:                         "Maximieren",
+    tipWinRestore:                          "Wiederherstellen",
+    tipWinClose:                            "Schließen",
+
     tipHdrHelp:                             "Hilfe",
 
     // Prefix:Stg - Scope:settings view
@@ -358,7 +382,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Hell",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown-Dateien bearbeiten und anzeigen.",
+    msgStgAboutDesc:                        "Markdown-Editor mit Live-Vorschau, der acht Auszeichnungssprachen liest und in über 20 Formate exportiert.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativtext",
@@ -425,6 +449,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "No volver a mostrar",
     btnNewsOpenLink:                        "Más información",
     tipNewsDismiss:                         "Cerrar",
+    tipNewsShow:                            "Noticias",
     lblStgGeneralNews:                      "Mostrar noticias de yaiol",
     btnNewsClose:                           "Cerrar",
 
@@ -474,7 +499,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Encabezado",
     lblHdrAppearanceFontBody:               "Cuerpo",
     lblHdrAppearanceFontCode:               "Código",
-    tipHdrSettings:                         "Abrir configuración",
+    tipHdrSettings:                         "Ajustes",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimizar",
+    tipWinMaximize:                         "Maximizar",
+    tipWinRestore:                          "Restaurar",
+    tipWinClose:                            "Cerrar",
+
     tipHdrHelp:                             "Ayuda",
 
     // Prefix:Stg - Scope:settings view
@@ -490,7 +522,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edita y previsualiza archivos Markdown.",
+    msgStgAboutDesc:                        "Editor de Markdown con vista previa en vivo que lee ocho lenguajes de marcado y exporta a más de 20 formatos.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -557,6 +589,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Não mostrar novamente",
     btnNewsOpenLink:                        "Saiba mais",
     tipNewsDismiss:                         "Fechar",
+    tipNewsShow:                            "Notícias",
     lblStgGeneralNews:                      "Mostrar notícias de yaiol",
     btnNewsClose:                           "Fechar",
 
@@ -606,7 +639,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Título",
     lblHdrAppearanceFontBody:               "Corpo",
     lblHdrAppearanceFontCode:               "Código",
-    tipHdrSettings:                         "Abrir definições",
+    tipHdrSettings:                         "Configurações",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimizar",
+    tipWinMaximize:                         "Maximizar",
+    tipWinRestore:                          "Restaurar",
+    tipWinClose:                            "Fechar",
+
     tipHdrHelp:                             "Ajuda",
 
     // Prefix:Stg - Scope:settings view
@@ -622,7 +662,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown com pré-visualização ao vivo que lê oito linguagens de marcação e exporta para mais de 20 formatos.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -689,6 +729,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Não mostrar novamente",
     btnNewsOpenLink:                        "Saber mais",
     tipNewsDismiss:                         "Fechar",
+    tipNewsShow:                            "Notícias",
     lblStgGeneralNews:                      "Mostrar notícias de yaiol",
     btnNewsClose:                           "Fechar",
 
@@ -738,7 +779,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Título",
     lblHdrAppearanceFontBody:               "Corpo",
     lblHdrAppearanceFontCode:               "Código",
-    tipHdrSettings:                         "Abrir definições",
+    tipHdrSettings:                         "Definições",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimizar",
+    tipWinMaximize:                         "Maximizar",
+    tipWinRestore:                          "Restaurar",
+    tipWinClose:                            "Fechar",
+
     tipHdrHelp:                             "Ajuda",
 
     // Prefix:Stg - Scope:settings view
@@ -754,7 +802,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edite e visualize ficheiros Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown com pré-visualização em tempo real que lê oito linguagens de marcação e exporta para mais de 20 formatos.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -821,6 +869,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Non mostrare più",
     btnNewsOpenLink:                        "Scopri di più",
     tipNewsDismiss:                         "Chiudi",
+    tipNewsShow:                            "Notizie",
     lblStgGeneralNews:                      "Mostra notizie da yaiol",
     btnNewsClose:                           "Chiudi",
 
@@ -870,7 +919,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Intestazione",
     lblHdrAppearanceFontBody:               "Corpo",
     lblHdrAppearanceFontCode:               "Codice",
-    tipHdrSettings:                         "Apri impostazioni",
+    tipHdrSettings:                         "Impostazioni",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Riduci a icona",
+    tipWinMaximize:                         "Ingrandisci",
+    tipWinRestore:                          "Ripristina",
+    tipWinClose:                            "Chiudi",
+
     tipHdrHelp:                             "Aiuto",
 
     // Prefix:Stg - Scope:settings view
@@ -886,7 +942,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Chiaro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "modifica e visualizza file Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown con anteprima dal vivo che legge otto linguaggi di markup ed esporta in oltre 20 formati.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Testo alternativo",
@@ -953,6 +1009,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Niet meer tonen",
     btnNewsOpenLink:                        "Meer informatie",
     tipNewsDismiss:                         "Sluiten",
+    tipNewsShow:                            "Nieuws",
     lblStgGeneralNews:                      "Nieuws van yaiol tonen",
     btnNewsClose:                           "Sluiten",
 
@@ -1002,7 +1059,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Koptekst",
     lblHdrAppearanceFontBody:               "Tekst",
     lblHdrAppearanceFontCode:               "Code",
-    tipHdrSettings:                         "Instellingen openen",
+    tipHdrSettings:                         "Instellingen",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimaliseren",
+    tipWinMaximize:                         "Maximaliseren",
+    tipWinRestore:                          "Herstellen",
+    tipWinClose:                            "Sluiten",
+
     tipHdrHelp:                             "Hulp",
 
     // Prefix:Stg - Scope:settings view
@@ -1018,7 +1082,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Licht",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "bewerk en bekijk Markdown-bestanden.",
+    msgStgAboutDesc:                        "Markdown-editor met live voorbeeld die acht opmaaktalen leest en exporteert naar meer dan 20 formaten.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt-tekst",
@@ -1085,6 +1149,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Больше не показывать",
     btnNewsOpenLink:                        "Узнать больше",
     tipNewsDismiss:                         "Закрыть",
+    tipNewsShow:                            "Новости",
     lblStgGeneralNews:                      "Показывать новости от yaiol",
     btnNewsClose:                           "Закрыть",
 
@@ -1134,7 +1199,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Заголовок",
     lblHdrAppearanceFontBody:               "Основной текст",
     lblHdrAppearanceFontCode:               "Код",
-    tipHdrSettings:                         "Открыть настройки",
+    tipHdrSettings:                         "Настройки",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Свернуть",
+    tipWinMaximize:                         "Развернуть",
+    tipWinRestore:                          "Восстановить",
+    tipWinClose:                            "Закрыть",
+
     tipHdrHelp:                             "Помощь",
 
     // Prefix:Stg - Scope:settings view
@@ -1150,7 +1222,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Светлая",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "редактирование и просмотр Markdown-файлов.",
+    msgStgAboutDesc:                        "Редактор Markdown с предпросмотром в реальном времени, который читает восемь языков разметки и экспортирует в более чем 20 форматов.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Альтернативный текст",
@@ -1217,6 +1289,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Більше не показувати",
     btnNewsOpenLink:                        "Дізнатися більше",
     tipNewsDismiss:                         "Закрити",
+    tipNewsShow:                            "Новини",
     lblStgGeneralNews:                      "Показувати новини від yaiol",
     btnNewsClose:                           "Закрити",
 
@@ -1266,7 +1339,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Заголовок",
     lblHdrAppearanceFontBody:               "Основний текст",
     lblHdrAppearanceFontCode:               "Код",
-    tipHdrSettings:                         "Відкрити налаштування",
+    tipHdrSettings:                         "Налаштування",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Згорнути",
+    tipWinMaximize:                         "Розгорнути",
+    tipWinRestore:                          "Відновити",
+    tipWinClose:                            "Закрити",
+
     tipHdrHelp:                             "Довідка",
 
     // Prefix:Stg - Scope:settings view
@@ -1282,7 +1362,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Світла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "редагування та перегляд файлів Markdown.",
+    msgStgAboutDesc:                        "Редактор Markdown з попереднім переглядом у реальному часі, що читає вісім мов розмітки та експортує у понад 20 форматів.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Альтернативний текст",
@@ -1349,6 +1429,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Nie pokazuj ponownie",
     btnNewsOpenLink:                        "Dowiedz się więcej",
     tipNewsDismiss:                         "Zamknij",
+    tipNewsShow:                            "Wiadomości",
     lblStgGeneralNews:                      "Pokaż wiadomości z yaiol",
     btnNewsClose:                           "Zamknij",
 
@@ -1398,7 +1479,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Nagłówek",
     lblHdrAppearanceFontBody:               "Treść",
     lblHdrAppearanceFontCode:               "Kod",
-    tipHdrSettings:                         "Otwórz ustawienia",
+    tipHdrSettings:                         "Ustawienia",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimalizuj",
+    tipWinMaximize:                         "Maksymalizuj",
+    tipWinRestore:                          "Przywróć",
+    tipWinClose:                            "Zamknij",
+
     tipHdrHelp:                             "Pomoc",
 
     // Prefix:Stg - Scope:settings view
@@ -1414,7 +1502,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Jasny",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edytuj i podglądaj pliki Markdown.",
+    msgStgAboutDesc:                        "Edytor Markdown z podglądem na żywo, który odczytuje osiem języków znaczników i eksportuje do ponad 20 formatów.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Tekst alternatywny",
@@ -1481,6 +1569,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Nu mai afișa",
     btnNewsOpenLink:                        "Află mai multe",
     tipNewsDismiss:                         "Închide",
+    tipNewsShow:                            "Știri",
     lblStgGeneralNews:                      "Afișează știri de la yaiol",
     btnNewsClose:                           "Închide",
 
@@ -1530,7 +1619,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Antet",
     lblHdrAppearanceFontBody:               "Corp",
     lblHdrAppearanceFontCode:               "Cod",
-    tipHdrSettings:                         "Deschide setări",
+    tipHdrSettings:                         "Setări",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimizare",
+    tipWinMaximize:                         "Maximizare",
+    tipWinRestore:                          "Restaurare",
+    tipWinClose:                            "Închidere",
+
     tipHdrHelp:                             "Ajutor",
 
     // Prefix:Stg - Scope:settings view
@@ -1546,7 +1642,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Deschis",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "editați și vizualizați fișiere Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown cu previzualizare live care citește opt limbaje de marcare și exportă în peste 20 de formate.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Text alternativ",
@@ -1613,6 +1709,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Visa inte igen",
     btnNewsOpenLink:                        "Läs mer",
     tipNewsDismiss:                         "Stäng",
+    tipNewsShow:                            "Nyheter",
     lblStgGeneralNews:                      "Visa nyheter från yaiol",
     btnNewsClose:                           "Stäng",
 
@@ -1662,7 +1759,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Rubrik",
     lblHdrAppearanceFontBody:               "Brödtext",
     lblHdrAppearanceFontCode:               "Kod",
-    tipHdrSettings:                         "Öppna inställningar",
+    tipHdrSettings:                         "Inställningar",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimera",
+    tipWinMaximize:                         "Maximera",
+    tipWinRestore:                          "Återställ",
+    tipWinClose:                            "Stäng",
+
     tipHdrHelp:                             "Hjälp",
 
     // Prefix:Stg - Scope:settings view
@@ -1678,7 +1782,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Ljust",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "redigera och förhandsgranska Markdown-filer.",
+    msgStgAboutDesc:                        "Markdown-redigerare med liveförhandsgranskning som läser åtta märkspråk och exporterar till över 20 format.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ text",
@@ -1745,6 +1849,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Ikke vis igjen",
     btnNewsOpenLink:                        "Les mer",
     tipNewsDismiss:                         "Lukk",
+    tipNewsShow:                            "Nyheter",
     lblStgGeneralNews:                      "Vis nyheter fra yaiol",
     btnNewsClose:                           "Lukk",
 
@@ -1794,7 +1899,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Overskrift",
     lblHdrAppearanceFontBody:               "Brødtekst",
     lblHdrAppearanceFontCode:               "Kode",
-    tipHdrSettings:                         "Åpne innstillinger",
+    tipHdrSettings:                         "Innstillinger",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimer",
+    tipWinMaximize:                         "Maksimer",
+    tipWinRestore:                          "Gjenopprett",
+    tipWinClose:                            "Lukk",
+
     tipHdrHelp:                             "Hjelp",
 
     // Prefix:Stg - Scope:settings view
@@ -1810,7 +1922,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Lys",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
+    msgStgAboutDesc:                        "Markdown-redigerer med direkte forhåndsvisning som leser åtte markeringsspråk og eksporterer til over 20 formater.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ tekst",
@@ -1877,6 +1989,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Bir daha gösterme",
     btnNewsOpenLink:                        "Daha fazla bilgi edin",
     tipNewsDismiss:                         "Kapat",
+    tipNewsShow:                            "Haberler",
     lblStgGeneralNews:                      "yaiol'dan haberleri göster",
     btnNewsClose:                           "Kapat",
 
@@ -1926,7 +2039,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Başlık",
     lblHdrAppearanceFontBody:               "Gövde",
     lblHdrAppearanceFontCode:               "Kod",
-    tipHdrSettings:                         "Ayarları aç",
+    tipHdrSettings:                         "Ayarlar",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Küçült",
+    tipWinMaximize:                         "Ekranı kapla",
+    tipWinRestore:                          "Geri yükle",
+    tipWinClose:                            "Kapat",
+
     tipHdrHelp:                             "Yardım",
 
     // Prefix:Stg - Scope:settings view
@@ -1942,7 +2062,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Açık",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown dosyalarını düzenleyin ve önizleyin.",
+    msgStgAboutDesc:                        "Sekiz işaretleme dilini okuyan ve 20'den fazla formata dışa aktaran canlı önizlemeli Markdown düzenleyici.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatif metin",
@@ -2009,6 +2129,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Ne prikazuj ponovno",
     btnNewsOpenLink:                        "Saznajte više",
     tipNewsDismiss:                         "Zatvori",
+    tipNewsShow:                            "Vijesti",
     lblStgGeneralNews:                      "Prikaži vijesti iz yaiol",
     btnNewsClose:                           "Zatvori",
 
@@ -2058,7 +2179,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Naslov",
     lblHdrAppearanceFontBody:               "Tijelo",
     lblHdrAppearanceFontCode:               "Kod",
-    tipHdrSettings:                         "Otvori postavke",
+    tipHdrSettings:                         "Postavke",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimiziraj",
+    tipWinMaximize:                         "Maksimiziraj",
+    tipWinRestore:                          "Vrati",
+    tipWinClose:                            "Zatvori",
+
     tipHdrHelp:                             "Pomoć",
 
     // Prefix:Stg - Scope:settings view
@@ -2074,7 +2202,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Svijetla",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "uređujte i pregledajte Markdown datoteke.",
+    msgStgAboutDesc:                        "Markdown uređivač s pregledom uživo koji čita osam jezika za označavanje i izvozi u više od 20 formata.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Zamjenski tekst",
@@ -2141,6 +2269,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Να μην εμφανιστεί ξανά",
     btnNewsOpenLink:                        "Μάθετε περισσότερα",
     tipNewsDismiss:                         "Κλείσιμο",
+    tipNewsShow:                            "Ειδήσεις",
     lblStgGeneralNews:                      "Εμφάνιση ειδήσεων από το yaiol",
     btnNewsClose:                           "Κλείσιμο",
 
@@ -2190,7 +2319,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Επικεφαλίδα",
     lblHdrAppearanceFontBody:               "Κείμενο",
     lblHdrAppearanceFontCode:               "Κώδικας",
-    tipHdrSettings:                         "Άνοιγμα ρυθμίσεων",
+    tipHdrSettings:                         "Ρυθμίσεις",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Ελαχιστοποίηση",
+    tipWinMaximize:                         "Μεγιστοποίηση",
+    tipWinRestore:                          "Επαναφορά",
+    tipWinClose:                            "Κλείσιμο",
+
     tipHdrHelp:                             "Βοήθεια",
 
     // Prefix:Stg - Scope:settings view
@@ -2206,7 +2342,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Φωτεινό",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "επεξεργαστείτε και προβάλετε αρχεία Markdown.",
+    msgStgAboutDesc:                        "Επεξεργαστής Markdown με ζωντανή προεπισκόπηση που διαβάζει οκτώ γλώσσες σήμανσης και εξάγει σε 20+ μορφές.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Εναλλακτικό κείμενο",
@@ -2273,6 +2409,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "אל תציג שוב",
     btnNewsOpenLink:                        "למידע נוסף",
     tipNewsDismiss:                         "סגור",
+    tipNewsShow:                            "חדשות",
     lblStgGeneralNews:                      "הצג חדשות מ-yaiol",
     btnNewsClose:                           "סגור",
 
@@ -2322,7 +2459,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "כותרת",
     lblHdrAppearanceFontBody:               "גוף טקסט",
     lblHdrAppearanceFontCode:               "קוד",
-    tipHdrSettings:                         "פתח הגדרות",
+    tipHdrSettings:                         "הגדרות",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "מזער",
+    tipWinMaximize:                         "הגדל",
+    tipWinRestore:                          "שחזר",
+    tipWinClose:                            "סגור",
+
     tipHdrHelp:                             "עזרה",
 
     // Prefix:Stg - Scope:settings view
@@ -2338,7 +2482,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "בהיר",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "ערוך וצפה בקבצי Markdown.",
+    msgStgAboutDesc:                        "עורך Markdown עם תצוגה מקדימה חיה שקורא שמונה שפות סימון ומייצא ל-20+ פורמטים.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "טקסט חלופי",
@@ -2405,6 +2549,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "عدم الإظهار مرة أخرى",
     btnNewsOpenLink:                        "تعرّف على المزيد",
     tipNewsDismiss:                         "إغلاق",
+    tipNewsShow:                            "الأخبار",
     lblStgGeneralNews:                      "إظهار الأخبار من yaiol",
     btnNewsClose:                           "إغلاق",
 
@@ -2454,7 +2599,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "عنوان",
     lblHdrAppearanceFontBody:               "نص أساسي",
     lblHdrAppearanceFontCode:               "رمز",
-    tipHdrSettings:                         "فتح الإعدادات",
+    tipHdrSettings:                         "الإعدادات",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "تصغير",
+    tipWinMaximize:                         "تكبير",
+    tipWinRestore:                          "استعادة",
+    tipWinClose:                            "إغلاق",
+
     tipHdrHelp:                             "مساعدة",
 
     // Prefix:Stg - Scope:settings view
@@ -2470,7 +2622,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "فاتح",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "حرِّر ملفات Markdown وعاينها.",
+    msgStgAboutDesc:                        "محرر Markdown بمعاينة مباشرة يقرأ ثماني لغات ترميز ويصدر إلى أكثر من 20 تنسيقًا.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "نص بديل",
@@ -2537,6 +2689,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "دیگر نمایش نده",
     btnNewsOpenLink:                        "بیشتر بدانید",
     tipNewsDismiss:                         "بستن",
+    tipNewsShow:                            "اخبار",
     lblStgGeneralNews:                      "نمایش اخبار از yaiol",
     btnNewsClose:                           "بستن",
 
@@ -2586,7 +2739,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "عنوان",
     lblHdrAppearanceFontBody:               "متن اصلی",
     lblHdrAppearanceFontCode:               "کد",
-    tipHdrSettings:                         "باز کردن تنظیمات",
+    tipHdrSettings:                         "تنظیمات",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "کوچک‌نمایی",
+    tipWinMaximize:                         "بزرگ‌نمایی",
+    tipWinRestore:                          "بازیابی",
+    tipWinClose:                            "بستن",
+
     tipHdrHelp:                             "راهنما",
 
     // Prefix:Stg - Scope:settings view
@@ -2602,7 +2762,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "روشن",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "فایل‌های Markdown را ویرایش و پیش‌نمایش کنید.",
+    msgStgAboutDesc:                        "ویرایشگر Markdown با پیش‌نمایش زنده که هشت زبان نشانه‌گذاری را می‌خواند و به بیش از ۲۰ فرمت خروجی می‌گیرد.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "متن جایگزین",
@@ -2669,6 +2829,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "不再显示",
     btnNewsOpenLink:                        "了解更多",
     tipNewsDismiss:                         "关闭",
+    tipNewsShow:                            "新闻",
     lblStgGeneralNews:                      "显示来自 yaiol 的新闻",
     btnNewsClose:                           "关闭",
 
@@ -2718,7 +2879,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "标题",
     lblHdrAppearanceFontBody:               "正文",
     lblHdrAppearanceFontCode:               "代码",
-    tipHdrSettings:                         "打开设置",
+    tipHdrSettings:                         "设置",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "最小化",
+    tipWinMaximize:                         "最大化",
+    tipWinRestore:                          "还原",
+    tipWinClose:                            "关闭",
+
     tipHdrHelp:                             "帮助",
 
     // Prefix:Stg - Scope:settings view
@@ -2734,7 +2902,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "浅色",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "编辑并预览 Markdown 文件。",
+    msgStgAboutDesc:                        "Markdown 编辑器，支持实时预览，可读取八种标记语言并导出为 20 多种格式。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "替代文本",
@@ -2801,6 +2969,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "不再顯示",
     btnNewsOpenLink:                        "了解更多",
     tipNewsDismiss:                         "關閉",
+    tipNewsShow:                            "新聞",
     lblStgGeneralNews:                      "顯示來自 yaiol 的新聞",
     btnNewsClose:                           "關閉",
 
@@ -2850,7 +3019,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "標題",
     lblHdrAppearanceFontBody:               "內文",
     lblHdrAppearanceFontCode:               "程式碼",
-    tipHdrSettings:                         "開啟設定",
+    tipHdrSettings:                         "設定",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "最小化",
+    tipWinMaximize:                         "最大化",
+    tipWinRestore:                          "還原",
+    tipWinClose:                            "關閉",
+
     tipHdrHelp:                             "說明",
 
     // Prefix:Stg - Scope:settings view
@@ -2866,7 +3042,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "淺色",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "編輯並預覽 Markdown 檔案。",
+    msgStgAboutDesc:                        "Markdown 編輯器，支援即時預覽，可讀取八種標記語言並匯出為 20 多種格式。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "替代文字",
@@ -2933,6 +3109,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "今後表示しない",
     btnNewsOpenLink:                        "詳細を見る",
     tipNewsDismiss:                         "閉じる",
+    tipNewsShow:                            "ニュース",
     lblStgGeneralNews:                      "yaiol からのニュースを表示",
     btnNewsClose:                           "閉じる",
 
@@ -2982,7 +3159,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "見出し",
     lblHdrAppearanceFontBody:               "本文",
     lblHdrAppearanceFontCode:               "コード",
-    tipHdrSettings:                         "設定を開く",
+    tipHdrSettings:                         "設定",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "最小化",
+    tipWinMaximize:                         "最大化",
+    tipWinRestore:                          "元に戻す",
+    tipWinClose:                            "閉じる",
+
     tipHdrHelp:                             "ヘルプ",
 
     // Prefix:Stg - Scope:settings view
@@ -2998,7 +3182,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "ライト",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown ファイルを編集・プレビューします。",
+    msgStgAboutDesc:                        "8つのマークアップ言語を読み込み、20以上の形式にエクスポートできるライブプレビュー付きMarkdownエディター。",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "代替テキスト",
@@ -3065,6 +3249,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "다시 표시 안 함",
     btnNewsOpenLink:                        "자세히 알아보기",
     tipNewsDismiss:                         "닫기",
+    tipNewsShow:                            "뉴스",
     lblStgGeneralNews:                      "yaiol 뉴스 표시",
     btnNewsClose:                           "닫기",
 
@@ -3114,7 +3299,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "제목",
     lblHdrAppearanceFontBody:               "본문",
     lblHdrAppearanceFontCode:               "코드",
-    tipHdrSettings:                         "설정 열기",
+    tipHdrSettings:                         "설정",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "최소화",
+    tipWinMaximize:                         "최대화",
+    tipWinRestore:                          "이전 크기로",
+    tipWinClose:                            "닫기",
+
     tipHdrHelp:                             "도움말",
 
     // Prefix:Stg - Scope:settings view
@@ -3130,7 +3322,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "밝게",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown 파일을 편집하고 미리 봅니다.",
+    msgStgAboutDesc:                        "실시간 미리보기를 제공하며 8가지 마크업 언어를 읽고 20가지 이상의 형식으로 내보낼 수 있는 Markdown 편집기.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "대체 텍스트",
@@ -3197,6 +3389,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Không hiển thị lại",
     btnNewsOpenLink:                        "Tìm hiểu thêm",
     tipNewsDismiss:                         "Đóng",
+    tipNewsShow:                            "Tin tức",
     lblStgGeneralNews:                      "Hiển thị tin tức từ yaiol",
     btnNewsClose:                           "Đóng",
 
@@ -3246,7 +3439,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Tiêu đề",
     lblHdrAppearanceFontBody:               "Nội dung",
     lblHdrAppearanceFontCode:               "Mã",
-    tipHdrSettings:                         "Mở cài đặt",
+    tipHdrSettings:                         "Cài đặt",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Thu nhỏ",
+    tipWinMaximize:                         "Phóng to",
+    tipWinRestore:                          "Khôi phục",
+    tipWinClose:                            "Đóng",
+
     tipHdrHelp:                             "Trợ giúp",
 
     // Prefix:Stg - Scope:settings view
@@ -3262,7 +3462,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Sáng",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "chỉnh sửa và xem trước tệp Markdown.",
+    msgStgAboutDesc:                        "Trình chỉnh sửa Markdown với tính năng xem trước trực tiếp, đọc tám ngôn ngữ đánh dấu và xuất ra hơn 20 định dạng.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Văn bản thay thế",
@@ -3329,6 +3529,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "ไม่ต้องแสดงอีก",
     btnNewsOpenLink:                        "เรียนรู้เพิ่มเติม",
     tipNewsDismiss:                         "ปิด",
+    tipNewsShow:                            "ข่าว",
     lblStgGeneralNews:                      "แสดงข่าวสารจาก yaiol",
     btnNewsClose:                           "ปิด",
 
@@ -3378,7 +3579,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "หัวเรื่อง",
     lblHdrAppearanceFontBody:               "เนื้อหา",
     lblHdrAppearanceFontCode:               "โค้ด",
-    tipHdrSettings:                         "เปิดการตั้งค่า",
+    tipHdrSettings:                         "การตั้งค่า",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "ย่อ",
+    tipWinMaximize:                         "ขยาย",
+    tipWinRestore:                          "คืนค่า",
+    tipWinClose:                            "ปิด",
+
     tipHdrHelp:                             "ช่วยเหลือ",
 
     // Prefix:Stg - Scope:settings view
@@ -3394,7 +3602,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "สว่าง",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "แก้ไขและดูตัวอย่างไฟล์ Markdown",
+    msgStgAboutDesc:                        "โปรแกรมแก้ไข Markdown พร้อมการแสดงตัวอย่างแบบสดที่อ่านภาษา Markup ได้แปดภาษา และส่งออกได้มากกว่า 20 รูปแบบ",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ข้อความแสดงแทน",
@@ -3461,6 +3669,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Jangan tampilkan lagi",
     btnNewsOpenLink:                        "Pelajari lebih lanjut",
     tipNewsDismiss:                         "Tutup",
+    tipNewsShow:                            "Berita",
     lblStgGeneralNews:                      "Tampilkan berita dari yaiol",
     btnNewsClose:                           "Tutup",
 
@@ -3510,7 +3719,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Judul",
     lblHdrAppearanceFontBody:               "Isi",
     lblHdrAppearanceFontCode:               "Kode",
-    tipHdrSettings:                         "Buka pengaturan",
+    tipHdrSettings:                         "Pengaturan",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimalkan",
+    tipWinMaximize:                         "Maksimalkan",
+    tipWinRestore:                          "Pulihkan",
+    tipWinClose:                            "Tutup",
+
     tipHdrHelp:                             "Bantuan",
 
     // Prefix:Stg - Scope:settings view
@@ -3526,7 +3742,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Terang",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edit dan pratinjau file Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown dengan pratinjau langsung yang membaca delapan bahasa markup dan mengekspor ke 20+ format.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Teks alternatif",
@@ -3593,6 +3809,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "No tornar a mostrar",
     btnNewsOpenLink:                        "Més informació",
     tipNewsDismiss:                         "Tancar",
+    tipNewsShow:                            "Notícies",
     lblStgGeneralNews:                      "Mostrar notícies de yaiol",
     btnNewsClose:                           "Tancar",
 
@@ -3642,7 +3859,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Encapçalament",
     lblHdrAppearanceFontBody:               "Cos",
     lblHdrAppearanceFontCode:               "Codi",
-    tipHdrSettings:                         "Obre la configuració",
+    tipHdrSettings:                         "Configuració",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimitzar",
+    tipWinMaximize:                         "Maximitzar",
+    tipWinRestore:                          "Restaurar",
+    tipWinClose:                            "Tancar",
+
     tipHdrHelp:                             "Ajuda",
 
     // Prefix:Stg - Scope:settings view
@@ -3658,7 +3882,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Clar",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "editeu i previsualitzeu fitxers Markdown.",
+    msgStgAboutDesc:                        "Editor de Markdown amb previsualització en directe que llegeix vuit llenguatges de marcatge i exporta a més de 20 formats.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Text alternatiu",
@@ -3725,6 +3949,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Nezobrazovat znovu",
     btnNewsOpenLink:                        "Další informace",
     tipNewsDismiss:                         "Zavřít",
+    tipNewsShow:                            "Zprávy",
     lblStgGeneralNews:                      "Zobrazovat zprávy z yaiol",
     btnNewsClose:                           "Zavřít",
 
@@ -3774,7 +3999,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Nadpis",
     lblHdrAppearanceFontBody:               "Text",
     lblHdrAppearanceFontCode:               "Kód",
-    tipHdrSettings:                         "Otevřít nastavení",
+    tipHdrSettings:                         "Nastavení",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimalizovat",
+    tipWinMaximize:                         "Maximalizovat",
+    tipWinRestore:                          "Obnovit",
+    tipWinClose:                            "Zavřít",
+
     tipHdrHelp:                             "Nápověda",
 
     // Prefix:Stg - Scope:settings view
@@ -3790,7 +4022,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Světlý",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "upravujte a zobrazujte soubory Markdown.",
+    msgStgAboutDesc:                        "Editor Markdown s živým náhledem, který čte osm značkovacích jazyků a exportuje do více než 20 formátů.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativní text",
@@ -3857,6 +4089,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Vis ikke igen",
     btnNewsOpenLink:                        "Læs mere",
     tipNewsDismiss:                         "Luk",
+    tipNewsShow:                            "Nyheder",
     lblStgGeneralNews:                      "Vis nyheder fra yaiol",
     btnNewsClose:                           "Luk",
 
@@ -3906,7 +4139,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Overskrift",
     lblHdrAppearanceFontBody:               "Brødtekst",
     lblHdrAppearanceFontCode:               "Kode",
-    tipHdrSettings:                         "Åbn indstillinger",
+    tipHdrSettings:                         "Indstillinger",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimer",
+    tipWinMaximize:                         "Maksimer",
+    tipWinRestore:                          "Gendan",
+    tipWinClose:                            "Luk",
+
     tipHdrHelp:                             "Hjælp",
 
     // Prefix:Stg - Scope:settings view
@@ -3922,7 +4162,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Lyst",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "rediger og forhåndsvis Markdown-filer.",
+    msgStgAboutDesc:                        "Markdown-editor med live-forhåndsvisning, der læser otte markup-sprog og eksporterer til over 20 formater.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternativ tekst",
@@ -3989,6 +4229,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Älä näytä uudelleen",
     btnNewsOpenLink:                        "Lue lisää",
     tipNewsDismiss:                         "Sulje",
+    tipNewsShow:                            "Uutiset",
     lblStgGeneralNews:                      "Näytä uutiset yaiolista",
     btnNewsClose:                           "Sulje",
 
@@ -4038,7 +4279,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Otsikko",
     lblHdrAppearanceFontBody:               "Leipäteksti",
     lblHdrAppearanceFontCode:               "Koodi",
-    tipHdrSettings:                         "Avaa asetukset",
+    tipHdrSettings:                         "Asetukset",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Pienennä",
+    tipWinMaximize:                         "Suurenna",
+    tipWinRestore:                          "Palauta",
+    tipWinClose:                            "Sulje",
+
     tipHdrHelp:                             "Ohje",
 
     // Prefix:Stg - Scope:settings view
@@ -4054,7 +4302,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Vaalea",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "muokkaa ja esikatsele Markdown-tiedostoja.",
+    msgStgAboutDesc:                        "Markdown-editori live-esikatselulla, joka lukee kahdeksaa merkintäkieltä ja vie yli 20 muotoon.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alt-teksti",
@@ -4121,6 +4369,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Jangan tunjuk lagi",
     btnNewsOpenLink:                        "Ketahui lebih lanjut",
     tipNewsDismiss:                         "Tutup",
+    tipNewsShow:                            "Berita",
     lblStgGeneralNews:                      "Tunjukkan berita dari yaiol",
     btnNewsClose:                           "Tutup",
 
@@ -4170,7 +4419,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Tajuk",
     lblHdrAppearanceFontBody:               "Isi",
     lblHdrAppearanceFontCode:               "Kod",
-    tipHdrSettings:                         "Buka tetapan",
+    tipHdrSettings:                         "Tetapan",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimumkan",
+    tipWinMaximize:                         "Maksimumkan",
+    tipWinRestore:                          "Pulihkan",
+    tipWinClose:                            "Tutup",
+
     tipHdrHelp:                             "Bantuan",
 
     // Prefix:Stg - Scope:settings view
@@ -4186,7 +4442,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Cerah",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edit dan pratonton fail Markdown.",
+    msgStgAboutDesc:                        "Penyunting Markdown dengan pratonton langsung yang membaca lapan bahasa penandaan dan mengeksport ke 20+ format.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Teks alternatif",
@@ -4253,6 +4509,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Այլևս չցուցադրել",
     btnNewsOpenLink:                        "Իմանալ ավելին",
     tipNewsDismiss:                         "Փակել",
+    tipNewsShow:                            "Նորություններ",
     lblStgGeneralNews:                      "Ցուցադրել նորություններ yaiol-ից",
     btnNewsClose:                           "Փակել",
 
@@ -4302,7 +4559,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Վերնագիր",
     lblHdrAppearanceFontBody:               "Հիմնական տեքստ",
     lblHdrAppearanceFontCode:               "Կոդ",
-    tipHdrSettings:                         "Բացել կարգավորումները",
+    tipHdrSettings:                         "Կարգավորումներ",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Նվազեցնել",
+    tipWinMaximize:                         "Առավելագույնի հասցնել",
+    tipWinRestore:                          "Վերականգնել",
+    tipWinClose:                            "Փակել",
+
     tipHdrHelp:                             "Օգնություն",
 
     // Prefix:Stg - Scope:settings view
@@ -4318,7 +4582,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Բաց",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "խմբագրեք և դիտեք Markdown ֆայլեր։",
+    msgStgAboutDesc:                        "Markdown խմբագրիչ՝ կենդանի նախադիտմամբ, որը կարդում է ութ նշագրման լեզու և արտահանում է 20+ ձևաչափերով։",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Այլընտրանքային տեքստ",
@@ -4385,6 +4649,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Не показвай отново",
     btnNewsOpenLink:                        "Научете повече",
     tipNewsDismiss:                         "Затвори",
+    tipNewsShow:                            "Новини",
     lblStgGeneralNews:                      "Показвай новини от yaiol",
     btnNewsClose:                           "Затвори",
 
@@ -4434,7 +4699,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Заглавие",
     lblHdrAppearanceFontBody:               "Основен текст",
     lblHdrAppearanceFontCode:               "Код",
-    tipHdrSettings:                         "Отвори настройките",
+    tipHdrSettings:                         "Настройки",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Минимизиране",
+    tipWinMaximize:                         "Максимизиране",
+    tipWinRestore:                          "Възстановяване",
+    tipWinClose:                            "Затваряне",
+
     tipHdrHelp:                             "Помощ",
 
     // Prefix:Stg - Scope:settings view
@@ -4450,7 +4722,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "редактирайте и преглеждайте Markdown файлове.",
+    msgStgAboutDesc:                        "Markdown редактор с преглед на живо, който чете осем езика за маркиране и експортира в над 20 формата.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативен текст",
@@ -4517,6 +4789,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Non mostrar de novo",
     btnNewsOpenLink:                        "Máis información",
     tipNewsDismiss:                         "Pechar",
+    tipNewsShow:                            "Novas",
     lblStgGeneralNews:                      "Mostrar noticias de yaiol",
     btnNewsClose:                           "Pechar",
 
@@ -4566,7 +4839,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Cabeceira",
     lblHdrAppearanceFontBody:               "Corpo",
     lblHdrAppearanceFontCode:               "Código",
-    tipHdrSettings:                         "Abrir configuración",
+    tipHdrSettings:                         "Configuración",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimizar",
+    tipWinMaximize:                         "Maximizar",
+    tipWinRestore:                          "Restaurar",
+    tipWinClose:                            "Pechar",
+
     tipHdrHelp:                             "Axuda",
 
     // Prefix:Stg - Scope:settings view
@@ -4582,7 +4862,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Claro",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "edita e previsualiza ficheiros Markdown.",
+    msgStgAboutDesc:                        "Editor de Markdown con vista previa en vivo que le oito linguaxes de marcado e exporta a máis de 20 formatos.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Texto alternativo",
@@ -4649,6 +4929,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Ne mutasd újra",
     btnNewsOpenLink:                        "Tudjon meg többet",
     tipNewsDismiss:                         "Bezárás",
+    tipNewsShow:                            "Hírek",
     lblStgGeneralNews:                      "Hírek megjelenítése a yaiol-tól",
     btnNewsClose:                           "Bezárás",
 
@@ -4698,7 +4979,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Címsor",
     lblHdrAppearanceFontBody:               "Törzsszöveg",
     lblHdrAppearanceFontCode:               "Kód",
-    tipHdrSettings:                         "Beállítások megnyitása",
+    tipHdrSettings:                         "Beállítások",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Kis méretre",
+    tipWinMaximize:                         "Teljes méretre",
+    tipWinRestore:                          "Visszaállítás",
+    tipWinClose:                            "Bezárás",
+
     tipHdrHelp:                             "Súgó",
 
     // Prefix:Stg - Scope:settings view
@@ -4714,7 +5002,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Világos",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "szerkessze és tekintse meg a Markdown fájlokat.",
+    msgStgAboutDesc:                        "Markdown szerkesztő élő előnézettel, amely nyolc jelölőnyelvet olvas és több mint 20 formátumba exportál.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatív szöveg",
@@ -4781,6 +5069,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Daugiau nerodyti",
     btnNewsOpenLink:                        "Sužinoti daugiau",
     tipNewsDismiss:                         "Uždaryti",
+    tipNewsShow:                            "Naujienos",
     lblStgGeneralNews:                      "Rodyti naujienas iš yaiol",
     btnNewsClose:                           "Uždaryti",
 
@@ -4830,7 +5119,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Antraštė",
     lblHdrAppearanceFontBody:               "Pagrindinis tekstas",
     lblHdrAppearanceFontCode:               "Kodas",
-    tipHdrSettings:                         "Atidaryti nustatymus",
+    tipHdrSettings:                         "Nustatymai",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Mažinti",
+    tipWinMaximize:                         "Didinti",
+    tipWinRestore:                          "Atkurti",
+    tipWinClose:                            "Uždaryti",
+
     tipHdrHelp:                             "Pagalba",
 
     // Prefix:Stg - Scope:settings view
@@ -4846,7 +5142,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Šviesi",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "redaguokite ir peržiūrėkite Markdown failus.",
+    msgStgAboutDesc:                        "Markdown redaktorius su tiesiogine peržiūra, skaitantis aštuonias žymėjimo kalbas ir eksportuojantis į daugiau nei 20 formatų.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatyvusis tekstas",
@@ -4913,6 +5209,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Не прикажувај повторно",
     btnNewsOpenLink:                        "Дознајте повеќе",
     tipNewsDismiss:                         "Затвори",
+    tipNewsShow:                            "Вести",
     lblStgGeneralNews:                      "Прикажи вести од yaiol",
     btnNewsClose:                           "Затвори",
 
@@ -4962,7 +5259,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Наслов",
     lblHdrAppearanceFontBody:               "Главен текст",
     lblHdrAppearanceFontCode:               "Код",
-    tipHdrSettings:                         "Отвори поставки",
+    tipHdrSettings:                         "Поставки",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Минимизирај",
+    tipWinMaximize:                         "Максимизирај",
+    tipWinRestore:                          "Врати",
+    tipWinClose:                            "Затвори",
+
     tipHdrHelp:                             "Помош",
 
     // Prefix:Stg - Scope:settings view
@@ -4978,7 +5282,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "уредувај и прегледај Markdown датотеки.",
+    msgStgAboutDesc:                        "Markdown уредувач со преглед во живо што чита осум јазици за означување и извезува во над 20 формати.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативен текст",
@@ -5045,6 +5349,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Не приказуј поново",
     btnNewsOpenLink:                        "Сазнајте више",
     tipNewsDismiss:                         "Затвори",
+    tipNewsShow:                            "Вести",
     lblStgGeneralNews:                      "Прикажи вести из yaiol",
     btnNewsClose:                           "Затвори",
 
@@ -5094,7 +5399,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Наслов",
     lblHdrAppearanceFontBody:               "Основни текст",
     lblHdrAppearanceFontCode:               "Код",
-    tipHdrSettings:                         "Отвори подешавања",
+    tipHdrSettings:                         "Подешавања",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Минимизуј",
+    tipWinMaximize:                         "Максимизуј",
+    tipWinRestore:                          "Врати",
+    tipWinClose:                            "Затвори",
+
     tipHdrHelp:                             "Помоћ",
 
     // Prefix:Stg - Scope:settings view
@@ -5110,7 +5422,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Светла",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "уређујте и прегледајте Markdown датотеке.",
+    msgStgAboutDesc:                        "Маркдаун уређивач са прегледом уживо који чита осам језика за означавање и извози у преко 20 формата.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Алтернативни текст",
@@ -5177,6 +5489,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Nezobrazovať znova",
     btnNewsOpenLink:                        "Zistiť viac",
     tipNewsDismiss:                         "Zavrieť",
+    tipNewsShow:                            "Správy",
     lblStgGeneralNews:                      "Zobrazovať správy z yaiol",
     btnNewsClose:                           "Zavrieť",
 
@@ -5226,7 +5539,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Nadpis",
     lblHdrAppearanceFontBody:               "Text",
     lblHdrAppearanceFontCode:               "Kód",
-    tipHdrSettings:                         "Otvoriť nastavenia",
+    tipHdrSettings:                         "Nastavenia",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Minimalizovať",
+    tipWinMaximize:                         "Maximalizovať",
+    tipWinRestore:                          "Obnoviť",
+    tipWinClose:                            "Zavrieť",
+
     tipHdrHelp:                             "Pomoc",
 
     // Prefix:Stg - Scope:settings view
@@ -5242,7 +5562,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Svetlý",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "upravujte a zobrazujte Markdown súbory.",
+    msgStgAboutDesc:                        "Editor Markdown so živým náhľadom, ktorý číta osem značkovacích jazykov a exportuje do viac ako 20 formátov.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatívny text",
@@ -5309,6 +5629,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Ne prikazuj več",
     btnNewsOpenLink:                        "Več o tem",
     tipNewsDismiss:                         "Zapri",
+    tipNewsShow:                            "Novice",
     lblStgGeneralNews:                      "Prikaži novice iz yaiol",
     btnNewsClose:                           "Zapri",
 
@@ -5358,7 +5679,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Naslov",
     lblHdrAppearanceFontBody:               "Besedilo",
     lblHdrAppearanceFontCode:               "Koda",
-    tipHdrSettings:                         "Odpri nastavitve",
+    tipHdrSettings:                         "Nastavitve",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Pomanjšaj",
+    tipWinMaximize:                         "Povečaj",
+    tipWinRestore:                          "Obnovi",
+    tipWinClose:                            "Zapri",
+
     tipHdrHelp:                             "Pomoč",
 
     // Prefix:Stg - Scope:settings view
@@ -5374,7 +5702,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Svetla",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "urejajte in pregledujte datoteke Markdown.",
+    msgStgAboutDesc:                        "Urejevalnik Markdown z živim predogledom, ki bere osem označevalnih jezikov in izvaža v več kot 20 formatov.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Nadomestno besedilo",
@@ -5441,6 +5769,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "மீண்டும் காட்டாதே",
     btnNewsOpenLink:                        "மேலும் அறிக",
     tipNewsDismiss:                         "மூடு",
+    tipNewsShow:                            "செய்திகள்",
     lblStgGeneralNews:                      "yaiol இலிருந்து செய்திகளைக் காட்டு",
     btnNewsClose:                           "மூடு",
 
@@ -5490,7 +5819,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "தலைப்பு",
     lblHdrAppearanceFontBody:               "உள்ளடக்கம்",
     lblHdrAppearanceFontCode:               "குறியீடு",
-    tipHdrSettings:                         "அமைப்புகளைத் திறக்கவும்",
+    tipHdrSettings:                         "அமைப்புகள்",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "சுருக்கு",
+    tipWinMaximize:                         "பெரிதாக்கு",
+    tipWinRestore:                          "மீட்டமை",
+    tipWinClose:                            "மூடு",
+
     tipHdrHelp:                             "உதவி",
 
     // Prefix:Stg - Scope:settings view
@@ -5506,7 +5842,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "ஒளி",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown கோப்புகளை திருத்தி மற்றும் பார்க்கவும்.",
+    msgStgAboutDesc:                        "லைவ் முன்னோட்டத்துடன் கூடிய மார்க் டவுன் எடிட்டர், எட்டு மார்க்அப் மொழிகளைப் படித்து 20+ வடிவங்களுக்கு ஏற்றுமதி செய்கிறது.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "மாற்று உரை",
@@ -5573,6 +5909,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "दोबारा न दिखाएँ",
     btnNewsOpenLink:                        "और जानें",
     tipNewsDismiss:                         "बंद करें",
+    tipNewsShow:                            "समाचार",
     lblStgGeneralNews:                      "yaiol से समाचार दिखाएँ",
     btnNewsClose:                           "बंद करें",
 
@@ -5622,7 +5959,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "शीर्षक",
     lblHdrAppearanceFontBody:               "मुख्य पाठ",
     lblHdrAppearanceFontCode:               "कोड",
-    tipHdrSettings:                         "सेटिंग्स खोलें",
+    tipHdrSettings:                         "सेटिंग्स",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "छोटा करें",
+    tipWinMaximize:                         "बड़ा करें",
+    tipWinRestore:                          "पुनर्स्थापित करें",
+    tipWinClose:                            "बंद करें",
+
     tipHdrHelp:                             "सहायता",
 
     // Prefix:Stg - Scope:settings view
@@ -5638,7 +5982,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "हल्का",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown फ़ाइलें संपादित और देखें।",
+    msgStgAboutDesc:                        "लाइव पूर्वावलोकन के साथ मार्कडाउन संपादक जो आठ मार्कअप भाषाओं को पढ़ता है और 20+ प्रारूपों में निर्यात करता है।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "वैकल्पिक टेक्स्ट",
@@ -5705,6 +6049,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "আবার দেখাবেন না",
     btnNewsOpenLink:                        "আরও জানুন",
     tipNewsDismiss:                         "বন্ধ করুন",
+    tipNewsShow:                            "খবর",
     lblStgGeneralNews:                      "yaiol থেকে খবর দেখান",
     btnNewsClose:                           "বন্ধ করুন",
 
@@ -5754,7 +6099,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "শিরোনাম",
     lblHdrAppearanceFontBody:               "মূল পাঠ্য",
     lblHdrAppearanceFontCode:               "কোড",
-    tipHdrSettings:                         "সেটিংস খুলুন",
+    tipHdrSettings:                         "সেটিংস",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "ছোট করুন",
+    tipWinMaximize:                         "বড় করুন",
+    tipWinRestore:                          "পুনরুদ্ধার করুন",
+    tipWinClose:                            "বন্ধ করুন",
+
     tipHdrHelp:                             "সাহায্য",
 
     // Prefix:Stg - Scope:settings view
@@ -5770,7 +6122,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "হালকা",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown ফাইল সম্পাদনা ও দেখুন।",
+    msgStgAboutDesc:                        "লাইভ প্রিভিউ সহ মার্কডাউন এডিটর যা আটটি মার্কআপ ভাষা পড়ে এবং 20+ ফরম্যাটে এক্সপোর্ট করে।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "বিকল্প টেক্সট",
@@ -5837,6 +6189,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "دوبارہ نہ دکھائیں",
     btnNewsOpenLink:                        "مزید جانیں",
     tipNewsDismiss:                         "بند کریں",
+    tipNewsShow:                            "خبریں",
     lblStgGeneralNews:                      "yaiol سے خبریں دکھائیں",
     btnNewsClose:                           "بند کریں",
 
@@ -5886,7 +6239,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "سرخی",
     lblHdrAppearanceFontBody:               "متن",
     lblHdrAppearanceFontCode:               "کوڈ",
-    tipHdrSettings:                         "ترتیبات کھولیں",
+    tipHdrSettings:                         "ترتیبات",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "چھوٹا کریں",
+    tipWinMaximize:                         "بڑا کریں",
+    tipWinRestore:                          "بحال کریں",
+    tipWinClose:                            "بند کریں",
+
     tipHdrHelp:                             "مدد",
 
     // Prefix:Stg - Scope:settings view
@@ -5902,7 +6262,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "ہلکا",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown فائلیں ترمیم اور دیکھیں۔",
+    msgStgAboutDesc:                        "لائیو پیش منظر کے ساتھ مارک ڈاؤن ایڈیٹر جو آٹھ مارک اپ زبانوں کو پڑھتا ہے اور 20+ فارمیٹس میں ایکسپورٹ کرتا ہے۔",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "متبادل متن",
@@ -5969,6 +6329,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Usionyeshe tena",
     btnNewsOpenLink:                        "Jifunze zaidi",
     tipNewsDismiss:                         "Funga",
+    tipNewsShow:                            "Habari",
     lblStgGeneralNews:                      "Onyesha habari kutoka yaiol",
     btnNewsClose:                           "Funga",
 
@@ -6018,7 +6379,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Kichwa",
     lblHdrAppearanceFontBody:               "Mwili",
     lblHdrAppearanceFontCode:               "Msimbo",
-    tipHdrSettings:                         "Fungua mipangilio",
+    tipHdrSettings:                         "Mipangilio",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Punguza",
+    tipWinMaximize:                         "Ongeza",
+    tipWinRestore:                          "Rejesha",
+    tipWinClose:                            "Funga",
+
     tipHdrHelp:                             "Msaada",
 
     // Prefix:Stg - Scope:settings view
@@ -6034,7 +6402,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Mwanga",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "hariri na uone faili za Markdown.",
+    msgStgAboutDesc:                        "Kihariri cha Markdown chenye onyesho la kukagua moja kwa moja kinachosoma lugha nane za uwekaji alama na kusafirisha kwa zaidi ya fomati 20.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Maandishi mbadala",
@@ -6101,6 +6469,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ",
     btnNewsOpenLink:                        "ਹੋਰ ਜਾਣੋ",
     tipNewsDismiss:                         "ਬੰਦ ਕਰੋ",
+    tipNewsShow:                            "ਖ਼ਬਰਾਂ",
     lblStgGeneralNews:                      "yaiol ਤੋਂ ਖ਼ਬਰਾਂ ਦਿਖਾਓ",
     btnNewsClose:                           "ਬੰਦ ਕਰੋ",
 
@@ -6150,7 +6519,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "ਸਿਰਲੇਖ",
     lblHdrAppearanceFontBody:               "ਮੁੱਖ ਪਾਠ",
     lblHdrAppearanceFontCode:               "ਕੋਡ",
-    tipHdrSettings:                         "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
+    tipHdrSettings:                         "ਸੈਟਿੰਗਾਂ",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "ਛੋਟਾ ਕਰੋ",
+    tipWinMaximize:                         "ਵੱਡਾ ਕਰੋ",
+    tipWinRestore:                          "ਮੁੜ-ਬਹਾਲ ਕਰੋ",
+    tipWinClose:                            "ਬੰਦ ਕਰੋ",
+
     tipHdrHelp:                             "ਮਦਦ",
 
     // Prefix:Stg - Scope:settings view
@@ -6166,7 +6542,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "ਹਲਕਾ",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown ਫਾਈਲਾਂ ਸੰਪਾਦਿਤ ਅਤੇ ਦੇਖੋ।",
+    msgStgAboutDesc:                        "ਲਾਈਵ ਪੂਰਵਦਰਸ਼ਨ ਵਾਲਾ ਮਾਰਕਡਾਊਨ ਸੰਪਾਦਕ ਜੋ ਅੱਠ ਮਾਰਕਅੱਪ ਭਾਸ਼ਾਵਾਂ ਨੂੰ ਪੜ੍ਹਦਾ ਹੈ ਅਤੇ 20+ ਫਾਰਮੈਟਾਂ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰਦਾ ਹੈ।",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ਬਦਲਵਾਂ ਪਾਠ",
@@ -6233,6 +6609,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Kada a sake nunawa",
     btnNewsOpenLink:                        "Koyi game da shi",
     tipNewsDismiss:                         "Rufe",
+    tipNewsShow:                            "Labarai",
     lblStgGeneralNews:                      "Nuna labarai daga yaiol",
     btnNewsClose:                           "Rufe",
 
@@ -6282,7 +6659,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Jigo",
     lblHdrAppearanceFontBody:               "Rubutu",
     lblHdrAppearanceFontCode:               "Lambar",
-    tipHdrSettings:                         "Buɗe saitunan",
+    tipHdrSettings:                         "Saituna",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Rage girma",
+    tipWinMaximize:                         "Ƙara girma",
+    tipWinRestore:                          "Mayar",
+    tipWinClose:                            "Rufe",
+
     tipHdrHelp:                             "Taimako",
 
     // Prefix:Stg - Scope:settings view
@@ -6298,7 +6682,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Haske",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "gyara kuma kalli fayilolin Markdown.",
+    msgStgAboutDesc:                        "Editan Markdown mai samfoti kai tsaye wanda ke karanta harsunan alama guda takwas kuma yana fitarwa zuwa tsare-tsare sama da 20.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Rubutun madadin",
@@ -6365,6 +6749,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Maṣe fi han mọ",
     btnNewsOpenLink:                        "Kọ́ ẹ̀kọ́ síwájú",
     tipNewsDismiss:                         "Pa",
+    tipNewsShow:                            "Ìròyìn",
     lblStgGeneralNews:                      "Fi iroyin lati yaiol han",
     btnNewsClose:                           "Pade",
 
@@ -6414,7 +6799,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Àkọlé",
     lblHdrAppearanceFontBody:               "Àkọsílẹ̀",
     lblHdrAppearanceFontCode:               "Kóòdù",
-    tipHdrSettings:                         "Ṣi ètò",
+    tipHdrSettings:                         "Ètò",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Din-kekere",
+    tipWinMaximize:                         "Din-nla",
+    tipWinRestore:                          "Mu pada",
+    tipWinClose:                            "Pa",
+
     tipHdrHelp:                             "Iranlọwọ",
 
     // Prefix:Stg - Scope:settings view
@@ -6430,7 +6822,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Ìmọ́lẹ̀",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "ṣàtúnkọ àti wo àwọn fayili Markdown.",
+    msgStgAboutDesc:                        "Olootu Markdown pẹlu awotẹlẹ laaye ti o ka awọn ede isamisi mẹjọ ati gbejade si awọn ọna kika 20+.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Ọrọ yiyan",
@@ -6497,6 +6889,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "మళ్ళీ చూపవద్దు",
     btnNewsOpenLink:                        "మరింత తెలుసుకోండి",
     tipNewsDismiss:                         "మూసివేయండి",
+    tipNewsShow:                            "వార్తలు",
     lblStgGeneralNews:                      "yaiol నుండి వార్తలను చూపించు",
     btnNewsClose:                           "మూసివేయి",
 
@@ -6546,7 +6939,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "శీర్షిక",
     lblHdrAppearanceFontBody:               "ప్రధాన పాఠం",
     lblHdrAppearanceFontCode:               "కోడ్",
-    tipHdrSettings:                         "సెట్టింగులు తెరువు",
+    tipHdrSettings:                         "సెట్టింగ్‌లు",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "చిన్నది చేయి",
+    tipWinMaximize:                         "పెద్దది చేయి",
+    tipWinRestore:                          "పునరుద్ధరించు",
+    tipWinClose:                            "మూసివేయి",
+
     tipHdrHelp:                             "సహాయం",
 
     // Prefix:Stg - Scope:settings view
@@ -6562,7 +6962,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "వెలుతురు",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown ఫైల్‌లను సవరించి చూడండి.",
+    msgStgAboutDesc:                        "లైవ్ ప్రివ్యూతో కూడిన మార్క్‌డౌన్ ఎడిటర్, ఇది ఎనిమిది మార్కప్ భాషలను చదివి 20+ ఫార్మాట్‌లకు ఎగుమతి చేస్తుంది.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "ప్రత్యామ్నాయ వచనం",
@@ -6629,6 +7029,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "पुन्हा दाखवू नका",
     btnNewsOpenLink:                        "अधिक जाणून घ्या",
     tipNewsDismiss:                         "बंद करा",
+    tipNewsShow:                            "बातम्या",
     lblStgGeneralNews:                      "yaiol कडून बातम्या दाखवा",
     btnNewsClose:                           "बंद करा",
 
@@ -6678,7 +7079,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "शीर्षक",
     lblHdrAppearanceFontBody:               "मुख्य मजकूर",
     lblHdrAppearanceFontCode:               "कोड",
-    tipHdrSettings:                         "सेटिंग्ज उघडा",
+    tipHdrSettings:                         "सेटिंग्ज",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "लहान करा",
+    tipWinMaximize:                         "मोठे करा",
+    tipWinRestore:                          "पुनर्संचयित करा",
+    tipWinClose:                            "बंद करा",
+
     tipHdrHelp:                             "मदत",
 
     // Prefix:Stg - Scope:settings view
@@ -6694,7 +7102,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "हलका",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "Markdown फाइल्स संपादित आणि पाहा.",
+    msgStgAboutDesc:                        "लाइव्ह पूर्वावलोकनासह मार्कडाउन संपादक जो आठ मार्कअप भाषा वाचतो आणि 20+ फॉरमॅटमध्ये निर्यात करतो.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "पर्यायी मजकूर",
@@ -6761,6 +7169,7 @@ const TRANSLATIONS = {
     lblNewsHideForever:                     "Huwag nang ipakita muli",
     btnNewsOpenLink:                        "Matuto pa",
     tipNewsDismiss:                         "Isara",
+    tipNewsShow:                            "Balita",
     lblStgGeneralNews:                      "Ipakita ang balita mula sa yaiol",
     btnNewsClose:                           "Isara",
 
@@ -6810,7 +7219,14 @@ const TRANSLATIONS = {
     lblHdrAppearanceFontHeading:            "Pamagat",
     lblHdrAppearanceFontBody:               "Nilalaman",
     lblHdrAppearanceFontCode:               "Code",
-    tipHdrSettings:                         "Buksan ang mga setting",
+    tipHdrSettings:                         "Mga Setting",
+
+    // Prefix:Win - Scope:window bar (the app's own title bar)
+    tipWinMinimize:                         "Paliitin",
+    tipWinMaximize:                         "Palakihin",
+    tipWinRestore:                          "Ibalik",
+    tipWinClose:                            "Isara",
+
     tipHdrHelp:                             "Tulong",
 
     // Prefix:Stg - Scope:settings view
@@ -6826,7 +7242,7 @@ const TRANSLATIONS = {
     btnStgGeneralThemeLight:                "Maliwanag",
 
     // Prefix:StgAbout - Scope:settings view (About tab)
-    msgStgAboutDesc:                        "i-edit at tingnan ang mga Markdown na file.",
+    msgStgAboutDesc:                        "Markdown editor na may live na preview na nagbabasa ng walong markup language at nag-e-export sa 20+ format.",
 
     // Prefix:DlgLink - Scope:link/image insert dialog
     plhDlgLinkAltText:                      "Alternatibong teksto",
