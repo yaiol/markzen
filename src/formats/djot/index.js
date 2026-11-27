@@ -4,7 +4,7 @@ import { formatPipeTable } from '../shared/tsv-table';
 // ─── Extensions ──────────────────────────────────────────────────────────────
 // @djot/djot outputs code blocks as <pre><code class="language-X"> - all
 // code-block extensions work without modification.
-// ⚠ CLAUDE: style extension omitted - Djot has no style-hint block syntax
+// ⚠ style extension omitted - Djot has no style-hint block syntax
 import mermaid, { initMermaidTheme } from '../extensions/mermaid';
 import markzen   from '../extensions/markzen';
 import chordpro  from '../extensions/chordpro';

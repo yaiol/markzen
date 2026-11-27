@@ -5,7 +5,7 @@
 // bbcode_hubzilla), which is why export needs no code of ours — but nothing can
 // parse BBCode back, so opening a .bbcode file is entirely this file's job.
 //
-// ⚠ CLAUDE: BBCode has no specification. Every forum invented its own dialect,
+// ⚠ BBCode has no specification. Every forum invented its own dialect,
 // so this reader is deliberately TOLERANT — it accepts the union of the common
 // spellings ([list]/[ul], [s]/[strike]/[del], [h1]/[heading=1], [code]/[icode]/
 // [noparse]) rather than enforcing one. An unrecognised tag is emitted as
@@ -29,7 +29,7 @@ function escAttr(s) {
   return esc(s).replace(/"/g, '&quot;');
 }
 
-// ⚠ CLAUDE: a .bbcode file is untrusted input (it is, literally, a forum post).
+// ⚠ a .bbcode file is untrusted input (it is, literally, a forum post).
 // Never emit a href/src the browser would execute — javascript: and non-image
 // data: URIs are the two that matter. Rejected URLs render as plain text.
 function safeUrl(raw, { allowData = false } = {}) {
@@ -290,7 +290,7 @@ function renderItems(node) {
 
 // A one-paragraph item reads better unwrapped (<li>text</li>), but an item with
 // several blocks must keep its <p>s.
-// ⚠ CLAUDE: the inner match must not be allowed to span a </p> — a greedy
+// ⚠ the inner match must not be allowed to span a </p> — a greedy
 // [\s\S]* here swallows the gap between two paragraphs and emits the mismatched
 // `<li>a</p><p>b</li>`, which is invalid and reflows the whole list.
 function unwrapSoleParagraph(html) {
@@ -354,7 +354,7 @@ function renderBlock(node) {
     }
 
     case '#verbatim': {
-      // ⚠ CLAUDE: this is the contract the whole extension suite rests on —
+      // ⚠ this is the contract the whole extension suite rests on —
       // <pre><code class="language-X"> with NO class on the <pre>. Every
       // extension inject() matches that exact shape; changing it silently kills
       // mermaid, katex, chess and the other 27 in .bbcode files only.

@@ -1,7 +1,7 @@
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle } from '../shared/utils';
 
-// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// ⚠ this library is loaded ON FIRST RENDER, never at startup. Static imports here
 // put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
 // binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
 let wavedromRenderAny, wavedromSkin, onmlStringify;
@@ -26,7 +26,7 @@ export default createExtension({
       // eslint-disable-next-line no-new-func
       const source = new Function('return (' + src + ')')();
       // Render WaveDrom SVG and inline all <use href="#id"> references.
-      // ⚠ CLAUDE: Do NOT use <use href="#id"> in the injected SVG - Chromium 130+ with
+      // ⚠ Do NOT use <use href="#id"> in the injected SVG - Chromium 130+ with
       // contextIsolation+preload breaks inline SVG <use> ID resolution regardless of
       // whether href or xlink:href is used, or how the SVG is injected.
       // Fix: use DOMParser to parse the SVG string (isolated, no insertion into the live
@@ -53,7 +53,7 @@ export default createExtension({
       const inlinedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
       div.innerHTML = inlinedSvg;
       // Scope WaveDrom's injected <style> rules to its own SVG element via ID.
-      // ⚠ CLAUDE: Do NOT scope via HTML ancestor (.wavedrom-diagram) - that broke SVG
+      // ⚠ Do NOT scope via HTML ancestor (.wavedrom-diagram) - that broke SVG
       // rendering in Chromium 130. Scope via the SVG's own id (#svgcontent_N) instead.
       // This prevents WaveDrom's bare selectors (e.g. text{font-family:Helvetica})
       // from overriding other extensions' fonts (e.g. VexFlow's Bravura music font).

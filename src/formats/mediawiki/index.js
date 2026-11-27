@@ -1,4 +1,4 @@
-import { wikitextToHtml } from './render';
+import { wikitextToHtml, parseHeading } from './render';
 import { formatMediaWikiTable } from '../shared/tsv-table';
 
 import mermaid, { initMermaidTheme } from '../extensions/mermaid';
@@ -62,18 +62,11 @@ const mediawikiAdapter = {
 
   formatTable: formatMediaWikiTable,
 
-  // ⚠ CLAUDE: the wikitext parser maps `== X ==` (MediaWiki's top section level) to <h1>, so a
-  // heading at HTML level N is written with N+1 equals signs. The TOC's default editor-jump
-  // repeats the marker char level times and would look for `= X =` — off by one, never matching.
+  // ⚠ the reader maps `== X ==` (MediaWiki's top section level) to <h1>, so the TOC's default
+  // editor-jump, which repeats the marker char level times, would look for `= X =` and miss.
   headingMatch(line, level) {
-    const eq = '='.repeat(level + 1);
-    const t  = line.trim();
-    if (t.length <= eq.length * 2) return null;
-    if (!t.startsWith(eq) || !t.endsWith(eq)) return null;
-    // A deeper heading also starts with this level's marker - reject it, or `=== X ===`
-    // would match level 1 as well as level 2 and the jump would land on the wrong line.
-    if (t[eq.length] === '=' || t[t.length - eq.length - 1] === '=') return null;
-    return t.slice(eq.length, t.length - eq.length).trim() || null;
+    const heading = parseHeading(line.trim());
+    return heading && heading.level === level ? heading.title : null;
   },
 
   async toHtml(text) {

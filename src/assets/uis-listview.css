@@ -51,6 +51,8 @@
   margin: 4px 0 2px;
   cursor: pointer; text-align: left;
 }
+/* `.flush` — no outer margin: the band inside a dense grid, where the rail's air is a white strip above every group. */
+.uis-lvw-group-head.flush { margin: 0; }
 .uis-lvw-group-name  { font-size: 12.5px; }
 .uis-lvw-group-count { font-size: 11px; opacity: 0.55; font-weight: 500; }
 
@@ -87,6 +89,8 @@
   font-size: 10.5px; color: var(--uis-text-mute);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
+/* A row's error line: the whole message, wrapped and selectable (it has to be copyable). */
+.uis-lvw-item-sub.error { color: var(--uis-danger); white-space: normal; user-select: text; }
 
 /* Trailing count badge (pill) */
 .uis-lvw-item-badge {
@@ -99,6 +103,16 @@
   background: color-mix(in srgb, var(--uis-accent) 18%, transparent);
   color: var(--uis-accent);
 }
+
+/* A picture in the leading slot (beside .uis-lvw-item-icon): a box of one size that the picture fills, so rows line up
+   whether or not each has its picture; without one, an icon sits in its middle. `square` for a cover. */
+.uis-lvw-item-cover { width: 64px; height: 40px; justify-content: center; color: var(--uis-text-mute); background: var(--uis-bg-row); border-radius: 6px; overflow: hidden; }
+.uis-lvw-item-cover.square { width: 40px; }
+.uis-lvw-item-cover > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* A thin progress bar under a row's text; its one child is the fill, whose width is the row's own. */
+.uis-lvw-item-progress { height: 4px; margin-top: 6px; background: var(--uis-bg-row); border-radius: 2px; overflow: hidden; }
+.uis-lvw-item-progress > div { height: 100%; background: var(--uis-accent); }
 
 /* .uis-lvw-reorder - a list whose rows are reordered by dragging: the whole row is the handle, the held one dims. */
 .uis-lvw-reorder .uis-lvw-item {

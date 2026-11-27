@@ -1,5 +1,5 @@
 
-// ⚠ CLAUDE: this parser is loaded the first time a document of THIS format is opened,
+// ⚠ this parser is loaded the first time a document of THIS format is opened,
 // never at startup — a static import puts the whole parser in the entry chunk, which every
 // user pays for even when they only ever open Markdown. The exported toHtml is async for
 // that reason; App.jsx's single call site already handles a Promise. Do not restore a
@@ -28,7 +28,7 @@ const __loadLibs = () => (__libsP ??= (async () => {
 // uniorg-rehype outputs code blocks as <pre class="src-block"><code class="language-X">
 // which we normalize to <pre><code class="language-X"> so all extension inject()s work.
 //
-// ⚠ CLAUDE: katex protectMath is not called - uniorg emits math spans directly;
+// ⚠ katex protectMath is not called - uniorg emits math spans directly;
 // orgToHtml() converts them to \(...\) / \[...\] which the katex inject() handles.
 export async function orgToHtml(text) {
   await __loadLibs();

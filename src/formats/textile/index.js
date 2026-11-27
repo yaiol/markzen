@@ -5,7 +5,7 @@ import { formatTextileTable } from '../shared/tsv-table';
 // textile-js outputs standard HTML - code spans render as <code> but fenced
 // code blocks use bc. syntax which outputs <pre><code>. Extensions that match
 // <pre><code class="language-X"> work when the user specifies a language.
-// ⚠ CLAUDE: style extension omitted - Textile has no style-hint block syntax
+// ⚠ style extension omitted - Textile has no style-hint block syntax
 import mermaid, { initMermaidTheme } from '../extensions/mermaid';
 import markzen   from '../extensions/markzen';
 import chordpro  from '../extensions/chordpro';

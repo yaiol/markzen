@@ -5,7 +5,7 @@ import { formatBBCodeTable } from '../shared/tsv-table';
 // The reader emits <pre><code class="language-X"> for [code=X], which is the
 // exact shape every extension inject() matches - so the full suite works in a
 // .bbcode file: [code=mermaid], [code=katex], [code=chess], …
-// ⚠ CLAUDE: style extension omitted - BBCode has no style-hint block syntax
+// ⚠ style extension omitted - BBCode has no style-hint block syntax
 // (same reason it is omitted for Textile).
 import mermaid, { initMermaidTheme } from '../extensions/mermaid';
 import markzen   from '../extensions/markzen';
@@ -48,7 +48,7 @@ const extensions = [
 ];
 
 // ─── BBCode adapter ──────────────────────────────────────────────────────────
-// ⚠ CLAUDE: BBCode's markers are ASYMMETRIC ([b]…[/b]), unlike every other
+// ⚠ BBCode's markers are ASYMMETRIC ([b]…[/b]), unlike every other
 // format here. bold/italic/inlineCode/strikethrough and headings therefore use
 // the { open, close } form - see toggleInlineFormat / cycleHeading in App.jsx,
 // which accept either a plain string (symmetric) or that pair.

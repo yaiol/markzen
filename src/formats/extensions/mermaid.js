@@ -1,6 +1,6 @@
 import { decodeHtmlEntities, applyMznStyle } from '../shared/utils';
 
-// ⚠ CLAUDE: this file does NOT call mermaid.run(), and must not be "simplified" back to it.
+// ⚠ this file does NOT call mermaid.run(), and must not be "simplified" back to it.
 // run() takes its input from the element's innerHTML and rewrites it before parsing:
 //     txt = dedent(entityDecode(element.innerHTML)).trim()  (plus a <br> normalisation)
 // so the diagram source round-trips through the DOM and two rewrites. Diagrams that are provably
@@ -13,7 +13,7 @@ import { decodeHtmlEntities, applyMznStyle } from '../shared/utils';
 // markup-looking content (`<br/>` in a mindmap, `&nbsp;` in a block diagram), and it is only ever
 // a fallback display; mermaid replaces it with the SVG.
 //
-// ⚠ CLAUDE: mermaid is loaded ON FIRST RENDER, never at startup. It is by far the largest
+// ⚠ mermaid is loaded ON FIRST RENDER, never at startup. It is by far the largest
 // renderer library (it drags in cytoscape + dagre), and a static import here put all of it in
 // the entry chunk. Do NOT restore a top-level `import mermaid from 'mermaid'`, and do NOT move
 // initialize() back to module scope — it would re-import the library at boot.
@@ -51,7 +51,7 @@ export default {
     await __loadLibs();
     mermaid.initialize({ startOnLoad: false, theme: ctx?.themeKey === 'dark' ? 'dark' : 'default', suppressErrors: true });
     const nodes = [...el.querySelectorAll('pre.mermaid')];
-    // ⚠ CLAUDE: render from data-mzn-src, NEVER via mermaid.run().
+    // ⚠ render from data-mzn-src, NEVER via mermaid.run().
     // run() takes its input from element.innerHTML and then rewrites it -
     //     txt = dedent(entityDecode(element.innerHTML)).trim()
     // - so the source makes a round-trip through the DOM and two rewrites before mermaid parses

@@ -46,7 +46,7 @@ export function UisPopover({
     const r = a.getBoundingClientRect();
     const mw = Math.min(maxWidth, window.innerWidth - 16);
 
-    // ⚠ CLAUDE: the height cap is the ROOM ON SCREEN, not a constant. It used to be a
+    // ⚠ the height cap is the ROOM ON SCREEN, not a constant. It used to be a
     // flat `maxHeight = 320`, which made every long menu scroll on a 1000px-tall window
     // for no reason — the panel was capped at a third of the screen and the rest was
     // hidden behind a scrollbar. Only pass an explicit `maxHeight` to cap a panel BELOW
@@ -88,7 +88,7 @@ export function UisPopover({
     place();
     const onDown = (e) => {
       if (anchorRef?.current?.contains(e.target) || popRef.current?.contains(e.target)) return;
-      // ⚠ CLAUDE: a portalled CHILD panel (a submenu flyout) is not inside popRef, so
+      // ⚠ a portalled CHILD panel (a submenu flyout) is not inside popRef, so
       // without this exception the parent dismisses on mousedown — unmounting the child
       // before its click ever lands, and the menu item silently does nothing.
       if (ignoreSelector && e.target?.closest?.(ignoreSelector)) return;

@@ -1,4 +1,4 @@
-// ⚠ CLAUDE: showdown nests a list item only when it is indented 4 spaces per level (original Markdown),
+// ⚠ showdown nests a list item only when it is indented 4 spaces per level (original Markdown),
 // but CommonMark nests it when it sits at its parent item's content column ("- " = 2 spaces, "1. " = 3).
 // `disableForced4SpacesIndentedSublists` fixes the second level; from the third level showdown's
 // outdent strips up to 4 leading spaces and flattens one step. So list items at depth >= 2 are

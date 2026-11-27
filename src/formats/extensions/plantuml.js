@@ -1,4 +1,4 @@
-// ⚠ CLAUDE: pako stays a STATIC import — `deflate` is used by encodePlantUML(), which runs
+// ⚠ pako stays a STATIC import — `deflate` is used by encodePlantUML(), which runs
 // inside the SYNCHRONOUS inject(). It cannot be lazy-loaded without making inject async, and
 // the library is small. Do not "fix" this to match the lazy-loading extensions.
 import { deflate } from 'pako';

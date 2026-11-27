@@ -1,9 +1,9 @@
-// ⚠ CLAUDE: jsxgraph CSS cannot be imported directly - its package.json exports field
+// ⚠ jsxgraph CSS cannot be imported directly - its package.json exports field
 // does not expose ./distrib/jsxgraph.css. CSS is inlined in buildCss() in App.jsx instead.
 import { createExtension } from '../shared/extensionFactory';
 import { readMznStyle, applyMznAlign } from '../shared/utils';
 
-// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// ⚠ this library is loaded ON FIRST RENDER, never at startup. Static imports here
 // put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
 // binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
 let JXG;

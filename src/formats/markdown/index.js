@@ -2,7 +2,7 @@ import { markdownToHtml } from './render';
 import { formatPipeTable } from '../shared/tsv-table';
 
 // ─── Extensions in inject chain order ────────────────────────────────────────
-// ⚠ CLAUDE: Order matters - katex must be position 12 (after all code-block injects,
+// ⚠ Order matters - katex must be position 12 (after all code-block injects,
 // before plantuml/railroad). Do NOT reorder. See DEV-refactor-plan.md.
 import mermaid, { initMermaidTheme }   from '../extensions/mermaid';
 import chordpro  from '../extensions/chordpro';

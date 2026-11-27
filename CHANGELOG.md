@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.14 — 2026-11-27
+
+- MediaWiki documents show in source order: a paragraph written above a list or a table stays above it, where it used to appear below
+- In MediaWiki documents, `#` lines make numbered lists, sub-lists nest, `*:` continues the item above, and `; term : definition` makes a definition list
+- A line starting with a space shows as preformatted text in a MediaWiki document, as on a wiki
+- MediaWiki documents keep formatting tags such as `<u>`, `<s>`, `<code>`, `<blockquote>` and `<span style>`, show pictures given by a local path, and keep thumbnail captions
+- A template in a MediaWiki document can no longer run script in the preview
+
 ## 1.0.13 — 2026-11-13
 
 - The window now has its own title bar: Settings, Help and GitHub sit at its left beside the app icon, the name and version are in the middle, and it follows the Windows title-bar colour

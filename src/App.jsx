@@ -1,4 +1,4 @@
-// ⚠ CLAUDE - NO HARDCODED UI STRINGS IN THIS FILE.
+// ⚠ NO HARDCODED UI STRINGS IN THIS FILE.
 //   Every string a user can read - JSX text, title=, placeholder=, aria-label=,
 //   confirm/alert/setMsg arguments - MUST go through t('keyName'). No exceptions.
 //   Workflow: add keys to src/i18n.js EN, then translate, sort and audit every
@@ -21,7 +21,7 @@ import { UisPopover } from './lib/uis-ctl-popover';
 import { UisTableGrid } from './lib/uis-ctl-tablegrid';
 import DOMPurify from 'dompurify';
 import katex from 'katex';
-// ⚠ CLAUDE: markmap, vexflow and plotly are loaded ON FIRST EXPORT, never at startup. They are
+// ⚠ markmap, vexflow and plotly are loaded ON FIRST EXPORT, never at startup. They are
 // used only by getExportHtml()'s rasterisation passes, and static imports here put all three in
 // the entry chunk — every user paid ~3s of cold start for libraries most never touch. Keep the
 // bindings declared here and resolved in loadExportLibs(); do NOT restore top-level imports.
@@ -82,7 +82,7 @@ const PANDOC_EXPORT_SECTIONS = [
     { id: 'opendocument', label: 'OpenDocument XML (.xml)' },
     { id: 'tei',          label: 'TEI Simple (.xml)'       },
   ]},
-  // ⚠ CLAUDE: no MediaWiki section here. MediaWiki is a first-class markup format, so it is
+  // ⚠ no MediaWiki section here. MediaWiki is a first-class markup format, so it is
   // already offered by the "Lightweight markup" list above (built from the format registry) and
   // both entries produced the same .wiki file from the same writer. Do not re-add it.
   { sectionKey: 'lblHdrConvertNotebook', formats: [
@@ -134,7 +134,7 @@ const APP_NAME    = pkg.productName;
 const APP_VERSION = pkg.version;
 // The full build IDENTITY shown to the user: the release version plus the build counter (the 4th
 // segment a buffered commit bumps), or just the release version on a clean release build.
-// ⚠ CLAUDE: APP_VERSION itself stays plain 3-part semver and must NOT absorb this - the update
+// ⚠ APP_VERSION itself stays plain 3-part semver and must NOT absorb this - the update
 // check compares it against the published beacon, and a 4-part string is not semver. Display only.
 const APP_VERSION_BUILD = pkg.build?.buildNumber ? `${pkg.version}.${pkg.build.buildNumber}` : pkg.version;
 
@@ -203,7 +203,7 @@ const STYLE_TEMPLATES = [
 
 
 // Emit @font-face rules for a locally bundled family (seeds/*.woff2, served by GET /fonts/:name).
-// ⚠ CLAUDE: the per-weight files carry their own internal names ("JetBrains Mono SemiBold"), so the
+// ⚠ the per-weight files carry their own internal names ("JetBrains Mono SemiBold"), so the
 // family name MUST be declared here — that is what unifies them into one weighted family.
 function localFontFaces(font) {
   if (!font?.files) return '';
@@ -213,7 +213,7 @@ function localFontFaces(font) {
 }
 
 function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
-  // ⚠ CLAUDE: JetBrains Mono is bundled LOCALLY, not imported from Google. Google's build of it
+  // ⚠ JetBrains Mono is bundled LOCALLY, not imported from Google. Google's build of it
   // strips the box-drawing block (U+2500-257F) — verified 2026-08-17, 0/11 glyphs — so every ASCII
   // box diagram misaligned: the missing characters fell back to another font with a different
   // advance width. The official JetBrains build has 11/11 box + 4/4 triangles. Same for Source
@@ -252,7 +252,7 @@ function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
     .md-body a:hover { text-decoration: underline; }
     .md-body code { background: var(--uis-bg-row); color: var(--uis-text); padding: 2px 6px; border-radius: 4px; font-family: ${fontCode.stack}; font-size: 0.9em; }
     .md-body pre { background: var(--uis-bg-row); border: 1px solid var(--uis-border); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 1em 0; font-family: ${fontCode.stack}; position: relative; }
-    /* ⚠ CLAUDE: the EDITOR's code font lives here, not in the CodeMirror theme, so it resolves
+    /* ⚠ the EDITOR's code font lives here, not in the CodeMirror theme, so it resolves
        from the SAME stack as .md-body pre above. When the two differed, a glyph missing from the
        webfont (box-drawing chars in ASCII diagrams) fell back to a different font per pane and
        the columns stopped lining up. One source, or they drift again. */
@@ -423,7 +423,7 @@ function insertTable(view, fmt, table, userEvent = 'input') {
   return true;
 }
 
-// ⚠ CLAUDE: an asymmetric pair ([b]…[/b], BBCode) cannot use the algorithm
+// ⚠ an asymmetric pair ([b]…[/b], BBCode) cannot use the algorithm
 // below - it relies on ONE string being both opener and closer, so scanning for
 // a "partner" is meaningless when the two differ. Keep the two paths separate.
 function toggleInlinePair(view, open, close) {
@@ -465,7 +465,7 @@ function toggleInlinePair(view, open, close) {
 }
 
 // ─── Source mapping: rendered block → the source line it came from ───────────
-// ⚠ CLAUDE: this is deliberately NOT a parser source map. Markzen renders eight markup
+// ⚠ this is deliberately NOT a parser source map. Markzen renders eight markup
 // languages through eight third-party parsers and most expose no source positions at all
 // (wtf_wikipedia discards whatever it does not understand). Matching the RENDERED text back
 // to the source text is the one technique that works identically for all eight — it is the
@@ -820,7 +820,7 @@ export default function App() {
   const [lang, setLang]         = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-lang`)  || 'en');
   const [fontKeyHeading, setFontKeyHeading] = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-heading`) || 'oswald');
   const [fontKeyBody,    setFontKeyBody]    = useState(() => localStorage.getItem(`${STORAGE_PREFIX}-font-body`)    || 'inter');
-  // ⚠ CLAUDE: the code-font catalog lists ONLY fonts whose Google webfont ships the box-drawing
+  // ⚠ the code-font catalog lists ONLY fonts whose Google webfont ships the box-drawing
   // block (U+2500-257F). A font without it substitutes those characters from another font, whose
   // advance width differs, and every ASCII box diagram misaligns. Verified 2026-08-17: of 36
   // Google monospace families only 7 qualify. Never add a code font without checking.
@@ -915,7 +915,7 @@ export default function App() {
     ? (formats.find(f => f.id === activeTab.formatId) || defaultFormat)
     : defaultFormat;
   activeFormatRef.current = activeFormat;
-  // ⚠ CLAUDE: window-level listeners below (Ctrl+S, the close guard) must see the CURRENT tabs and
+  // ⚠ window-level listeners below (Ctrl+S, the close guard) must see the CURRENT tabs and
   // the CURRENT doSave, but must not be re-registered on every keystroke - a dep on `tabs` would
   // tear down and re-add a listener for each character typed. Same render-time ref assignment as
   // activeFormatRef above; the listeners read `.current` and are registered exactly once.
@@ -955,7 +955,7 @@ export default function App() {
       } catch { return null; }
     }
     const [bravuraUri, academicoUri] = await Promise.all([fontToDataUri('bravura.woff2'), fontToDataUri('academico.woff2')]);
-    // ⚠ CLAUDE: bundled code fonts must be EMBEDDED in the export too. The exported HTML/PDF has
+    // ⚠ bundled code fonts must be EMBEDDED in the export too. The exported HTML/PDF has
     // no access to the app's local /fonts endpoint, so without this the reader falls back to a
     // system font — and any ASCII box diagram misaligns in the exported document even though it
     // looked right on screen. Google-hosted picks ride the @import in buildCss() as before.
@@ -1101,7 +1101,7 @@ export default function App() {
     // already loaded in document.fonts. Canvas text rendering uses document.fonts so glyphs render
     // correctly. The PNG is then embedded, requiring no fonts in the PDF window.
     // For HTML: SVG left as-is - Bravura @font-face in getExportCss() handles it.
-    // ⚠ CLAUDE: Do NOT apply this canvas conversion to HTML export - it changes SVG to PNG
+    // ⚠ Do NOT apply this canvas conversion to HTML export - it changes SVG to PNG
     // unnecessarily and risks breaking HTML if the canvas render fails.
     if (forPdf) {
       await document.fonts.ready;
@@ -1145,7 +1145,7 @@ export default function App() {
     }
 
     // Restore image sources from data-src for export - no server proxy URLs in the output.
-    // ⚠ CLAUDE: PDF temp file is written to os.tmpdir() - relative paths resolve against the temp
+    // ⚠ PDF temp file is written to os.tmpdir() - relative paths resolve against the temp
     // directory, not the original file's directory. For PDF, ALL local paths must become file:// URLs.
     // For HTML export, absolute paths keep backslashes (readable on Windows), relative paths stay as-is.
     const fileDir = activeTab?.filePath ? activeTab.filePath.replace(/[/\\][^/\\]*$/, '') : '';
@@ -1194,7 +1194,7 @@ export default function App() {
     const svgEls = Array.from(tmp.querySelectorAll('svg'));
     await Promise.all(svgEls.map(async svgEl => {
       try {
-        // ⚠ CLAUDE: Chrome refuses to load SVG images containing <foreignObject> as <img> sources
+        // ⚠ Chrome refuses to load SVG images containing <foreignObject> as <img> sources
         // (security policy). The SVG renders fine INLINE (HTML export works) but fails as a blob URL.
         // Fix: serialize the SVG to HTML and render it in a hidden BrowserWindow via /render-html-to-png.
         // This avoids all viewport/scroll issues - the offscreen window is completely isolated.
@@ -1235,7 +1235,7 @@ export default function App() {
 
         // SVGs without foreignObject: serialize → blob URL → canvas → PNG
         // Use getAttribute - svgEl.width.baseVal.value throws for relative lengths (e.g. width="100%")
-        // ⚠ CLAUDE: mermaid uses lowercase `viewbox`, NOT camelCase `viewBox` - check both
+        // ⚠ mermaid uses lowercase `viewbox`, NOT camelCase `viewBox` - check both
         const vbRaw = svgEl.getAttribute('viewBox') || svgEl.getAttribute('viewbox');
         const vb = vbRaw?.split(/[\s,]+/).map(Number);
         const attrW = parseFloat(svgEl.getAttribute('width'));
@@ -1259,7 +1259,7 @@ export default function App() {
           .replace(/url\((['"]?)https?:\/\/[^)]*\1\)/g, 'none');
         const blob = new Blob([cleanSvgStr], { type: 'image/svg+xml' });
         const url  = URL.createObjectURL(blob);
-        // ⚠ CLAUDE: do NOT use `new Image()` - lucide-react exports an Image icon that shadows
+        // ⚠ do NOT use `new Image()` - lucide-react exports an Image icon that shadows
         // the global window.Image constructor, causing "Image is not a constructor".
         await new Promise(resolve => {
           const img = document.createElement('img');
@@ -1373,7 +1373,7 @@ export default function App() {
     // the browser to scroll the page (win.scrollBy) and makes the header disappear.
     suppressSyncRef.current = true;
     const editorVisible = centerMode === 'split' || centerView === 'editor';
-    // ⚠ CLAUDE: never set scrollDOM.scrollTop directly — CM's scroll-stabilization
+    // ⚠ never set scrollDOM.scrollTop directly — CM's scroll-stabilization
     // measure pass overrides it (the click-twice TOC bug); scroll via the effect.
     view.dispatch({
       selection: EditorSelection.cursor(pos),
@@ -1427,7 +1427,7 @@ export default function App() {
     const raw = a.getAttribute('href') || '';
     if (!raw) return;
     if (raw.startsWith('#')) {
-      // ⚠ CLAUDE: in-page anchors must NOT use native scroll — ids are duplicated across
+      // ⚠ in-page anchors must NOT use native scroll — ids are duplicated across
       // the per-tab preview panes and the browser would jump to a hidden pane's match.
       e.preventDefault();
       const el = previewRef.current?.querySelector(`#${CSS.escape(decodeURIComponent(raw.slice(1)))}`);
@@ -1660,7 +1660,7 @@ export default function App() {
     setHtml(out);
   }, [activeTab?.text, activeTabId, activeFormat]); // eslint-disable-line
   useLayoutEffect(() => {
-    // ⚠ CLAUDE: per-tab preview panes — only (re)write the active pane's DOM when its html
+    // ⚠ per-tab preview panes — only (re)write the active pane's DOM when its html
     // actually changed (an edit / first activation). On a plain tab switch the pane already
     // holds this html: skip, so the live DOM (decoded images, rendered extensions, scroll
     // position) survives. htmlForTabRef guards the one-commit lag where `html` still
@@ -1740,7 +1740,7 @@ export default function App() {
 
     // Save selection + editor scroll of outgoing tab (the preview pane keeps its own scroll)
     if (prevActiveTabIdRef.current && prevActiveTabIdRef.current !== activeTabId) {
-      // ⚠ CLAUDE: resolve the outgoing tab id EAGERLY — the setTabs updater runs later,
+      // ⚠ resolve the outgoing tab id EAGERLY — the setTabs updater runs later,
       // after this effect has already advanced prevActiveTabIdRef; reading the ref inside
       // the updater attributes the outgoing tab's state to the INCOMING tab.
       const outgoingId = prevActiveTabIdRef.current;
@@ -1767,7 +1767,7 @@ export default function App() {
       changes: { from: 0, to: view.state.doc.length, insert: incoming.text },
       selection,
     });
-    // ⚠ CLAUDE: a plain scrollDOM.scrollTop assignment here is overridden by CM's
+    // ⚠ a plain scrollDOM.scrollTop assignment here is overridden by CM's
     // scroll-stabilization measure pass — restore must go through the snapshot effect.
     // And it must be dispatched TWICE: the first application runs against estimated
     // line heights (wildly off when huge wrapped lines were never measured) and can
@@ -1796,7 +1796,7 @@ export default function App() {
     const totalLines = view.state.doc.lines;
     const cursorLine = view.state.doc.lineAt(view.state.selection.main.head).number - 1;
 
-    // ⚠ CLAUDE: positional first, proportional only as a fallback. The old line-ratio
+    // ⚠ positional first, proportional only as a fallback. The old line-ratio
     // (cursorLine / totalLines applied to pixel height) assumes every source line occupies
     // the same vertical space in the output — which is false the moment a document holds a
     // diagram or a table: ten lines of mermaid render as one figure, ten lines of prose as
@@ -1888,7 +1888,7 @@ export default function App() {
           EditorView.lineWrapping,
           keymapCompartment.current.of([]),
           themeCompartment.current.of([]),
-          // ⚠ CLAUDE: NO fontFamily here. It was hardcoded to a stack that differed from the
+          // ⚠ NO fontFamily here. It was hardcoded to a stack that differed from the
           // preview's ('JetBrains Mono','Fira Code',monospace vs 'JetBrains Mono',monospace), so
           // any glyph missing from the webfont — box-drawing characters in ASCII diagrams —
           // fell back to a DIFFERENT font on each side and the two panes stopped aligning. It
@@ -2082,7 +2082,7 @@ export default function App() {
   doSaveRef.current = doSave;
 
   // ── Ctrl+S — save the current document ─────────────────────────────────────
-  // ⚠ CLAUDE: a WINDOW listener, not an editor keymap. The shortcut has to work wherever focus is
+  // ⚠ a WINDOW listener, not an editor keymap. The shortcut has to work wherever focus is
   // (preview pane, sidebar, the find box), and the editor does not have focus in half of those.
   // doSave() already routes a never-saved document to Save-As, so Ctrl+S covers a brand-new doc.
   useEffect(() => {
@@ -2097,7 +2097,7 @@ export default function App() {
   }, []);
 
   // ── Closing the WINDOW with unsaved work ───────────────────────────────────
-  // ⚠ CLAUDE: closing a TAB has always prompted (requestCloseTab); closing the WINDOW did not, so
+  // ⚠ closing a TAB has always prompted (requestCloseTab); closing the WINDOW did not, so
   // an unsaved document was discarded silently with no way back - write a new doc, forget to save,
   // hit the X, and the work is gone. Reported 2026-08-24.
   //
@@ -2122,7 +2122,7 @@ export default function App() {
   }, []);
 
   // ── The close SEQUENCE ─────────────────────────────────────────────────────
-  // ⚠ CLAUDE: closing the window must walk EVERY unsaved tab, not just the first. The first
+  // ⚠ closing the window must walk EVERY unsaved tab, not just the first. The first
   // version asked about file 1 and then simply stopped: discard it and the window stayed open with
   // files 2 and 3 still dirty, so you had to hit the X once per file and it read as a broken guard.
   // `closing` is the intent, and it OUTLIVES each individual answer - this effect re-targets the
@@ -2168,7 +2168,7 @@ export default function App() {
   }
 
   // Convert the active doc to another lightweight-markup format (writes via save dialog).
-  // ⚠ CLAUDE: Pandoc can WRITE BBCode but cannot READ it, so a .bbcode source
+  // ⚠ Pandoc can WRITE BBCode but cannot READ it, so a .bbcode source
   // cannot be sent as-is - it travels as the HTML we already rendered, tagged
   // fromFormat 'html'. Every other format is handed over verbatim.
   async function convertTo(f) {
@@ -2221,7 +2221,7 @@ export default function App() {
         }
         if (existing.text === text) return prev;
         const view = cmViewRef.current;
-        // ⚠ CLAUDE: use prevActiveTabIdRef (ref - fresh) not activeTabId (closure - stale
+        // ⚠ use prevActiveTabIdRef (ref - fresh) not activeTabId (closure - stale
         // when called from the /file-changes poll effect, whose deps are []).
         if (view && existing.id === prevActiveTabIdRef.current) {
           suppressSyncRef.current = true;
@@ -2502,7 +2502,7 @@ export default function App() {
                 borderBottom: isActive ? `2px solid var(--uis-accent)` : '2px solid transparent',
                 color: isActive ? 'var(--uis-text)' : 'var(--uis-text-mute)',
                 fontSize: 13,                       // [GUI Standard: ctlFontSize]
-                // ⚠ CLAUDE: a tab is capped at 200px, but the CONFIRM row that replaces its label
+                // ⚠ a tab is capped at 200px, but the CONFIRM row that replaces its label
                 // ("Unsaved changes -" + Save + Discard + X) needs roughly 300. Capped, it
                 // overflowed the tab and painted over the NEXT tab's name - two rows of text on
                 // top of each other. While a confirm is up the tab sizes to its content instead;
@@ -2625,7 +2625,7 @@ export default function App() {
           {/* Center view - force single when no document is open */}
           {(() => { const eMode = activeTab ? centerMode : 'single'; return (
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          {/* ⚠ CLAUDE: THE TOOLBAR IS ABOVE THE SPLIT, NOT INSIDE THE EDITOR COLUMN.
+          {/* ⚠ THE TOOLBAR IS ABOVE THE SPLIT, NOT INSIDE THE EDITOR COLUMN.
               It used to live in the editor pane, so in split mode the preview column began at the
               very top of the row and its first heading was drawn level with the editor's icons -
               two different things sharing one line. One full-width band means both panes start
@@ -2642,7 +2642,7 @@ export default function App() {
               const btn = (icon, title, onClick, disabled = false) => (
                 <button title={title} disabled={disabled} onClick={onClick} className="uis-btn ico subtle">{icon}</button>
               );
-              // ⚠ CLAUDE: every button below passes `!s.<shortcut>` as its disabled flag, and
+              // ⚠ every button below passes `!s.<shortcut>` as its disabled flag, and
               // that flag is NOT decoration: a null entry in an adapter's `shortcuts` means the
               // language has no such construct (MediaWiki has no inline code and no blockquote),
               // and each handler dereferences the marker - `marker.length` on null throws. A button
@@ -2731,7 +2731,7 @@ export default function App() {
                 <button className="uis-txt-search-clear" onClick={closeFind} title={t('tipPreviewFindClose')}><X className="uis-ico-inline" /></button>
               </div>
             )}
-            {/* ⚠ CLAUDE: one preview pane per tab, kept alive and toggled with `visibility`
+            {/* ⚠ one preview pane per tab, kept alive and toggled with `visibility`
                 (NOT display:none, which drops the scroll position) — DOM, decoded images,
                 rendered extensions and scroll all survive tab switches natively.
                 previewRef/mdBodyRef always point at the ACTIVE pane so every consumer

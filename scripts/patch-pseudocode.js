@@ -3,7 +3,7 @@
 // in strict mode (Vite/ES modules). Each patch adds a `var` declaration.
 // Runs automatically via postinstall.
 //
-// ⚠ CLAUDE: Do NOT add `var` to `katex = require('katex')` or `MathJax = require('mathjax')`.
+// ⚠ Do NOT add `var` to `katex = require('katex')` or `MathJax = require('mathjax')`.
 // Those lines are inside `if (typeof katex === 'undefined')` guards. When `window.katex` is
 // set (App.jsx: `window.katex = katex`), the condition is false and require() is never called,
 // so strict mode never fires. Adding `var` causes hoisting that ALWAYS shadows window.katex,

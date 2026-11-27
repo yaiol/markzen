@@ -51,7 +51,7 @@ function normalizeWinPaths(md) {
     (_, alt, p) => `<img src="${p.replace(/\\/g, '/')}" alt="${alt}">`);
 }
 
-// ⚠ CLAUDE: showdown.makeHtml is ~O(n²) - a single large document (e.g. a 3 MB
+// ⚠ showdown.makeHtml is ~O(n²) - a single large document (e.g. a 3 MB
 // Claude Code transcript exported by claude-code-helper) drives the renderer
 // heap past its limit and the window goes blank (the process is OOM-killed, so
 // it isn't a catchable error). Do NOT "simplify" this back to one makeHtml call.
@@ -96,7 +96,7 @@ function makeHtmlChunked(src) {
 }
 
 // ─── YAML front matter → metadata card ───────────────────────────────────────
-// ⚠ CLAUDE: front matter (--- key:val --- at the very top) is standard markdown metadata
+// ⚠ front matter (--- key:val --- at the very top) is standard markdown metadata
 // (Jekyll/Hugo/Obsidian, our SKILL.md + memory files). Showdown has NO front-matter support,
 // so the CLOSING --- sits directly under the last key and Showdown reads it as a SETEXT
 // heading underline - mangling the preview. Strip it BEFORE Showdown and render it as a
@@ -122,7 +122,7 @@ function extractFrontMatter(md) {
   let data;
   try { data = parseYaml(m[1]); } catch { return { card: '', body: md }; }
   if (!data || typeof data !== 'object' || Array.isArray(data)) return { card: '', body: md };
-  // ⚠ CLAUDE: build the card from DIVs, not a <table> - markzen's postRender wraps every
+  // ⚠ build the card from DIVs, not a <table> - markzen's postRender wraps every
   // <table> in a .table-wrap + copy button and the generic .md-body table CSS adds cell
   // borders/margins, which would decorate this metadata card like a content table.
   const rows = Object.entries(data)

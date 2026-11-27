@@ -15,7 +15,7 @@
 //   - tabs         : the app's own tabs, [{ key, label, icon, content }], placed between
 //                    General and About
 //   - aboutExtra   : content rendered BELOW the About block
-// ⚠ CLAUDE: an app ADDS after the common part, it never replaces or reorders it. An app that
+// ⚠ an app ADDS after the common part, it never replaces or reorders it. An app that
 // needs Theme gone or moved is a catalog decision, not a local override.
 //
 // Changes apply live (every setter persists immediately), so leaving is plain navigation:
@@ -65,7 +65,7 @@ export function UisStgView({
   // dropdown, a date picker - they close on their own document listener), Escape closes that popup
   // instead: it is let through to document, then stopped there before window. Every other key stays
   // blocked - a popup handles arrows / Enter on its own element, before <body>.
-  // ⚠ CLAUDE: this is the ONE mechanism. No app adds a `settingsOpen` check to its own shortcut
+  // ⚠ this is the ONE mechanism. No app adds a `settingsOpen` check to its own shortcut
   // handler - while the page is open that handler is never reached, popup or not. A settings tab
   // never opens a full dialog (none does); if one ever must, extend THIS function first.
   const viewRef = useRef(null);

@@ -35,8 +35,8 @@ import musicxml  from '../extensions/musicxml';
 import plotly    from '../extensions/plotly';
 import jsxgraph  from '../extensions/jsxgraph';
 import smiles    from '../extensions/smiles';
-// ⚠ CLAUDE: style extension omitted - RST has no style-hint block syntax
-// ⚠ CLAUDE: katex protectMath is not called - render.js extractMath() handles $...$ / $$...$$ directly
+// ⚠ style extension omitted - RST has no style-hint block syntax
+// ⚠ katex protectMath is not called - render.js extractMath() handles $...$ / $$...$$ directly
 
 const extensions = [
   markzen,

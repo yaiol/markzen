@@ -1,5 +1,5 @@
 
-// ⚠ CLAUDE: this parser is loaded the first time a document of THIS format is opened,
+// ⚠ this parser is loaded the first time a document of THIS format is opened,
 // never at startup — a static import puts the whole parser in the entry chunk, which every
 // user pays for even when they only ever open Markdown. The exported toHtml is async for
 // that reason; App.jsx's single call site already handles a Promise. Do not restore a
@@ -18,7 +18,7 @@ const __loadLibs = () => (__libsP ??= (async () => {
 // showtitle: true - render the = Title line as an <h1>.
 export async function asciidocToHtml(text) {
   await __loadLibs();
-  // ⚠ CLAUDE: asciidoctor v4's ESM convert() is ASYNC (returns a Promise) — it MUST be awaited, or the
+  // ⚠ asciidoctor v4's ESM convert() is ASYNC (returns a Promise) — it MUST be awaited, or the
   // .replace() normalisation below gets a Promise and throws (v3's synchronous factory was removed).
   let html = await convert(text || '', {
     safe: 'safe',

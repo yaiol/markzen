@@ -1,7 +1,7 @@
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle } from '../shared/utils';
 
-// ⚠ CLAUDE: the graphviz WASM module is fetched ON FIRST RENDER, never at startup. The old
+// ⚠ the graphviz WASM module is fetched ON FIRST RENDER, never at startup. The old
 // module-level `Graphviz.load()` ran during app boot and paid for the WASM download/compile
 // even when no document contained a graph. Keep both the import and the load() inside the
 // cached loader below.

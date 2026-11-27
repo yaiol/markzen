@@ -28,7 +28,7 @@ class DataUriChip extends WidgetType {
 const matcher = new MatchDecorator({
   regexp: DATA_URI_RE,
   decoration: m => Decoration.replace({ widget: new DataUriChip(m[1] || '', m[2].length) }),
-  // ⚠ CLAUDE: do not remove maxLength. The default (1000) scans only ~1000 chars beyond the
+  // ⚠ do not remove maxLength. The default (1000) scans only ~1000 chars beyond the
   // viewport, so a multi-hundred-KB base64 line is sliced mid-blob and the `data:` prefix is
   // never seen → nothing folds. A huge value means "always scan the full lines intersecting
   // the viewport" (matchRanges clips to line boundaries anyway).

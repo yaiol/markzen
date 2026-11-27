@@ -103,4 +103,4 @@ tipImagePropsApply
 tipImagePropsClear
 btnImagePropsRemoveStyle
 
-// ⚠ CLAUDE: do NOT add keys here — every key must belong to an existing Prefix block above. If no block fits, ask the user.
+// ⚠ do NOT add keys here — every key must belong to an existing Prefix block above. If no block fits, ask the user.

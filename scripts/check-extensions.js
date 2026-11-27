@@ -14,7 +14,7 @@
 const https = require('https');
 const pkg   = require('../package.json');
 
-// ⚠ CLAUDE: do NOT maintain a manual EXTENSIONS list - the list is auto-derived
+// ⚠ do NOT maintain a manual EXTENSIONS list - the list is auto-derived
 // from package.json devDependencies minus this exclusion set.
 // Extension packages live in devDependencies (Vite bundles them; they don't belong in dependencies).
 // When adding a new extension npm package, it appears automatically.

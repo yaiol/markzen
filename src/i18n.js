@@ -1,4 +1,4 @@
-// ⚠ CLAUDE PRE-COMMIT GUARD - STOP before editing this file.
+// ⚠ PRE-COMMIT GUARD - STOP before editing this file.
 //   It holds every UI string, in every language. Do NOT hand-edit it: no empty
 //   {} blocks, no copying values from another app, no pasting translations, no
 //   "I'll fill the others later" - all of those are bugs. The only correct path
@@ -155,7 +155,7 @@ const TRANSLATIONS = {
     tipImagePropsClear:                     "clear",
     btnImagePropsRemoveStyle:               "remove style block",
 
-    // ⚠ CLAUDE: do NOT add keys here - every key must belong to an existing Prefix block above. If no block fits, ask the user.
+    // ⚠ do NOT add keys here - every key must belong to an existing Prefix block above. If no block fits, ask the user.
   },
 
   fr: {
@@ -7356,7 +7356,7 @@ export const LANGUAGES = [
 
 const base = TRANSLATIONS.en;
 
-// ⚠ CLAUDE: useT MUST return a useMemo-wrapped function. The bare form
+// ⚠ useT MUST return a useMemo-wrapped function. The bare form
 //   `return (key) => ...` produces a new function every render, which destabilizes
 //   every useCallback/useEffect depending on `t` → infinite render loop, EMFILE crashes.
 //   See CLAUDE-i18n.md → "useT() must memoize". Do not "simplify" this.

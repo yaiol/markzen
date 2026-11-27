@@ -4,8 +4,8 @@ import { formatOrgTable } from '../shared/tsv-table';
 // ─── Extensions ──────────────────────────────────────────────────────────────
 // uniorg-rehype outputs code blocks as <pre><code class="language-X"> (after
 // normalization in render.js) - all code-block extensions work without modification.
-// ⚠ CLAUDE: style extension omitted - Org-Mode has no style-hint block syntax
-// ⚠ CLAUDE: katex protectMath is not called - render.js converts uniorg math spans
+// ⚠ style extension omitted - Org-Mode has no style-hint block syntax
+// ⚠ katex protectMath is not called - render.js converts uniorg math spans
 // to \(...\) / \[...\] directly; the katex inject() handles those.
 import mermaid, { initMermaidTheme } from '../extensions/mermaid';
 import markzen   from '../extensions/markzen';

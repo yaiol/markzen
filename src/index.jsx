@@ -7,7 +7,7 @@ import './assets/uis-colors.css';
 import './assets/uis-app.css';
 import './assets/uis-listview.css';
 
-// ⚠ CLAUDE: the active language chunk is awaited BEFORE the first render, so a non-English
+// ⚠ the active language chunk is awaited BEFORE the first render, so a non-English
 // user never sees a flash of English. `.finally` (not `.then`) so a failed or unknown language
 // still renders, in English. src/i18n-gen/ is GENERATED — see scripts/i18n-split.mjs.
 const root = ReactDOM.createRoot(document.getElementById('root'));

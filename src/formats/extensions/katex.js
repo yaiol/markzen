@@ -1,11 +1,11 @@
-// ⚠ CLAUDE: katex stays a STATIC import while every other library is lazy-loaded. It is used
+// ⚠ katex stays a STATIC import while every other library is lazy-loaded. It is used
 // from inject(), which is SYNCHRONOUS by contract (all 30 extension injects share that shape),
 // and this extension has `render: null` — there is no async point to load it at. Making inject
 // async would change the adapter contract for every format. Do not "fix" this for consistency.
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
-// ⚠ CLAUDE: Expose katex globally so pseudocode can find it as a math backend.
+// ⚠ Expose katex globally so pseudocode can find it as a math backend.
 // This must run before pseudocode is rendered.
 window.katex = katex;
 
@@ -74,7 +74,7 @@ export default {
       }
     });
     // AsciiDoc: render stem:[...] inline math - Asciidoctor emits \(...\) for inline, \[...\] for display.
-    // ⚠ CLAUDE: these two passes run on the FULL converted HTML, so they must skip
+    // ⚠ these two passes run on the FULL converted HTML, so they must skip
     // <pre>/<code> chunks — a code block containing literal \(...\) or \[...\]
     // (e.g. a regex over LaTeX delimiters) was being math-rendered, mangling the
     // code and inserting display-math line breaks mid-block (2026-07-21).

@@ -1,7 +1,7 @@
 import { createExtension } from '../shared/extensionFactory';
 import { applyMznStyle } from '../shared/utils';
 
-// ⚠ CLAUDE: this library is loaded ON FIRST RENDER, never at startup. Static imports here
+// ⚠ this library is loaded ON FIRST RENDER, never at startup. Static imports here
 // put the whole library in the entry chunk — 40 of them cost ~3s of cold start. Keep the
 // binding declared here and resolved in __loadLibs(); do NOT restore a top-level import.
 let Transformer, builtInPlugins, Markmap, katex;
@@ -13,7 +13,7 @@ const __loadLibs = () => (__libsP ??= (async () => {
   katex = (await import('katex')).default;
   // Markmap transformer - katex plugin disabled so $...$ survives as &#x24;...&#x24;
   // in content strings. Math is pre-rendered into root.content before Markmap.create().
-  // ⚠ CLAUDE: Do NOT re-enable the built-in katex plugin - it conflicts with our math pipeline.
+  // ⚠ Do NOT re-enable the built-in katex plugin - it conflicts with our math pipeline.
   // Built here, not at module scope: `Transformer` does not exist before the import above.
   markmapTransformer = new Transformer(builtInPlugins.filter(p => p.name !== 'katex'));
 })());
@@ -29,7 +29,7 @@ export function applyMathToMarkmapRoot(node) {
   node.children?.forEach(applyMathToMarkmapRoot);
 }
 
-// ⚠ CLAUDE: `Markmap` and `markmapTransformer` are no longer exported. They were unused —
+// ⚠ `Markmap` and `markmapTransformer` are no longer exported. They were unused —
 // App.jsx keeps its own copies for getExportHtml (also lazy-loaded there). Re-exporting a
 // binding that is undefined until __loadLibs() runs is a trap; don't reintroduce it.
 

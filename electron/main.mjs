@@ -28,7 +28,7 @@ const APP_NAME  = pkg.productName;
 const CLI_NAME  = pkg.cliName;
 // CLI instances get a unique temp userData dir so they don't conflict with a running
 // app instance's locked disk cache.
-// ⚠ CLAUDE: cleanup is a SWEEP AT STARTUP, not a delete at exit. Deleting our own userData
+// ⚠ cleanup is a SWEEP AT STARTUP, not a delete at exit. Deleting our own userData
 // while the process is still alive can never work on Windows — Chromium holds open handles on
 // Cache/Network/GPUCache, rmSync throws, and the dir leaks (178 of them before this was added).
 // A dir named after a PID that is no longer running is provably unlocked, so it can be removed.
@@ -58,7 +58,7 @@ if (isCLIearly) {
 
 app.commandLine.appendSwitch('enable-print-preview');
 
-// ⚠ CLAUDE: Always use this module-level mainWindow for all dialog calls.
+// ⚠ Always use this module-level mainWindow for all dialog calls.
 // Never use BrowserWindow.fromWebContents(event.sender) - it silently breaks in packaged .exe.
 // See root CLAUDE.md "Electron Dialog Windows".
 let mainWindow = null;
@@ -195,7 +195,7 @@ function startServer(callback) {
   });
 
   // Close the window once the renderer has walked every unsaved tab.
-  // ⚠ CLAUDE: the renderer CANNOT do this itself. Its `beforeunload` cancels the close (that is how
+  // ⚠ the renderer CANNOT do this itself. Its `beforeunload` cancels the close (that is how
   // the unsaved-changes guard works), and `window.close()` from a renderer is gated on how the
   // window was created - a close that silently does nothing would be a worse bug than the one the
   // guard fixes. `destroy()` rather than `close()` so it cannot be re-cancelled by the very guard
@@ -343,7 +343,7 @@ function startServer(callback) {
 
   // Serve font files from seeds/ - used by getExportCss() to embed as data URIs
   api.get('/fonts/:name', (req, res) => {
-    // ⚠ CLAUDE: pattern guard, not a hand-maintained list — the bundled set grows (VexFlow's
+    // ⚠ pattern guard, not a hand-maintained list — the bundled set grows (VexFlow's
     // bravura/academico, plus the self-hosted code fonts). The regex allows no path separators
     // and no dots beyond the extension, so it cannot traverse out of SEEDS_DIR.
     if (!/^[a-z0-9-]+\.woff2$/.test(req.params.name)) { res.status(404).end(); return; }
@@ -353,7 +353,7 @@ function startServer(callback) {
     res.sendFile(file);
   });
 
-  // ⚠ CLAUDE: PDF temp file is in os.tmpdir() - file:// same-origin policy blocks cross-directory
+  // ⚠ PDF temp file is in os.tmpdir() - file:// same-origin policy blocks cross-directory
   // image loading. Rewrite local image srcs to http://localhost:PORT/local-image so Chromium fetches
   // them as normal web resources. This matters specifically for .webp: when embedded as base64 data:
   // URLs (the old approach), Chromium's printToPDF treats webp as potentially-lossless and embeds it
@@ -381,7 +381,7 @@ function startServer(callback) {
     await printWin.loadFile(tmpHtml);
     // Wait for all @font-face fonts to finish loading before printing
     await printWin.webContents.executeJavaScript('document.fonts.ready');
-    // ⚠ CLAUDE: Chromium's printToPDF embeds .webp as lossless PNG/Flate (a 14-image webp doc → 27MB).
+    // ⚠ Chromium's printToPDF embeds .webp as lossless PNG/Flate (a 14-image webp doc → 27MB).
     // Transcode every <img> to JPEG via canvas before printing so the PDF embeds JPEG bytes (~600KB).
     // Must run in the print window itself - Chromium decides format from the live <img>, not the URL.
     await printWin.webContents.executeJavaScript(`(async () => {
@@ -507,7 +507,7 @@ function startServer(callback) {
     opendocument: 'opendocument',
   };
 
-  // ⚠ CLAUDE: reading and writing are NOT symmetric, and collapsing these back
+  // ⚠ reading and writing are NOT symmetric, and collapsing these back
   // into one map silently breaks BBCode. Pandoc 3.9 ships six BBCode WRITERS
   // (bbcode, _phpbb, _xenforo, _steam, _fluxbb, _hubzilla) but NO BBCode reader.
   // So .bbcode is a direct export target, while a .bbcode SOURCE is handed to
@@ -523,7 +523,7 @@ function startServer(callback) {
     else if (process.platform === 'darwin') platform = process.arch === 'arm64' ? 'mac-arm64' : 'mac-x64';
     else                                    platform = 'linux';
     const exe = process.platform === 'win32' ? 'pandoc.exe' : 'pandoc';
-    // ⚠ CLAUDE: dev keeps all platforms under vendor/pandoc/<platform>/; the packaged build
+    // ⚠ dev keeps all platforms under vendor/pandoc/<platform>/; the packaged build
     // ships only one via extraResources (from: vendor/pandoc/<platform>, to: pandoc), which
     // FLATTENS the binary to resources/pandoc/<exe> - no platform subfolder in production.
     return isDev
@@ -636,7 +636,7 @@ function startServer(callback) {
       fs.writeFileSync(tmpIn, fullHtml, 'utf8');
 
       await new Promise((resolve, reject) => {
-        // ⚠ CLAUDE: -s (--standalone) is required for RTF/EPUB/ODT/DOCX/PPTX to produce valid documents
+        // ⚠ -s (--standalone) is required for RTF/EPUB/ODT/DOCX/PPTX to produce valid documents
         // with proper format headers (e.g. RTF must start with {\rtf1, ODT needs the XML preamble, etc.)
         execFile(pandocPath, ['-f', 'html', '-s', tmpIn, '-t', pandocFmt, '-o', result.filePath], { timeout: 60000, cwd: tmpDir }, (err, _stdout, stderr) => {
           if (err) reject(new Error(stderr || String(err))); else resolve();
@@ -738,7 +738,7 @@ function createWindow(port) {
   mark("BrowserWindow created");
   mainWindow.webContents.once('did-finish-load', () => { mark("renderer did-finish-load"); dumpStartupTiming({ appName: APP_NAME, isDev, userDataPath: app.getPath("userData") }); });
   mainWindow.webContents.on('did-finish-load', () => mainWindow.setTitle(isDev ? `${APP_NAME} (Dev)` : APP_NAME));
-  // ⚠ CLAUDE: Ctrl+Shift+I is dead because Menu.setApplicationMenu(null) removes the default shortcut.
+  // ⚠ Ctrl+Shift+I is dead because Menu.setApplicationMenu(null) removes the default shortcut.
   // This restores it in dev only - do NOT remove.
   if (isDev) {
     mainWindow.webContents.on('before-input-event', (event, input) => {
@@ -749,7 +749,7 @@ function createWindow(port) {
     });
   }
 
-  // ⚠ CLAUDE: block EVERY in-window navigation. Relative links in a rendered doc
+  // ⚠ block EVERY in-window navigation. Relative links in a rendered doc
   // (e.g. electron/CLAUDE-i18n.md) resolve to the app's own origin, so a same-origin
   // check lets them through - they replace the React app with a blank page. The renderer
   // catches local file links and opens them in a tab before navigation starts; anything

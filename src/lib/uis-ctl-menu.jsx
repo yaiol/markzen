@@ -33,7 +33,7 @@ const NOOP = () => {};
 const MenuCtx = createContext({ close: NOOP, openSub: null, setOpenSub: NOOP });
 
 export function UisMenu({ anchorRef, open, onClose, title, align = 'auto', children }) {
-  // ⚠ CLAUDE: the MENU owns which submenu is open — a single id, not a boolean per row.
+  // ⚠ the MENU owns which submenu is open — a single id, not a boolean per row.
   // When each row kept its own `hover` flag, sweeping down a column of parent rows left
   // every flyout on screen at once: leaving a row only SCHEDULED its close while the next
   // row opened immediately, so the delay stacked them. One id makes "only one submenu,
@@ -84,7 +84,7 @@ export function UisMenuItem({ label, onClick, submenu, disabled = false, icon = 
   };
 
   // A parent row: no action of its own, opens `submenu` as a flyout while hovered.
-  // ⚠ CLAUDE: the flyout MUST be portalled (via UisPopover), never an absolutely-positioned
+  // ⚠ the flyout MUST be portalled (via UisPopover), never an absolutely-positioned
   // child of the panel. `.uis-pop-surface` sets `overflow-y: auto` to cap tall panels, and an
   // `overflow` box clips on BOTH axes — so a child at `left: 100%` is invisible the moment
   // the menu is long enough to scroll. That is precisely how submenus were unreachable.
@@ -98,7 +98,7 @@ export function UisMenuItem({ label, onClick, submenu, disabled = false, icon = 
         <UisPopover anchorRef={rowRef} open={hover} onClose={() => setOpenSub(null)}
           placement="side" className="menu-flyout"
           onMouseEnter={openNow} onMouseLeave={closeSoon}>
-          {/* ⚠ CLAUDE: the flyout's own rows share this context, so they must NOT be able to
+          {/* ⚠ the flyout's own rows share this context, so they must NOT be able to
               touch the submenu slot — a leaf's onMouseEnter would otherwise close the very
               flyout it lives in. Neutralising it here also caps nesting at one level. */}
           <MenuCtx.Provider value={{ close, openSub: null, setOpenSub: NOOP }}>
