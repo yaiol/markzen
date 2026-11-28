@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.15 — 2026-11-28
+
+- Lines starting with `:` are now indented in MediaWiki documents, and `*:` or `#:` lines sit one step to the right of their list item; in 1.0.14 they showed with no indent of their own
+- Definition lists in every markup language now indent their definitions and show their terms in bold, in the preview and in exports
+
 ## 1.0.14 — 2026-11-27
 
 - MediaWiki documents show in source order: a paragraph written above a list or a table stays above it, where it used to appear below

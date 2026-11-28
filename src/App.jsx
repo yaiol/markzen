@@ -268,6 +268,12 @@ function buildCss(fontHeading, fontBody, fontCode, templateCss = '') {
     .md-body blockquote { border-left: 4px solid var(--uis-accent); background: var(--uis-bg-hov); margin: 1em 0; padding: 10px 16px; border-radius: 0 6px 6px 0; color: var(--uis-text-dim); }
     .md-body ul, .md-body ol { padding-left: 1.8em; margin: 0.8em 0; }
     .md-body li { margin: 0.3em 0; }
+    /* ⚠ the reset above strips the browser's own indent from <dd>: without this a definition list
+       sits flush left, and a wiki ":" or "*:" line looks like any other line. */
+    .md-body dl { margin: 0.8em 0; }
+    .md-body dt { font-weight: 700; }
+    .md-body dd { margin: 0.3em 0 0.3em 1.8em; }
+    .md-body li > dl, .md-body dd > dl { margin: 0; }
     .md-body table { border-collapse: collapse; width: 100%; margin: 1em 0; }
     .md-body th, .md-body td { border: 1px solid var(--uis-border); padding: 8px 12px; text-align: left; }
     .md-body th { background: var(--uis-bg-elev); font-weight: 600; }
